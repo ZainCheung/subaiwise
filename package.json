@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predev": "npm run data:public",
     "build": "tsc --noEmit && vite build",
+    "prebuild": "npm run data:public",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
     "data:sync": "tsx scripts/sync-upstream.ts",
-    "data:check": "tsx scripts/sync-upstream.ts --check"
+    "data:check": "tsx scripts/sync-upstream.ts --check",
+    "data:public": "tsx scripts/prepare-public-data.ts"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.131.0",
