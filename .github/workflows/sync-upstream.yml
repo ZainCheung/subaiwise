@@ -1,0 +1,98 @@
+name: Sync upstream data
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: upstream-data-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Resolve upstream HEAD
+        id: upstream
+        shell: bash
+        run: |
+          locked=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).ref)")
+          latest=$(git ls-remote https://github.com/FeiZhuLulu/real-api-pricing.git HEAD | cut -f1)
+          echo "locked=$locked" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          if [ "$locked" = "$latest" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Capture previous dataset
+        if: steps.upstream.outputs.changed == 'true'
+        run: git show HEAD:data/dataset.json > "$RUNNER_TEMP/previous-dataset.json"
+      - name: Sync canonical dataset
+        if: steps.upstream.outputs.changed == 'true'
+        run: npm run data:sync -- --ref "${{ steps.upstream.outputs.latest }}"
+      - name: Verify sync
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          npm run data:check
+          npm test
+          npm run build
+      - name: Build PR summary
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          {
+            echo "## Upstream data sync"
+            echo
+            echo "Source: ${{ steps.upstream.outputs.locked }} → ${{ steps.upstream.outputs.latest }}"
+            echo
+            npx tsx scripts/dataset-summary.ts --before "$RUNNER_TEMP/previous-dataset.json" --after data/dataset.json
+            overrides=$(node -e "console.log(Object.keys(JSON.parse(require('fs').readFileSync('data/local.json', 'utf8')).overrides || {}).length)")
+            exclusions=$(node -e "console.log((JSON.parse(require('fs').readFileSync('data/local.json', 'utf8')).exclusions || []).length)")
+            echo
+            echo "Local overrides: $overrides applied"
+            echo "Local exclusions: $exclusions applied"
+            echo
+            echo "Schema: PASS"
+            echo "Tests: PASS"
+            echo "Build: PASS"
+          } > "$RUNNER_TEMP/pr-body.md"
+      - name: Commit and push sync branch
+        if: steps.upstream.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B automation/sync-upstream
+          git add data/upstream.lock.json data/dataset.json
+          if git diff --cached --quiet; then
+            echo "No dataset changes after sync."
+            exit 0
+          fi
+          git commit -m "data: sync real-api-pricing upstream"
+          git push --force-with-lease origin automation/sync-upstream
+      - name: Create or update Data Sync PR
+        if: steps.upstream.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          existing=$(gh pr list --head automation/sync-upstream --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh pr edit "$existing" --title "data: sync real-api-pricing upstream" --body-file "$RUNNER_TEMP/pr-body.md"
+          else
+            gh pr create --base main --head automation/sync-upstream --title "data: sync real-api-pricing upstream" --body-file "$RUNNER_TEMP/pr-body.md"
+          fi
