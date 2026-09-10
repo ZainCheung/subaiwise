@@ -1,6 +1,7 @@
 import { useI18n } from '../lib/i18n'
 
 const UPSTREAM = 'https://github.com/FeiZhuLulu/real-api-pricing'
+const GITHUB = 'https://github.com/ZainCheung/subaiwise'
 
 export function Footer() {
   const { t } = useI18n()
@@ -26,11 +27,19 @@ export function Footer() {
         <div className="flex flex-col gap-1 sm:items-end">
           <a
             className="hover:text-ink"
-            href="https://github.com/ZainCheung/real-api-pricing/blob/main/SOURCES.md"
+            href={GITHUB}
             target="_blank"
             rel="noreferrer"
           >
-            {t('footerSources')}
+            {t('github')} ↗
+          </a>
+          <a
+            className="hover:text-ink"
+            href={UPSTREAM}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('dataSource')} ↗ {t('dataSourceUpstream')}
           </a>
           <p className="max-w-md text-[12px] leading-relaxed sm:text-right">{t('footerNote')}</p>
         </div>

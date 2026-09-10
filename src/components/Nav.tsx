@@ -1,6 +1,6 @@
 import { useI18n } from '../lib/i18n'
 
-const GH = 'https://github.com/ZainCheung/real-api-pricing'
+const GH = 'https://github.com/ZainCheung/subaiwise'
 
 export function Nav() {
   const { t, toggle } = useI18n()
