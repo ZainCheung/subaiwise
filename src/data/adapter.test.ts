@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { adaptPoint, buildDataset, serializeDataset, TOKENS_PER_YI } from './adapter'
+import { LocalEntryOverrideSchema } from './schema'
 import type { SubAIWiseEntry } from './schema'
 
 const source = {
@@ -92,5 +93,19 @@ describe('SubAIWise adapter', () => {
     const first = serializeDataset(buildDataset(payload(), source, { additions: [addition] }))
     const second = serializeDataset(buildDataset(payload(), source, { additions: [addition] }))
     expect(first).toBe(second)
+  })
+
+  it('rejects local attempts to change canonical identity', () => {
+    expect(() => LocalEntryOverrideSchema.parse({ id: 'new-id' })).toThrow()
+    expect(() => LocalEntryOverrideSchema.parse({ plan: { id: 'new-plan' } })).toThrow()
+    expect(() => LocalEntryOverrideSchema.parse({ model: { id: 'new-model' } })).toThrow()
+  })
+
+  it('fails loudly when an upstream board loses its score field', () => {
+    const point = upstreamPoint()
+    delete (point as Record<string, unknown>).arena_code__score
+    expect(() => buildDataset(payload([point]), source)).toThrow(
+      'Upstream schema drift detected: board "arena_code" exists but no arena_code__score field was found.',
+    )
   })
 })

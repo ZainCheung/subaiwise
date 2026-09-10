@@ -48,3 +48,22 @@ export const UpstreamPointsPayloadSchema = UpstreamPayloadSchema
 export type UpstreamBoard = z.infer<typeof UpstreamBoardSchema>
 export type UpstreamPoint = z.infer<typeof UpstreamPointSchema>
 export type UpstreamPayload = z.infer<typeof UpstreamPayloadSchema>
+
+/**
+ * Guard the dynamic benchmark boundary against silent field renames.  A
+ * declared leaderboard must have its conventional score field on at least one
+ * row; otherwise the adapter would quietly turn a populated board into nulls.
+ */
+export function validateUpstreamBenchmarkFields(payload: UpstreamPayload): void {
+  for (const board of Object.keys(payload.boards)) {
+    const scoreField = `${board}__score`
+    const hasScoreField = payload.points.some((point) =>
+      Object.prototype.hasOwnProperty.call(point, scoreField),
+    )
+    if (!hasScoreField) {
+      throw new Error(
+        `Upstream schema drift detected: board "${board}" exists but no ${scoreField} field was found.`,
+      )
+    }
+  }
+}
