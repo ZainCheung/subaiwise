@@ -1,5 +1,4 @@
-import type { BoardKey, PricingPoint, PointsPayload } from '../types'
-import { subscriptionFrontier } from './pareto'
+import type { SubAIWiseDataset, SubAIWiseEntry } from '../data/schema'
 
 export interface SnapshotStats {
   generatedAt: string
@@ -11,53 +10,79 @@ export interface SnapshotStats {
   arenaAgent: number
   aaIntel: number
   aaCoding: number
+  designArena: number
   vendors: number
 }
 
-export function computeStats(data: PointsPayload): SnapshotStats {
-  const pts = data.points
-  const scored = (k: BoardKey) =>
-    pts.filter((p) => p[`${k}__score`] != null).length
+export function computeStats(data: SubAIWiseDataset): SnapshotStats {
+  const entries = data.entries
+  const scored = (key: string) =>
+    entries.filter((entry) => entry.benchmarks[key]?.score != null).length
 
   return {
-    generatedAt: data.generatedAt,
-    total: pts.length,
-    subscription: pts.filter((p) => p.billing === 'subscription').length,
-    metered: pts.filter((p) => p.billing === 'metered').length,
-    opencodeGo: pts.filter((p) => p.plan.includes('OpenCode Go')).length,
-    arenaCode: scored('arena_code'),
-    arenaAgent: scored('arena_agent_mode'),
-    aaIntel: scored('aa_intelligence_index'),
-    aaCoding: scored('aa_coding_agent_index'),
-    vendors: new Set(pts.map((p) => p.vendor)).size,
+    generatedAt: data.snapshot,
+    total: entries.length,
+    subscription: entries.filter((entry) => entry.plan.billing === 'subscription').length,
+    metered: entries.filter((entry) => entry.plan.billing === 'metered').length,
+    opencodeGo: entries.filter((entry) => entry.plan.name.includes('OpenCode Go')).length,
+    arenaCode: scored('codeArena'),
+    arenaAgent: scored('agentArena'),
+    aaIntel: scored('intelligence'),
+    aaCoding: scored('codingAgent'),
+    designArena: scored('designArena'),
+    vendors: new Set(entries.map((entry) => entry.provider)).size,
   }
 }
 
-export function subscriptionPoints(points: PricingPoint[]): PricingPoint[] {
-  return points.filter(
-    (p) => p.billing === 'subscription' && p.monthly_yi != null && p.monthly_yi > 0,
+export function subscriptionEntries(entries: SubAIWiseEntry[]): SubAIWiseEntry[] {
+  return entries.filter(
+    (entry) =>
+      entry.plan.billing === 'subscription' &&
+      entry.allowance.monthlyTokens != null &&
+      entry.allowance.monthlyTokens > 0,
   )
 }
 
 export interface QuickInsights {
-  lowest: PricingPoint | null
-  largest: PricingPoint | null
-  frontier: PricingPoint | null
+  lowest: SubAIWiseEntry | null
+  largest: SubAIWiseEntry | null
+  frontier: SubAIWiseEntry | null
 }
 
 /** Frontier example is the highest-score Code Arena subscription Pareto point. */
-export function computeInsights(data: PointsPayload): QuickInsights {
-  const pts = data.points
-  if (!pts.length) return { lowest: null, largest: null, frontier: null }
+export function computeInsights(data: SubAIWiseDataset): QuickInsights {
+  const entries = data.entries
+  if (!entries.length) return { lowest: null, largest: null, frontier: null }
 
-  const lowest = pts.reduce((a, b) =>
-    a.real_usd_per_mtok <= b.real_usd_per_mtok ? a : b,
+  const lowest = entries.reduce((a, b) =>
+    a.pricing.effectiveUsdPerMillionTokens <= b.pricing.effectiveUsdPerMillionTokens ? a : b,
   )
-  const subs = subscriptionPoints(pts)
+  const subs = subscriptionEntries(entries)
   const largest = subs.length
-    ? subs.reduce((a, b) => ((a.monthly_yi ?? 0) >= (b.monthly_yi ?? 0) ? a : b))
+    ? subs.reduce((a, b) =>
+        (a.allowance.monthlyTokens ?? 0) >= (b.allowance.monthlyTokens ?? 0) ? a : b,
+      )
     : null
-  const frontierPts = subscriptionFrontier(pts, 'arena_code')
+  const scored = subs
+    .filter((entry) => {
+      const score = entry.benchmarks.codeArena?.score
+      return score != null && entry.pricing.effectiveUsdPerMillionTokens > 0
+    })
+    .sort(
+      (a, b) =>
+        a.pricing.effectiveUsdPerMillionTokens - b.pricing.effectiveUsdPerMillionTokens ||
+        (b.benchmarks.codeArena?.score ?? -Infinity) -
+          (a.benchmarks.codeArena?.score ?? -Infinity),
+    )
+  let best = -Infinity
+  const frontierPts: SubAIWiseEntry[] = []
+  for (const entry of scored) {
+    const score = entry.benchmarks.codeArena?.score ?? -Infinity
+    if (score > best) {
+      best = score
+      frontierPts.push(entry)
+    }
+  }
   const frontier = frontierPts.length ? frontierPts[frontierPts.length - 1] : null
   return { lowest, largest, frontier }
 }

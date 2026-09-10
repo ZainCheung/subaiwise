@@ -2,6 +2,7 @@ import type { BoardKey } from '../types'
 import type { SortKey } from './compare'
 import type { DictKey } from './i18n'
 import { BOARD_KEYS } from './labels'
+import { LEADERBOARD_CONFIG } from './leaderboards'
 
 export type MetricDirection = 'higher' | 'lower'
 
@@ -30,37 +31,21 @@ export const ALLOWANCE_METRIC: MetricDefinition = {
   direction: 'higher',
 }
 
-export const BOARD_METRICS: Record<BoardKey, MetricDefinition> = {
-  arena_code: {
-    key: 'arena_code',
-    titleKey: 'boardArenaCode',
-    shortKey: 'metricArenaCodeShort',
-    longKey: 'metricArenaCodeLong',
-    direction: 'higher',
-  },
-  arena_agent_mode: {
-    key: 'arena_agent_mode',
-    titleKey: 'boardArenaAgent',
-    shortKey: 'metricArenaAgentShort',
-    longKey: 'metricArenaAgentLong',
-    direction: 'higher',
-  },
-  aa_intelligence_index: {
-    key: 'aa_intelligence_index',
-    titleKey: 'boardAAIntel',
-    shortKey: 'metricAAIntelShort',
-    longKey: 'metricAAIntelLong',
-    direction: 'higher',
-    sourceKey: 'aaIntelFullName',
-  },
-  aa_coding_agent_index: {
-    key: 'aa_coding_agent_index',
-    titleKey: 'boardAACoding',
-    shortKey: 'metricAACodingShort',
-    longKey: 'metricAACodingLong',
-    direction: 'higher',
-  },
-}
+export const BOARD_METRICS = Object.fromEntries(
+  LEADERBOARD_CONFIG.map((definition) => [
+    definition.key,
+    {
+      key: definition.key,
+      titleKey: definition.titleKey as DictKey,
+      shortKey: definition.shortKey as DictKey,
+      longKey: definition.longKey as DictKey,
+      direction: definition.direction,
+      sourceKey: ('sourceKey' in definition
+        ? definition.sourceKey
+        : undefined) as DictKey | undefined,
+    },
+  ]),
+) as Record<BoardKey, MetricDefinition>
 
 export const SORT_METRICS: Record<SortKey, MetricDefinition> = {
   price: PRICE_METRIC,

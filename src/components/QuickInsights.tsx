@@ -1,8 +1,7 @@
-import type { BoardKey } from '../types'
 import type { QuickInsights as Insights } from '../lib/stats'
+import { TOKENS_PER_YI } from '../data/adapter'
 import { useI18n } from '../lib/i18n'
 import { formatAllowanceYi, formatScore, formatSnapshotDate, formatUsdPerMtok } from '../lib/format'
-import { scoreKey } from '../lib/pareto'
 import { vendorColor } from '../lib/vendors'
 
 export function QuickInsights({
@@ -14,33 +13,42 @@ export function QuickInsights({
 }) {
   const { t, lang } = useI18n()
   const { lowest, largest, frontier } = insights
-  const frontierScore = frontier
-    ? (frontier[scoreKey('arena_code' satisfies BoardKey)] as number | null)
-    : null
+  const frontierScore = frontier?.benchmarks.codeArena?.score ?? null
+  const entryLabel = (entry: Insights['lowest']) =>
+    entry?.label ?? (entry ? `${entry.model.name} · ${entry.plan.name}` : '—')
 
   const cards = [
     {
       key: 'lowest',
       label: t('insightLowest'),
-      value: lowest ? formatUsdPerMtok(lowest.real_usd_per_mtok) : '—',
-      sub: lowest ? lowest.label : '—',
-      color: lowest ? vendorColor(lowest.vendor) : undefined,
+      value: lowest
+        ? formatUsdPerMtok(lowest.pricing.effectiveUsdPerMillionTokens)
+        : '—',
+      sub: entryLabel(lowest),
+      color: lowest ? vendorColor(lowest.provider) : undefined,
     },
     {
       key: 'largest',
       label: t('insightLargest'),
-      value: largest ? formatAllowanceYi(largest.monthly_yi, lang) : '—',
-      sub: largest ? largest.label : '—',
-      color: largest ? vendorColor(largest.vendor) : undefined,
+      value: largest
+        ? formatAllowanceYi(
+            largest.allowance.monthlyTokens == null
+              ? null
+              : largest.allowance.monthlyTokens / TOKENS_PER_YI,
+            lang,
+          )
+        : '—',
+      sub: entryLabel(largest),
+      color: largest ? vendorColor(largest.provider) : undefined,
     },
     {
       key: 'frontier',
       label: t('insightFrontier'),
       value: frontier ? formatScore(frontierScore) : '—',
       sub: frontier
-        ? `${frontier.label} · ${formatUsdPerMtok(frontier.real_usd_per_mtok)}`
+        ? `${entryLabel(frontier)} · ${formatUsdPerMtok(frontier.pricing.effectiveUsdPerMillionTokens)}`
         : t('insightFrontierHint'),
-      color: frontier ? vendorColor(frontier.vendor) : undefined,
+      color: frontier ? vendorColor(frontier.provider) : undefined,
     },
     {
       key: 'snapshot',

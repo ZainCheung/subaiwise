@@ -1,21 +1,21 @@
 import type { SubAIWiseDataset, SubAIWiseEntry } from './schema'
 import { TOKENS_PER_YI } from './adapter'
 import type { BoardKey, BoardMeta, PointsPayload, PricingPoint } from '../types'
+import { LEADERBOARD_CONFIG, LEADERBOARD_KEYS } from '../lib/leaderboards'
 
 /**
- * Compatibility view model for the migrated explorer UI.
+ * @deprecated Compatibility view model for the migrated explorer UI.
  *
  * The explorer components are intentionally kept visually identical to the
  * reference website. This boundary translates the canonical SubAIWise model
  * into the small chart/table view model they need; it never reads upstream
  * JSON or exposes the upstream payload to the application.
+ *
+ * @deprecated migration compatibility only; do not use for new features.
  */
-const BOARD_MAP: Record<BoardKey, keyof SubAIWiseEntry['benchmarks']> = {
-  arena_code: 'codeArena',
-  arena_agent_mode: 'agentArena',
-  aa_intelligence_index: 'intelligence',
-  aa_coding_agent_index: 'codingAgent',
-}
+const BOARD_MAP = Object.fromEntries(
+  LEADERBOARD_CONFIG.map((definition) => [definition.key, definition.canonicalKey]),
+) as Record<BoardKey, keyof SubAIWiseEntry['benchmarks'] | string>
 
 function boardMeta(dataset: SubAIWiseDataset, key: BoardKey): BoardMeta {
   const metadata = dataset.leaderboards[key]
@@ -67,9 +67,7 @@ function toPoint(entry: SubAIWiseEntry): PricingPoint {
     note: entry.source.note,
   } as PricingPoint
 
-  ;(['arena_code', 'arena_agent_mode', 'aa_intelligence_index', 'aa_coding_agent_index'] as BoardKey[]).forEach(
-    (board) => setBenchmarkFields(point, board, entry),
-  )
+  LEADERBOARD_KEYS.forEach((board) => setBenchmarkFields(point, board, entry))
   return point
 }
 
@@ -77,12 +75,9 @@ export function toPointsPayload(dataset: SubAIWiseDataset): PointsPayload {
   return {
     generatedAt: dataset.snapshot,
     mix: dataset.workloadMix,
-    boards: {
-      arena_code: boardMeta(dataset, 'arena_code'),
-      arena_agent_mode: boardMeta(dataset, 'arena_agent_mode'),
-      aa_intelligence_index: boardMeta(dataset, 'aa_intelligence_index'),
-      aa_coding_agent_index: boardMeta(dataset, 'aa_coding_agent_index'),
-    },
+    boards: Object.fromEntries(
+      LEADERBOARD_KEYS.map((board) => [board, boardMeta(dataset, board)]),
+    ) as Record<BoardKey, BoardMeta>,
     points: dataset.entries.map(toPoint),
   }
 }
