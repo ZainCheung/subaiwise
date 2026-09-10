@@ -10,12 +10,12 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts'
-import type { BoardKey, BoardMeta, PricingPoint } from '../types'
+import type { SubAIWiseDataset, SubAIWiseEntry } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { formatUsdTick, formatYTick, logPriceAxis, niceLinearTicks } from '../lib/axis'
-import { boardPoints, scoreKey, variantKey } from '../lib/pareto'
 import { vendorColor } from '../lib/vendors'
-import { BOARD_KEYS, boardTitle, scatterLabel } from '../lib/labels'
+import { scatterLabel } from '../lib/text'
+import { LEADERBOARD_KEYS, getLeaderboardConfig, type LeaderboardKey } from '../lib/leaderboards'
 import { ChartTooltipShell } from './ChartTooltip'
 import { Pill, PillGroup } from './Pill'
 import { UsdAxisTick } from './UsdAxisTick'
@@ -97,12 +97,34 @@ function PointLabel(props: LabelProps) {
   )
 }
 
-function uniqueByPrice(pts: PricingPoint[]): PricingPoint[] {
-  const m = new Map<number, PricingPoint>()
+function scoreFor(entry: SubAIWiseEntry, board: LeaderboardKey): number | null {
+  const value = entry.benchmarks[getLeaderboardConfig(board).canonicalKey]?.score
+  return value ?? null
+}
+
+function variantFor(entry: SubAIWiseEntry, board: LeaderboardKey): string {
+  return entry.benchmarks[getLeaderboardConfig(board).canonicalKey]?.variant ?? ''
+}
+
+function priceFor(entry: SubAIWiseEntry): number {
+  return entry.pricing.effectiveUsdPerMillionTokens
+}
+
+function labelFor(entry: SubAIWiseEntry): string {
+  return entry.label ?? `${entry.model.name} · ${entry.plan.name}`
+}
+
+function boardPoints(points: SubAIWiseEntry[], board: LeaderboardKey): SubAIWiseEntry[] {
+  return points.filter((entry) => scoreFor(entry, board) != null && priceFor(entry) > 0)
+}
+
+function uniqueByPrice(pts: SubAIWiseEntry[]): SubAIWiseEntry[] {
+  const m = new Map<number, SubAIWiseEntry>()
   for (const p of pts) {
-    const prev = m.get(p.real_usd_per_mtok)
-    if (!prev || (prev.billing === 'metered' && p.billing === 'subscription')) {
-      m.set(p.real_usd_per_mtok, p)
+    const price = priceFor(p)
+    const prev = m.get(price)
+    if (!prev || (prev.plan.billing === 'metered' && p.plan.billing === 'subscription')) {
+      m.set(price, p)
     }
   }
   return [...m.values()]
@@ -138,82 +160,86 @@ function pickLabelIds(rows: Row[], efficientId: string): Set<string> {
 }
 
 export function LeaderboardChart({
-  points,
-  boards,
+  dataset,
 }: {
-  points: PricingPoint[]
-  boards: Record<BoardKey, BoardMeta>
+  dataset: SubAIWiseDataset
 }) {
   const { t, lang } = useI18n()
-  const [board, setBoard] = useState<BoardKey>('arena_code')
-  const meta = boards[board]
-  const key = scoreKey(board)
-  const vkey = variantKey(board)
+  const [board, setBoard] = useState<LeaderboardKey>('arena_code')
+  const meta =
+    dataset.leaderboards[board] ??
+    {
+      name: getLeaderboardConfig(board).title.en,
+      metric: 'Score',
+      url: 'https://example.com',
+      snapshot: dataset.snapshot,
+    }
+  const canonicalKey = getLeaderboardConfig(board).canonicalKey
   const efficientText = t('mostEfficient')
 
   const { subs, apis, ranges, domain, xTicks, yTicks, modelCount } = useMemo(() => {
-    const scored = boardPoints(points, board)
-    const byModel = new Map<string, PricingPoint[]>()
+    const scored = boardPoints(dataset.entries, board)
+    const byModel = new Map<string, SubAIWiseEntry[]>()
     for (const p of scored) {
-      const list = byModel.get(p.model) ?? []
+      const list = byModel.get(p.model.id) ?? []
       list.push(p)
-      byModel.set(p.model, list)
+      byModel.set(p.model.id, list)
     }
 
-    const cheapest: PricingPoint[] = []
+    const cheapest: SubAIWiseEntry[] = []
     const ranges: Range[] = []
-    const allPts: PricingPoint[] = []
+    const allPts: SubAIWiseEntry[] = []
 
     for (const [model, group] of byModel) {
       const uniq = uniqueByPrice(group)
       allPts.push(...uniq)
-      const sorted = [...uniq].sort((a, b) => a.real_usd_per_mtok - b.real_usd_per_mtok)
+      const sorted = [...uniq].sort((a, b) => priceFor(a) - priceFor(b))
       const low = sorted[0]
       cheapest.push(low)
       if (sorted.length >= 2) {
         const high = sorted[sorted.length - 1]
         ranges.push({
           model,
-          color: vendorColor(low.vendor),
+          color: vendorColor(low.provider),
           data: [
-            { x: low.real_usd_per_mtok, y: Number(low[key]) },
-            { x: high.real_usd_per_mtok, y: Number(high[key]) },
+            { x: priceFor(low), y: scoreFor(low, board) ?? 0 },
+            { x: priceFor(high), y: scoreFor(high, board) ?? 0 },
           ],
         })
       }
     }
 
-    const ys = cheapest.map((p) => Number(p[key]))
+    const ys = cheapest.map((p) => scoreFor(p, board) ?? 0)
     const maxY = ys.length ? Math.max(...ys) : 0
     const minY = ys.length ? Math.min(...ys) : 0
     const cutoff = maxY - 0.15 * (maxY - minY || 1)
-    const nearTop = cheapest.filter((p) => Number(p[key]) >= cutoff)
+    const nearTop = cheapest.filter((p) => (scoreFor(p, board) ?? 0) >= cutoff)
     const efficientPt = nearTop.length
-      ? nearTop.reduce((a, b) => (a.real_usd_per_mtok <= b.real_usd_per_mtok ? a : b))
+      ? nearTop.reduce((a, b) => (priceFor(a) <= priceFor(b) ? a : b))
       : undefined
     const efficientId = efficientPt?.id ?? ''
 
-    const xAxis = logPriceAxis(allPts.map((p) => p.real_usd_per_mtok))
+    const xAxis = logPriceAxis(allPts.map(priceFor))
     const logLo = Math.log10(xAxis.domain[0])
     const logHi = Math.log10(xAxis.domain[1])
     const logSpan = logHi - logLo || 1
 
-    const toRow = (p: PricingPoint, isCheapest: boolean): Row => {
-      const x = p.real_usd_per_mtok
+    const toRow = (p: SubAIWiseEntry, isCheapest: boolean): Row => {
+      const x = priceFor(p)
       const tRel = (Math.log10(x) - logLo) / logSpan
       return {
         id: p.id,
         x,
-        y: Number(p[key]),
-        label: p.label,
-        short: scatterLabel(p.model_display || p.label, 22),
-        vendor: p.vendor,
-        billing: p.billing,
-        plan: p.plan,
-        variant: String(p[vkey] ?? ''),
-        color: vendorColor(p.vendor),
-        model: p.model,
-        kind: p.billing === 'metered' ? 'api' : 'sub',
+        y: scoreFor(p, board) ?? 0,
+        label: labelFor(p),
+        short: scatterLabel(p.model.name || labelFor(p), 22),
+        vendor: p.provider,
+        billing: p.plan.billing,
+        plan: p.plan.name,
+        variant: variantFor(p, board),
+        color: vendorColor(p.provider),
+        model: p.model.id,
+        kind: p.plan.billing === 'metered' ? 'api' : 'sub',
         showLabel: false,
         efficient: isCheapest && p.id === efficientId,
         // reversed axis: cheap (low tRel) sits on the right
@@ -242,7 +268,7 @@ export function LeaderboardChart({
       yTicks: niceLinearTicks(yDomain[0], yDomain[1], 5),
       modelCount: byModel.size,
     }
-  }, [points, board, key, vkey, efficientText])
+  }, [dataset.entries, board, canonicalKey, efficientText])
 
   const tickStyle = { fill: '#a3a3a3', fontSize: 12, fontFamily: 'Inter, system-ui, sans-serif' }
 
@@ -250,9 +276,9 @@ export function LeaderboardChart({
     <div className="card chart-panel p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <PillGroup>
-          {BOARD_KEYS.map((b) => (
+          {LEADERBOARD_KEYS.map((b) => (
             <Pill key={b} active={board === b} onClick={() => setBoard(b)}>
-              {boardTitle(b, lang)}
+              {getLeaderboardConfig(b).title[lang]}
             </Pill>
           ))}
         </PillGroup>

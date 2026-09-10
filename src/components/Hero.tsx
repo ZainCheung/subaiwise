@@ -19,6 +19,7 @@ export function Hero({
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-dim">
               {t('heroEyebrow')}
             </p>
+            <p className="mt-2 text-[12px] text-ink-muted">{t('heroKicker')}</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
               {t('heroTitle')}
             </h1>

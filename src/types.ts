@@ -1,10 +1,9 @@
+import type { LeaderboardKey } from './lib/leaderboards'
+
 export type Billing = 'subscription' | 'metered'
 
-export type BoardKey =
-  | 'arena_code'
-  | 'arena_agent_mode'
-  | 'aa_intelligence_index'
-  | 'aa_coding_agent_index'
+/** @deprecated Legacy explorer compatibility types. New features use schema.ts. */
+export type BoardKey = LeaderboardKey
 
 export interface BoardMeta {
   name: string
@@ -13,6 +12,7 @@ export interface BoardMeta {
   snapshot: string
 }
 
+/** @deprecated Migration compatibility only. Prefer SubAIWiseEntry. */
 export interface PricingPoint {
   id: string
   plan: string
@@ -38,9 +38,12 @@ export interface PricingPoint {
   aa_intelligence_index__variant: string | null
   aa_coding_agent_index__score: number | null
   aa_coding_agent_index__variant: string | null
-  [key: string]: string | number | null
+  open_design_arena__score?: number | null
+  open_design_arena__variant?: string | null
+  [key: string]: string | number | null | undefined
 }
 
+/** @deprecated Migration compatibility only. Prefer SubAIWiseDataset. */
 export interface PointsPayload {
   generatedAt: string
   mix: { cache: number; input: number; output: number }

@@ -71,13 +71,25 @@ export const SubAIWiseEntrySchema = z.object({
 })
 export type SubAIWiseEntry = z.infer<typeof SubAIWiseEntrySchema>
 
+/**
+ * Overrides may change observations, but never identity.  An identity change
+ * belongs in `exclusions` plus an `additions` entry instead.
+ */
+const LocalPlanOverrideSchema = SubAIWiseEntrySchema.shape.plan
+  .omit({ id: true })
+  .deepPartial()
+  .strict()
+const LocalModelOverrideSchema = SubAIWiseEntrySchema.shape.model
+  .omit({ id: true })
+  .deepPartial()
+  .strict()
+
 export const LocalEntryOverrideSchema = z
   .object({
-    id: z.string().min(1).optional(),
     label: z.string().min(1).optional(),
     provider: z.string().min(1).optional(),
-    plan: SubAIWiseEntrySchema.shape.plan.deepPartial().optional(),
-    model: SubAIWiseEntrySchema.shape.model.deepPartial().optional(),
+    plan: LocalPlanOverrideSchema.optional(),
+    model: LocalModelOverrideSchema.optional(),
     pricing: SubAIWiseEntrySchema.shape.pricing.deepPartial().optional(),
     allowance: SubAIWiseEntrySchema.shape.allowance.deepPartial().optional(),
     quality: SubAIWiseEntrySchema.shape.quality.deepPartial().optional(),

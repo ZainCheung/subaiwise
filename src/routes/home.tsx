@@ -1,4 +1,6 @@
-import { dataset } from '../data/load'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import { loadDataset } from '../data/load'
+import type { SubAIWiseDataset } from '../data/schema'
 import { toPointsPayload } from '../data/view-model'
 import { useI18n } from '../lib/i18n'
 import { computeInsights, computeStats } from '../lib/stats'
@@ -6,18 +8,78 @@ import { Nav } from '../components/Nav'
 import { Hero } from '../components/Hero'
 import { StatStrip } from '../components/StatStrip'
 import { CompareSection } from '../components/CompareSection'
-import { LeaderboardChart } from '../components/LeaderboardChart'
-import { ChartsSection } from '../components/ChartsSection'
-import { AdvancedPareto } from '../components/AdvancedPareto'
 import { Method } from '../components/Method'
 import { Downloads } from '../components/Downloads'
 import { Footer } from '../components/Footer'
 
+// Recharts is intentionally kept out of the initial shell; these sections are
+// loaded after the canonical dataset has arrived.
+const LeaderboardChart = lazy(async () => {
+  const module = await import('../components/LeaderboardChart')
+  return { default: module.LeaderboardChart }
+})
+const ChartsSection = lazy(async () => {
+  const module = await import('../components/ChartsSection')
+  return { default: module.ChartsSection }
+})
+const AdvancedPareto = lazy(async () => {
+  const module = await import('../components/AdvancedPareto')
+  return { default: module.AdvancedPareto }
+})
+
 export function HomePage() {
   const { t } = useI18n()
+  const [dataset, setDataset] = useState<SubAIWiseDataset | null>(null)
+  const [error, setError] = useState<Error | null>(null)
+  const [attempt, setAttempt] = useState(0)
+
+  const retry = useCallback(() => setAttempt((value) => value + 1), [])
+
+  useEffect(() => {
+    let active = true
+    setDataset(null)
+    setError(null)
+    loadDataset()
+      .then((next) => {
+        if (active) setDataset(next)
+      })
+      .catch((cause: unknown) => {
+        if (active) setError(cause instanceof Error ? cause : new Error(String(cause)))
+      })
+    return () => {
+      active = false
+    }
+  }, [attempt])
+
+  if (!dataset) {
+    return (
+      <div className="min-h-screen bg-bg">
+        <Nav />
+        <main className="mx-auto flex min-h-[24rem] max-w-6xl items-center px-5 py-20">
+          <div
+            className={`card w-full p-6 text-center text-[13px] ${error ? 'text-red-300' : 'text-ink-muted'}`}
+            role={error ? 'alert' : 'status'}
+          >
+            <p>{error ? t('error') : t('loading')}</p>
+            {error ? (
+              <button
+                type="button"
+                onClick={retry}
+                className="mt-4 rounded-md border border-border-strong px-3.5 py-2 text-ink hover:border-neutral-500"
+              >
+                {t('retry')}
+              </button>
+            ) : null}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
   const data = toPointsPayload(dataset)
-  const stats = computeStats(data)
-  const insights = computeInsights(data)
+  const stats = computeStats(dataset)
+  const insights = computeInsights(dataset)
 
   return (
     <div className="min-h-screen bg-bg">
@@ -36,15 +98,28 @@ export function HomePage() {
             </p>
           </div>
           <div className="mt-8">
-            <LeaderboardChart points={data.points} boards={data.boards} />
+            <Suspense fallback={<ChartLoading />}>
+              <LeaderboardChart dataset={dataset} />
+            </Suspense>
           </div>
         </section>
-        <ChartsSection data={data} />
-        <AdvancedPareto data={data} />
+        <Suspense fallback={<ChartLoading />}>
+          <ChartsSection data={data} />
+          <AdvancedPareto data={data} />
+        </Suspense>
         <Method mix={data.mix} />
         <Downloads />
       </main>
       <Footer />
+    </div>
+  )
+}
+
+function ChartLoading() {
+  const { t } = useI18n()
+  return (
+    <div className="mx-auto max-w-6xl px-5 py-16 text-[13px] text-ink-dim" role="status">
+      {t('loading')}
     </div>
   )
 }

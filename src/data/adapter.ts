@@ -10,6 +10,7 @@ import {
 } from './schema'
 import {
   UpstreamPayloadSchema,
+  validateUpstreamBenchmarkFields,
   type UpstreamPayload,
   type UpstreamPoint,
 } from './upstream-schema'
@@ -117,6 +118,7 @@ export function adaptUpstream(
   source: { repository: string; commit: string },
 ): SubAIWiseDataset {
   const upstream = UpstreamPayloadSchema.parse(payload)
+  validateUpstreamBenchmarkFields(upstream)
   const boardNames = Object.keys(upstream.boards).sort()
   const leaderboards = Object.fromEntries(
     boardNames.map((name) => [name, BoardMetaSchema.parse(upstream.boards[name])]),
