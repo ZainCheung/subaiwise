@@ -433,10 +433,13 @@ type I18nValue = {
 }
 
 const I18nContext = createContext<I18nValue | null>(null)
+const LANG_STORAGE_KEY = 'subaiwise-lang'
+const LEGACY_LANG_STORAGE_KEY = 'rap-lang'
 
 function initialLang(): Lang {
   if (typeof window === 'undefined') return 'en'
-  const saved = localStorage.getItem('rap-lang')
+  const saved =
+    localStorage.getItem(LANG_STORAGE_KEY) ?? localStorage.getItem(LEGACY_LANG_STORAGE_KEY)
   if (saved === 'en' || saved === 'zh') return saved
   return navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en'
 }
@@ -446,7 +449,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next)
-    localStorage.setItem('rap-lang', next)
+    localStorage.setItem(LANG_STORAGE_KEY, next)
     document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en'
   }, [])
 
