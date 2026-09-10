@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "snapshot": "2026-09-09",
+  "snapshot": "2026-09-10",
   "source": {
     "repository": "FeiZhuLulu/real-api-pricing",
-    "commit": "dd8ae59b54bf898ba69842212959b2c9d3ff988f"
+    "commit": "d6860e6a5234b55e6e8e1e192ff08ae8dda2d76b"
   },
   "workloadMix": {
     "cache": 0.975,
@@ -34,6 +34,12 @@
       "metric": "Arena Score",
       "url": "https://arena.ai/leaderboard/code",
       "snapshot": "2026-09-05"
+    },
+    "open_design_arena": {
+      "name": "OpenDesign Arena · Quality ranking",
+      "metric": "Average task score",
+      "url": "https://open-design.ai/zh/llm-arena-for-design/",
+      "snapshot": "2026-09-09"
     }
   },
   "entries": [
@@ -118,6 +124,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -238,6 +262,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -341,6 +383,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -446,6 +506,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -549,6 +627,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -654,6 +750,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -758,6 +872,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -858,6 +990,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 77.6,
+          "variant": "GPT-5.6 Sol",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.544242,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -966,6 +1116,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1069,6 +1237,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 3,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -1174,6 +1360,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1274,6 +1478,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 77.6,
+          "variant": "GPT-5.6 Sol",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.544242,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -1382,6 +1604,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1485,6 +1725,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 3,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -1590,6 +1848,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1690,6 +1966,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 77.6,
+          "variant": "GPT-5.6 Sol",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.544242,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -1798,6 +2092,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1901,6 +2213,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -2006,6 +2336,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2109,6 +2457,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 2,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -2214,6 +2580,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2317,6 +2701,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -2422,6 +2824,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2525,6 +2945,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -2630,6 +3068,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2734,115 +3190,29 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
         "label": "由同套餐 claude-opus-4.8 15.88 亿 × 2.5",
         "note": "标价比 Opus/Sonnet 2.5×"
-      }
-    },
-    {
-      "id": "command_code_goat::deepseek-v4-flash",
-      "label": "DeepSeek V4 Flash · Command Code GOAT",
-      "provider": "DeepSeek",
-      "plan": {
-        "id": "command_code_goat",
-        "name": "Command Code GOAT",
-        "billing": "subscription"
-      },
-      "model": {
-        "id": "deepseek-v4-flash",
-        "name": "DeepSeek V4 Flash"
-      },
-      "pricing": {
-        "monthlyUsd": 10,
-        "effectiveUsdPerMillionTokens": 0.00231,
-        "listUsdPerMillionTokens": 0.0277
-      },
-      "allowance": {
-        "monthlyTokens": 4327400000
-      },
-      "quality": {
-        "confidence": "medium",
-        "tier": "full"
-      },
-      "benchmarks": {
-        "codingAgent": {
-          "score": 49.7576,
-          "variant": "Codex - DeepSeek V4 Flash 0731 (max)",
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": 0.0595,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/agents/coding-agents",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": "Codex",
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "intelligence": {
-          "score": 34.5282,
-          "variant": "DeepSeek V4 Flash 0731 (max)",
-          "scoreIsEstimated": false,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/leaderboards/models",
-          "mappingConfidence": "medium",
-          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
-          "agentHarness": null,
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 4,
-          "quotaEffortMatched": null
-        },
-        "agentArena": {
-          "score": 2.85,
-          "variant": "Deepseek V4 Flash (High) (20260731)",
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": 0.15,
-          "source": "https://arena.ai/leaderboard/agent",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": null,
-          "reasoningEffort": "high",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "codeArena": {
-          "score": 1580,
-          "variant": "deepseek-v4-flash-high",
-          "scoreIsEstimated": null,
-          "scoreLow": 1570,
-          "scoreHigh": 1590,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://arena.ai/leaderboard/code",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": null,
-          "reasoningEffort": "high",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 2,
-          "quotaEffortMatched": null
-        }
-      },
-      "source": {
-        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；code-subscriptions-round1-2026-09-06.json",
-        "note": "新增43.274亿：min(共享月池$70, 模型allowance $60) ÷ 统一标准负载加权价；Off-Peak；Peak≈2×（01–04 & 06–10 UTC weekdays），与OpenCode口径一致。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表"
       }
     },
     {
@@ -2942,115 +3312,29 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
-        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round1-2026-09-10.json",
         "note": "新增2.624亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；官网三段价；New models 默认$20；与Flash额度分开。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表"
-      }
-    },
-    {
-      "id": "command_code_goat::deepseek-v4-flash-vision-exp",
-      "label": "DeepSeek V4 Flash Vision Exp · Command Code GOAT",
-      "provider": "DeepSeek",
-      "plan": {
-        "id": "command_code_goat",
-        "name": "Command Code GOAT",
-        "billing": "subscription"
-      },
-      "model": {
-        "id": "deepseek-v4-flash-vision-exp",
-        "name": "DeepSeek V4 Flash Vision Exp"
-      },
-      "pricing": {
-        "monthlyUsd": 10,
-        "effectiveUsdPerMillionTokens": 0.00693,
-        "listUsdPerMillionTokens": null
-      },
-      "allowance": {
-        "monthlyTokens": 1442500000
-      },
-      "quality": {
-        "confidence": "medium",
-        "tier": "full"
-      },
-      "benchmarks": {
-        "codingAgent": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        },
-        "intelligence": {
-          "score": 35.0122,
-          "variant": "DeepSeek V4 Flash Vision (max)",
-          "scoreIsEstimated": false,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/leaderboards/models",
-          "mappingConfidence": "medium",
-          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
-          "agentHarness": null,
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "agentArena": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        },
-        "codeArena": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        }
-      },
-      "source": {
-        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；code-subscriptions-round1-2026-09-06.json",
-        "note": "新增14.425亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；Off-Peak；Peak≈2×；New models 默认$20。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表"
       }
     },
     {
@@ -3150,11 +3434,151 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
-        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round1-2026-09-10.json",
         "note": "新增4.698亿：min(共享月池$70, 模型allowance $20) ÷ 统一标准负载加权价；Off-Peak；Peak≈2×（01–04 & 06–10 UTC weekdays），与OpenCode口径一致。忽略 processing fee；同套餐各模型额度不可相加；无面板 token+% 截图，按官方绝对credits+价表"
+      }
+    },
+    {
+      "id": "command_code_goat::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash · Command Code GOAT",
+      "provider": "DeepSeek",
+      "plan": {
+        "id": "command_code_goat",
+        "name": "Command Code GOAT",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 10,
+        "effectiveUsdPerMillionTokens": 0.00206,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": 4848500000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "codingAgent": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "intelligence": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "agentArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://commandcode.ai/docs/plans/goat 官方每模型 allowance 与三段价；https://commandcode.ai/pricing；$10→$70 credits；command-code-goat-deepseek-round1-2026-09-10.json",
+        "note": "新增48.485亿：min(共享月池$70, 模型allowance $40) ÷ 统一标准负载加权价；官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。用户确认 V4 Flash / Vision 已下线，Command Code 这两点删除（旧Flash 43.274亿、Vision 14.425亿）。官方请求数仅作交叉检查，不再作为额度主值；忽略 processing fee；同套餐各模型额度不可相加"
       }
     },
     {
@@ -3253,6 +3677,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -3358,6 +3800,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 68.9,
+          "variant": "Gemini 3.8 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.210201,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3446,6 +3906,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -3566,6 +4044,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3670,6 +4166,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3769,6 +4283,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -3878,6 +4410,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3978,6 +4528,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 77.6,
+          "variant": "GPT-5.6 Sol",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.544242,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -4086,6 +4654,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -4186,6 +4772,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -4294,6 +4898,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -4398,6 +5020,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 74.6,
+          "variant": "Hunyuan H4 Preview",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.417793,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -4486,6 +5126,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -4606,6 +5264,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -4710,6 +5386,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -4798,6 +5492,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -4918,6 +5630,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5006,6 +5736,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -5126,6 +5874,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5230,6 +5996,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5318,6 +6102,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -5438,6 +6240,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5542,6 +6362,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 66.6,
+          "variant": "Muse Spark 1.3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.267309,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5630,6 +6468,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -5750,6 +6606,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5838,6 +6712,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -5958,6 +6850,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6046,6 +6956,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -6166,6 +7094,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6254,6 +7200,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -6374,6 +7338,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72,
+          "variant": "Qwen 3.8-Max",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.595399,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6462,6 +7444,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -6582,6 +7582,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6670,6 +7688,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -6790,6 +7826,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6878,6 +7932,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -6998,6 +8070,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7102,6 +8192,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7190,6 +8298,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -7310,6 +8436,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7398,6 +8542,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -7518,6 +8680,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7606,6 +8786,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -7726,6 +8924,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7826,6 +9042,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -7934,6 +9168,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 70.6,
+          "variant": "DeepSeek V4 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.031419,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8037,6 +9289,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 2,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 70.6,
+          "variant": "DeepSeek V4 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.031419,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
           "quotaEffortMatched": null
         }
       },
@@ -8142,6 +9412,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8246,11 +9534,273 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
         "label": "api-docs.deepseek.com",
         "note": "标价 cached 0.044/in 1.32/out 3.96 × 项目统一标准负载 97.5%/2.15%/0.35%"
+      }
+    },
+    {
+      "id": "deepseek_v41_flash_offpeak::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash API 闲时",
+      "provider": "DeepSeek",
+      "plan": {
+        "id": "deepseek_v41_flash_offpeak",
+        "name": "DeepSeek V4.1 Flash API 闲时",
+        "billing": "metered"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": null,
+        "effectiveUsdPerMillionTokens": 0.00825,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": null
+      },
+      "quality": {
+        "confidence": "high",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "codingAgent": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "intelligence": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "agentArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://api-docs.deepseek.com/quick_start/pricing/；list-prices-deepseek-v41-round2-2026-09-10.json",
+        "note": "旧0.00811（¥0.02/¥1/¥4÷6.7787）→0.00825；改用官方美元标价 cached/input/output=$0.003/$0.15/$0.60，套项目统一标准负载。不再用人民币÷项目汇率。api-docs.deepseek.com 2026-09-10；用户确认；list-prices-deepseek-v41-round2-2026-09-10.json。旧V4点按用户要求不改。"
+      }
+    },
+    {
+      "id": "deepseek_v41_flash_peak::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash API 忙时",
+      "provider": "DeepSeek",
+      "plan": {
+        "id": "deepseek_v41_flash_peak",
+        "name": "DeepSeek V4.1 Flash API 忙时",
+        "billing": "metered"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": null,
+        "effectiveUsdPerMillionTokens": 0.0165,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": null
+      },
+      "quality": {
+        "confidence": "high",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "codingAgent": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "intelligence": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "agentArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://api-docs.deepseek.com/quick_start/pricing/；list-prices-deepseek-v41-round2-2026-09-10.json",
+        "note": "旧0.01623（¥0.04/¥2/¥8÷6.7787）→0.01650；改用官方美元标价 cached/input/output=$0.006/$0.30/$1.20，套项目统一标准负载。高峰=闲时2倍。api-docs.deepseek.com 2026-09-10；用户确认；list-prices-deepseek-v41-round2-2026-09-10.json。旧V4点按用户要求不改。"
       }
     },
     {
@@ -8349,6 +9899,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -8449,6 +10017,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -8558,6 +10144,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8657,6 +10261,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -8766,6 +10388,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8865,6 +10505,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -8974,6 +10632,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9073,6 +10749,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9182,6 +10876,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9281,6 +10993,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9390,6 +11120,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9489,6 +11237,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9598,6 +11364,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9697,6 +11481,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9806,6 +11608,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9905,6 +11725,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -10014,6 +11852,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10113,6 +11969,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -10222,6 +12096,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10321,6 +12213,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -10430,6 +12340,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10529,6 +12457,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -10638,6 +12584,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10737,6 +12701,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -10846,6 +12828,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10945,6 +12945,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11054,6 +13072,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -11153,6 +13189,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11262,6 +13316,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -11361,6 +13433,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11470,6 +13560,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -11569,6 +13677,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11678,6 +13804,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -11777,6 +13921,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11886,6 +14048,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -11985,6 +14165,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -12094,6 +14292,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12194,6 +14410,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -12302,6 +14536,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12402,6 +14654,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -12510,6 +14780,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12614,6 +14902,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12714,6 +15020,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -12822,6 +15146,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12925,6 +15267,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -13030,6 +15390,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13133,6 +15511,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -13238,6 +15634,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13341,6 +15755,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -13446,6 +15878,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13549,6 +15999,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -13654,6 +16122,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 70.6,
+          "variant": "DeepSeek V4 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.031419,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13758,6 +16244,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13846,6 +16350,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -13966,6 +16488,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14070,6 +16610,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14169,6 +16727,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -14278,6 +16854,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14378,6 +16972,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -14486,6 +17098,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14589,6 +17219,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -14694,6 +17342,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 70.6,
+          "variant": "DeepSeek V4 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.031419,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14798,6 +17464,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14886,6 +17570,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -15006,6 +17708,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -15110,6 +17830,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -15209,6 +17947,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -15318,6 +18074,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -15418,6 +18192,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -15526,6 +18318,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -15629,6 +18439,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
           "quotaEffortMatched": null
         }
       },
@@ -15734,6 +18562,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -15834,6 +18680,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 77.6,
+          "variant": "GPT-5.6 Sol",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.544242,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -15942,219 +18806,29 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
         "label": "developers.openai.com",
         "note": "标价 cached 0.2/in 2.0/out 12.0 × 项目统一标准负载 97.5%/2.15%/0.35%"
-      }
-    },
-    {
-      "id": "opencode_go::deepseek-v4-flash",
-      "label": "DeepSeek V4 Flash · OpenCode Go",
-      "provider": "DeepSeek",
-      "plan": {
-        "id": "opencode_go",
-        "name": "OpenCode Go",
-        "billing": "subscription"
-      },
-      "model": {
-        "id": "deepseek-v4-flash",
-        "name": "DeepSeek V4 Flash"
-      },
-      "pricing": {
-        "monthlyUsd": 10,
-        "effectiveUsdPerMillionTokens": 0.00462,
-        "listUsdPerMillionTokens": 0.0277
-      },
-      "allowance": {
-        "monthlyTokens": 2163700000
-      },
-      "quality": {
-        "confidence": "medium",
-        "tier": "main"
-      },
-      "benchmarks": {
-        "codingAgent": {
-          "score": 49.7576,
-          "variant": "Codex - DeepSeek V4 Flash 0731 (max)",
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": 0.0595,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/agents/coding-agents",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": "Codex",
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "intelligence": {
-          "score": 34.5282,
-          "variant": "DeepSeek V4 Flash 0731 (max)",
-          "scoreIsEstimated": false,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/leaderboards/models",
-          "mappingConfidence": "medium",
-          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
-          "agentHarness": null,
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 4,
-          "quotaEffortMatched": null
-        },
-        "agentArena": {
-          "score": 2.85,
-          "variant": "Deepseek V4 Flash (High) (20260731)",
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": 0.15,
-          "source": "https://arena.ai/leaderboard/agent",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": null,
-          "reasoningEffort": "high",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "codeArena": {
-          "score": 1580,
-          "variant": "deepseek-v4-flash-high",
-          "scoreIsEstimated": null,
-          "scoreLow": 1570,
-          "scoreHigh": 1590,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://arena.ai/leaderboard/code",
-          "mappingConfidence": "low",
-          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
-          "agentHarness": null,
-          "reasoningEffort": "high",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 2,
-          "quotaEffortMatched": null
-        }
-      },
-      "source": {
-        "label": "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；opencode-go-round5-2026-09-06.json",
-        "note": "旧27.224亿（请求估算）→21.637亿：min(共享月池$60, 模型Usage $30) ÷ 统一标准负载加权价；Off-Peak；Peak 额度为其一半，保留在 research variants。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
-      }
-    },
-    {
-      "id": "opencode_go::deepseek-v4-flash-vision-exp",
-      "label": "DeepSeek V4 Flash Vision Exp · OpenCode Go",
-      "provider": "DeepSeek",
-      "plan": {
-        "id": "opencode_go",
-        "name": "OpenCode Go",
-        "billing": "subscription"
-      },
-      "model": {
-        "id": "deepseek-v4-flash-vision-exp",
-        "name": "DeepSeek V4 Flash Vision Exp"
-      },
-      "pricing": {
-        "monthlyUsd": 10,
-        "effectiveUsdPerMillionTokens": 0.00924,
-        "listUsdPerMillionTokens": null
-      },
-      "allowance": {
-        "monthlyTokens": 1081900000
-      },
-      "quality": {
-        "confidence": "medium",
-        "tier": "full"
-      },
-      "benchmarks": {
-        "codingAgent": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        },
-        "intelligence": {
-          "score": 35.0122,
-          "variant": "DeepSeek V4 Flash Vision (max)",
-          "scoreIsEstimated": false,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": "https://artificialanalysis.ai/leaderboards/models",
-          "mappingConfidence": "medium",
-          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
-          "agentHarness": null,
-          "reasoningEffort": "max",
-          "serviceMode": null,
-          "selection": "highest_archived_reference",
-          "configurationCount": 1,
-          "quotaEffortMatched": null
-        },
-        "agentArena": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        },
-        "codeArena": {
-          "score": null,
-          "variant": null,
-          "scoreIsEstimated": null,
-          "scoreLow": null,
-          "scoreHigh": null,
-          "meanCostUsdPerTask": null,
-          "medianCostUsdPerTask": null,
-          "source": null,
-          "mappingConfidence": null,
-          "mappingNote": null,
-          "agentHarness": null,
-          "reasoningEffort": null,
-          "serviceMode": null,
-          "selection": null,
-          "configurationCount": 0,
-          "quotaEffortMatched": null
-        }
-      },
-      "source": {
-        "label": "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；opencode-go-round5-2026-09-06.json",
-        "note": "新增10.819亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；Off-Peak；图像另折 input token，不另编图像负载标准。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
       }
     },
     {
@@ -16254,11 +18928,151 @@
           "selection": "highest_archived_reference",
           "configurationCount": 3,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.9,
+          "variant": "DeepSeek V4 Pro",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.060573,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
-        "label": "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；opencode-go-round5-2026-09-06.json",
-        "note": "旧4.318亿（请求估算）→3.524亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；Off-Peak；Peak 额度为其一半，保留在 research variants。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
+        "label": "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；opencode-go-deepseek-round6-2026-09-10.json",
+        "note": "旧4.318亿（请求估算）→3.524亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；Off-Peak；Peak 额度为其一半，保留在 research variants；OpenCode 价表未改。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
+      }
+    },
+    {
+      "id": "opencode_go::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash · OpenCode Go",
+      "provider": "DeepSeek",
+      "plan": {
+        "id": "opencode_go",
+        "name": "OpenCode Go",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 10,
+        "effectiveUsdPerMillionTokens": 0.0055,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": 1818199999.9999998
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "codingAgent": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "intelligence": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "agentArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://opencode.ai/docs/go/ 官方每模型 Usage 与三段价格；opencode-go-deepseek-round6-2026-09-10.json",
+        "note": "新增18.182亿：min(共享月池$60, 模型Usage $15) ÷ 统一标准负载加权价；官网闲时 cached/input/output=$0.003/$0.15/$0.60，高峰2×。官网 Model ID=deepseek-flash，项目 served_model=deepseek-v4.1-flash 以对接榜单。用户确认 V4 Flash / Vision 已下线，OpenCode 这两点删除（旧Flash 21.637亿、Vision 10.819亿）。官方请求数仅作交叉检查，不再作为额度主值；同套餐各模型额度不可相加"
       }
     },
     {
@@ -16342,6 +19156,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -16462,6 +19294,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16566,6 +19416,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16665,6 +19533,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 69.8,
+          "variant": "GLM-5.3 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.06442,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
           "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -16774,6 +19660,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16874,6 +19778,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -16982,6 +19904,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17086,6 +20026,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 74.6,
+          "variant": "Hunyuan H4 Preview",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.417793,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17174,6 +20132,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -17294,6 +20270,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17398,6 +20392,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 65.7,
+          "variant": "Kimi K3",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.613653,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17486,6 +20498,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -17606,6 +20636,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17710,6 +20758,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -17798,6 +20864,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -17918,6 +21002,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18022,6 +21124,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18110,6 +21230,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -18230,6 +21368,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18318,6 +21474,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -18438,6 +21612,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18526,6 +21718,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -18646,6 +21856,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18734,6 +21962,24 @@
           "quotaEffortMatched": null
         },
         "codeArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
           "score": null,
           "variant": null,
           "scoreIsEstimated": null,
@@ -18854,6 +22100,24 @@
           "selection": null,
           "configurationCount": 0,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72,
+          "variant": "Qwen 3.8-Max",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.595399,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -18958,6 +22222,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -19058,6 +22340,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -19166,6 +22466,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -19266,6 +22584,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -19374,6 +22710,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": null,
+          "variant": null,
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": null,
+          "mappingConfidence": null,
+          "mappingNote": null,
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": null,
+          "configurationCount": 0,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -19478,6 +22832,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -19578,6 +22950,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "designArena": {
+          "score": 72.4,
+          "variant": "Grok 4.6",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.599434,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
