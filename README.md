@@ -32,7 +32,7 @@ src/domain selectors
 Compare / Leaderboard / Overview
 ```
 
-Canonical v2 stores `benchmarkConfigurations` and `benchmarkMappings` as first-class data. `entry.benchmarks` is a derived default summary (`highest_archived_reference`) and is not an independent source of truth. Benchmark configuration/mapping rows are currently upstream-owned; `data/local.json` still patches plan/model entries only. The three upstream files are always read from the same locked commit. Local changes never modify the downloaded payload. For an explicit source update, run:
+Canonical v2 stores `benchmarkConfigurations` and `benchmarkMappings` as first-class data. `entry.benchmarks` is a derived default summary (`highest_archived_reference`) and is not an independent source of truth. Benchmark configuration/mapping rows are currently upstream-owned; `data/local.json` still patches plan/model entries only. The three derived files plus `data/adopted.csv` are always read from the same locked commit. Adoption provenance (original price, currency, decision note, evidence links) is joined onto canonical entries. Research files stay in upstream and are linked at the locked SHA rather than copied. Local changes never modify the downloaded payload. For an explicit source update, run:
 
 ```bash
 npm run data:sync -- --ref <FULL_COMMIT_SHA>
@@ -69,7 +69,8 @@ verify without writing) and commit the resulting canonical dataset.
 
 `.github/workflows/sync-upstream.yml` compares the locked commit with upstream
 default-branch HEAD for every monitored file (`derived/points.json`,
-`derived/benchmark-configurations.json`, `derived/benchmark-points.json`).
+`derived/benchmark-configurations.json`, `derived/benchmark-points.json`,
+`data/adopted.csv`).
 README-only commits are a no-op. A change in any monitored file syncs all three
 from the same latest SHA. When the dataset changes, it runs the data check,
 tests, and build, then updates the single `automation/sync-upstream` branch and

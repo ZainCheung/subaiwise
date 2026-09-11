@@ -16,6 +16,7 @@ import {
   resolveChannel,
   warnUnknownChannels,
 } from './channel'
+import { joinAdoptedProvenance } from './adopted'
 import { deriveEntryBenchmarks } from './benchmark-selection'
 import {
   UpstreamConfigurationSchema,
@@ -156,19 +157,21 @@ export type UpstreamBundle = {
   points: unknown
   configurations?: unknown
   mappings?: unknown
+  adopted?: string
 }
 
-function normalizeBundle(input: unknown): Required<UpstreamBundle> {
-  if (
-    isRecord(input) &&
-    'points' in input &&
-    ('configurations' in input || 'mappings' in input) &&
-    !('generatedAt' in input)
-  ) {
+function normalizeBundle(input: unknown): {
+  points: unknown
+  configurations: unknown
+  mappings: unknown
+  adopted?: string
+} {
+  if (isRecord(input) && 'points' in input && !('generatedAt' in input)) {
     return {
       points: input.points,
       configurations: input.configurations ?? [],
       mappings: input.mappings ?? [],
+      adopted: typeof input.adopted === 'string' ? input.adopted : undefined,
     }
   }
   return { points: input, configurations: [], mappings: [] }
@@ -277,7 +280,7 @@ export function adaptUpstream(
     boardNames.map((name) => [name, BoardMetaSchema.parse(upstream.boards[name])]),
   )
   const unknownPlanIds: string[] = []
-  const entries = upstream.points.map((point) => {
+  const adaptedEntries = upstream.points.map((point) => {
     const planId =
       planIdFromPointId(point.id) ||
       point.plan.toLowerCase().replace(/[^a-z0-9]+/g, '_')
@@ -289,6 +292,7 @@ export function adaptUpstream(
     if (!resolved.known) unknownPlanIds.push(resolved.planId)
     return adaptPoint(point, boardNames)
   })
+  const entries = joinAdoptedProvenance(adaptedEntries, bundle.adopted, source)
   if (process.env.NODE_ENV !== 'test') {
     warnUnknownChannels(unknownPlanIds)
   }

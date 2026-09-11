@@ -10,9 +10,10 @@ describe('upstream lock', () => {
         'derived/points.json',
         'derived/benchmark-configurations.json',
         'derived/benchmark-points.json',
+        'data/adopted.csv',
       ],
     })
-    expect(lock.paths).toHaveLength(3)
+    expect(lock.paths).toContain('data/adopted.csv')
     expect(() => parseUpstreamLock({ repository: 'x', ref: 'abc', paths: ['derived/points.json'] })).toThrow()
   })
 
@@ -21,6 +22,7 @@ describe('upstream lock', () => {
       'derived/points.json': 'aaa',
       'derived/benchmark-configurations.json': 'bbb',
       'derived/benchmark-points.json': 'ccc',
+      'data/adopted.csv': 'ddd',
     }
     expect(monitoredPathsChanged(locked, locked)).toBe(false)
     expect(
@@ -39,6 +41,12 @@ describe('upstream lock', () => {
       monitoredPathsChanged(locked, {
         ...locked,
         'derived/points.json': 'aaa2',
+      }),
+    ).toBe(true)
+    expect(
+      monitoredPathsChanged(locked, {
+        ...locked,
+        'data/adopted.csv': 'ddd2',
       }),
     ).toBe(true)
   })

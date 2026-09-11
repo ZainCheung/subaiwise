@@ -80,7 +80,7 @@ jobs:
             echo
             echo "Source: ${{ steps.upstream.outputs.locked }} → ${{ steps.upstream.outputs.latest }}"
             echo
-            echo "Monitored files: derived/points.json, derived/benchmark-configurations.json, derived/benchmark-points.json"
+            echo "Monitored files: derived/points.json, derived/benchmark-configurations.json, derived/benchmark-points.json, data/adopted.csv"
             echo
             npx tsx scripts/dataset-summary.ts --before "$RUNNER_TEMP/previous-dataset.json" --after data/dataset.json
             overrides=$(node -e "console.log(Object.keys(JSON.parse(require('fs').readFileSync('data/local.json', 'utf8')).overrides || {}).length)")

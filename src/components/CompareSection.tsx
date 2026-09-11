@@ -474,6 +474,7 @@ export function CompareSection({
           ) : (
             <RowDetail
               entry={selected}
+              dataset={dataset}
               scoreBoard={scoreBoard}
               boards={boards}
               boardMetas={dataset.leaderboards}

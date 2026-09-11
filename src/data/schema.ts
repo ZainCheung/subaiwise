@@ -38,6 +38,23 @@ export const BenchmarkSchema = z.object({
 })
 export type Benchmark = z.infer<typeof BenchmarkSchema>
 
+export const EvidenceRefSchema = z.object({
+  type: z.enum(['url', 'upstream-research', 'archive']),
+  label: z.string().min(1),
+  url: z.string().url(),
+})
+export type EvidenceRef = z.infer<typeof EvidenceRefSchema>
+
+export const EntryProvenanceSchema = z.object({
+  originalPrice: z.number().finite().nullable(),
+  currency: z.string().nullable(),
+  monthlyTokens: z.number().finite().nullable(),
+  decisionNote: z.string().nullable(),
+  sourceText: z.string().nullable(),
+  evidence: z.array(EvidenceRefSchema),
+})
+export type EntryProvenance = z.infer<typeof EntryProvenanceSchema>
+
 export const SubAIWiseEntrySchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1).optional(),
@@ -75,6 +92,7 @@ export const SubAIWiseEntrySchema = z.object({
     label: z.string(),
     note: z.string(),
   }),
+  provenance: EntryProvenanceSchema.optional(),
 })
 export type SubAIWiseEntry = z.infer<typeof SubAIWiseEntrySchema>
 
@@ -103,6 +121,7 @@ export const LocalEntryOverrideSchema = z
     quality: SubAIWiseEntrySchema.shape.quality.deepPartial().optional(),
     benchmarks: z.record(BenchmarkSchema.deepPartial()).optional(),
     source: SubAIWiseEntrySchema.shape.source.deepPartial().optional(),
+    provenance: EntryProvenanceSchema.deepPartial().optional(),
   })
   .strict()
 export type LocalEntryOverride = z.infer<typeof LocalEntryOverrideSchema>

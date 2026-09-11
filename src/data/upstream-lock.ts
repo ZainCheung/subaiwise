@@ -4,6 +4,7 @@ export const DEFAULT_UPSTREAM_PATHS = [
   'derived/points.json',
   'derived/benchmark-configurations.json',
   'derived/benchmark-points.json',
+  'data/adopted.csv',
 ] as const
 
 export const UpstreamLockSchema = z.object({
