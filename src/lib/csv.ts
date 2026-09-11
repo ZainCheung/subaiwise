@@ -79,7 +79,12 @@ export function exportFilteredCsv(
     const title = boardTitle(board, opts.lang, dataset.leaderboards[board])
     headers.push(`${title} score`, `${title} variant`)
   }
-  headers.push('Harness', 'Effort', 'Mapping confidence')
+  headers.push(
+    'Selected board',
+    'Selected board harness',
+    'Selected board effort',
+    'Selected board mapping confidence',
+  )
 
   const body = rows.map((entry) => {
     const filter = toBenchmarkConfigFilter(opts.advanced)
@@ -103,6 +108,7 @@ export function exportFilteredCsv(
       cells.push(score ?? '', score == null ? '' : variant)
     }
     cells.push(
+      boardTitle(opts.scoreBoard, opts.lang, dataset.leaderboards[opts.scoreBoard]),
       selected?.configuration.agentHarness ?? '',
       selected?.configuration.reasoningEffort ?? '',
       selected?.mapping.mappingConfidence ?? '',
