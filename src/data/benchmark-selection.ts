@@ -27,15 +27,18 @@ function matchesFilter(
 ): boolean {
   if (!filter) return true
   const harness = filter.harness
-  if (harness && harness.length > 0) {
+  if (harness != null) {
+    if (harness.length === 0) return false
     if (!configuration.agentHarness || !harness.includes(configuration.agentHarness)) return false
   }
   const effort = filter.effort
-  if (effort && effort.length > 0) {
+  if (effort != null) {
+    if (effort.length === 0) return false
     if (!configuration.reasoningEffort || !effort.includes(configuration.reasoningEffort)) return false
   }
   const mode = filter.mode
-  if (mode && mode.length > 0) {
+  if (mode != null) {
+    if (mode.length === 0) return false
     if (!configuration.serviceMode || !mode.includes(configuration.serviceMode)) return false
   }
   return true

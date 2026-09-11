@@ -131,8 +131,8 @@ describe('confidence filter', () => {
     const filtered = filterCompareEntries([high, low], {
       query: '',
       billing: 'all',
-      vendor: 'all',
-      confidence: 'high',
+      makers: null,
+      confidence: new Set(['high']),
     })
     expect(filtered.map((row) => row.id)).toEqual(['high'])
     expect(selectBenchmarkScore(low, 'arena_code')).toBe(90)

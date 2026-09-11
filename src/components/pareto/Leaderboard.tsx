@@ -3,7 +3,9 @@ import type { SubAIWiseDataset, SubAIWiseEntry } from '../../data/schema'
 import type { BoardKey } from '../../types'
 import { useI18n } from '../../lib/i18n'
 import { filterEntries } from '../../domain/selectors'
+import { benchmarkScoreFor, filterEntriesByAdvanced, type AdvancedFilters } from '../../domain/advanced-filters'
 import type { IdFilter } from '../../lib/filters'
+import { AdvancedFiltersControl } from '../AdvancedFilters'
 import {
   availableLeaderboardKeys,
   boardTitle,
@@ -22,14 +24,18 @@ export function Leaderboard({
   dataset,
   models,
   channels,
+  advanced,
   onModelsChange,
   onChannelsChange,
+  onAdvancedChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
+  advanced: AdvancedFilters
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
+  onAdvancedChange: (next: AdvancedFilters) => void
 }) {
   const { t, lang } = useI18n()
   const boards = useMemo(
@@ -45,8 +51,9 @@ export function Leaderboard({
   const [howto, setHowto] = useState(false)
 
   const entries = useMemo(
-    () => filterEntries(dataset.entries, { models, channels }),
-    [dataset.entries, models, channels],
+    () =>
+      filterEntriesByAdvanced(filterEntries(dataset.entries, { models, channels }), advanced),
+    [dataset.entries, models, channels, advanced],
   )
 
   const toggleCompare = (id: string) => {
@@ -74,6 +81,7 @@ export function Leaderboard({
       entries={entries}
       expanded={isExpanded}
       onSelect={openGroup}
+      scoreOf={(entry) => benchmarkScoreFor(dataset, entry, activeBoard, advanced)}
     />
   )
 
@@ -104,6 +112,12 @@ export function Leaderboard({
             channels={channels}
             onModelsChange={onModelsChange}
             onChannelsChange={onChannelsChange}
+          />
+          <AdvancedFiltersControl
+            dataset={dataset}
+            entries={dataset.entries}
+            value={advanced}
+            onChange={onAdvancedChange}
           />
           <button type="button" className="howto-button" onClick={() => setHowto(true)}>
             ? {t('howToRead')}
