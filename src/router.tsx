@@ -8,6 +8,9 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
+  validateSearch: (search: Record<string, unknown>): { s?: string } => ({
+    s: typeof search.s === 'string' ? search.s : undefined,
+  }),
   component: HomePage,
 })
 

@@ -1,9 +1,14 @@
+import { useState } from 'react'
 import { useI18n } from '../lib/i18n'
+import { copyText } from '../lib/clipboard'
+import { useExplorerOptional } from '../lib/explorer'
 
 const GH = 'https://github.com/ZainCheung/subaiwise'
 
 export function Nav() {
   const { t, toggle } = useI18n()
+  const explorer = useExplorerOptional()
+  const [copied, setCopied] = useState(false)
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-bg/90 backdrop-blur-md">
@@ -33,6 +38,23 @@ export function Nav() {
           <a className="hidden hover:text-ink sm:inline" href="#data">
             {t('navData')}
           </a>
+          {explorer ? (
+            <button
+              type="button"
+              className="hover:text-ink"
+              onClick={async () => {
+                const ok = await copyText(explorer.shareUrl())
+                if (!ok) {
+                  window.prompt(t('copyFailed'), explorer.shareUrl())
+                  return
+                }
+                setCopied(true)
+                window.setTimeout(() => setCopied(false), 1600)
+              }}
+            >
+              {copied ? t('copied') : t('share')}
+            </button>
+          ) : null}
           <button
             type="button"
             onClick={toggle}

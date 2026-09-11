@@ -9,7 +9,6 @@ import { AdvancedFiltersControl } from '../AdvancedFilters'
 import {
   availableLeaderboardKeys,
   boardTitle,
-  defaultLeaderboardKey,
 } from '../../lib/labels'
 import { MAX_COMPARE } from '../../domain/comparison'
 import { AppDialog } from '../AppDialog'
@@ -25,24 +24,27 @@ export function Leaderboard({
   models,
   channels,
   advanced,
+  board,
   onModelsChange,
   onChannelsChange,
   onAdvancedChange,
+  onBoardChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   advanced: AdvancedFilters
+  board: BoardKey
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
   onAdvancedChange: (next: AdvancedFilters) => void
+  onBoardChange: (next: BoardKey) => void
 }) {
   const { t, lang } = useI18n()
   const boards = useMemo(
     () => availableLeaderboardKeys(dataset.leaderboards),
     [dataset.leaderboards],
   )
-  const [board, setBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
   const [showAll, setShowAll] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [group, setGroup] = useState<SubAIWiseEntry[] | null>(null)
@@ -142,7 +144,7 @@ export function Leaderboard({
           <div className="mt-6">
             <PillGroup>
               {boards.map((item) => (
-                <Pill key={item} active={board === item} onClick={() => setBoard(item)}>
+                <Pill key={item} active={board === item} onClick={() => onBoardChange(item)}>
                   {boardTitle(item, lang, dataset.leaderboards[item])}
                 </Pill>
               ))}
