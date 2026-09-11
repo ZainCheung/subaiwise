@@ -3,6 +3,7 @@ import {
   LocalDataSchema,
   SubAIWiseDatasetSchema,
   SubAIWiseEntrySchema,
+  type Benchmark,
   type LocalData,
   type LocalEntryOverride,
   type SubAIWiseDataset,
@@ -46,32 +47,51 @@ function nullableBoolean(value: unknown): boolean | null {
   return typeof value === 'boolean' ? value : null
 }
 
+function buildBenchmark(point: UpstreamPoint, board: string): Benchmark {
+  const prefix = `${board}__`
+
+  return {
+    score: nullableNumber(point[`${prefix}score`]),
+    variant: nullableString(point[`${prefix}variant`]),
+    scoreIsEstimated: nullableBoolean(point[`${prefix}score_is_estimated`]),
+    scoreLow: nullableNumber(point[`${prefix}score_low`]),
+    scoreHigh: nullableNumber(point[`${prefix}score_high`]),
+    meanCostUsdPerTask: nullableNumber(point[`${prefix}mean_cost_usd_per_task`]),
+    medianCostUsdPerTask: nullableNumber(point[`${prefix}median_cost_usd_per_task`]),
+    source: nullableString(point[`${prefix}source`]),
+    mappingConfidence: nullableString(point[`${prefix}mapping_confidence`]),
+    mappingNote: nullableString(point[`${prefix}mapping_note`]),
+    agentHarness: nullableString(point[`${prefix}agent_harness`]),
+    reasoningEffort: nullableString(point[`${prefix}reasoning_effort`]),
+    serviceMode: nullableString(point[`${prefix}service_mode`]),
+    selection: nullableString(point[`${prefix}selection`]),
+    configurationCount: nullableNumber(point[`${prefix}configuration_count`]),
+    quotaEffortMatched: nullableBoolean(point[`${prefix}quota_effort_matched`]),
+  }
+}
+
+function hasMeaningfulBenchmarkData(benchmark: Benchmark): boolean {
+  return Object.entries(benchmark).some(([key, value]) => {
+    if (value == null) return false
+    if (value === '') return false
+
+    if (key === 'configurationCount' && value === 0) {
+      return false
+    }
+
+    return true
+  })
+}
+
 /** Map one upstream row to the independent SubAIWise entry shape. */
 export function adaptPoint(point: UpstreamPoint, boardNames: string[] = []): SubAIWiseEntry {
   const benchmarks: SubAIWiseEntry['benchmarks'] = {}
 
   for (const board of boardNames) {
-    const prefix = `${board}__`
-    const score = nullableNumber(point[`${prefix}score`])
+    const benchmark = buildBenchmark(point, board)
 
-    // Keep benchmark metadata useful without leaking upstream field names.
-    benchmarks[benchmarkName(board)] = {
-      score,
-      variant: nullableString(point[`${prefix}variant`]),
-      scoreIsEstimated: nullableBoolean(point[`${prefix}score_is_estimated`]),
-      scoreLow: nullableNumber(point[`${prefix}score_low`]),
-      scoreHigh: nullableNumber(point[`${prefix}score_high`]),
-      meanCostUsdPerTask: nullableNumber(point[`${prefix}mean_cost_usd_per_task`]),
-      medianCostUsdPerTask: nullableNumber(point[`${prefix}median_cost_usd_per_task`]),
-      source: nullableString(point[`${prefix}source`]),
-      mappingConfidence: nullableString(point[`${prefix}mapping_confidence`]),
-      mappingNote: nullableString(point[`${prefix}mapping_note`]),
-      agentHarness: nullableString(point[`${prefix}agent_harness`]),
-      reasoningEffort: nullableString(point[`${prefix}reasoning_effort`]),
-      serviceMode: nullableString(point[`${prefix}service_mode`]),
-      selection: nullableString(point[`${prefix}selection`]),
-      configurationCount: nullableNumber(point[`${prefix}configuration_count`]),
-      quotaEffortMatched: nullableBoolean(point[`${prefix}quota_effort_matched`]),
+    if (hasMeaningfulBenchmarkData(benchmark)) {
+      benchmarks[benchmarkName(board)] = benchmark
     }
   }
 
