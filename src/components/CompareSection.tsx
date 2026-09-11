@@ -6,7 +6,6 @@ import {
   MAX_COMPARE,
   filterCompareEntries,
   groupByModel,
-  isBoardSort,
   sortEntries,
   sortGroups,
   type BillingFilter,
@@ -23,11 +22,11 @@ import type { IdFilter } from '../lib/filters'
 import {
   availableLeaderboardKeys,
   boardTitle,
-  defaultLeaderboardKey,
 } from '../lib/labels'
 import { leaderboardFormatter } from '../lib/leaderboards'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
+import { downloadTextFile, exportFilteredCsv } from '../lib/csv'
 import { Pill, PillGroup } from './Pill'
 import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
 import { AppDialog } from './AppDialog'
@@ -161,30 +160,46 @@ export function CompareSection({
   models,
   channels,
   advanced,
+  query,
+  view,
+  sortKey,
+  scoreBoard,
+  billing,
+  compareIds,
   onModelsChange,
   onChannelsChange,
   onAdvancedChange,
+  onQueryChange,
+  onViewChange,
+  onSortChange,
+  onBillingChange,
+  onCompareIdsChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   advanced: AdvancedFilters
+  query: string
+  view: CompareView
+  sortKey: SortKey
+  scoreBoard: BoardKey
+  billing: BillingFilter
+  compareIds: string[]
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
   onAdvancedChange: (next: AdvancedFilters) => void
+  onQueryChange: (next: string) => void
+  onViewChange: (next: CompareView) => void
+  onSortChange: (next: SortKey) => void
+  onBillingChange: (next: BillingFilter) => void
+  onCompareIdsChange: (next: string[]) => void
 }) {
   const { t, lang } = useI18n()
   const boards = useMemo(
     () => availableLeaderboardKeys(dataset.leaderboards),
     [dataset.leaderboards],
   )
-  const [query, setQuery] = useState('')
-  const [view, setView] = useState<CompareView>('models')
-  const [sortKey, setSortKey] = useState<SortKey>('price')
-  const [scoreBoard, setScoreBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
-  const [billing, setBilling] = useState<BillingFilter>('all')
   const [detail, setDetail] = useState<string | 'howto' | null>(null)
-  const [compareIds, setCompareIds] = useState<string[]>([])
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
 
   const identityFiltered = useMemo(
@@ -226,8 +241,7 @@ export function CompareSection({
     .filter((p): p is SubAIWiseEntry => p != null)
 
   const onSort = (key: SortKey) => {
-    setSortKey(key)
-    if (isBoardSort(key)) setScoreBoard(key)
+    onSortChange(key)
   }
 
   const toggleExpand = (model: string) => {
@@ -240,11 +254,12 @@ export function CompareSection({
   }
 
   const toggleCompare = (id: string) => {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id)
-      if (prev.length >= MAX_COMPARE) return prev
-      return [...prev, id]
-    })
+    if (compareIds.includes(id)) {
+      onCompareIdsChange(compareIds.filter((value) => value !== id))
+      return
+    }
+    if (compareIds.length >= MAX_COMPARE) return
+    onCompareIdsChange([...compareIds, id])
   }
 
   const visibleCount = view === 'models' ? modelGroups.length : planRows.length
@@ -273,13 +288,34 @@ export function CompareSection({
             />
           </p>
         </div>
-        <button
-          type="button"
-          className="howto-button"
-          onClick={() => setDetail('howto')}
-        >
-          ? {t('howToRead')}
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            className="howto-button"
+            onClick={() => {
+              const csv = exportFilteredCsv(dataset, {
+                models,
+                channels,
+                query,
+                billing,
+                advanced,
+                sort: sortKey,
+                scoreBoard,
+                lang,
+              })
+              downloadTextFile('subaiwise-filtered.csv', csv)
+            }}
+          >
+            {t('exportCsv')}
+          </button>
+          <button
+            type="button"
+            className="howto-button"
+            onClick={() => setDetail('howto')}
+          >
+            ? {t('howToRead')}
+          </button>
+        </div>
       </div>
 
       <div className="mt-6">
@@ -290,7 +326,7 @@ export function CompareSection({
           id="compare-search"
           type="search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => onQueryChange(e.target.value)}
           placeholder={t('searchPlaceholder')}
           className="search-input"
         />
@@ -299,21 +335,21 @@ export function CompareSection({
       <div className="mt-4 flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <PillGroup>
-            <Pill active={view === 'models'} onClick={() => setView('models')}>
+            <Pill active={view === 'models'} onClick={() => onViewChange('models')}>
               {t('viewModels')}
             </Pill>
-            <Pill active={view === 'plans'} onClick={() => setView('plans')}>
+            <Pill active={view === 'plans'} onClick={() => onViewChange('plans')}>
               {t('viewPlans')}
             </Pill>
           </PillGroup>
           <PillGroup>
-            <Pill active={billing === 'all'} onClick={() => setBilling('all')}>
+            <Pill active={billing === 'all'} onClick={() => onBillingChange('all')}>
               {t('filterAll')}
             </Pill>
-            <Pill active={billing === 'subscription'} onClick={() => setBilling('subscription')}>
+            <Pill active={billing === 'subscription'} onClick={() => onBillingChange('subscription')}>
               {t('billingSub')}
             </Pill>
-            <Pill active={billing === 'metered'} onClick={() => setBilling('metered')}>
+            <Pill active={billing === 'metered'} onClick={() => onBillingChange('metered')}>
               {t('billingApi')}
             </Pill>
           </PillGroup>
@@ -468,7 +504,7 @@ export function CompareSection({
             </div>
             <button
               type="button"
-              onClick={() => setCompareIds([])}
+              onClick={() => onCompareIdsChange([])}
               className="text-[13px] text-ink-dim hover:text-ink"
             >
               {t('clearCompare')}
