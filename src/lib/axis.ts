@@ -103,6 +103,21 @@ export function logPosition(value: number, domain: [number, number]): number {
   return Math.min(100, Math.max(0, t * 100))
 }
 
+/** Axis-to-point guides only — never a full-plot crosshair. */
+export function guideEndpoints(
+  cx: number,
+  cy: number,
+  plot: { left: number; top: number; width: number; height: number },
+): {
+  horizontal: { x1: number; y1: number; x2: number; y2: number }
+  vertical: { x1: number; y1: number; x2: number; y2: number }
+} {
+  return {
+    horizontal: { x1: plot.left, y1: cy, x2: cx, y2: cy },
+    vertical: { x1: cx, y1: cy, x2: cx, y2: plot.top + plot.height },
+  }
+}
+
 export function formatYTick(v: number): string {
   if (!Number.isFinite(v)) return ''
   const abs = Math.abs(v)
