@@ -7,11 +7,13 @@ export function ActivePointGuides({
   offset,
   xAxisMap,
   yAxisMap,
+  yFormat = formatYTick,
 }: {
   active: { x: number; y: number } | null
   offset?: { left: number; top: number; width: number; height: number }
   xAxisMap?: AxisMap
   yAxisMap?: AxisMap
+  yFormat?: (value: number) => string
 }) {
   if (!active || !offset) return null
   const xAxis = xAxisMap ? Object.values(xAxisMap)[0] : undefined
@@ -57,7 +59,7 @@ export function ActivePointGuides({
         fontSize={11}
         fontFamily="Inter, system-ui, sans-serif"
       >
-        {formatYTick(active.y)}
+        {yFormat(active.y)}
       </text>
     </g>
   )

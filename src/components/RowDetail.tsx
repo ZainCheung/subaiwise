@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { BoardKey, PricingPoint } from '../types'
+import type { BoardKey, BoardMeta, PricingPoint } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
   extractSourceUrl,
@@ -10,7 +10,11 @@ import {
 } from '../lib/format'
 import { apiSavingRatio, formatApiSaving, pointScore } from '../lib/compare'
 import { isThirdParty } from '../data/channel'
-import { BOARD_KEYS, boardTitle } from '../lib/labels'
+import { availableLeaderboardKeys, boardTitle } from '../lib/labels'
+import {
+  leaderboardFormatter,
+  resolveLeaderboardPresentation,
+} from '../lib/leaderboards'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { variantKey } from '../lib/pareto'
 import { MetricHelp, MetricInfo } from './MetricInfo'
@@ -50,8 +54,18 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   )
 }
 
-export function HowToRead({ scoreBoard }: { scoreBoard: BoardKey }) {
+export function HowToRead({
+  scoreBoard,
+  boardMeta,
+}: {
+  scoreBoard: BoardKey
+  boardMeta?: BoardMeta
+}) {
   const { t, lang } = useI18n()
+  const presentation = resolveLeaderboardPresentation(scoreBoard, boardMeta)
+  const scoreHelp = presentation.howToReadKey
+    ? t(presentation.howToReadKey as DictKey)
+    : t('howToReadScore')
   return (
     <div className="text-[13px] text-ink-muted">
       <dl className="space-y-3">
@@ -60,8 +74,8 @@ export function HowToRead({ scoreBoard }: { scoreBoard: BoardKey }) {
           <dd className="mt-0.5 text-ink-dim">{t('howToReadPrice')}</dd>
         </div>
         <div>
-          <dt className="font-medium text-ink">{boardTitle(scoreBoard, lang)}</dt>
-          <dd className="mt-0.5 text-ink-dim">{t('howToReadScore')}</dd>
+          <dt className="font-medium text-ink">{boardTitle(scoreBoard, lang, boardMeta)}</dt>
+          <dd className="mt-0.5 text-ink-dim">{scoreHelp}</dd>
         </div>
         <div>
           <dt className="font-medium text-ink">{t('fieldConfidence')}</dt>
@@ -82,12 +96,16 @@ export function HowToRead({ scoreBoard }: { scoreBoard: BoardKey }) {
 export function RowDetail({
   point,
   scoreBoard,
+  boards,
+  boardMetas,
   inCompare,
   compareFull,
   onToggleCompare,
 }: {
   point: PricingPoint
   scoreBoard: BoardKey
+  boards?: readonly string[]
+  boardMetas?: Record<string, BoardMeta>
   inCompare: boolean
   compareFull: boolean
   onToggleCompare: () => void
@@ -97,6 +115,7 @@ export function RowDetail({
   const sourceUrl = extractSourceUrl(point.source)
   const saving = apiSavingRatio(point)
   const compareDisabled = !inCompare && compareFull
+  const visibleBoards = boards ?? availableLeaderboardKeys(boardMetas ?? [])
 
   return (
     <div>
@@ -165,17 +184,19 @@ export function RowDetail({
       </Section>
 
       <Section title={t('sectionBenchmarks')}>
-        {BOARD_KEYS.map((board) => {
+        {visibleBoards.map((board) => {
           const value = pointScore(point, board)
           const variant = point[variantKey(board)]
+          const meta = boardMetas?.[board]
+          const formatter = leaderboardFormatter(board, meta)
           return (
             <Field
               key={board}
-              label={<MetricLabel text={boardTitle(board, lang)} def={boardMetric(board)} />}
+              label={<MetricLabel text={boardTitle(board, lang, meta)} def={boardMetric(board)} />}
             >
               <div>
                 <span className="num" title={value == null ? t('missingScoreNote') : undefined}>
-                  {formatScore(value)}
+                  {formatScore(value, formatter)}
                 </span>
                 {value == null ? (
                   <div className="mt-0.5 text-[12px] leading-snug text-ink-dim">{t('missingScoreNote')}</div>

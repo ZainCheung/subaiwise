@@ -1,5 +1,4 @@
 import type { Billing, BoardKey, PricingPoint } from '../types'
-import { BOARD_KEYS } from './labels'
 import { scoreKey } from './pareto'
 
 export type CompareView = 'models' | 'plans'
@@ -11,7 +10,7 @@ export const CONFIDENCE_LEVELS = ['high', 'medium', 'low'] as const
 export const MAX_COMPARE = 4
 
 export function isBoardSort(key: SortKey): key is BoardKey {
-  return (BOARD_KEYS as string[]).includes(key)
+  return key !== 'price' && key !== 'allowance'
 }
 
 export function filterPoints(

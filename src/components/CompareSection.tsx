@@ -17,7 +17,12 @@ import {
   type SortKey,
 } from '../lib/compare'
 import { filterPricingPoints, type IdFilter } from '../lib/filters'
-import { BOARD_KEYS, boardTitle } from '../lib/labels'
+import {
+  availableLeaderboardKeys,
+  boardTitle,
+  defaultLeaderboardKey,
+} from '../lib/labels'
+import { leaderboardFormatter } from '../lib/leaderboards'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
@@ -47,6 +52,7 @@ function CompareRow({
   nested,
   selected,
   scoreBoard,
+  scoreFormat,
   variantCount,
   expanded,
   onSelect,
@@ -56,6 +62,7 @@ function CompareRow({
   nested?: boolean
   selected: boolean
   scoreBoard: BoardKey
+  scoreFormat: 'score' | 'percent'
   variantCount?: number
   expanded?: boolean
   onSelect: () => void
@@ -108,7 +115,7 @@ function CompareRow({
         className="num hidden text-right text-[13px] text-ink lg:block"
         title={score == null ? t('missingScoreNote') : undefined}
       >
-        {formatScore(score)}
+        {formatScore(score, scoreFormat)}
       </div>
       <div className="hidden text-right text-[10px] font-medium uppercase tracking-[0.08em] text-ink-dim lg:block">
         {confKey ? t(confKey) : point.confidence}
@@ -149,10 +156,11 @@ export function CompareSection({
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t, lang } = useI18n()
+  const boards = useMemo(() => availableLeaderboardKeys(data.boards), [data.boards])
   const [query, setQuery] = useState('')
   const [view, setView] = useState<CompareView>('models')
   const [sortKey, setSortKey] = useState<SortKey>('price')
-  const [scoreBoard, setScoreBoard] = useState<BoardKey>('arena_code')
+  const [scoreBoard, setScoreBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
   const [billing, setBilling] = useState<BillingFilter>('all')
   const [vendor, setVendor] = useState('all')
   const [confidence, setConfidence] = useState<ConfidenceFilter>('all')
@@ -217,6 +225,8 @@ export function CompareSection({
   }
 
   const visibleCount = view === 'models' ? modelGroups.length : planRows.length
+  const scoreFormat = leaderboardFormatter(scoreBoard, data.boards[scoreBoard])
+  const scoreTitle = boardTitle(scoreBoard, lang, data.boards[scoreBoard])
 
   return (
     <section
@@ -294,9 +304,9 @@ export function CompareSection({
               metricKey="allowance"
               onClick={() => onSort('allowance')}
             />
-            {BOARD_KEYS.map((b) => (
+            {boards.map((b) => (
               <SortMetricPill key={b} active={sortKey === b} metricKey={b} onClick={() => onSort(b)}>
-                {boardTitle(b, lang)}
+                {boardTitle(b, lang, data.boards[b])}
               </SortMetricPill>
             ))}
           </PillGroup>
@@ -366,7 +376,7 @@ export function CompareSection({
               <HeaderMetric def={ALLOWANCE_METRIC} />
             </div>
             <div className="text-right">
-              <HeaderMetric def={boardMetric(scoreBoard)} />
+              <HeaderMetric def={boardMetric(scoreBoard)} title={scoreTitle} />
             </div>
             <div className="text-right">
               <span className="inline-flex items-center justify-end gap-0.5">
@@ -393,6 +403,7 @@ export function CompareSection({
                     point={g.best}
                     selected={detail === g.best.id}
                     scoreBoard={scoreBoard}
+                    scoreFormat={scoreFormat}
                     variantCount={g.plans.length}
                     expanded={open}
                     onSelect={() => openRow(g.best.id)}
@@ -406,6 +417,7 @@ export function CompareSection({
                           nested
                           selected={detail === p.id}
                           scoreBoard={scoreBoard}
+                          scoreFormat={scoreFormat}
                           onSelect={() => openRow(p.id)}
                         />
                       ))
@@ -420,6 +432,7 @@ export function CompareSection({
                 point={p}
                 selected={detail === p.id}
                 scoreBoard={scoreBoard}
+                scoreFormat={scoreFormat}
                 onSelect={() => openRow(p.id)}
               />
             ))
@@ -439,11 +452,13 @@ export function CompareSection({
           closeLabel={t('closeDetail')}
         >
           {detail === 'howto' || !selected ? (
-            <HowToRead scoreBoard={scoreBoard} />
+            <HowToRead scoreBoard={scoreBoard} boardMeta={data.boards[scoreBoard]} />
           ) : (
             <RowDetail
               point={selected}
               scoreBoard={scoreBoard}
+              boards={boards}
+              boardMetas={data.boards}
               inCompare={compareIds.includes(selected.id)}
               compareFull={compareIds.length >= MAX_COMPARE}
               onToggleCompare={() => toggleCompare(selected.id)}
@@ -494,7 +509,7 @@ export function CompareSection({
                     className="num text-right text-ink"
                     title={pointScore(p, scoreBoard) == null ? t('missingScoreNote') : undefined}
                   >
-                    {formatScore(pointScore(p, scoreBoard))}
+                    {formatScore(pointScore(p, scoreBoard), scoreFormat)}
                   </span>
                   <span className="text-ink-dim">{t('colConfidence')}</span>
                   <span className="text-right uppercase tracking-wide text-ink">

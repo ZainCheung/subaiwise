@@ -1,9 +1,10 @@
-import type { LeaderboardKey } from './lib/leaderboards'
-
 export type Billing = 'subscription' | 'metered'
 
-/** @deprecated Legacy explorer compatibility types. New features use schema.ts. */
-export type BoardKey = LeaderboardKey
+/**
+ * Runtime leaderboard id. Availability comes from the canonical dataset;
+ * presentation config may or may not know the key in advance.
+ */
+export type BoardKey = string
 
 export interface BoardMeta {
   name: string

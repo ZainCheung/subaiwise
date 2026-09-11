@@ -102,6 +102,16 @@ describe('missing scores', () => {
     expect(pointScore(point({ id: 'none', arena_code__score: null }), 'arena_code')).toBeNull()
   })
 
+  it('formats Terminal-Bench resolution rate as a percentage, not a bare score', () => {
+    expect(formatScore(44.55, 'percent')).toBe('44.55%')
+    expect(formatScore(45, 'percent')).toBe('45%')
+    expect(formatScore(0, 'percent')).toBe('0%')
+    expect(formatScore(null, 'percent')).toBe('—')
+    expect(
+      pointScore(point({ id: 'tb', terminal_bench_4__score: 44.55 }), 'terminal_bench_4'),
+    ).toBe(44.55)
+  })
+
   it('sorts board-missing points after scored points', () => {
     const missing = point({
       id: 'missing',

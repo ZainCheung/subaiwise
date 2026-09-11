@@ -145,14 +145,16 @@ export function SortMetricPill({
 export function HeaderMetric({
   def,
   align = 'end',
+  title,
 }: {
   def: MetricDefinition
   align?: 'start' | 'center' | 'end'
+  title?: string
 }) {
   const { t } = useI18n()
   return (
     <span className="inline-flex items-center justify-end gap-0.5">
-      {t(def.titleKey)}
+      {title ?? t(def.titleKey)}
       <MetricHelp def={def} align={align} />
     </span>
   )

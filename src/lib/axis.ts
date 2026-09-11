@@ -118,11 +118,16 @@ export function guideEndpoints(
   }
 }
 
-export function formatYTick(v: number): string {
+export function formatYTick(v: number, format: 'score' | 'percent' = 'score'): string {
   if (!Number.isFinite(v)) return ''
   const abs = Math.abs(v)
-  if (abs >= 100) return String(Math.round(v))
-  if (Number.isInteger(v)) return String(v)
-  if (abs >= 10) return parseFloat(v.toFixed(1)).toString()
-  return parseFloat(v.toPrecision(3)).toString()
+  const body =
+    abs >= 100
+      ? String(Math.round(v))
+      : Number.isInteger(v)
+        ? String(v)
+        : abs >= 10
+          ? parseFloat(v.toFixed(1)).toString()
+          : parseFloat(v.toPrecision(3)).toString()
+  return format === 'percent' ? `${body}%` : body
 }
