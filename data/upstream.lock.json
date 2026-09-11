@@ -1,5 +1,9 @@
 {
   "repository": "FeiZhuLulu/real-api-pricing",
   "ref": "fbf732a6109545610908a27c8fb9ae8c1914d480",
-  "path": "derived/points.json"
+  "paths": [
+    "derived/points.json",
+    "derived/benchmark-configurations.json",
+    "derived/benchmark-points.json"
+  ]
 }

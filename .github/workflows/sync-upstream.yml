@@ -38,28 +38,28 @@ jobs:
           set -euo pipefail
           locked=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).ref)")
           repository=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).repository)")
-          source_path=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).path)")
-          api_url="https://api.github.com/repos/${repository}/commits"
-          latest=$(curl --fail --silent --show-error \
-            --get \
+          mapfile -t paths < <(node -e "JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).paths.forEach((p) => console.log(p))")
+          default_branch=$(curl --fail --silent --show-error \
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${GH_TOKEN}" \
-            --data-urlencode "path=${source_path}" \
-            --data-urlencode "per_page=1" \
-            "${api_url}" | jq -er '.[0].sha')
-          locked_url="https://raw.githubusercontent.com/${repository}/${locked}/${source_path}"
-          latest_url="https://raw.githubusercontent.com/${repository}/${latest}/${source_path}"
-          locked_hash=$(curl --fail --silent --show-error "${locked_url}" | sha256sum | cut -d' ' -f1)
-          latest_hash=$(curl --fail --silent --show-error "${latest_url}" | sha256sum | cut -d' ' -f1)
+            "https://api.github.com/repos/${repository}" | jq -er '.default_branch')
+          latest=$(curl --fail --silent --show-error \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            "https://api.github.com/repos/${repository}/commits/${default_branch}" | jq -er '.sha')
+          changed=false
+          for source_path in "${paths[@]}"; do
+            locked_url="https://raw.githubusercontent.com/${repository}/${locked}/${source_path}"
+            latest_url="https://raw.githubusercontent.com/${repository}/${latest}/${source_path}"
+            locked_hash=$(curl --fail --silent --show-error "${locked_url}" | sha256sum | cut -d' ' -f1)
+            latest_hash=$(curl --fail --silent --show-error "${latest_url}" | sha256sum | cut -d' ' -f1)
+            if [ "$locked_hash" != "$latest_hash" ]; then
+              changed=true
+            fi
+          done
           echo "locked=$locked" >> "$GITHUB_OUTPUT"
           echo "latest=$latest" >> "$GITHUB_OUTPUT"
-          echo "locked_hash=$locked_hash" >> "$GITHUB_OUTPUT"
-          echo "latest_hash=$latest_hash" >> "$GITHUB_OUTPUT"
-          if [ "$locked_hash" = "$latest_hash" ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
       - name: Capture previous dataset
         if: steps.upstream.outputs.changed == 'true'
         run: git show HEAD:data/dataset.json > "$RUNNER_TEMP/previous-dataset.json"
@@ -79,6 +79,8 @@ jobs:
             echo "## Upstream data sync"
             echo
             echo "Source: ${{ steps.upstream.outputs.locked }} → ${{ steps.upstream.outputs.latest }}"
+            echo
+            echo "Monitored files: derived/points.json, derived/benchmark-configurations.json, derived/benchmark-points.json"
             echo
             npx tsx scripts/dataset-summary.ts --before "$RUNNER_TEMP/previous-dataset.json" --after data/dataset.json
             overrides=$(node -e "console.log(Object.keys(JSON.parse(require('fs').readFileSync('data/local.json', 'utf8')).overrides || {}).length)")

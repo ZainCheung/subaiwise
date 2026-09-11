@@ -66,6 +66,10 @@ export const SubAIWiseEntrySchema = z.object({
     confidence: z.string(),
     tier: z.string(),
   }),
+  /**
+   * @deprecated Derived summary of the default mapped configuration per board.
+   * Canonical truth is `benchmarkConfigurations` + `benchmarkMappings`.
+   */
   benchmarks: z.record(BenchmarkSchema),
   source: z.object({
     label: z.string(),
@@ -110,12 +114,43 @@ export const LocalDataSchema = z.object({
 })
 export type LocalData = z.infer<typeof LocalDataSchema>
 
+export const BenchmarkConfigurationSchema = z.object({
+  id: z.string().min(1),
+  boardId: z.string().min(1),
+  modelId: z.string().min(1),
+  variant: z.string().nullable().optional(),
+  score: z.number().finite().nullable().optional(),
+  scoreIsEstimated: z.boolean().nullable().optional(),
+  scoreLow: z.number().finite().nullable().optional(),
+  scoreHigh: z.number().finite().nullable().optional(),
+  agentHarness: z.string().nullable().optional(),
+  reasoningEffort: z.string().nullable().optional(),
+  serviceMode: z.string().nullable().optional(),
+  meanCostUsdPerTask: z.number().finite().nullable().optional(),
+  medianCostUsdPerTask: z.number().finite().nullable().optional(),
+  source: z.string().nullable().optional(),
+  archive: z.string().nullable().optional(),
+  checkedAt: z.string().nullable().optional(),
+})
+export type BenchmarkConfiguration = z.infer<typeof BenchmarkConfigurationSchema>
+
+export const BenchmarkMappingSchema = z.object({
+  entryId: z.string().min(1),
+  configurationId: z.string().min(1),
+  mappingKind: z.string().nullable().optional(),
+  mappingConfidence: z.string().nullable().optional(),
+  mappingNote: z.string().nullable().optional(),
+  quotaEffortMatched: z.boolean().nullable().optional(),
+})
+export type BenchmarkMapping = z.infer<typeof BenchmarkMappingSchema>
+
 export const SubAIWiseDatasetSchema = z.object({
   /**
-   * Stays at 1: `provider` still means model manufacturer. `channel` is an
-   * additive access-provider field; existing identity keys are unchanged.
+   * 2: benchmarkConfigurations / benchmarkMappings are canonical.
+   * `entry.benchmarks` is a derived summary from default selection and is
+   * kept for product selectors until a later removal.
    */
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(2),
   snapshot: z.string().min(1),
   source: z.object({
     repository: z.string().min(1),
@@ -124,5 +159,7 @@ export const SubAIWiseDatasetSchema = z.object({
   workloadMix: WorkloadMixSchema,
   leaderboards: z.record(BoardMetaSchema),
   entries: z.array(SubAIWiseEntrySchema),
+  benchmarkConfigurations: z.array(BenchmarkConfigurationSchema),
+  benchmarkMappings: z.array(BenchmarkMappingSchema),
 })
 export type SubAIWiseDataset = z.infer<typeof SubAIWiseDatasetSchema>

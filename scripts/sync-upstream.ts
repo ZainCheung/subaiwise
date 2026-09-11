@@ -2,12 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildDataset, serializeDataset } from '../src/data/adapter.js'
-
-type LockFile = {
-  repository: string
-  ref: string
-  path: string
-}
+import { parseUpstreamLock, type UpstreamLock } from '../src/data/upstream-lock.js'
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const lockPath = resolve(root, 'data/upstream.lock.json')
@@ -33,8 +28,8 @@ async function readJson(path: string): Promise<unknown> {
   return JSON.parse(await readFile(path, 'utf8')) as unknown
 }
 
-async function fetchUpstream(lock: LockFile): Promise<unknown> {
-  const url = `https://raw.githubusercontent.com/${lock.repository}/${lock.ref}/${lock.path}`
+async function fetchUpstreamFile(lock: UpstreamLock, path: string): Promise<unknown> {
+  const url = `https://raw.githubusercontent.com/${lock.repository}/${lock.ref}/${path}`
   const response = await fetch(url, {
     headers: { Accept: 'application/json' },
   })
@@ -44,23 +39,43 @@ async function fetchUpstream(lock: LockFile): Promise<unknown> {
   return response.json()
 }
 
+async function fetchUpstreamBundle(lock: UpstreamLock): Promise<{
+  points: unknown
+  configurations: unknown
+  mappings: unknown
+}> {
+  const files = await Promise.all(
+    lock.paths.map(async (path) => [path, await fetchUpstreamFile(lock, path)] as const),
+  )
+  const byPath = Object.fromEntries(files)
+  const points = byPath['derived/points.json']
+  const configurations = byPath['derived/benchmark-configurations.json']
+  const mappings = byPath['derived/benchmark-points.json']
+  if (points === undefined || configurations === undefined || mappings === undefined) {
+    throw new Error(
+      `Upstream lock must include derived/points.json, derived/benchmark-configurations.json, and derived/benchmark-points.json. Got: ${lock.paths.join(', ')}`,
+    )
+  }
+  return { points, configurations, mappings }
+}
+
 async function main(): Promise<void> {
   if (hasFlag('--help')) {
     console.log('Usage: npm run data:sync [-- --ref <FULL_SHA>] [--check]')
     return
   }
 
-  const originalLock = (await readJson(lockPath)) as LockFile
+  const originalLock = parseUpstreamLock(await readJson(lockPath))
   assertCommit(originalLock.ref)
   const requestedRef = argument('--ref')
   if (requestedRef) assertCommit(requestedRef)
 
-  const lock: LockFile = {
+  const lock: UpstreamLock = {
     ...originalLock,
     ref: requestedRef ?? originalLock.ref,
   }
-  const [upstream, local] = await Promise.all([fetchUpstream(lock), readJson(localPath)])
-  const dataset = buildDataset(upstream, {
+  const [bundle, local] = await Promise.all([fetchUpstreamBundle(lock), readJson(localPath)])
+  const dataset = buildDataset(bundle, {
     repository: lock.repository,
     commit: lock.ref,
   }, local)
@@ -71,17 +86,19 @@ async function main(): Promise<void> {
     if (current !== serialized) {
       throw new Error('data/dataset.json is stale. Run npm run data:sync.')
     }
-    console.log(`Data check passed (${dataset.entries.length} entries, ${lock.ref.slice(0, 7)}).`)
+    console.log(
+      `Data check passed (${dataset.entries.length} entries, ${dataset.benchmarkConfigurations.length} configurations, ${dataset.benchmarkMappings.length} mappings, ${lock.ref.slice(0, 7)}).`,
+    )
     return
   }
 
   await writeFile(datasetPath, serialized, 'utf8')
-  // A requested ref is a deliberate lock update. This keeps `--ref` a
-  // complete, reproducible operation and makes data:check pass immediately.
   if (requestedRef) {
     await writeFile(lockPath, `${JSON.stringify(lock, null, 2)}\n`, 'utf8')
   }
-  console.log(`Synced ${dataset.entries.length} entries from ${lock.repository}@${lock.ref}.`)
+  console.log(
+    `Synced ${dataset.entries.length} entries, ${dataset.benchmarkConfigurations.length} configurations, ${dataset.benchmarkMappings.length} mappings from ${lock.repository}@${lock.ref}.`,
+  )
 }
 
 main().catch((error: unknown) => {

@@ -8,6 +8,8 @@ import {
 } from './comparison'
 import { mostEfficientEntry, subscriptionFrontier } from './leaderboards'
 import { apiSavingRatio, formatApiSaving, selectAllowanceRows, selectPriceRows } from './pricing'
+import { canonicalBenchmarkKey } from '../lib/leaderboards'
+import { selectDefaultBenchmarkReference } from './benchmarks'
 import {
   filterEntries,
   monthlyYi,
@@ -42,10 +44,12 @@ function dataset(
   partial: Partial<SubAIWiseDataset> & Pick<SubAIWiseDataset, 'entries' | 'leaderboards'>,
 ): SubAIWiseDataset {
   return SubAIWiseDatasetSchema.parse({
-    schemaVersion: 1,
+    schemaVersion: 2,
     snapshot: '2026-01-01',
     source: { repository: 'fixture', commit: 'a'.repeat(40) },
     workloadMix: { cache: 0.975, input: 0.0215, output: 0.0035 },
+    benchmarkConfigurations: [],
+    benchmarkMappings: [],
     ...partial,
   })
 }
@@ -224,6 +228,20 @@ describe('migration goldens from the locked dataset', () => {
       'cursor_ultra::composer-2.5',
     ])
     expect(selectAllowanceRows(checkedIn.entries)[0].monthlyYi).toBe(2517.306)
+  })
+
+  it('keeps derived entry.benchmarks aligned with highest_archived_reference', () => {
+    for (const entry of checkedIn.entries) {
+      for (const boardId of selectAvailableLeaderboards(checkedIn)) {
+        const selected = selectDefaultBenchmarkReference(checkedIn, entry.id, boardId)
+        const derived = entry.benchmarks[canonicalBenchmarkKey(boardId)]
+        if (!selected) continue
+        expect(derived?.score).toBe(selected.configuration.score)
+        expect(derived?.selection).toBe('highest_archived_reference')
+      }
+    }
+    expect(checkedIn.benchmarkConfigurations.length).toBeGreaterThan(0)
+    expect(checkedIn.benchmarkMappings.length).toBeGreaterThan(0)
   })
 
   it('keeps compare filter and board-sort output', () => {

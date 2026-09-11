@@ -21,12 +21,14 @@ function entry(id: string, overrides: Partial<SubAIWiseEntry> = {}): SubAIWiseEn
 
 function dataset(entries: SubAIWiseEntry[]): SubAIWiseDataset {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     snapshot: '2026-01-01',
     source: { repository: 'fixture', commit: 'f'.repeat(40) },
     workloadMix: { cache: 0.975, input: 0.0215, output: 0.0035 },
     leaderboards: {},
     entries,
+    benchmarkConfigurations: [],
+    benchmarkMappings: [],
   }
 }
 
