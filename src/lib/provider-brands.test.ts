@@ -42,6 +42,11 @@ describe('provider brand mapping', () => {
       thirdParty: false,
       logos: ['Meta'],
     })
+    expect(brandLogos('OpenAI', 'Devin')).toEqual({
+      thirdParty: true,
+      logos: ['Devin', 'OpenAI'],
+    })
+    expect(providerInitials('Devin')).toBe('DE')
   })
 
   it('has a bundled asset for every mapped slug', () => {

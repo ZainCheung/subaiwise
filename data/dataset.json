@@ -3,7 +3,7 @@
   "snapshot": "2026-09-11",
   "source": {
     "repository": "FeiZhuLulu/real-api-pricing",
-    "commit": "fbf732a6109545610908a27c8fb9ae8c1914d480"
+    "commit": "8f889ef635318ea16325eacaa2b7c3912128eab9"
   },
   "workloadMix": {
     "cache": 0.975,
@@ -739,7 +739,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -876,7 +876,7 @@
           {
             "type": "upstream-research",
             "label": "chatgpt-luna-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -1167,7 +1167,90 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "chatgpt_plus::gpt-6-astra",
+      "label": "GPT-6 Astra · ChatGPT Plus",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": {
+        "id": "chatgpt_plus",
+        "name": "ChatGPT Plus",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "gpt-6-astra",
+        "name": "GPT-6 Astra"
+      },
+      "pricing": {
+        "monthlyUsd": 20,
+        "effectiveUsdPerMillionTokens": 0.12579,
+        "listUsdPerMillionTokens": null
+      },
+      "allowance": {
+        "monthlyTokens": 159000000
+      },
+      "quality": {
+        "confidence": "high",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "designArena": {
+          "score": 82.7,
+          "variant": "GPT-6 Astra",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 1.612939,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 58.18,
+          "variant": "Codex - GPT-6 Astra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 55.39,
+          "scoreHigh": 60.97,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 5,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "用户Plus面板：10,336,745 tokens(input+cache_read) = 周窗剩余26pt；chatgpt-astra-adoption-round7-2026-09-11.json",
+        "note": "新增1.59亿：10,336,745÷26%×4周；本次抽取未含output（Luna同法占0.33%，影响<1%）；26pt为取整读数差，范围约1.53~1.65亿；Plus定价页写明Astra为limited档（可加credits），直测的是实际消耗速率不受影响；round8发现Observatory现测Astra≈4.1×Sol，round7旧权重2×互证口径存疑，本值不依赖权重模型；Pro 5x/20x暂不派生（三源分歧2.7×未裁决，见round8/round9）"
+      },
+      "provenance": {
+        "originalPrice": 20,
+        "currency": "USD",
+        "monthlyTokens": 159000000,
+        "decisionNote": "新增1.59亿：10,336,745÷26%×4周；本次抽取未含output（Luna同法占0.33%，影响<1%）；26pt为取整读数差，范围约1.53~1.65亿；Plus定价页写明Astra为limited档（可加credits），直测的是实际消耗速率不受影响；round8发现Observatory现测Astra≈4.1×Sol，round7旧权重2×互证口径存疑，本值不依赖权重模型；Pro 5x/20x暂不派生（三源分歧2.7×未裁决，见round8/round9）",
+        "sourceText": "用户Plus面板：10,336,745 tokens(input+cache_read) = 周窗剩余26pt；chatgpt-astra-adoption-round7-2026-09-11.json",
+        "evidence": [
+          {
+            "type": "upstream-research",
+            "label": "chatgpt-astra-adoption-round7-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/chatgpt-astra-adoption-round7-2026-09-11.json"
           }
         ]
       }
@@ -1291,7 +1374,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -1428,7 +1511,7 @@
           {
             "type": "upstream-research",
             "label": "chatgpt-luna-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -1583,7 +1666,7 @@
           {
             "type": "upstream-research",
             "label": "chatgpt-pro20x-gateway-measurement-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/chatgpt-pro20x-gateway-measurement-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/chatgpt-pro20x-gateway-measurement-2026-09-06.json"
           }
         ]
       }
@@ -1725,7 +1808,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -1849,7 +1932,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -1986,7 +2069,7 @@
           {
             "type": "upstream-research",
             "label": "chatgpt-luna-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/chatgpt-luna-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -2277,7 +2360,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -2414,7 +2497,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -2551,7 +2634,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -2688,7 +2771,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -2807,7 +2890,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -2944,7 +3027,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -3081,7 +3164,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -3200,7 +3283,7 @@
           {
             "type": "upstream-research",
             "label": "claude-adoption-round6-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/claude-adoption-round6-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/claude-adoption-round6-2026-09-06.json"
           }
         ]
       }
@@ -3500,7 +3583,7 @@
           {
             "type": "upstream-research",
             "label": "command-code-goat-deepseek-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
           }
         ]
       }
@@ -3647,7 +3730,7 @@
           {
             "type": "upstream-research",
             "label": "command-code-goat-deepseek-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
           }
         ]
       }
@@ -3722,7 +3805,7 @@
           {
             "type": "upstream-research",
             "label": "command-code-goat-deepseek-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/command-code-goat-deepseek-round1-2026-09-10.json"
           }
         ]
       }
@@ -3869,7 +3952,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -3998,7 +4081,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4091,7 +4174,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4147,7 +4230,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4276,7 +4359,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4405,7 +4488,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4552,7 +4635,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4717,7 +4800,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -4864,7 +4947,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5011,7 +5094,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5122,7 +5205,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5233,7 +5316,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5308,7 +5391,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5383,7 +5466,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5494,7 +5577,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5550,7 +5633,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5697,7 +5780,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5772,7 +5855,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5883,7 +5966,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -5994,7 +6077,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6087,7 +6170,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6143,7 +6226,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6254,7 +6337,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6310,7 +6393,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6385,7 +6468,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6460,7 +6543,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6535,7 +6618,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6646,7 +6729,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6721,7 +6804,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6777,7 +6860,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6888,7 +6971,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -6944,7 +7027,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -7019,7 +7102,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -7094,7 +7177,7 @@
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
           }
         ]
       }
@@ -7164,7 +7247,7 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           }
         ]
       }
@@ -7234,12 +7317,12 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           },
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -7304,7 +7387,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -7441,7 +7524,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -7701,12 +7784,12 @@
           {
             "type": "upstream-research",
             "label": "audit-round4-2026-09-05.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/audit-round4-2026-09-05.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/audit-round4-2026-09-05.json"
           },
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -7843,7 +7926,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -7908,7 +7991,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -8045,7 +8128,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -8182,7 +8265,7 @@
           {
             "type": "upstream-research",
             "label": "cursor-adoption-round8-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/cursor-adoption-round8-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/cursor-adoption-round8-2026-09-06.json"
           }
         ]
       }
@@ -8776,7 +8859,7 @@
           {
             "type": "upstream-research",
             "label": "list-prices-deepseek-v41-round2-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/list-prices-deepseek-v41-round2-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/list-prices-deepseek-v41-round2-2026-09-10.json"
           }
         ]
       }
@@ -8846,7 +8929,95 @@
           {
             "type": "upstream-research",
             "label": "list-prices-deepseek-v41-round2-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/list-prices-deepseek-v41-round2-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/list-prices-deepseek-v41-round2-2026-09-10.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "devin_max::gpt-6-astra",
+      "label": "GPT-6 Astra · Devin Max",
+      "provider": "OpenAI",
+      "channel": "Devin",
+      "plan": {
+        "id": "devin_max",
+        "name": "Devin Max",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "gpt-6-astra",
+        "name": "GPT-6 Astra"
+      },
+      "pricing": {
+        "monthlyUsd": 200,
+        "effectiveUsdPerMillionTokens": 0.12315,
+        "listUsdPerMillionTokens": null
+      },
+      "allowance": {
+        "monthlyTokens": 1623999999.9999998
+      },
+      "quality": {
+        "confidence": "high",
+        "tier": "main"
+      },
+      "benchmarks": {
+        "designArena": {
+          "score": 82.7,
+          "variant": "GPT-6 Astra",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 1.612939,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 58.18,
+          "variant": "Codex - GPT-6 Astra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 55.39,
+          "scoreHigh": 60.97,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 5,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "用户Devin Max面板：gpt-6-astra-high total Δ81,207,229 tokens（calls+319，in 957/out 360,125/cache_read 79,102,796/cache_create 1,743,351）= 周额度20pt；devin-usage-round2-2026-09-11.json；https://devin.ai/pricing Max $200/月",
+        "note": "新增16.24亿：81,207,229÷20%×4周；全口径total直接采用不归一；20pt为取整读数差，范围约15.85~16.64亿；cache_read命中率99.9988%异常（超长上下文续跑）已记录；swe-2免费不占额度；Pro $20档无数据不派生"
+      },
+      "provenance": {
+        "originalPrice": 200,
+        "currency": "USD",
+        "monthlyTokens": 1624000000,
+        "decisionNote": "新增16.24亿：81,207,229÷20%×4周；全口径total直接采用不归一；20pt为取整读数差，范围约15.85~16.64亿；cache_read命中率99.9988%异常（超长上下文续跑）已记录；swe-2免费不占额度；Pro $20档无数据不派生",
+        "sourceText": "用户Devin Max面板：gpt-6-astra-high total Δ81,207,229 tokens（calls+319，in 957/out 360,125/cache_read 79,102,796/cache_create 1,743,351）= 周额度20pt；devin-usage-round2-2026-09-11.json；https://devin.ai/pricing Max $200/月",
+        "evidence": [
+          {
+            "type": "url",
+            "label": "https://devin.ai/pricing",
+            "url": "https://devin.ai/pricing"
+          },
+          {
+            "type": "upstream-research",
+            "label": "devin-usage-round2-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/devin-usage-round2-2026-09-11.json"
           }
         ]
       }
@@ -8970,7 +9141,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9094,7 +9265,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9218,7 +9389,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9342,7 +9513,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9466,7 +9637,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9590,7 +9761,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9714,7 +9885,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9838,7 +10009,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -9962,7 +10133,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10086,7 +10257,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10210,7 +10381,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10334,7 +10505,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10458,7 +10629,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10582,7 +10753,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10706,7 +10877,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10830,7 +11001,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -10954,7 +11125,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11078,7 +11249,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11202,7 +11373,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11326,7 +11497,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11450,7 +11621,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11574,7 +11745,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11698,7 +11869,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11822,7 +11993,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -11946,7 +12117,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12070,7 +12241,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12194,7 +12365,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12318,7 +12489,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12442,7 +12613,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12566,7 +12737,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12690,7 +12861,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12814,7 +12985,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -12938,7 +13109,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -13062,7 +13233,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -13186,7 +13357,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -13310,7 +13481,7 @@
           {
             "type": "upstream-research",
             "label": "standard-token-mix-round1-2026-09-07.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/standard-token-mix-round1-2026-09-07.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/standard-token-mix-round1-2026-09-07.json"
           }
         ]
       }
@@ -13416,12 +13587,12 @@
           {
             "type": "upstream-research",
             "label": "kimi-k27-round7-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-k27-round7-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-k27-round7-2026-09-08.json"
           },
           {
             "type": "upstream-research",
             "label": "kimi-k27-adoption-round8-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-k27-adoption-round8-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-k27-adoption-round8-2026-09-08.json"
           }
         ]
       }
@@ -13563,7 +13734,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -13669,7 +13840,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-k27-adoption-round8-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-k27-adoption-round8-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-k27-adoption-round8-2026-09-08.json"
           }
         ]
       }
@@ -13811,7 +13982,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -13917,7 +14088,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-k27-adoption-round8-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-k27-adoption-round8-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-k27-adoption-round8-2026-09-08.json"
           }
         ]
       }
@@ -14023,7 +14194,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-k27-adoption-round8-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-k27-adoption-round8-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-k27-adoption-round8-2026-09-08.json"
           }
         ]
       }
@@ -14165,7 +14336,7 @@
           {
             "type": "upstream-research",
             "label": "kimi-adoption-round6-2026-09-08.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/kimi-adoption-round6-2026-09-08.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/kimi-adoption-round6-2026-09-08.json"
           }
         ]
       }
@@ -15073,7 +15244,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增216.372亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15081,7 +15252,7 @@
         "currency": "USD",
         "monthlyTokens": 21637200000,
         "decisionNote": "新增216.372亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15090,13 +15261,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15220,7 +15396,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增70.472亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15228,7 +15404,7 @@
         "currency": "USD",
         "monthlyTokens": 7047200000,
         "decisionNote": "新增70.472亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15237,13 +15413,98 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ollama_max::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash · Ollama Max",
+      "provider": "DeepSeek",
+      "channel": "Ollama",
+      "plan": {
+        "id": "ollama_max",
+        "name": "Ollama Max",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 100,
+        "effectiveUsdPerMillionTokens": 0.00275,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": 36363600000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+        "note": "新增363.636亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（Ollama 峰窗 12:00–18:00 UTC Mon–Fri，金额对齐 DeepSeek 官方 V4.1 Flash 但窗口不同）；2026-09-10 起分批上线；Ollama 仅此一个 V4.1 变体；ollama-deepseek-v41-round1-2026-09-11.json。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
+      },
+      "provenance": {
+        "originalPrice": 100,
+        "currency": "USD",
+        "monthlyTokens": 36363600000,
+        "decisionNote": "新增363.636亿：共享月池 $300 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（Ollama 峰窗 12:00–18:00 UTC Mon–Fri，金额对齐 DeepSeek 官方 V4.1 Flash 但窗口不同）；2026-09-10 起分批上线；Ollama 仅此一个 V4.1 变体；ollama-deepseek-v41-round1-2026-09-11.json。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+        "evidence": [
+          {
+            "type": "url",
+            "label": "https://ollama.com/pricing",
+            "url": "https://ollama.com/pricing"
+          },
+          {
+            "type": "url",
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "code-subscriptions-round1-2026-09-06.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15313,7 +15574,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增13.175亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15321,7 +15582,7 @@
         "currency": "USD",
         "monthlyTokens": 1317500000,
         "decisionNote": "新增13.175亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15330,13 +15591,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15406,7 +15672,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增10.033亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15414,7 +15680,7 @@
         "currency": "USD",
         "monthlyTokens": 1003300000,
         "decisionNote": "新增10.033亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15423,13 +15689,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15535,7 +15806,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增10.033亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15543,7 +15814,7 @@
         "currency": "USD",
         "monthlyTokens": 1003300000,
         "decisionNote": "新增10.033亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15552,13 +15823,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15664,7 +15940,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增87.655亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15672,7 +15948,7 @@
         "currency": "USD",
         "monthlyTokens": 8765500000,
         "decisionNote": "新增87.655亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15681,13 +15957,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15775,7 +16056,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增13.657亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15783,7 +16064,7 @@
         "currency": "USD",
         "monthlyTokens": 1365700000,
         "decisionNote": "新增13.657亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15792,13 +16073,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -15922,7 +16208,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增7.326亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -15930,7 +16216,7 @@
         "currency": "USD",
         "monthlyTokens": 732600000,
         "decisionNote": "新增7.326亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -15939,13 +16225,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16033,7 +16324,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增43.384亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16041,7 +16332,7 @@
         "currency": "USD",
         "monthlyTokens": 4338400000,
         "decisionNote": "新增43.384亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16050,13 +16341,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16144,7 +16440,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增21.692亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价（Ollama 标价约为 OpenCode/Command 常见成交价 2×，用本渠道价表）。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16152,7 +16448,7 @@
         "currency": "USD",
         "monthlyTokens": 2169200000,
         "decisionNote": "新增21.692亿：共享月池 $300 ÷ 统一标准负载加权价；官网三段价（Ollama 标价约为 OpenCode/Command 常见成交价 2×，用本渠道价表）。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16161,13 +16457,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16291,7 +16592,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增43.274亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16299,7 +16600,7 @@
         "currency": "USD",
         "monthlyTokens": 4327400000,
         "decisionNote": "新增43.274亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16308,13 +16609,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16438,7 +16744,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增14.094亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16446,7 +16752,7 @@
         "currency": "USD",
         "monthlyTokens": 1409400000,
         "decisionNote": "新增14.094亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（12:00–18:00 UTC Mon–Fri），与项目/OpenCode DeepSeek 峰谷口径一致。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16455,13 +16761,98 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ollama_pro::deepseek-v4.1-flash",
+      "label": "DeepSeek V4.1 Flash · Ollama Pro",
+      "provider": "DeepSeek",
+      "channel": "Ollama",
+      "plan": {
+        "id": "ollama_pro",
+        "name": "Ollama Pro",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "name": "DeepSeek V4.1 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 20,
+        "effectiveUsdPerMillionTokens": 0.00275,
+        "listUsdPerMillionTokens": 0.0165
+      },
+      "allowance": {
+        "monthlyTokens": 7272700000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "designArena": {
+          "score": 81.2,
+          "variant": "DeepSeek V4.1 Flash",
+          "scoreIsEstimated": null,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": 0.023264,
+          "medianCostUsdPerTask": null,
+          "source": "https://open-design.ai/zh/llm-arena-for-design/",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "OpenDesign",
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+        "note": "新增72.727亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（Ollama 峰窗 12:00–18:00 UTC Mon–Fri，金额对齐 DeepSeek 官方 V4.1 Flash 但窗口不同）；2026-09-10 起分批上线；Ollama 仅此一个 V4.1 变体；ollama-deepseek-v41-round1-2026-09-11.json。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
+      },
+      "provenance": {
+        "originalPrice": 20,
+        "currency": "USD",
+        "monthlyTokens": 7272700000,
+        "decisionNote": "新增72.727亿：共享月池 $60 ÷ 统一标准负载加权价；Off-Peak；Peak=2×（Ollama 峰窗 12:00–18:00 UTC Mon–Fri，金额对齐 DeepSeek 官方 V4.1 Flash 但窗口不同）；2026-09-10 起分批上线；Ollama 仅此一个 V4.1 变体；ollama-deepseek-v41-round1-2026-09-11.json。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+        "evidence": [
+          {
+            "type": "url",
+            "label": "https://ollama.com/pricing",
+            "url": "https://ollama.com/pricing"
+          },
+          {
+            "type": "url",
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "code-subscriptions-round1-2026-09-06.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16531,7 +16922,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增2.635亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16539,7 +16930,7 @@
         "currency": "USD",
         "monthlyTokens": 263500000,
         "decisionNote": "新增2.635亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16548,13 +16939,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16624,7 +17020,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增2.007亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16632,7 +17028,7 @@
         "currency": "USD",
         "monthlyTokens": 200700000,
         "decisionNote": "新增2.007亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16641,13 +17037,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16753,7 +17154,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增2.007亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16761,7 +17162,7 @@
         "currency": "USD",
         "monthlyTokens": 200700000,
         "decisionNote": "新增2.007亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16770,13 +17171,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16882,7 +17288,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增17.531亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -16890,7 +17296,7 @@
         "currency": "USD",
         "monthlyTokens": 1753100000,
         "decisionNote": "新增17.531亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -16899,13 +17305,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -16993,7 +17404,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增2.731亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -17001,7 +17412,7 @@
         "currency": "USD",
         "monthlyTokens": 273100000,
         "decisionNote": "新增2.731亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -17010,13 +17421,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -17140,7 +17556,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增1.465亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -17148,7 +17564,7 @@
         "currency": "USD",
         "monthlyTokens": 146500000,
         "decisionNote": "新增1.465亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -17157,13 +17573,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -17251,7 +17672,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增8.677亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -17259,7 +17680,7 @@
         "currency": "USD",
         "monthlyTokens": 867700000,
         "decisionNote": "新增8.677亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -17268,13 +17689,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -17362,7 +17788,7 @@
         }
       },
       "source": {
-        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "label": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "note": "新增4.338亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价（Ollama 标价约为 OpenCode/Command 常见成交价 2×，用本渠道价表）。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表"
       },
       "provenance": {
@@ -17370,7 +17796,7 @@
         "currency": "USD",
         "monthlyTokens": 433800000,
         "decisionNote": "新增4.338亿：共享月池 $60 ÷ 统一标准负载加权价；官网三段价（Ollama 标价约为 OpenCode/Command 常见成交价 2×，用本渠道价表）。同套餐各模型额度不可相加（共享池按单模型打满）；无面板 token+% 截图，按官方绝对credits+价表",
-        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
+        "sourceText": "https://ollama.com/pricing 官方 usage credits 与三段价；https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
         "evidence": [
           {
             "type": "url",
@@ -17379,13 +17805,18 @@
           },
           {
             "type": "url",
-            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json",
-            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json"
+            "label": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://ollama.com/blog/transparent-pricing；code-subscriptions-round1-2026-09-06.json；ollama-deepseek-v41-round1-2026-09-11.json"
           },
           {
             "type": "upstream-research",
             "label": "code-subscriptions-round1-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/code-subscriptions-round1-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/code-subscriptions-round1-2026-09-06.json"
+          },
+          {
+            "type": "upstream-research",
+            "label": "ollama-deepseek-v41-round1-2026-09-11.json",
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/ollama-deepseek-v41-round1-2026-09-11.json"
           }
         ]
       }
@@ -17938,7 +18369,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-deepseek-round6-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-deepseek-round6-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-deepseek-round6-2026-09-10.json"
           }
         ]
       }
@@ -18008,7 +18439,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-deepseek-round6-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-deepseek-round6-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-deepseek-round6-2026-09-10.json"
           }
         ]
       }
@@ -18096,7 +18527,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18184,7 +18615,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18308,7 +18739,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18432,7 +18863,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18574,7 +19005,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18716,7 +19147,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18822,7 +19253,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -18928,7 +19359,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19016,7 +19447,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19122,7 +19553,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19264,7 +19695,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19334,7 +19765,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19404,7 +19835,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19510,7 +19941,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19580,7 +20011,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19686,7 +20117,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19792,7 +20223,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19843,7 +20274,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19894,7 +20325,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -19945,7 +20376,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20015,7 +20446,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20085,7 +20516,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20191,7 +20622,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20242,7 +20673,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20348,7 +20779,7 @@
           {
             "type": "upstream-research",
             "label": "opencode-go-round5-2026-09-06.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/opencode-go-round5-2026-09-06.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/opencode-go-round5-2026-09-06.json"
           }
         ]
       }
@@ -20428,17 +20859,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20518,17 +20949,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20608,17 +21039,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20698,17 +21129,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20788,17 +21219,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20878,17 +21309,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -20968,17 +21399,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -21058,17 +21489,17 @@
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round1-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round1-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round1-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round3-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round3-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round3-2026-09-10.json"
           },
           {
             "type": "upstream-research",
             "label": "stepfun-step-plan-round4-2026-09-10.json",
-            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/fbf732a6109545610908a27c8fb9ae8c1914d480/data/research/stepfun-step-plan-round4-2026-09-10.json"
+            "url": "https://github.com/FeiZhuLulu/real-api-pricing/blob/8f889ef635318ea16325eacaa2b7c3912128eab9/data/research/stepfun-step-plan-round4-2026-09-10.json"
           }
         ]
       }
@@ -26993,6 +27424,54 @@
       "quotaEffortMatched": null
     },
     {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "open_design_arena:dd3f10577e243a05",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "terminal_bench_4:07b9fb497e6ef1d8",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "terminal_bench_4:76e01227b1722c6a",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "terminal_bench_4:788128906887bc3f",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "terminal_bench_4:c34ee40f8161b13c",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "chatgpt_plus::gpt-6-astra",
+      "configurationId": "terminal_bench_4:c7499e8569e3e9bb",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
       "entryId": "chatgpt_pro_20x::gpt-5.5",
       "configurationId": "aa_coding_agent_index:3d0f817b37ef1f59",
       "mappingKind": "agent_configuration_reference",
@@ -30377,6 +30856,54 @@
       "quotaEffortMatched": null
     },
     {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "open_design_arena:dd3f10577e243a05",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "terminal_bench_4:07b9fb497e6ef1d8",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "terminal_bench_4:76e01227b1722c6a",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "terminal_bench_4:788128906887bc3f",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "terminal_bench_4:c34ee40f8161b13c",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "devin_max::gpt-6-astra",
+      "configurationId": "terminal_bench_4:c7499e8569e3e9bb",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
       "entryId": "glm_coding_lite_cn_new_mid::glm-5.3",
       "configurationId": "aa_intelligence_index:c04386c47a41d1f4",
       "mappingKind": "model_configuration_reference",
@@ -32115,6 +32642,14 @@
     {
       "entryId": "ollama_max::deepseek-v4-pro",
       "configurationId": "open_design_arena:eb41770147b8d6e0",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "ollama_max::deepseek-v4.1-flash",
+      "configurationId": "open_design_arena:4e43fe2ce3eb40f9",
       "mappingKind": "agent_configuration_reference",
       "mappingConfidence": "low",
       "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
@@ -32507,6 +33042,14 @@
     {
       "entryId": "ollama_pro::deepseek-v4-pro",
       "configurationId": "open_design_arena:eb41770147b8d6e0",
+      "mappingKind": "agent_configuration_reference",
+      "mappingConfidence": "low",
+      "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+      "quotaEffortMatched": null
+    },
+    {
+      "entryId": "ollama_pro::deepseek-v4.1-flash",
+      "configurationId": "open_design_arena:4e43fe2ce3eb40f9",
       "mappingKind": "agent_configuration_reference",
       "mappingConfidence": "low",
       "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",

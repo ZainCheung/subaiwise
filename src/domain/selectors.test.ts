@@ -177,12 +177,14 @@ describe('migration goldens from the locked dataset', () => {
     ])
     expect(subscriptionFrontier(checkedIn.entries, 'open_design_arena').map((row) => row.id)).toEqual([
       'command_code_goat::deepseek-v4.1-flash',
+      'devin_max::gpt-6-astra',
     ])
     expect(subscriptionFrontier(checkedIn.entries, 'terminal_bench_4').map((row) => row.id)).toEqual([
       'chatgpt_pro_20x::gpt-5.6-luna',
       'chatgpt_pro_20x::gpt-5.6-terra',
       'glm_coding_pro_cn_old_offpeak::glm-5.3',
       'claude_max_20x::claude-opus-5',
+      'devin_max::gpt-6-astra',
     ])
   })
 
@@ -191,8 +193,8 @@ describe('migration goldens from the locked dataset', () => {
     expect(selectEntriesForLeaderboard(checkedIn.entries, 'arena_agent_mode')).toHaveLength(140)
     expect(selectEntriesForLeaderboard(checkedIn.entries, 'aa_intelligence_index')).toHaveLength(173)
     expect(selectEntriesForLeaderboard(checkedIn.entries, 'aa_coding_agent_index')).toHaveLength(71)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'open_design_arena')).toHaveLength(65)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'terminal_bench_4')).toHaveLength(66)
+    expect(selectEntriesForLeaderboard(checkedIn.entries, 'open_design_arena')).toHaveLength(69)
+    expect(selectEntriesForLeaderboard(checkedIn.entries, 'terminal_bench_4')).toHaveLength(68)
 
     expect(mostEfficientEntry(checkedIn.entries, 'arena_code')?.id).toBe(
       'claude_max_20x::claude-opus-5',
@@ -222,10 +224,10 @@ describe('migration goldens from the locked dataset', () => {
       'stepfun_pro_cn::step-3.5-flash',
       'claude_max_20x::claude-sonnet-5',
       'chatgpt_pro_5x::gpt-5.6-luna',
+      'ollama_max::deepseek-v4.1-flash',
       'stepfun_pro_cn::step-3.7-flash',
       'chatgpt_pro_20x::gpt-5.6-terra',
       'ollama_max::deepseek-v4-flash',
-      'cursor_ultra::composer-2.5',
     ])
     expect(selectAllowanceRows(checkedIn.entries)[0].monthlyYi).toBe(2517.306)
   })
@@ -271,7 +273,7 @@ describe('migration goldens from the locked dataset', () => {
         vendor: 'all',
         confidence: 'high',
       }),
-    ).toHaveLength(59)
+    ).toHaveLength(61)
     expect(
       filterCompareEntries(checkedIn.entries, {
         query: '',
@@ -279,7 +281,7 @@ describe('migration goldens from the locked dataset', () => {
         vendor: 'all',
         confidence: 'all',
       }),
-    ).toHaveLength(183)
+    ).toHaveLength(187)
     expect(sortEntries(checkedIn.entries, 'arena_code').slice(0, 10).map((row) => row.id)).toEqual([
       'claude_max_20x::claude-opus-5',
       'claude_max_5x::claude-opus-5',
