@@ -10,6 +10,11 @@ import {
   type SubAIWiseEntry,
 } from './schema'
 import {
+  planIdFromPointId,
+  resolveChannel,
+  warnUnknownChannels,
+} from './channel'
+import {
   UpstreamPayloadSchema,
   validateUpstreamBenchmarkFields,
   type UpstreamPayload,
@@ -95,12 +100,22 @@ export function adaptPoint(point: UpstreamPoint, boardNames: string[] = []): Sub
     }
   }
 
+  const planId =
+    planIdFromPointId(point.id) ||
+    point.plan.toLowerCase().replace(/[^a-z0-9]+/g, '_')
+  const channel = resolveChannel({
+    id: point.id,
+    planId,
+    manufacturer: point.vendor,
+  }).channel
+
   return SubAIWiseEntrySchema.parse({
     id: point.id,
     label: point.label || `${point.model_display} · ${point.plan}`,
     provider: point.vendor,
+    channel,
     plan: {
-      id: point.id.split('::')[0] || point.plan.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+      id: planId,
       name: point.plan,
       billing: point.billing,
     },
@@ -143,7 +158,22 @@ export function adaptUpstream(
   const leaderboards = Object.fromEntries(
     boardNames.map((name) => [name, BoardMetaSchema.parse(upstream.boards[name])]),
   )
-  const entries = upstream.points.map((point) => adaptPoint(point, boardNames))
+  const unknownPlanIds: string[] = []
+  const entries = upstream.points.map((point) => {
+    const planId =
+      planIdFromPointId(point.id) ||
+      point.plan.toLowerCase().replace(/[^a-z0-9]+/g, '_')
+    const resolved = resolveChannel({
+      id: point.id,
+      planId,
+      manufacturer: point.vendor,
+    })
+    if (!resolved.known) unknownPlanIds.push(resolved.planId)
+    return adaptPoint(point, boardNames)
+  })
+  if (process.env.NODE_ENV !== 'test') {
+    warnUnknownChannels(unknownPlanIds)
+  }
 
   return SubAIWiseDatasetSchema.parse({
     schemaVersion: 1,

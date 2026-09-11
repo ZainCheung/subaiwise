@@ -19,7 +19,10 @@ export interface PricingPoint {
   billing: Billing
   model: string
   model_display: string
+  /** Model manufacturer. */
   vendor: string
+  /** Access / service provider. */
+  channel: string
   label: string
   price_usd: number | null
   monthly_yi: number | null

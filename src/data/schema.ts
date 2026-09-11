@@ -41,7 +41,10 @@ export type Benchmark = z.infer<typeof BenchmarkSchema>
 export const SubAIWiseEntrySchema = z.object({
   id: z.string().min(1),
   label: z.string().min(1).optional(),
+  /** Model manufacturer (DeepSeek, OpenAI, Meta). Not the access/service provider. */
   provider: z.string().min(1),
+  /** Access / service provider (Ollama, OpenCode, OpenAI). */
+  channel: z.string().min(1),
   plan: z.object({
     id: z.string().min(1),
     name: z.string().min(1),
@@ -88,6 +91,7 @@ export const LocalEntryOverrideSchema = z
   .object({
     label: z.string().min(1).optional(),
     provider: z.string().min(1).optional(),
+    channel: z.string().min(1).optional(),
     plan: LocalPlanOverrideSchema.optional(),
     model: LocalModelOverrideSchema.optional(),
     pricing: SubAIWiseEntrySchema.shape.pricing.deepPartial().optional(),
@@ -107,6 +111,10 @@ export const LocalDataSchema = z.object({
 export type LocalData = z.infer<typeof LocalDataSchema>
 
 export const SubAIWiseDatasetSchema = z.object({
+  /**
+   * Stays at 1: `provider` still means model manufacturer. `channel` is an
+   * additive access-provider field; existing identity keys are unchanged.
+   */
   schemaVersion: z.literal(1),
   snapshot: z.string().min(1),
   source: z.object({
