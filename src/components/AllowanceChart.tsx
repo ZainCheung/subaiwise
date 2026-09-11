@@ -6,6 +6,7 @@ import { subscriptionPoints } from '../lib/legacy-stats'
 import { shortLabel } from '../lib/labels'
 import { applyLimit, CHART_LIMITS, chartLimitKey, logWidthPct, type ChartLimit } from '../lib/limits'
 import { Pill, PillGroup } from './Pill'
+import { CompactBrandIdentity } from './ProviderLogo'
 
 export function AllowanceChart({ points }: { points: PricingPoint[] }) {
   const { t, lang } = useI18n()
@@ -26,6 +27,8 @@ export function AllowanceChart({ points }: { points: PricingPoint[] }) {
         plan: p.plan,
         model: p.model_display,
         vendor: p.vendor,
+        channel: p.channel,
+        point: p,
         value: raw,
         display,
         color: vendorColor(p.vendor),
@@ -75,23 +78,17 @@ export function AllowanceChart({ points }: { points: PricingPoint[] }) {
                   onMouseEnter={() => setHoverId(row.id)}
                   onMouseLeave={() => setHoverId(null)}
                   className={active ? 'bg-white/[0.02]' : undefined}
-                  title={`${row.label}\n${row.vendor} · ${formatVal(row.display)}`}
+                  title={`${row.label}\n${row.channel} · ${row.vendor} · ${formatVal(row.display)}`}
                 >
                   <td>
-                    <div className="flex min-w-0 items-center gap-2">
-                      <span
-                        className="mt-0.5 h-2 w-2 shrink-0 rounded-full"
-                        style={{ background: row.color }}
-                      />
-                      <div className="min-w-0">
-                        <div className="truncate text-[13px] font-medium text-ink">
-                          {row.short}
-                        </div>
-                        <div className="truncate text-[11px] text-ink-dim">
-                          {row.vendor}
-                        </div>
-                      </div>
-                    </div>
+                    <CompactBrandIdentity point={row.point}>
+                      <span className="block truncate text-[13px] font-medium text-ink">
+                        {row.short}
+                      </span>
+                      <span className="block truncate text-[11px] text-ink-dim">
+                        {row.channel === row.vendor ? row.vendor : `${row.channel} · ${row.vendor}`}
+                      </span>
+                    </CompactBrandIdentity>
                   </td>
                   <td>
                     <div className="bar-track">

@@ -19,9 +19,9 @@ import {
 import { BOARD_KEYS, boardTitle } from '../lib/labels'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
-import { vendorColor } from '../lib/vendors'
 import { Pill, PillGroup } from './Pill'
 import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
+import { ModelIdentity, PlanIdentity } from './ProviderLogo'
 import { RowDetail } from './RowDetail'
 
 function confidenceKey(value: string): DictKey | null {
@@ -61,7 +61,6 @@ function CompareRow({
   const score = pointScore(point, scoreBoard)
   const confKey = confidenceKey(point.confidence)
   const isApi = point.billing === 'metered'
-  const color = vendorColor(point.vendor)
   const showExpand = (variantCount ?? 0) > 1 && onToggleExpand
 
   return (
@@ -74,28 +73,25 @@ function CompareRow({
       onKeyDown={(e) => activateOnKey(e, onSelect)}
       className={`compare-row ${selected ? 'compare-row-active' : ''} ${nested ? 'compare-row-nested' : ''}`}
     >
-      <div className="flex min-w-0 items-start gap-2">
-        <span
-          className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
-          style={{
-            background: isApi ? 'transparent' : color,
-            boxShadow: isApi ? `inset 0 0 0 1.5px ${color}` : undefined,
-          }}
-        />
-        <div className="min-w-0">
-          <div className="truncate text-[13px] font-medium text-ink">
-            {nested ? point.plan : point.model_display}
-          </div>
-          <div className="truncate text-[11px] text-ink-dim lg:hidden">
-            {nested ? `${isApi ? t('billingApi') : t('billingSub')} · ${point.vendor}` : point.plan}
-          </div>
+      <div className="min-w-0">
+        {nested ? (
+          <PlanIdentity point={point} logo="always" />
+        ) : (
+          <ModelIdentity point={point} />
+        )}
+        <div className="truncate pl-7 text-[11px] text-ink-dim lg:hidden">
+          {nested ? `${isApi ? t('billingApi') : t('billingSub')} · ${point.channel}` : point.plan}
         </div>
       </div>
       <div className="hidden min-w-0 sm:block">
-        <div className="truncate text-[13px] text-ink">{nested ? point.vendor : point.plan}</div>
+        {nested ? (
+          <div className="truncate text-[13px] text-ink">{point.channel}</div>
+        ) : (
+          <PlanIdentity point={point} />
+        )}
         <div className="truncate text-[11px] text-ink-dim">
           {isApi ? t('billingApi') : t('billingSub')}
-          {nested ? '' : ` · ${point.vendor}`}
+          {nested ? '' : ` · ${point.channel}`}
         </div>
       </div>
       <div className="num text-right text-[13px] text-ink">
