@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type KeyboardEvent } from 'react'
+import { useMemo, useState, type KeyboardEvent } from 'react'
 import type { BoardKey, PointsPayload, PricingPoint } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
@@ -21,8 +21,9 @@ import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
 import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
+import { AppDialog } from './AppDialog'
 import { ModelIdentity, PlanIdentity } from './ProviderLogo'
-import { RowDetail } from './RowDetail'
+import { HowToRead, RowDetail } from './RowDetail'
 
 function confidenceKey(value: string): DictKey | null {
   if (value === 'high') return 'confHigh'
@@ -140,7 +141,7 @@ export function CompareSection({ data }: { data: PointsPayload }) {
   const [billing, setBilling] = useState<BillingFilter>('all')
   const [vendor, setVendor] = useState('all')
   const [confidence, setConfidence] = useState<ConfidenceFilter>('all')
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [detail, setDetail] = useState<string | 'howto' | null>(null)
   const [compareIds, setCompareIds] = useState<string[]>([])
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
 
@@ -163,24 +164,12 @@ export function CompareSection({ data }: { data: PointsPayload }) {
     [filtered, sortKey],
   )
 
-  useEffect(() => {
-    if (!selectedId) return
-    if (typeof window === 'undefined' || !window.matchMedia('(max-width: 1023px)').matches) return
-    document.getElementById('compare-detail-mobile')?.scrollIntoView({
-      block: 'nearest',
-      behavior: 'smooth',
-    })
-  }, [selectedId])
+  const selected =
+    detail && detail !== 'howto' ? (data.points.find((p) => p.id === detail) ?? null) : null
 
-  useEffect(() => {
-    const onKey = (e: globalThis.KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedId(null)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
-  const selected = data.points.find((p) => p.id === selectedId) ?? null
+  const openRow = (id: string) => {
+    setDetail((current) => (current === id ? null : id))
+  }
   const comparePts = compareIds
     .map((id) => data.points.find((p) => p.id === id))
     .filter((p): p is PricingPoint => p != null)
@@ -214,21 +203,30 @@ export function CompareSection({ data }: { data: PointsPayload }) {
       id="compare"
       className={`mx-auto max-w-6xl px-5 py-16 sm:py-20 ${comparePts.length ? 'pb-48' : ''}`}
     >
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-          {t('compareTitle')}
-        </h2>
-        <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-ink-muted">
-          {t('compareSub')}
-        </p>
-        <p className="mt-1.5 flex max-w-3xl items-center gap-1 text-[12px] text-ink-dim">
-          {t('workloadCompare')}
-          <MetricInfo
-            label={t('metricInfoLabel').replace('{metric}', t('workloadCompare'))}
-            short={t('workloadHelp')}
-            align="start"
-          />
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            {t('compareTitle')}
+          </h2>
+          <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-ink-muted">
+            {t('compareSub')}
+          </p>
+          <p className="mt-1.5 flex max-w-3xl items-center gap-1 text-[12px] text-ink-dim">
+            {t('workloadCompare')}
+            <MetricInfo
+              label={t('metricInfoLabel').replace('{metric}', t('workloadCompare'))}
+              short={t('workloadHelp')}
+              align="start"
+            />
+          </p>
+        </div>
+        <button
+          type="button"
+          className="howto-button"
+          onClick={() => setDetail('howto')}
+        >
+          ? {t('howToRead')}
+        </button>
       </div>
 
       <div className="mt-6">
@@ -328,7 +326,7 @@ export function CompareSection({ data }: { data: PointsPayload }) {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <div className="mt-6">
         <div className="card overflow-visible px-3 py-2 sm:px-4">
           <div className="compare-head">
             <div>{t('colModel')}</div>
@@ -365,11 +363,11 @@ export function CompareSection({ data }: { data: PointsPayload }) {
                 <div key={g.model}>
                   <CompareRow
                     point={g.best}
-                    selected={selectedId === g.best.id}
+                    selected={detail === g.best.id}
                     scoreBoard={scoreBoard}
                     variantCount={g.plans.length}
                     expanded={open}
-                    onSelect={() => setSelectedId((id) => (id === g.best.id ? null : g.best.id))}
+                    onSelect={() => openRow(g.best.id)}
                     onToggleExpand={() => toggleExpand(g.model)}
                   />
                   {open
@@ -378,9 +376,9 @@ export function CompareSection({ data }: { data: PointsPayload }) {
                           key={p.id}
                           point={p}
                           nested
-                          selected={selectedId === p.id}
+                          selected={detail === p.id}
                           scoreBoard={scoreBoard}
-                          onSelect={() => setSelectedId((id) => (id === p.id ? null : p.id))}
+                          onSelect={() => openRow(p.id)}
                         />
                       ))
                     : null}
@@ -392,39 +390,37 @@ export function CompareSection({ data }: { data: PointsPayload }) {
               <CompareRow
                 key={p.id}
                 point={p}
-                selected={selectedId === p.id}
+                selected={detail === p.id}
                 scoreBoard={scoreBoard}
-                onSelect={() => setSelectedId((id) => (id === p.id ? null : p.id))}
+                onSelect={() => openRow(p.id)}
               />
             ))
           )}
         </div>
-
-        <div className="hidden lg:block">
-          <RowDetail
-            point={selected}
-            scoreBoard={scoreBoard}
-            inCompare={selected ? compareIds.includes(selected.id) : false}
-            compareFull={compareIds.length >= MAX_COMPARE}
-            onToggleCompare={() => {
-              if (selected) toggleCompare(selected.id)
-            }}
-            onClose={() => setSelectedId(null)}
-          />
-        </div>
       </div>
 
-      {selected ? (
-        <div id="compare-detail-mobile" className="mt-3 lg:hidden">
-          <RowDetail
-            point={selected}
-            scoreBoard={scoreBoard}
-            inCompare={compareIds.includes(selected.id)}
-            compareFull={compareIds.length >= MAX_COMPARE}
-            onToggleCompare={() => toggleCompare(selected.id)}
-            onClose={() => setSelectedId(null)}
-          />
-        </div>
+      {detail != null ? (
+        <AppDialog
+          title={
+            detail === 'howto' || !selected
+              ? t('howToRead')
+              : `${selected.model_display} · ${selected.plan}`
+          }
+          onClose={() => setDetail(null)}
+          closeLabel={t('closeDetail')}
+        >
+          {detail === 'howto' || !selected ? (
+            <HowToRead scoreBoard={scoreBoard} />
+          ) : (
+            <RowDetail
+              point={selected}
+              scoreBoard={scoreBoard}
+              inCompare={compareIds.includes(selected.id)}
+              compareFull={compareIds.length >= MAX_COMPARE}
+              onToggleCompare={() => toggleCompare(selected.id)}
+            />
+          )}
+        </AppDialog>
       ) : null}
 
       {comparePts.length > 0 ? (

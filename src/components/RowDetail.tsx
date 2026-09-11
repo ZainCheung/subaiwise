@@ -50,83 +50,62 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   )
 }
 
+export function HowToRead({ scoreBoard }: { scoreBoard: BoardKey }) {
+  const { t, lang } = useI18n()
+  return (
+    <div className="text-[13px] text-ink-muted">
+      <dl className="space-y-3">
+        <div>
+          <dt className="font-medium text-ink">{t('fieldRealPrice')}</dt>
+          <dd className="mt-0.5 text-ink-dim">{t('howToReadPrice')}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-ink">{boardTitle(scoreBoard, lang)}</dt>
+          <dd className="mt-0.5 text-ink-dim">{t('howToReadScore')}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-ink">{t('fieldConfidence')}</dt>
+          <dd className="mt-0.5 text-ink-dim">{t('howToReadEvidence')}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-ink">{t('howToReadPlansTitle')}</dt>
+          <dd className="mt-0.5 text-ink-dim">{t('howToReadPlans')}</dd>
+        </div>
+      </dl>
+      <p className="mt-4 border-t border-border pt-3 leading-relaxed text-ink-dim">
+        {t('howToReadFooter')}
+      </p>
+    </div>
+  )
+}
+
 export function RowDetail({
   point,
   scoreBoard,
   inCompare,
   compareFull,
   onToggleCompare,
-  onClose,
 }: {
-  point: PricingPoint | null
+  point: PricingPoint
   scoreBoard: BoardKey
   inCompare: boolean
   compareFull: boolean
   onToggleCompare: () => void
-  onClose: () => void
 }) {
   const { t, lang } = useI18n()
-
-  if (!point) {
-    return (
-      <aside className="card h-fit p-5 text-[13px] text-ink-muted">
-        <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
-          {t('howToRead')}
-        </div>
-        <dl className="mt-3 space-y-3">
-          <div>
-            <dt className="font-medium text-ink">{t('fieldRealPrice')}</dt>
-            <dd className="mt-0.5 text-ink-dim">{t('howToReadPrice')}</dd>
-          </div>
-          <div>
-            <dt className="font-medium text-ink">{boardTitle(scoreBoard, lang)}</dt>
-            <dd className="mt-0.5 text-ink-dim">{t('howToReadScore')}</dd>
-          </div>
-          <div>
-            <dt className="font-medium text-ink">{t('fieldConfidence')}</dt>
-            <dd className="mt-0.5 text-ink-dim">{t('howToReadEvidence')}</dd>
-          </div>
-          <div>
-            <dt className="font-medium text-ink">{t('howToReadPlansTitle')}</dt>
-            <dd className="mt-0.5 text-ink-dim">{t('howToReadPlans')}</dd>
-          </div>
-        </dl>
-        <p className="mt-4 border-t border-border pt-3 leading-relaxed text-ink-dim">
-          {t('howToReadFooter')}
-        </p>
-      </aside>
-    )
-  }
-
   const confKey = confidenceKey(point.confidence)
   const sourceUrl = extractSourceUrl(point.source)
   const saving = apiSavingRatio(point)
   const compareDisabled = !inCompare && compareFull
 
   return (
-    <aside className="card h-fit p-5 lg:sticky lg:top-16">
-      <div className="flex items-start justify-between gap-3">
+    <div>
+      <div className="flex items-start gap-2.5">
+        <BrandMarks maker={point.vendor} channel={point.channel} size="md" />
         <div className="min-w-0">
-          <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
-            {t('detailTitle')}
-          </div>
-          <div className="mt-1.5 flex items-start gap-2.5">
-            <BrandMarks maker={point.vendor} channel={point.channel} size="md" />
-            <div className="min-w-0">
-              <h3 className="text-[15px] font-semibold leading-snug text-ink">
-                {point.model_display}
-              </h3>
-              <p className="mt-0.5 text-[13px] text-ink-muted">{point.plan}</p>
-            </div>
-          </div>
+          <h3 className="text-[15px] font-semibold leading-snug text-ink">{point.model_display}</h3>
+          <p className="mt-0.5 text-[13px] text-ink-muted">{point.plan}</p>
         </div>
-        <button
-          type="button"
-          onClick={onClose}
-          className="shrink-0 text-[12px] text-ink-dim hover:text-ink"
-        >
-          {t('closeDetail')}
-        </button>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-ink-muted">
@@ -258,6 +237,6 @@ export function RowDetail({
       >
         {inCompare ? t('removeFromCompare') : t('addToCompare')}
       </button>
-    </aside>
+    </div>
   )
 }
