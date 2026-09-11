@@ -9,11 +9,12 @@ import {
   formatUsdPerMtok,
 } from '../lib/format'
 import { apiSavingRatio, formatApiSaving, pointScore } from '../lib/compare'
-import { vendorColor } from '../lib/vendors'
+import { isThirdParty } from '../data/channel'
 import { BOARD_KEYS, boardTitle } from '../lib/labels'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { variantKey } from '../lib/pareto'
 import { MetricHelp, MetricInfo } from './MetricInfo'
+import { BrandMarks } from './ProviderLogo'
 
 function confidenceKey(value: string): DictKey | null {
   if (value === 'high') return 'confHigh'
@@ -109,10 +110,15 @@ export function RowDetail({
           <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
             {t('detailTitle')}
           </div>
-          <h3 className="mt-1.5 text-[15px] font-semibold leading-snug text-ink">
-            {point.model_display}
-          </h3>
-          <p className="mt-0.5 text-[13px] text-ink-muted">{point.plan}</p>
+          <div className="mt-1.5 flex items-start gap-2.5">
+            <BrandMarks maker={point.vendor} channel={point.channel} size="md" />
+            <div className="min-w-0">
+              <h3 className="text-[15px] font-semibold leading-snug text-ink">
+                {point.model_display}
+              </h3>
+              <p className="mt-0.5 text-[13px] text-ink-muted">{point.plan}</p>
+            </div>
+          </div>
         </div>
         <button
           type="button"
@@ -123,16 +129,14 @@ export function RowDetail({
         </button>
       </div>
 
-      <div className="mt-3 flex items-center gap-2 text-[12px] text-ink-muted">
-        <span
-          className="h-2 w-2 rounded-full"
-          style={{
-            background: point.billing === 'metered' ? 'transparent' : vendorColor(point.vendor),
-            boxShadow:
-              point.billing === 'metered' ? `inset 0 0 0 1.5px ${vendorColor(point.vendor)}` : undefined,
-          }}
-        />
-        {point.vendor}
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-ink-muted">
+        <span>{point.channel}</span>
+        {isThirdParty(point.vendor, point.channel) ? (
+          <>
+            <span className="text-ink-dim">·</span>
+            <span>{point.vendor}</span>
+          </>
+        ) : null}
         <span className="text-ink-dim">·</span>
         {point.billing === 'metered' ? t('billingApi') : t('billingSub')}
       </div>

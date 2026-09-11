@@ -7,6 +7,7 @@ import { applyLimit, CHART_LIMITS, chartLimitKey, type ChartLimit } from '../lib
 import { formatUsdTick, logPosition, logPriceAxis } from '../lib/axis'
 import { formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
+import { CompactBrandIdentity } from './ProviderLogo'
 
 export function PriceChart({ points }: { points: PricingPoint[] }) {
   const { t } = useI18n()
@@ -22,6 +23,8 @@ export function PriceChart({ points }: { points: PricingPoint[] }) {
       plan: p.plan,
       model: p.model_display,
       vendor: p.vendor,
+      channel: p.channel,
+      point: p,
       billing: p.billing,
       value: p.real_usd_per_mtok,
       color: vendorColor(p.vendor),
@@ -90,26 +93,19 @@ export function PriceChart({ points }: { points: PricingPoint[] }) {
                   onMouseEnter={() => setHoverId(row.id)}
                   onMouseLeave={() => setHoverId(null)}
                   className={active ? 'bg-white/[0.02]' : undefined}
-                  title={`${row.label}\n${isApi ? 'API' : 'Sub'} · ${row.vendor} · ${formatUsdPerMtok(row.value)}`}
+                  title={`${row.label}\n${isApi ? 'API' : 'Sub'} · ${row.channel} · ${row.vendor} · ${formatUsdPerMtok(row.value)}`}
                 >
                   <td>
-                    <div className="flex min-w-0 items-center gap-2">
-                      <span
-                        className="mt-0.5 h-2 w-2 shrink-0 rounded-full"
-                        style={{
-                          background: isApi ? 'transparent' : row.color,
-                          boxShadow: isApi ? `inset 0 0 0 1.5px ${row.color}` : undefined,
-                        }}
-                      />
-                      <div className="min-w-0">
-                        <div className="truncate text-[13px] font-medium text-ink">
-                          {row.short}
-                        </div>
-                        <div className="truncate text-[11px] text-ink-dim">
-                          {isApi ? t('billingApi') : t('billingSub')} · {row.vendor}
-                        </div>
-                      </div>
-                    </div>
+                    <CompactBrandIdentity point={row.point}>
+                      <span className="block truncate text-[13px] font-medium text-ink">
+                        {row.short}
+                      </span>
+                      <span className="block truncate text-[11px] text-ink-dim">
+                        {isApi ? t('billingApi') : t('billingSub')}
+                        {' · '}
+                        {row.channel === row.vendor ? row.vendor : `${row.channel} · ${row.vendor}`}
+                      </span>
+                    </CompactBrandIdentity>
                   </td>
                   <td>
                     <div className="dot-track">
