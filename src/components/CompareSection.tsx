@@ -24,6 +24,7 @@ import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
 import { AppDialog } from './AppDialog'
 import { ModelIdentity, PlanIdentity } from './ProviderLogo'
 import { HowToRead, RowDetail } from './RowDetail'
+import { TableViewport } from './TableViewport'
 
 function confidenceKey(value: string): DictKey | null {
   if (value === 'high') return 'confHigh'
@@ -327,7 +328,8 @@ export function CompareSection({ data }: { data: PointsPayload }) {
       </div>
 
       <div className="mt-6">
-        <div className="card overflow-visible px-3 py-2 sm:px-4">
+        <div className="card px-3 py-2 sm:px-4">
+          <TableViewport>
           <div className="compare-head">
             <div>{t('colModel')}</div>
             <div>{t('colPlan')}</div>
@@ -396,6 +398,7 @@ export function CompareSection({ data }: { data: PointsPayload }) {
               />
             ))
           )}
+          </TableViewport>
         </div>
       </div>
 

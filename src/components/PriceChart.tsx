@@ -8,6 +8,7 @@ import { formatUsdTick, logPosition, logPriceAxis } from '../lib/axis'
 import { formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
 import { CompactBrandIdentity } from './ProviderLogo'
+import { TableViewport } from './TableViewport'
 
 export function PriceChart({ points }: { points: PricingPoint[] }) {
   const { t } = useI18n()
@@ -49,7 +50,7 @@ export function PriceChart({ points }: { points: PricingPoint[] }) {
         </PillGroup>
       </div>
 
-      <div className="mt-6 overflow-x-auto">
+      <TableViewport className="mt-6">
         <table className="bar-table min-w-[640px]">
           <thead>
             <tr>
@@ -140,7 +141,7 @@ export function PriceChart({ points }: { points: PricingPoint[] }) {
             })}
           </tbody>
         </table>
-      </div>
+      </TableViewport>
     </div>
   )
 }

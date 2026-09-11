@@ -179,6 +179,29 @@ body {
   overflow: visible !important;
 }
 
+.table-viewport {
+  overflow: auto;
+  max-height: min(560px, 65vh);
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 2.75rem;
+}
+
+.table-viewport .bar-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-bg-card);
+  box-shadow: 0 1px 0 var(--color-border);
+}
+
+.table-viewport .compare-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-bg-card);
+}
+
 .bar-table {
   width: 100%;
   border-collapse: separate;
