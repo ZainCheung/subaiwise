@@ -4,6 +4,7 @@
   "paths": [
     "derived/points.json",
     "derived/benchmark-configurations.json",
-    "derived/benchmark-points.json"
+    "derived/benchmark-points.json",
+    "data/adopted.csv"
   ]
 }

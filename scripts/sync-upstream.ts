@@ -30,19 +30,20 @@ async function readJson(path: string): Promise<unknown> {
 
 async function fetchUpstreamFile(lock: UpstreamLock, path: string): Promise<unknown> {
   const url = `https://raw.githubusercontent.com/${lock.repository}/${lock.ref}/${path}`
-  const response = await fetch(url, {
-    headers: { Accept: 'application/json' },
-  })
+  const response = await fetch(url)
   if (!response.ok) {
     throw new Error(`Unable to fetch locked upstream (${response.status}): ${url}`)
   }
-  return response.json()
+  const body = await response.text()
+  if (path.endsWith('.json')) return JSON.parse(body) as unknown
+  return body
 }
 
 async function fetchUpstreamBundle(lock: UpstreamLock): Promise<{
   points: unknown
   configurations: unknown
   mappings: unknown
+  adopted?: string
 }> {
   const files = await Promise.all(
     lock.paths.map(async (path) => [path, await fetchUpstreamFile(lock, path)] as const),
@@ -51,12 +52,18 @@ async function fetchUpstreamBundle(lock: UpstreamLock): Promise<{
   const points = byPath['derived/points.json']
   const configurations = byPath['derived/benchmark-configurations.json']
   const mappings = byPath['derived/benchmark-points.json']
+  const adopted = byPath['data/adopted.csv']
   if (points === undefined || configurations === undefined || mappings === undefined) {
     throw new Error(
       `Upstream lock must include derived/points.json, derived/benchmark-configurations.json, and derived/benchmark-points.json. Got: ${lock.paths.join(', ')}`,
     )
   }
-  return { points, configurations, mappings }
+  return {
+    points,
+    configurations,
+    mappings,
+    adopted: typeof adopted === 'string' ? adopted : undefined,
+  }
 }
 
 async function main(): Promise<void> {

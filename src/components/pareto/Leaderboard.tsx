@@ -190,6 +190,7 @@ export function Leaderboard({
         >
           <RowDetail
             entry={detail}
+            dataset={dataset}
             scoreBoard={board}
             boards={boards}
             boardMetas={dataset.leaderboards}

@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import type { BoardMeta, SubAIWiseEntry } from '../data/schema'
+import { useState, type ReactNode } from 'react'
+import type { BoardMeta, SubAIWiseDataset, SubAIWiseEntry } from '../data/schema'
 import type { BoardKey } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
@@ -10,9 +10,14 @@ import {
   formatUsdPerMtok,
 } from '../lib/format'
 import { apiSavingRatio, formatApiSaving } from '../domain/pricing'
+import {
+  configurationsForEntryBoard,
+  selectDefaultBenchmarkReference,
+} from '../domain/benchmarks'
 import { monthlyYi, selectBenchmarkScore, selectBenchmarkVariant } from '../domain/selectors'
 import { isThirdParty } from '../data/channel'
 import { availableLeaderboardKeys, boardTitle } from '../lib/labels'
+import { isSafeHttpUrl } from '../lib/safe-url'
 import {
   leaderboardFormatter,
   resolveLeaderboardPresentation,
@@ -94,8 +99,31 @@ export function HowToRead({
   )
 }
 
+function EvidenceLinks({ items }: { items: { label: string; url: string }[] }) {
+  if (!items.length) return <span>—</span>
+  return (
+    <ul className="space-y-1">
+      {items.map((item) =>
+        isSafeHttpUrl(item.url) ? (
+          <li key={item.url}>
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-ink underline decoration-border underline-offset-2 hover:decoration-ink"
+            >
+              {item.label} ↗
+            </a>
+          </li>
+        ) : null,
+      )}
+    </ul>
+  )
+}
+
 export function RowDetail({
   entry,
+  dataset,
   scoreBoard,
   boards,
   boardMetas,
@@ -104,6 +132,7 @@ export function RowDetail({
   onToggleCompare,
 }: {
   entry: SubAIWiseEntry
+  dataset?: SubAIWiseDataset
   scoreBoard: BoardKey
   boards?: readonly string[]
   boardMetas?: Record<string, BoardMeta>
@@ -117,6 +146,15 @@ export function RowDetail({
   const saving = apiSavingRatio(entry)
   const compareDisabled = !inCompare && compareFull
   const visibleBoards = boards ?? availableLeaderboardKeys(boardMetas ?? [])
+  const [showAllConfigs, setShowAllConfigs] = useState(false)
+  const provenance = entry.provenance
+  const mappedConfigs = dataset
+    ? configurationsForEntryBoard(dataset, entry.id, scoreBoard)
+    : []
+  const selectedConfig = dataset
+    ? selectDefaultBenchmarkReference(dataset, entry.id, scoreBoard)
+    : null
+  const visibleConfigs = showAllConfigs ? mappedConfigs : selectedConfig ? [selectedConfig] : []
 
   return (
     <div>
@@ -228,7 +266,7 @@ export function RowDetail({
         </Field>
         <Field label={t('fieldSource')}>
           <div className="space-y-1">
-            {sourceUrl ? (
+            {sourceUrl && isSafeHttpUrl(sourceUrl) ? (
               <a
                 href={sourceUrl}
                 target="_blank"
@@ -249,6 +287,138 @@ export function RowDetail({
           </Field>
         ) : null}
       </Section>
+
+      <details className="mt-4 border-t border-border pt-3">
+        <summary className="cursor-pointer text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
+          {t('evidenceMethodology')}
+        </summary>
+        <div className="mt-3">
+          <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
+            {t('sectionAdoption')}
+          </div>
+          {provenance ? (
+            <dl className="mt-1">
+              <Field label={t('fieldOriginalPrice')}>
+                <span className="num">
+                  {provenance.originalPrice == null
+                    ? '—'
+                    : `${provenance.originalPrice}${provenance.currency ? ` ${provenance.currency}` : ''}`}
+                </span>
+              </Field>
+              <Field label={t('fieldCurrency')}>{provenance.currency || '—'}</Field>
+              {provenance.decisionNote ? (
+                <Field label={t('fieldDecisionNote')}>
+                  <span className="text-[12px] leading-snug text-ink-muted">{provenance.decisionNote}</span>
+                </Field>
+              ) : null}
+              <Field label={t('fieldAdoptionEvidence')}>
+                <EvidenceLinks items={provenance.evidence} />
+              </Field>
+            </dl>
+          ) : (
+            <p className="mt-1 text-[12px] text-ink-dim">{t('noAdoptionEvidence')}</p>
+          )}
+
+          <div className="mt-4 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-dim">
+            {t('sectionBenchmarkConfig')}
+          </div>
+          {visibleConfigs.length ? (
+            <div className="mt-1 space-y-3">
+              {visibleConfigs.map((ref) => {
+                const mappingConf = ref.mapping.mappingConfidence
+                const mappingConfKey = mappingConf ? confidenceKey(mappingConf) : null
+                return (
+                  <dl key={ref.configuration.id} className="rounded-md border border-border px-3 py-2">
+                    <Field label={t('colScore')}>
+                      <div>
+                        <span className="num">
+                          {formatScore(
+                            ref.configuration.score ?? null,
+                            leaderboardFormatter(scoreBoard, boardMetas?.[scoreBoard]),
+                          )}
+                        </span>
+                        {ref.configuration.variant ? (
+                          <div className="mt-0.5 text-[12px] leading-snug text-ink-dim">
+                            {ref.configuration.variant}
+                          </div>
+                        ) : null}
+                      </div>
+                    </Field>
+                    <Field label={t('fieldScoreKind')}>
+                      {ref.configuration.scoreIsEstimated === true
+                        ? t('scoreEstimated')
+                        : t('scoreMeasured')}
+                    </Field>
+                    <Field label={t('fieldHarness')}>{ref.configuration.agentHarness || '—'}</Field>
+                    <Field label={t('fieldEffort')}>{ref.configuration.reasoningEffort || '—'}</Field>
+                    <Field label={t('fieldServiceMode')}>{ref.configuration.serviceMode || '—'}</Field>
+                    {ref.configuration.meanCostUsdPerTask != null ? (
+                      <Field label={t('fieldMeanCost')}>
+                        <span className="num">${ref.configuration.meanCostUsdPerTask}</span>
+                      </Field>
+                    ) : null}
+                    {ref.configuration.medianCostUsdPerTask != null ? (
+                      <Field label={t('fieldMedianCost')}>
+                        <span className="num">${ref.configuration.medianCostUsdPerTask}</span>
+                      </Field>
+                    ) : null}
+                    <Field label={t('fieldArchive')}>{ref.configuration.archive || '—'}</Field>
+                    {ref.configuration.source && isSafeHttpUrl(ref.configuration.source) ? (
+                      <Field label={t('fieldSource')}>
+                        <EvidenceLinks
+                          items={[{ label: t('viewSource'), url: ref.configuration.source }]}
+                        />
+                      </Field>
+                    ) : null}
+                    <Field
+                      label={
+                        <>
+                          <span>{t('fieldMappingConfidence')}</span>
+                          <MetricInfo
+                            label={t('metricInfoLabel').replace('{metric}', t('fieldMappingConfidence'))}
+                            short={t('mappingConfidenceHelpShort')}
+                            long={t('mappingConfidenceHelpLong')}
+                            align="start"
+                          />
+                        </>
+                      }
+                    >
+                      {mappingConfKey ? t(mappingConfKey) : mappingConf || '—'}
+                    </Field>
+                    {ref.mapping.mappingNote ? (
+                      <Field label={t('fieldMappingNote')}>
+                        <span className="text-[12px] leading-snug text-ink-muted">
+                          {ref.mapping.mappingNote}
+                        </span>
+                      </Field>
+                    ) : null}
+                    <Field label={t('fieldQuotaEffortMatched')}>
+                      {ref.mapping.quotaEffortMatched == null
+                        ? '—'
+                        : ref.mapping.quotaEffortMatched
+                          ? t('quotaEffortYes')
+                          : t('quotaEffortNo')}
+                    </Field>
+                  </dl>
+                )
+              })}
+              {mappedConfigs.length > 1 ? (
+                <button
+                  type="button"
+                  className="text-[12px] text-ink-muted underline decoration-border underline-offset-2 hover:text-ink"
+                  onClick={() => setShowAllConfigs((value) => !value)}
+                >
+                  {showAllConfigs
+                    ? t('hideConfigurations')
+                    : t('viewAllConfigurations').replace('{n}', String(mappedConfigs.length))}
+                </button>
+              ) : null}
+            </div>
+          ) : (
+            <p className="mt-1 text-[12px] text-ink-dim">{t('noBenchmarkConfig')}</p>
+          )}
+        </div>
+      </details>
 
       <button
         type="button"
