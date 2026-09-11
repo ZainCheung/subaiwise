@@ -47,6 +47,34 @@ function payload(points = [upstreamPoint()]) {
   }
 }
 
+function payloadWithBoards(boards: string[], points = [upstreamPoint()]) {
+  return {
+    generatedAt: '2026-01-01',
+    mix: { cache: 0.975, input: 0.0215, output: 0.0035 },
+    boards: Object.fromEntries(
+      boards.map((board) => [
+        board,
+        {
+          name: board,
+          metric: 'Score',
+          url: `https://example.com/${board}`,
+          snapshot: '2026-01-01',
+        },
+      ]),
+    ),
+    points: points.map((point) => {
+      const next: Record<string, unknown> = { ...point }
+      for (const board of boards) {
+        const scoreField = `${board}__score`
+        if (!Object.prototype.hasOwnProperty.call(next, scoreField)) {
+          next[scoreField] = null
+        }
+      }
+      return next
+    }),
+  }
+}
+
 const addition: SubAIWiseEntry = {
   id: 'local::model',
   provider: 'Local Labs',
@@ -107,5 +135,64 @@ describe('SubAIWise adapter', () => {
     expect(() => buildDataset(payload([point]), source)).toThrow(
       'Upstream schema drift detected: board "arena_code" exists but no arena_code__score field was found.',
     )
+  })
+
+  it('does not emit empty benchmark placeholders', () => {
+    const entry = adaptPoint(
+      upstreamPoint({
+        terminal_bench_4__score: null,
+        terminal_bench_4__variant: null,
+        terminal_bench_4__configuration_count: 0,
+      }),
+      ['terminal_bench_4'],
+    )
+
+    expect(entry.benchmarks.terminalBench4).toBeUndefined()
+  })
+
+  it('keeps benchmark entries with scores', () => {
+    const entry = adaptPoint(
+      upstreamPoint({
+        terminal_bench_4__score: 42,
+      }),
+      ['terminal_bench_4'],
+    )
+
+    expect(entry.benchmarks.terminalBench4?.score).toBe(42)
+  })
+
+  it('keeps meaningful benchmark metadata without a score', () => {
+    const entry = adaptPoint(
+      upstreamPoint({
+        terminal_bench_4__score: null,
+        terminal_bench_4__mapping_note: 'Mapped manually',
+      }),
+      ['terminal_bench_4'],
+    )
+
+    expect(entry.benchmarks.terminalBench4).toBeDefined()
+    expect(entry.benchmarks.terminalBench4?.mappingNote).toBe('Mapped manually')
+  })
+
+  it('treats zero score as meaningful', () => {
+    const entry = adaptPoint(
+      upstreamPoint({
+        terminal_bench_4__score: 0,
+      }),
+      ['terminal_bench_4'],
+    )
+
+    expect(entry.benchmarks.terminalBench4?.score).toBe(0)
+  })
+
+  it('does not rewrite unrelated entries when a new empty board is introduced', () => {
+    const before = buildDataset(payloadWithBoards(['arena_code']), source)
+    const after = buildDataset(
+      payloadWithBoards(['arena_code', 'terminal_bench_4']),
+      source,
+    )
+
+    expect(after.entries).toEqual(before.entries)
+    expect(after.leaderboards.terminal_bench_4).toBeDefined()
   })
 })
