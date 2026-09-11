@@ -597,6 +597,10 @@ select option {
   max-height: calc(100dvh - 1.5rem);
 }
 
+.app-dialog-wide .app-dialog-body {
+  max-height: calc(100dvh - 5rem);
+}
+
 .app-dialog-head {
   display: flex;
   align-items: flex-start;

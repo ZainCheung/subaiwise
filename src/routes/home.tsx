@@ -15,17 +15,13 @@ import { Footer } from '../components/Footer'
 
 // Recharts is intentionally kept out of the initial shell; these sections are
 // loaded after the canonical dataset has arrived.
-const LeaderboardChart = lazy(async () => {
-  const module = await import('../components/LeaderboardChart')
-  return { default: module.LeaderboardChart }
-})
 const ChartsSection = lazy(async () => {
   const module = await import('../components/ChartsSection')
   return { default: module.ChartsSection }
 })
-const AdvancedPareto = lazy(async () => {
-  const module = await import('../components/AdvancedPareto')
-  return { default: module.AdvancedPareto }
+const Leaderboard = lazy(async () => {
+  const module = await import('../components/pareto/Leaderboard')
+  return { default: module.Leaderboard }
 })
 
 export function HomePage() {
@@ -97,22 +93,14 @@ export function HomePage() {
           onModelsChange={setModels}
           onChannelsChange={setChannels}
         />
-        <section id="leaderboard" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              {t('leaderboardTitle')}
-            </h2>
-            <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-ink-muted">
-              {t('leaderboardSub')}
-            </p>
-          </div>
-          <div className="mt-8">
-            <Suspense fallback={<ChartLoading />}>
-              <LeaderboardChart dataset={dataset} />
-            </Suspense>
-          </div>
-        </section>
         <Suspense fallback={<ChartLoading />}>
+          <Leaderboard
+            data={data}
+            models={models}
+            channels={channels}
+            onModelsChange={setModels}
+            onChannelsChange={setChannels}
+          />
           <ChartsSection
             data={data}
             models={models}
@@ -120,7 +108,6 @@ export function HomePage() {
             onModelsChange={setModels}
             onChannelsChange={setChannels}
           />
-          <AdvancedPareto data={data} />
         </Suspense>
         <Method mix={data.mix} />
         <Downloads />

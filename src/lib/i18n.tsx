@@ -63,7 +63,12 @@ const dict = {
     showOneBoard: 'One board',
     leaderboardTitle: 'Leaderboard',
     leaderboardSub:
-      'Score vs real $/MTok. Cheaper is to the right. Color is vendor; a line spans each model’s observed prices.',
+      'Real $/MTok versus benchmark score. Cheaper is to the right; higher is better. The line is the subscription Pareto frontier — plans that are not beaten on both price and score at once.',
+    bestEfficiency: 'Best efficiency',
+    bestEfficiencyNote:
+      '★ Best efficiency is a ranking heuristic among high-scoring cheap plans. It is not the Pareto frontier definition.',
+    expandChart: 'Expand',
+    overlapPlans: '{n} overlapping plans',
     compareTitle: 'Compare',
     compareSub: 'Search, filter, and compare models and plans.',
     workloadCompare: 'Compared under the standard Coding Agent token mix',
@@ -280,7 +285,12 @@ const dict = {
     showOneBoard: '单榜',
     leaderboardTitle: '排行榜',
     leaderboardSub:
-      '得分对真实 $/MTok。越右越便宜。颜色按厂商；横线为同一模型的观测单价区间。',
+      '真实 $/MTok 对 benchmark 得分。越右越便宜，越高越好。连线是订阅帕累托前沿：无法被其他订阅同时在价格和分数上击败的方案。',
+    bestEfficiency: '最高性价比',
+    bestEfficiencyNote:
+      '★ 最高性价比是高分便宜方案中的排序启发式，不是帕累托前沿的定义。',
+    expandChart: '全屏',
+    overlapPlans: '{n} 个重叠套餐',
     compareTitle: '比较',
     compareSub: '搜索、筛选并比较模型与套餐。',
     workloadCompare: '按标准 Coding Agent Token 负载比较',
