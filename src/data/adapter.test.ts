@@ -148,6 +148,47 @@ describe('SubAIWise adapter', () => {
     expect(() => LocalEntryOverrideSchema.parse({ model: { id: 'new-model' } })).toThrow()
   })
 
+  it('rejects local overrides of derived benchmark summaries', () => {
+    expect(() =>
+      LocalEntryOverrideSchema.parse({
+        benchmarks: { codeArena: { score: 999 } },
+      }),
+    ).toThrow()
+    expect(() =>
+      buildDataset(payload(), source, {
+        overrides: {
+          'demo_plus::demo-model': {
+            benchmarks: { codeArena: { score: 999 } },
+          },
+        },
+      }),
+    ).toThrow()
+  })
+
+  it('still applies supported entry overrides without touching derived benchmarks', () => {
+    const before = buildDataset(payload(), source)
+    const after = buildDataset(payload(), source, {
+      overrides: {
+        'demo_plus::demo-model': {
+          pricing: { monthlyUsd: 15 },
+          allowance: { monthlyTokens: 50_000_000 },
+          quality: { confidence: 'medium' },
+          source: { note: 'local note' },
+          channel: 'Local Channel',
+          provider: 'Local Maker',
+        },
+      },
+    })
+    expect(after.entries[0].pricing.monthlyUsd).toBe(15)
+    expect(after.entries[0].allowance.monthlyTokens).toBe(50_000_000)
+    expect(after.entries[0].quality.confidence).toBe('medium')
+    expect(after.entries[0].source.note).toBe('local note')
+    expect(after.entries[0].channel).toBe('Local Channel')
+    expect(after.entries[0].provider).toBe('Local Maker')
+    expect(after.entries[0].id).toBe(before.entries[0].id)
+    expect(after.entries[0].benchmarks).toEqual(before.entries[0].benchmarks)
+  })
+
   it('fails loudly when an upstream board loses its score field', () => {
     const point = upstreamPoint()
     delete (point as Record<string, unknown>).arena_code__score

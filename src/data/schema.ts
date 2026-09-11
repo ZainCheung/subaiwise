@@ -99,6 +99,9 @@ export type SubAIWiseEntry = z.infer<typeof SubAIWiseEntrySchema>
 /**
  * Overrides may change observations, but never identity.  An identity change
  * belongs in `exclusions` plus an `additions` entry instead.
+ *
+ * `benchmarks` is not overridable: it is a derived compatibility summary.
+ * Canonical benchmark truth is `benchmarkConfigurations` + `benchmarkMappings`.
  */
 const LocalPlanOverrideSchema = SubAIWiseEntrySchema.shape.plan
   .omit({ id: true })
@@ -119,7 +122,6 @@ export const LocalEntryOverrideSchema = z
     pricing: SubAIWiseEntrySchema.shape.pricing.deepPartial().optional(),
     allowance: SubAIWiseEntrySchema.shape.allowance.deepPartial().optional(),
     quality: SubAIWiseEntrySchema.shape.quality.deepPartial().optional(),
-    benchmarks: z.record(BenchmarkSchema.deepPartial()).optional(),
     source: SubAIWiseEntrySchema.shape.source.deepPartial().optional(),
     provenance: EntryProvenanceSchema.deepPartial().optional(),
   })
