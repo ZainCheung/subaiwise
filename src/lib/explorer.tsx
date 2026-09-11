@@ -28,13 +28,12 @@ type ExplorerContextValue = {
 
 const ExplorerContext = createContext<ExplorerContextValue | null>(null)
 
-function liveCompact(state: ExplorerState) {
-  const compact = compactExplorerState({ ...state, lang: undefined })
-  return compact
+function liveCompact(state: ExplorerState, defaults: Pick<ExplorerState, 'board'>) {
+  return compactExplorerState({ ...state, lang: undefined }, defaults)
 }
 
-function hasLiveState(state: ExplorerState): boolean {
-  const compact = liveCompact(state)
+function hasLiveState(state: ExplorerState, defaults: Pick<ExplorerState, 'board'>): boolean {
+  const compact = liveCompact(state, defaults)
   return Object.keys(compact).some((key) => key !== 'v')
 }
 
@@ -49,6 +48,7 @@ export function ExplorerProvider({
   const search = useSearch({ from: '/' })
   const navigate = useNavigate({ from: '/' })
   const hash = useLocation({ select: (location) => location.hash })
+  const defaults = useMemo(() => defaultExplorerState(dataset), [dataset])
   const [state, setState] = useState<ExplorerState>(() =>
     restoreExplorerState(search.s ? parseCompactState(search.s) : null, dataset, lang),
   )
@@ -63,29 +63,31 @@ export function ExplorerProvider({
     if (!search.s) return
     const incoming = restoreExplorerState(compact, dataset, lang)
     setState((current) =>
-      serializeExplorerState({ ...current, lang: undefined }) ===
-      serializeExplorerState({ ...incoming, lang: undefined })
+      serializeExplorerState({ ...current, lang: undefined }, defaults) ===
+      serializeExplorerState({ ...incoming, lang: undefined }, defaults)
         ? current
         : incoming,
     )
-  }, [search.s, dataset, setLang])
+  }, [search.s, dataset, defaults, setLang])
 
   useEffect(() => {
-    const nextS = hasLiveState(state) ? serializeExplorerState({ ...state, lang: undefined }) : undefined
+    const nextS = hasLiveState(state, defaults)
+      ? serializeExplorerState({ ...state, lang: undefined }, defaults)
+      : undefined
     if (search.s === nextS) return
     void navigate({
       search: nextS ? { s: nextS } : {},
       hash: hash || undefined,
       replace: true,
     })
-  }, [state, navigate, search.s, hash])
+  }, [state, defaults, navigate, search.s, hash])
 
   const shareUrl = useCallback(() => {
-    const encoded = serializeExplorerState({ ...state, lang })
+    const encoded = serializeExplorerState({ ...state, lang }, defaults)
     const url = new URL(window.location.href)
     url.searchParams.set('s', encoded)
     return url.toString()
-  }, [state, lang])
+  }, [state, lang, defaults])
 
   const value = useMemo(
     () => ({ dataset, state, patch, shareUrl }),

@@ -15,6 +15,7 @@ const dataset = SubAIWiseDatasetSchema.parse(
 
 describe('explorer share state', () => {
   it('round-trips a compact state', () => {
+    const defaults = defaultExplorerState(dataset)
     const original = {
       ...defaultExplorerState(dataset, 'zh'),
       models: new Set(['gpt-5.6-luna']),
@@ -35,7 +36,7 @@ describe('explorer share state', () => {
       },
     }
     const restored = restoreExplorerState(
-      parseCompactState(serializeExplorerState(original)),
+      parseCompactState(serializeExplorerState(original, defaults)),
       dataset,
     )
     expect(restored.lang).toBe('zh')
@@ -51,10 +52,12 @@ describe('explorer share state', () => {
   })
 
   it('does not expand null = all into every model id', () => {
-    const compact = compactExplorerState(defaultExplorerState(dataset, 'en'))
+    const defaults = defaultExplorerState(dataset, 'en')
+    const compact = compactExplorerState(defaults, defaults)
     expect(compact.models).toBeUndefined()
     expect(compact.channels).toBeUndefined()
     expect(compact.makers).toBeUndefined()
+    expect(compact.board).toBeUndefined()
     expect(JSON.stringify(compact)).not.toContain(dataset.entries[0].model.id)
   })
 
@@ -86,5 +89,27 @@ describe('explorer share state', () => {
   it('prefers an explicit language from the URL payload', () => {
     const restored = restoreExplorerState({ v: 1, lang: 'zh' }, dataset, 'en')
     expect(restored.lang).toBe('zh')
+  })
+
+  it('compacts against the runtime default board, not a hardcoded arena_code', () => {
+    const leaderboards = { ...dataset.leaderboards }
+    delete leaderboards.arena_code
+    const withoutArena = { ...dataset, leaderboards }
+    const defaults = defaultExplorerState(withoutArena)
+    expect(defaults.board).not.toBe('arena_code')
+    expect(defaults.board).toBeTruthy()
+
+    const compactDefault = compactExplorerState(defaults, defaults)
+    expect(compactDefault.board).toBeUndefined()
+    expect(restoreExplorerState(compactDefault, withoutArena).board).toBe(defaults.board)
+
+    const otherBoard = Object.keys(leaderboards).find((key) => key !== defaults.board)
+    expect(otherBoard).toBeTruthy()
+    const compactOther = compactExplorerState({ ...defaults, board: otherBoard! }, defaults)
+    expect(compactOther.board).toBe(otherBoard)
+    expect(restoreExplorerState(compactOther, withoutArena).board).toBe(otherBoard)
+
+    const restoredUnknown = restoreExplorerState({ v: 1, board: 'arena_code' }, withoutArena)
+    expect(restoredUnknown.board).toBe(defaults.board)
   })
 })
