@@ -21,7 +21,7 @@ import {
   sameModelEntries,
   subscriptionFrontier,
 } from '../../domain/leaderboards'
-import { selectBenchmarkScore, selectEntriesForLeaderboard } from '../../domain/selectors'
+import { selectBenchmarkScore } from '../../domain/selectors'
 import { vendorColor } from '../../lib/vendors'
 import { scatterLabel } from '../../lib/labels'
 import { UsdAxisTick } from '../UsdAxisTick'
@@ -35,23 +35,28 @@ export function ParetoChart({
   entries,
   expanded = false,
   onSelect,
+  scoreOf,
 }: {
   board: BoardKey
   meta: BoardMeta
   entries: SubAIWiseEntry[]
   expanded?: boolean
   onSelect?: (entries: SubAIWiseEntry[]) => void
+  scoreOf?: (entry: SubAIWiseEntry) => number | null
 }) {
   const { t } = useI18n()
   const formatter = leaderboardFormatter(board, meta)
   const [activeKey, setActiveKey] = useState<string | null>(null)
+  const getScore = scoreOf ?? ((entry: SubAIWiseEntry) => selectBenchmarkScore(entry, board))
 
   const { regular, frontier, domain, xTicks, yTicks, scored, active, modelLine } = useMemo(() => {
-    const scoredPts = selectEntriesForLeaderboard(entries, board)
-    const frontierPts = subscriptionFrontier(entries, board)
+    const scoredPts = entries.filter(
+      (entry) => getScore(entry) != null && entry.pricing.effectiveUsdPerMillionTokens > 0,
+    )
+    const frontierPts = subscriptionFrontier(entries, board, getScore)
     const frontierIds = new Set(frontierPts.map((entry) => entry.id))
-    const efficient = mostEfficientEntry(entries, board)
-    const groups = groupByExactCoords(scoredPts, board)
+    const efficient = mostEfficientEntry(entries, board, getScore)
+    const groups = groupByExactCoords(scoredPts, board, getScore)
 
     const labeledModels = new Set<string>()
     const toRow = (group: (typeof groups)[number]): PlotRow => {
@@ -81,7 +86,7 @@ export function ParetoChart({
 
     const rows = groups.map(toRow)
     const xs = scoredPts.map((entry) => entry.pricing.effectiveUsdPerMillionTokens)
-    const ys = scoredPts.map((entry) => selectBenchmarkScore(entry, board) ?? 0)
+    const ys = scoredPts.map((entry) => getScore(entry) ?? 0)
     const xAxis = logPriceAxis(xs.length ? xs : [0.01, 1])
     const ymin = ys.length ? Math.min(...ys) : 0
     const ymax = ys.length ? Math.max(...ys) : 1
@@ -93,7 +98,7 @@ export function ParetoChart({
         ? sameModelEntries(scoredPts, activeRow.entries[0].model.id)
             .map((entry) => ({
               x: entry.pricing.effectiveUsdPerMillionTokens,
-              y: selectBenchmarkScore(entry, board) ?? 0,
+              y: getScore(entry) ?? 0,
             }))
             .sort((a, b) => a.x - b.x)
         : []
@@ -108,7 +113,7 @@ export function ParetoChart({
       active: activeRow,
       modelLine: related.length >= 2 ? related : null,
     }
-  }, [entries, board, activeKey])
+  }, [entries, board, activeKey, getScore])
 
   const relatedIds = new Set(
     active?.entries[0]

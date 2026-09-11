@@ -3,7 +3,6 @@ import {
   entryLabel,
   selectBenchmarkScore,
   selectBenchmarkVariant,
-  selectEntriesForLeaderboard,
 } from './selectors'
 
 export type LeaderboardPoint = {
@@ -38,28 +37,35 @@ export function toLeaderboardPoint(entry: SubAIWiseEntry, boardId: string): Lead
   }
 }
 
+export type BoardScoreFn = (entry: SubAIWiseEntry) => number | null
+
+function defaultScore(entry: SubAIWiseEntry, boardId: string): number | null {
+  return selectBenchmarkScore(entry, boardId)
+}
+
 /** Classic maximize-score / minimize-price frontier (subscription only). */
 export function subscriptionFrontier(
   entries: readonly SubAIWiseEntry[],
   boardId: string,
+  getScore: BoardScoreFn = (entry) => defaultScore(entry, boardId),
 ): SubAIWiseEntry[] {
   const scored = entries.filter(
     (entry) =>
       entry.plan.billing === 'subscription' &&
-      selectBenchmarkScore(entry, boardId) != null &&
+      getScore(entry) != null &&
       entry.pricing.effectiveUsdPerMillionTokens > 0,
   )
 
   const sorted = [...scored].sort(
     (a, b) =>
       a.pricing.effectiveUsdPerMillionTokens - b.pricing.effectiveUsdPerMillionTokens ||
-      (selectBenchmarkScore(b, boardId) ?? 0) - (selectBenchmarkScore(a, boardId) ?? 0),
+      (getScore(b) ?? 0) - (getScore(a) ?? 0),
   )
 
   let best = -Infinity
   const frontier: SubAIWiseEntry[] = []
   for (const entry of sorted) {
-    const score = selectBenchmarkScore(entry, boardId) ?? -Infinity
+    const score = getScore(entry) ?? -Infinity
     if (score > best) {
       best = score
       frontier.push(entry)
@@ -106,14 +112,19 @@ export function cheapestPerModel(entries: readonly SubAIWiseEntry[]): SubAIWiseE
 export function mostEfficientEntry(
   entries: readonly SubAIWiseEntry[],
   boardId: string,
+  getScore: BoardScoreFn = (entry) => defaultScore(entry, boardId),
 ): SubAIWiseEntry | null {
-  const cheapest = cheapestPerModel(selectEntriesForLeaderboard(entries, boardId))
+  const cheapest = cheapestPerModel(
+    entries.filter(
+      (entry) => getScore(entry) != null && entry.pricing.effectiveUsdPerMillionTokens > 0,
+    ),
+  )
   if (!cheapest.length) return null
-  const scores = cheapest.map((entry) => selectBenchmarkScore(entry, boardId) ?? 0)
+  const scores = cheapest.map((entry) => getScore(entry) ?? 0)
   const maxY = Math.max(...scores)
   const minY = Math.min(...scores)
   const cutoff = maxY - 0.15 * (maxY - minY || 1)
-  const nearTop = cheapest.filter((entry) => (selectBenchmarkScore(entry, boardId) ?? 0) >= cutoff)
+  const nearTop = cheapest.filter((entry) => (getScore(entry) ?? 0) >= cutoff)
   return nearTop.reduce((a, b) =>
     a.pricing.effectiveUsdPerMillionTokens <= b.pricing.effectiveUsdPerMillionTokens ? a : b,
   )
@@ -137,10 +148,11 @@ export type CoordGroup = {
 export function groupByExactCoords(
   entries: readonly SubAIWiseEntry[],
   boardId: string,
+  getScore: BoardScoreFn = (entry) => defaultScore(entry, boardId),
 ): CoordGroup[] {
   const groups = new Map<string, CoordGroup>()
   for (const entry of entries) {
-    const score = selectBenchmarkScore(entry, boardId)
+    const score = getScore(entry)
     const price = entry.pricing.effectiveUsdPerMillionTokens
     if (score == null || !(price > 0)) continue
     const groupKey = `${price}|${score}`

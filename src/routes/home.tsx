@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import type { IdFilter } from '../lib/filters'
+import { EMPTY_ADVANCED_FILTERS, type AdvancedFilters } from '../domain/advanced-filters'
 import { loadDataset } from '../data/load'
 import type { SubAIWiseDataset } from '../data/schema'
 import { useI18n } from '../lib/i18n'
@@ -30,6 +31,7 @@ export function HomePage() {
   const [attempt, setAttempt] = useState(0)
   const [models, setModels] = useState<IdFilter>(null)
   const [channels, setChannels] = useState<IdFilter>(null)
+  const [advanced, setAdvanced] = useState<AdvancedFilters>(EMPTY_ADVANCED_FILTERS)
 
   const retry = useCallback(() => setAttempt((value) => value + 1), [])
 
@@ -88,21 +90,26 @@ export function HomePage() {
           dataset={dataset}
           models={models}
           channels={channels}
+          advanced={advanced}
           onModelsChange={setModels}
           onChannelsChange={setChannels}
+          onAdvancedChange={setAdvanced}
         />
         <Suspense fallback={<ChartLoading />}>
           <Leaderboard
             dataset={dataset}
             models={models}
             channels={channels}
+            advanced={advanced}
             onModelsChange={setModels}
             onChannelsChange={setChannels}
+            onAdvancedChange={setAdvanced}
           />
           <ChartsSection
             dataset={dataset}
             models={models}
             channels={channels}
+            advanced={advanced}
             onModelsChange={setModels}
             onChannelsChange={setChannels}
           />

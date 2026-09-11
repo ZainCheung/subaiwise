@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import type { SubAIWiseDataset } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { filterEntries } from '../domain/selectors'
+import { filterEntriesByAdvanced, type AdvancedFilters } from '../domain/advanced-filters'
 import type { IdFilter } from '../lib/filters'
 import { AllowanceChart } from './AllowanceChart'
 import { IdentityFilters } from './ModelServiceFilters'
@@ -11,19 +12,27 @@ export function ChartsSection({
   dataset,
   models,
   channels,
+  advanced,
   onModelsChange,
   onChannelsChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
+  advanced: AdvancedFilters
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t } = useI18n()
   const entries = useMemo(
-    () => filterEntries(dataset.entries, { models, channels }),
-    [dataset.entries, models, channels],
+    () =>
+      filterEntriesByAdvanced(filterEntries(dataset.entries, { models, channels }), {
+        ...advanced,
+        harness: null,
+        effort: null,
+        mode: null,
+      }),
+    [dataset.entries, models, channels, advanced],
   )
 
   return (

@@ -3,7 +3,6 @@ import type { SubAIWiseDataset, SubAIWiseEntry } from '../data/schema'
 import type { BoardKey } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
-  CONFIDENCE_LEVELS,
   MAX_COMPARE,
   filterCompareEntries,
   groupByModel,
@@ -12,15 +11,13 @@ import {
   sortGroups,
   type BillingFilter,
   type CompareView,
-  type ConfidenceFilter,
   type SortKey,
 } from '../domain/comparison'
+import { benchmarkScoreFor, type AdvancedFilters } from '../domain/advanced-filters'
 import {
   entryLabel,
   filterEntries,
   monthlyYi,
-  selectBenchmarkScore,
-  selectMakers,
 } from '../domain/selectors'
 import type { IdFilter } from '../lib/filters'
 import {
@@ -34,6 +31,7 @@ import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
 import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
 import { AppDialog } from './AppDialog'
+import { AdvancedFiltersControl } from './AdvancedFilters'
 import { IdentityFilters } from './ModelServiceFilters'
 import { ModelIdentity, PlanIdentity } from './ProviderLogo'
 import { HowToRead, RowDetail } from './RowDetail'
@@ -58,6 +56,7 @@ function CompareRow({
   nested,
   selected,
   scoreBoard,
+  score,
   scoreFormat,
   variantCount,
   expanded,
@@ -68,6 +67,7 @@ function CompareRow({
   nested?: boolean
   selected: boolean
   scoreBoard: BoardKey
+  score: number | null
   scoreFormat: 'score' | 'percent'
   variantCount?: number
   expanded?: boolean
@@ -75,7 +75,6 @@ function CompareRow({
   onToggleExpand?: () => void
 }) {
   const { t, lang } = useI18n()
-  const score = selectBenchmarkScore(entry, scoreBoard)
   const confKey = confidenceKey(entry.quality.confidence)
   const isApi = entry.plan.billing === 'metered'
   const showExpand = (variantCount ?? 0) > 1 && onToggleExpand
@@ -161,14 +160,18 @@ export function CompareSection({
   dataset,
   models,
   channels,
+  advanced,
   onModelsChange,
   onChannelsChange,
+  onAdvancedChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
+  advanced: AdvancedFilters
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
+  onAdvancedChange: (next: AdvancedFilters) => void
 }) {
   const { t, lang } = useI18n()
   const boards = useMemo(
@@ -180,34 +183,36 @@ export function CompareSection({
   const [sortKey, setSortKey] = useState<SortKey>('price')
   const [scoreBoard, setScoreBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
   const [billing, setBilling] = useState<BillingFilter>('all')
-  const [vendor, setVendor] = useState('all')
-  const [confidence, setConfidence] = useState<ConfidenceFilter>('all')
   const [detail, setDetail] = useState<string | 'howto' | null>(null)
   const [compareIds, setCompareIds] = useState<string[]>([])
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
-
-  const vendors = useMemo(() => selectMakers(dataset.entries), [dataset.entries])
 
   const identityFiltered = useMemo(
     () => filterEntries(dataset.entries, { models, channels }),
     [dataset.entries, models, channels],
   )
 
+  const getScore = (entry: SubAIWiseEntry, board: string) =>
+    benchmarkScoreFor(dataset, entry, board, advanced)
+
   const filtered = useMemo(
     () =>
       filterCompareEntries(identityFiltered, {
         query,
         billing,
-        vendor,
-        confidence,
+        makers: advanced.makers,
+        confidence: advanced.confidence,
       }),
-    [identityFiltered, query, billing, vendor, confidence],
+    [identityFiltered, query, billing, advanced.makers, advanced.confidence],
   )
 
-  const planRows = useMemo(() => sortEntries(filtered, sortKey), [filtered, sortKey])
+  const planRows = useMemo(
+    () => sortEntries(filtered, sortKey, getScore),
+    [filtered, sortKey, dataset, advanced],
+  )
   const modelGroups = useMemo(
-    () => sortGroups(groupByModel(filtered, sortKey), sortKey),
-    [filtered, sortKey],
+    () => sortGroups(groupByModel(filtered, sortKey, getScore), sortKey, getScore),
+    [filtered, sortKey, dataset, advanced],
   )
 
   const selected =
@@ -338,46 +343,12 @@ export function CompareSection({
             onModelsChange={onModelsChange}
             onChannelsChange={onChannelsChange}
           />
-          <label className="flex items-center gap-2 text-[13px] text-ink-muted">
-            <span className="text-[11px] uppercase tracking-[0.08em] text-ink-dim">
-              {t('filterVendor')}
-            </span>
-            <select
-              aria-label={t('filterVendor')}
-              value={vendor}
-              onChange={(e) => setVendor(e.target.value)}
-              className="rounded-full border border-border-strong bg-bg px-3 py-1.5 text-[13px] text-ink"
-            >
-              <option value="all">{t('filterAll')}</option>
-              {vendors.map((v) => (
-                <option key={v} value={v}>
-                  {v}
-                </option>
-              ))}
-            </select>
-          </label>
-          <PillGroup>
-            <span className="inline-flex items-center gap-0.5 self-center px-1 text-[11px] uppercase tracking-[0.08em] text-ink-dim">
-              {t('filterConfidence')}
-              <MetricInfo
-                label={t('metricInfoLabel').replace('{metric}', t('filterConfidence'))}
-                short={t('confidenceHelpShort')}
-                long={t('confidenceHelpLong')}
-                align="start"
-              />
-            </span>
-            <Pill active={confidence === 'all'} onClick={() => setConfidence('all')}>
-              {t('filterAll')}
-            </Pill>
-            {CONFIDENCE_LEVELS.map((c) => {
-              const key = confidenceKey(c)
-              return (
-                <Pill key={c} active={confidence === c} onClick={() => setConfidence(c)}>
-                  {key ? t(key) : c}
-                </Pill>
-              )
-            })}
-          </PillGroup>
+          <AdvancedFiltersControl
+            dataset={dataset}
+            entries={dataset.entries}
+            value={advanced}
+            onChange={onAdvancedChange}
+          />
         </div>
       </div>
 
@@ -421,6 +392,7 @@ export function CompareSection({
                     entry={g.best}
                     selected={detail === g.best.id}
                     scoreBoard={scoreBoard}
+                    score={getScore(g.best, scoreBoard)}
                     scoreFormat={scoreFormat}
                     variantCount={g.plans.length}
                     expanded={open}
@@ -435,6 +407,7 @@ export function CompareSection({
                           nested
                           selected={detail === p.id}
                           scoreBoard={scoreBoard}
+                          score={getScore(p, scoreBoard)}
                           scoreFormat={scoreFormat}
                           onSelect={() => openRow(p.id)}
                         />
@@ -450,6 +423,7 @@ export function CompareSection({
                 entry={p}
                 selected={detail === p.id}
                 scoreBoard={scoreBoard}
+                score={getScore(p, scoreBoard)}
                 scoreFormat={scoreFormat}
                 onSelect={() => openRow(p.id)}
               />
@@ -528,9 +502,9 @@ export function CompareSection({
                   <span className="text-ink-dim">{t('colScore')}</span>
                   <span
                     className="num text-right text-ink"
-                    title={selectBenchmarkScore(p, scoreBoard) == null ? t('missingScoreNote') : undefined}
+                    title={getScore(p, scoreBoard) == null ? t('missingScoreNote') : undefined}
                   >
-                    {formatScore(selectBenchmarkScore(p, scoreBoard), scoreFormat)}
+                    {formatScore(getScore(p, scoreBoard), scoreFormat)}
                   </span>
                   <span className="text-ink-dim">{t('colConfidence')}</span>
                   <span className="text-right uppercase tracking-wide text-ink">

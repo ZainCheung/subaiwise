@@ -1,4 +1,5 @@
 import type { Billing, SubAIWiseEntry } from '../data/schema'
+import { matchesIdFilter, type IdFilter } from '../lib/filters'
 import { entryLabel, monthlyYi, selectBenchmarkScore } from './selectors'
 
 export type CompareView = 'models' | 'plans'
@@ -18,15 +19,28 @@ export function filterCompareEntries(
   opts: {
     query: string
     billing: BillingFilter
-    vendor: string
-    confidence: ConfidenceFilter
+    makers?: IdFilter
+    vendor?: string
+    confidence?: ConfidenceFilter | IdFilter
   },
 ): SubAIWiseEntry[] {
   const q = opts.query.trim().toLowerCase()
+  const makers: IdFilter =
+    opts.makers !== undefined
+      ? opts.makers
+      : opts.vendor && opts.vendor !== 'all'
+        ? new Set([opts.vendor])
+        : null
+  const confidence: IdFilter =
+    opts.confidence == null || opts.confidence === 'all'
+      ? null
+      : typeof opts.confidence === 'string'
+        ? new Set([opts.confidence])
+        : opts.confidence
   return entries.filter((entry) => {
     if (opts.billing !== 'all' && entry.plan.billing !== opts.billing) return false
-    if (opts.vendor !== 'all' && entry.provider !== opts.vendor) return false
-    if (opts.confidence !== 'all' && entry.quality.confidence !== opts.confidence) return false
+    if (!matchesIdFilter(entry.provider, makers)) return false
+    if (!matchesIdFilter(entry.quality.confidence, confidence)) return false
     if (!q) return true
     const hay =
       `${entry.model.name} ${entry.model.id} ${entry.plan.name} ${entryLabel(entry)} ${entry.provider} ${entry.channel}`.toLowerCase()
@@ -34,10 +48,16 @@ export function filterCompareEntries(
   })
 }
 
-function metric(entry: SubAIWiseEntry, sort: SortKey): number | null {
+export type ScoreFn = (entry: SubAIWiseEntry, boardId: string) => number | null
+
+function metric(
+  entry: SubAIWiseEntry,
+  sort: SortKey,
+  getScore: ScoreFn = selectBenchmarkScore,
+): number | null {
   if (sort === 'price') return entry.pricing.effectiveUsdPerMillionTokens
   if (sort === 'allowance') return monthlyYi(entry)
-  return selectBenchmarkScore(entry, sort)
+  return getScore(entry, sort)
 }
 
 function byPriceThenLabel(a: SubAIWiseEntry, b: SubAIWiseEntry): number {
@@ -51,6 +71,7 @@ function byPriceThenLabel(a: SubAIWiseEntry, b: SubAIWiseEntry): number {
 export function representativeForMetric(
   plans: readonly SubAIWiseEntry[],
   sort: SortKey,
+  getScore: ScoreFn = selectBenchmarkScore,
 ): SubAIWiseEntry {
   if (plans.length === 1) return plans[0]
 
@@ -66,7 +87,7 @@ export function representativeForMetric(
   }
 
   if (isBoardSort(sort)) {
-    const scored = plans.filter((entry) => metric(entry, sort) != null)
+    const scored = plans.filter((entry) => metric(entry, sort, getScore) != null)
     const pool = scored.length ? scored : plans
     return [...pool].sort(byPriceThenLabel)[0]
   }
@@ -77,11 +98,12 @@ export function representativeForMetric(
 export function sortEntries(
   entries: readonly SubAIWiseEntry[],
   sort: SortKey,
+  getScore: ScoreFn = selectBenchmarkScore,
 ): SubAIWiseEntry[] {
   const dir = sort === 'price' ? 1 : -1
   return [...entries].sort((a, b) => {
-    const va = metric(a, sort)
-    const vb = metric(b, sort)
+    const va = metric(a, sort, getScore)
+    const vb = metric(b, sort, getScore)
     if (va == null && vb == null) return entryLabel(a).localeCompare(entryLabel(b))
     if (va == null) return 1
     if (vb == null) return -1
@@ -104,6 +126,7 @@ export type ModelGroup = {
 export function groupByModel(
   entries: readonly SubAIWiseEntry[],
   sortKey: SortKey = 'price',
+  getScore: ScoreFn = selectBenchmarkScore,
 ): ModelGroup[] {
   const map = new Map<string, SubAIWiseEntry[]>()
   for (const entry of entries) {
@@ -113,23 +136,27 @@ export function groupByModel(
   }
   const groups: ModelGroup[] = []
   for (const [model, plans] of map) {
-    const best = representativeForMetric(plans, sortKey)
+    const best = representativeForMetric(plans, sortKey, getScore)
     groups.push({
       model,
       display: best.model.name,
       vendor: best.provider,
       best,
-      plans: sortEntries(plans, sortKey),
+      plans: sortEntries(plans, sortKey, getScore),
     })
   }
   return groups
 }
 
-export function sortGroups(groups: ModelGroup[], sort: SortKey): ModelGroup[] {
+export function sortGroups(
+  groups: ModelGroup[],
+  sort: SortKey,
+  getScore: ScoreFn = selectBenchmarkScore,
+): ModelGroup[] {
   const dir = sort === 'price' ? 1 : -1
   return [...groups].sort((a, b) => {
-    const va = metric(a.best, sort)
-    const vb = metric(b.best, sort)
+    const va = metric(a.best, sort, getScore)
+    const vb = metric(b.best, sort, getScore)
     if (va == null && vb == null) return a.display.localeCompare(b.display)
     if (va == null) return 1
     if (vb == null) return -1
