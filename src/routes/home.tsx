@@ -2,7 +2,6 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import type { IdFilter } from '../lib/filters'
 import { loadDataset } from '../data/load'
 import type { SubAIWiseDataset } from '../data/schema'
-import { toPointsPayload } from '../data/view-model'
 import { useI18n } from '../lib/i18n'
 import { computeInsights, computeStats } from '../lib/stats'
 import { Nav } from '../components/Nav'
@@ -76,7 +75,6 @@ export function HomePage() {
     )
   }
 
-  const data = toPointsPayload(dataset)
   const stats = computeStats(dataset)
   const insights = computeInsights(dataset)
 
@@ -87,7 +85,7 @@ export function HomePage() {
         <Hero stats={stats} insights={insights} />
         <StatStrip stats={stats} />
         <CompareSection
-          data={data}
+          dataset={dataset}
           models={models}
           channels={channels}
           onModelsChange={setModels}
@@ -95,21 +93,21 @@ export function HomePage() {
         />
         <Suspense fallback={<ChartLoading />}>
           <Leaderboard
-            data={data}
+            dataset={dataset}
             models={models}
             channels={channels}
             onModelsChange={setModels}
             onChannelsChange={setChannels}
           />
           <ChartsSection
-            data={data}
+            dataset={dataset}
             models={models}
             channels={channels}
             onModelsChange={setModels}
             onChannelsChange={setChannels}
           />
         </Suspense>
-        <Method mix={data.mix} />
+        <Method mix={dataset.workloadMix} />
         <Downloads />
       </main>
       <Footer />

@@ -1,41 +1,31 @@
 import { useMemo, useState } from 'react'
-import type { PricingPoint } from '../types'
+import type { SubAIWiseEntry } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { vendorColor } from '../lib/vendors'
-import { subscriptionPoints } from '../lib/legacy-stats'
 import { shortLabel } from '../lib/labels'
 import { applyLimit, CHART_LIMITS, chartLimitKey, logWidthPct, type ChartLimit } from '../lib/limits'
+import { selectAllowanceRows } from '../domain/pricing'
 import { Pill, PillGroup } from './Pill'
 import { CompactBrandIdentity } from './ProviderLogo'
 import { TableViewport } from './TableViewport'
 
-export function AllowanceChart({ points }: { points: PricingPoint[] }) {
+export function AllowanceChart({ entries }: { entries: readonly SubAIWiseEntry[] }) {
   const { t, lang } = useI18n()
   const [limit, setLimit] = useState<ChartLimit>(15)
   const [hoverId, setHoverId] = useState<string | null>(null)
 
   const data = useMemo(() => {
-    const sorted = subscriptionPoints(points)
-      .slice()
-      .sort((a, b) => (b.monthly_yi ?? 0) - (a.monthly_yi ?? 0))
-    return applyLimit(sorted, limit).map((p) => {
-      const raw = p.monthly_yi ?? 0
-      const display = lang === 'en' ? raw / 10 : raw
+    const sorted = selectAllowanceRows(entries)
+    return applyLimit(sorted, limit).map((row) => {
+      const display = lang === 'en' ? row.monthlyYi / 10 : row.monthlyYi
       return {
-        id: p.id,
-        label: p.label,
-        short: shortLabel(p.label, 42),
-        plan: p.plan,
-        model: p.model_display,
-        vendor: p.vendor,
-        channel: p.channel,
-        point: p,
-        value: raw,
+        ...row,
+        short: shortLabel(row.label, 42),
         display,
-        color: vendorColor(p.vendor),
+        color: vendorColor(row.maker),
       }
     })
-  }, [points, limit, lang])
+  }, [entries, limit, lang])
 
   const displayVals = data.map((d) => d.display).filter((v) => v > 0)
   const max = Math.max(...displayVals, 1e-9)
@@ -79,15 +69,15 @@ export function AllowanceChart({ points }: { points: PricingPoint[] }) {
                   onMouseEnter={() => setHoverId(row.id)}
                   onMouseLeave={() => setHoverId(null)}
                   className={active ? 'bg-white/[0.02]' : undefined}
-                  title={`${row.label}\n${row.channel} · ${row.vendor} · ${formatVal(row.display)}`}
+                  title={`${row.label}\n${row.channel} · ${row.maker} · ${formatVal(row.display)}`}
                 >
                   <td>
-                    <CompactBrandIdentity point={row.point}>
+                    <CompactBrandIdentity maker={row.maker} channel={row.channel}>
                       <span className="block truncate text-[13px] font-medium text-ink">
                         {row.short}
                       </span>
                       <span className="block truncate text-[11px] text-ink-dim">
-                        {row.channel === row.vendor ? row.vendor : `${row.channel} · ${row.vendor}`}
+                        {row.channel === row.maker ? row.maker : `${row.channel} · ${row.maker}`}
                       </span>
                     </CompactBrandIdentity>
                   </td>

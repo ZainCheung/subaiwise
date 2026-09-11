@@ -1,60 +1,45 @@
 import { describe, expect, it } from 'vitest'
-import type { PricingPoint } from '../types'
+import type { SubAIWiseEntry } from '../data/schema'
 import {
-  apiSavingRatio,
-  filterPoints,
-  formatApiSaving,
+  filterCompareEntries,
   groupByModel,
-  pointScore,
   representativeForMetric,
-  sortPoints,
-} from './compare'
+  sortEntries,
+} from '../domain/comparison'
+import { selectBenchmarkScore } from '../domain/selectors'
 import { formatScore } from './format'
 
-function point(partial: Partial<PricingPoint> & Pick<PricingPoint, 'id'>): PricingPoint {
-  const plan = partial.plan ?? 'Plan'
-  const modelDisplay = partial.model_display ?? 'Model A'
+function entry(partial: Partial<SubAIWiseEntry> & Pick<SubAIWiseEntry, 'id'>): SubAIWiseEntry {
+  const plan = partial.plan ?? { id: 'plan', name: 'Plan', billing: 'subscription' }
+  const model = partial.model ?? { id: 'model-a', name: 'Model A' }
   return {
-    plan,
-    billing: 'subscription',
-    model: 'model-a',
-    model_display: modelDisplay,
-    vendor: 'Vendor',
+    label: `${model.name} · ${plan.name}`,
+    provider: 'Vendor',
     channel: 'Vendor',
-    label: `${modelDisplay} · ${plan}`,
-    price_usd: 20,
-    monthly_yi: 1,
-    real_usd_per_mtok: 1,
-    list_blended_usd_per_mtok: 10,
-    d: null,
-    confidence: 'high',
-    tier: 'main',
-    source: '',
-    note: '',
-    arena_code__score: null,
-    arena_code__variant: null,
-    arena_agent_mode__score: null,
-    arena_agent_mode__variant: null,
-    aa_intelligence_index__score: null,
-    aa_intelligence_index__variant: null,
-    aa_coding_agent_index__score: null,
-    aa_coding_agent_index__variant: null,
+    plan,
+    model,
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 1, listUsdPerMillionTokens: 10 },
+    allowance: { monthlyTokens: 100_000_000 },
+    quality: { confidence: 'high', tier: 'main' },
+    benchmarks: {},
+    source: { label: '', note: '' },
     ...partial,
+    id: partial.id,
   }
 }
 
 describe('representative selection', () => {
-  const cheapSmall = point({
+  const cheapSmall = entry({
     id: 'plan-a',
-    plan: 'Plan A',
-    real_usd_per_mtok: 0.01,
-    monthly_yi: 20,
+    plan: { id: 'plan-a', name: 'Plan A', billing: 'subscription' },
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.01, listUsdPerMillionTokens: 10 },
+    allowance: { monthlyTokens: 2_000_000_000 },
   })
-  const dearLarge = point({
+  const dearLarge = entry({
     id: 'plan-b',
-    plan: 'Plan B',
-    real_usd_per_mtok: 0.02,
-    monthly_yi: 100,
+    plan: { id: 'plan-b', name: 'Plan B', billing: 'subscription' },
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.02, listUsdPerMillionTokens: 10 },
+    allowance: { monthlyTokens: 10_000_000_000 },
   })
 
   it('uses the lowest real price when sorting by price', () => {
@@ -68,23 +53,22 @@ describe('representative selection', () => {
   })
 
   it('uses the cheapest scored plan when sorting by a board', () => {
-    const scoredCheap = point({
+    const scoredCheap = entry({
       id: 'scored-cheap',
-      plan: 'Scored cheap',
-      real_usd_per_mtok: 0.03,
-      arena_code__score: 1600,
+      plan: { id: 'scored-cheap', name: 'Scored cheap', billing: 'subscription' },
+      pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.03, listUsdPerMillionTokens: 10 },
+      benchmarks: { codeArena: { score: 1600 } },
     })
-    const scoredDear = point({
+    const scoredDear = entry({
       id: 'scored-dear',
-      plan: 'Scored dear',
-      real_usd_per_mtok: 0.04,
-      arena_code__score: 1600,
+      plan: { id: 'scored-dear', name: 'Scored dear', billing: 'subscription' },
+      pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.04, listUsdPerMillionTokens: 10 },
+      benchmarks: { codeArena: { score: 1600 } },
     })
-    const unscoredCheapest = point({
+    const unscoredCheapest = entry({
       id: 'unscored',
-      plan: 'Unscored',
-      real_usd_per_mtok: 0.005,
-      arena_code__score: null,
+      plan: { id: 'unscored', name: 'Unscored', billing: 'subscription' },
+      pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.005, listUsdPerMillionTokens: 10 },
     })
     const best = representativeForMetric(
       [unscoredCheapest, scoredDear, scoredCheap],
@@ -99,7 +83,7 @@ describe('missing scores', () => {
     expect(formatScore(null)).toBe('—')
     expect(formatScore(undefined)).toBe('—')
     expect(formatScore(0)).toBe('0')
-    expect(pointScore(point({ id: 'none', arena_code__score: null }), 'arena_code')).toBeNull()
+    expect(selectBenchmarkScore(entry({ id: 'none' }), 'arena_code')).toBeNull()
   })
 
   it('formats Terminal-Bench resolution rate as a percentage, not a bare score', () => {
@@ -108,63 +92,49 @@ describe('missing scores', () => {
     expect(formatScore(0, 'percent')).toBe('0%')
     expect(formatScore(null, 'percent')).toBe('—')
     expect(
-      pointScore(point({ id: 'tb', terminal_bench_4__score: 44.55 }), 'terminal_bench_4'),
+      selectBenchmarkScore(
+        entry({ id: 'tb', benchmarks: { terminalBench4: { score: 44.55 } } }),
+        'terminal_bench_4',
+      ),
     ).toBe(44.55)
   })
 
   it('sorts board-missing points after scored points', () => {
-    const missing = point({
+    const missing = entry({
       id: 'missing',
-      arena_code__score: null,
-      aa_intelligence_index__score: 50,
-      real_usd_per_mtok: 0.01,
+      benchmarks: { intelligence: { score: 50 } },
+      pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.01, listUsdPerMillionTokens: 10 },
     })
-    const scored = point({
+    const scored = entry({
       id: 'scored',
-      arena_code__score: 40,
-      real_usd_per_mtok: 0.5,
+      benchmarks: { codeArena: { score: 40 } },
+      pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.5, listUsdPerMillionTokens: 10 },
     })
-    const sorted = sortPoints([missing, scored], 'arena_code')
-    expect(sorted.map((p) => p.id)).toEqual(['scored', 'missing'])
-    expect(formatScore(pointScore(sorted[1], 'arena_code'))).toBe('—')
+    const sorted = sortEntries([missing, scored], 'arena_code')
+    expect(sorted.map((row) => row.id)).toEqual(['scored', 'missing'])
+    expect(formatScore(selectBenchmarkScore(sorted[1], 'arena_code'))).toBe('—')
   })
 })
 
 describe('confidence filter', () => {
   it('filters pricing records and leaves benchmark scores untouched', () => {
-    const high = point({ id: 'high', confidence: 'high', arena_code__score: 10 })
-    const low = point({ id: 'low', confidence: 'low', arena_code__score: 90 })
-    const filtered = filterPoints([high, low], {
+    const high = entry({
+      id: 'high',
+      quality: { confidence: 'high', tier: 'main' },
+      benchmarks: { codeArena: { score: 10 } },
+    })
+    const low = entry({
+      id: 'low',
+      quality: { confidence: 'low', tier: 'main' },
+      benchmarks: { codeArena: { score: 90 } },
+    })
+    const filtered = filterCompareEntries([high, low], {
       query: '',
       billing: 'all',
       vendor: 'all',
       confidence: 'high',
     })
-    expect(filtered.map((p) => p.id)).toEqual(['high'])
-    expect(pointScore(low, 'arena_code')).toBe(90)
-  })
-})
-
-describe('derived API savings', () => {
-  it('reports 96% when real is 0.02 and list is 0.5', () => {
-    const sub = point({
-      id: 'sub',
-      billing: 'subscription',
-      real_usd_per_mtok: 0.02,
-      list_blended_usd_per_mtok: 0.5,
-    })
-    const ratio = apiSavingRatio(sub)
-    expect(ratio).toBeCloseTo(0.96)
-    expect(formatApiSaving(ratio!)).toBe('96%')
-  })
-
-  it('does not compute savings for API baseline points', () => {
-    const api = point({
-      id: 'api',
-      billing: 'metered',
-      real_usd_per_mtok: 0.02,
-      list_blended_usd_per_mtok: 0.5,
-    })
-    expect(apiSavingRatio(api)).toBeNull()
+    expect(filtered.map((row) => row.id)).toEqual(['high'])
+    expect(selectBenchmarkScore(low, 'arena_code')).toBe(90)
   })
 })

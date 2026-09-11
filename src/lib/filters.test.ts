@@ -1,84 +1,77 @@
 import { describe, expect, it } from 'vitest'
-import type { PricingPoint } from '../types'
-import {
-  filterPricingPoints,
-  selectAllIds,
-  selectNoIds,
-  selectedCount,
-  toggleId,
-  uniqueChannelOptions,
-  uniqueModelOptions,
-} from './filters'
+import type { SubAIWiseEntry } from '../data/schema'
+import { filterEntries, selectChannels, selectModels } from '../domain/selectors'
+import { selectAllIds, selectNoIds, selectedCount, toggleId } from './filters'
 
-function point(partial: Partial<PricingPoint> & Pick<PricingPoint, 'id' | 'model' | 'channel'>): PricingPoint {
-  const modelDisplay = partial.model_display ?? partial.model
-  const plan = partial.plan ?? 'Plan'
+function entry({
+  id,
+  modelId,
+  channel,
+  modelName,
+  maker,
+  pricing,
+}: {
+  id: string
+  modelId: string
+  channel: string
+  modelName?: string
+  maker?: string
+  pricing?: SubAIWiseEntry['pricing']
+}): SubAIWiseEntry {
   return {
-    plan,
-    billing: 'subscription',
-    model_display: modelDisplay,
-    vendor: 'Vendor',
-    label: `${modelDisplay} · ${plan}`,
-    price_usd: 20,
-    monthly_yi: 1,
-    real_usd_per_mtok: 1,
-    list_blended_usd_per_mtok: 10,
-    d: null,
-    confidence: 'high',
-    tier: 'main',
-    source: '',
-    note: '',
-    arena_code__score: null,
-    arena_code__variant: null,
-    arena_agent_mode__score: null,
-    arena_agent_mode__variant: null,
-    aa_intelligence_index__score: null,
-    aa_intelligence_index__variant: null,
-    aa_coding_agent_index__score: null,
-    aa_coding_agent_index__variant: null,
-    ...partial,
+    id,
+    label: `${modelName ?? modelId} · Plan`,
+    provider: maker ?? 'Vendor',
+    channel,
+    plan: { id: id.split('::')[0] ?? 'plan', name: 'Plan', billing: 'subscription' },
+    model: { id: modelId, name: modelName ?? modelId },
+    pricing: pricing ?? { monthlyUsd: 20, effectiveUsdPerMillionTokens: 1, listUsdPerMillionTokens: 10 },
+    allowance: { monthlyTokens: 100_000_000 },
+    quality: { confidence: 'high', tier: 'main' },
+    benchmarks: {},
+    source: { label: '', note: '' },
   }
 }
 
 describe('identity filters', () => {
-  const deepseekOllama = point({
+  const deepseekOllama = entry({
     id: 'ollama_pro::deepseek-v4-flash',
-    model: 'deepseek-v4-flash',
-    model_display: 'DeepSeek V4 Flash',
-    vendor: 'DeepSeek',
+    modelId: 'deepseek-v4-flash',
+    modelName: 'DeepSeek V4 Flash',
+    maker: 'DeepSeek',
     channel: 'Ollama',
-    real_usd_per_mtok: 0.04,
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.04, listUsdPerMillionTokens: 10 },
   })
-  const deepseekOpenCode = point({
+  const deepseekOpenCode = entry({
     id: 'opencode_go::deepseek-v4-pro',
-    model: 'deepseek-v4-pro',
-    model_display: 'DeepSeek V4 Pro',
-    vendor: 'DeepSeek',
+    modelId: 'deepseek-v4-pro',
+    modelName: 'DeepSeek V4 Pro',
+    maker: 'DeepSeek',
     channel: 'OpenCode',
-    real_usd_per_mtok: 0.03,
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.03, listUsdPerMillionTokens: 10 },
   })
-  const gptOllama = point({
+  const gptOllama = entry({
     id: 'ollama_pro::gpt-5.6-luna',
-    model: 'gpt-5.6-luna',
-    model_display: 'GPT 5.6 Luna',
-    vendor: 'OpenAI',
+    modelId: 'gpt-5.6-luna',
+    modelName: 'GPT 5.6 Luna',
+    maker: 'OpenAI',
     channel: 'Ollama',
-    real_usd_per_mtok: 0.02,
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.02, listUsdPerMillionTokens: 10 },
   })
-  const gptOpenAI = point({
+  const gptOpenAI = entry({
     id: 'chatgpt_plus::gpt-5.6-luna',
-    model: 'gpt-5.6-luna',
-    model_display: 'GPT 5.6 Luna',
-    vendor: 'OpenAI',
+    modelId: 'gpt-5.6-luna',
+    modelName: 'GPT 5.6 Luna',
+    maker: 'OpenAI',
     channel: 'OpenAI',
-    real_usd_per_mtok: 0.01,
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.01, listUsdPerMillionTokens: 10 },
   })
   const all = [deepseekOllama, deepseekOpenCode, gptOllama, gptOpenAI]
 
   it('treats null as all and an empty set as none', () => {
-    expect(filterPricingPoints(all, { models: null, channels: null })).toEqual(all)
-    expect(filterPricingPoints(all, { models: new Set(), channels: null })).toEqual([])
-    expect(filterPricingPoints(all, { models: null, channels: new Set() })).toEqual([])
+    expect(filterEntries(all, { models: null, channels: null })).toEqual(all)
+    expect(filterEntries(all, { models: new Set(), channels: null })).toEqual([])
+    expect(filterEntries(all, { models: null, channels: new Set() })).toEqual([])
     expect(selectedCount(null, 4)).toBe(4)
     expect(selectedCount(new Set(), 4)).toBe(0)
     expect(selectAllIds()).toBeNull()
@@ -86,7 +79,7 @@ describe('identity filters', () => {
   })
 
   it('ORs within a group and ANDs across groups', () => {
-    const filtered = filterPricingPoints(all, {
+    const filtered = filterEntries(all, {
       models: new Set(['deepseek-v4-flash', 'gpt-5.6-luna']),
       channels: new Set(['Ollama', 'OpenCode']),
     })
@@ -97,15 +90,15 @@ describe('identity filters', () => {
   })
 
   it('keys models by model id, not display name', () => {
-    const options = uniqueModelOptions(all)
+    const options = selectModels(all)
     expect(options.find((option) => option.label === 'GPT 5.6 Luna')?.id).toBe('gpt-5.6-luna')
-    const filtered = filterPricingPoints(all, { models: new Set(['gpt-5.6-luna']) })
+    const filtered = filterEntries(all, { models: new Set(['gpt-5.6-luna']) })
     expect(filtered).toHaveLength(2)
-    expect(filtered.every((row) => row.model === 'gpt-5.6-luna')).toBe(true)
+    expect(filtered.every((row) => row.model.id === 'gpt-5.6-luna')).toBe(true)
   })
 
   it('lists unique channels from the access provider field', () => {
-    expect(uniqueChannelOptions(all)).toEqual(['Ollama', 'OpenAI', 'OpenCode'])
+    expect(selectChannels(all)).toEqual(['Ollama', 'OpenAI', 'OpenCode'])
   })
 
   it('collapses a full selection back to all', () => {
@@ -115,10 +108,12 @@ describe('identity filters', () => {
   })
 
   it('filters before sorting and limiting, not after', () => {
-    const ranked = [...all].sort((a, b) => a.real_usd_per_mtok - b.real_usd_per_mtok)
+    const ranked = [...all].sort(
+      (a, b) => a.pricing.effectiveUsdPerMillionTokens - b.pricing.effectiveUsdPerMillionTokens,
+    )
     const wrong = ranked.slice(0, 1).filter((row) => row.channel === 'Ollama')
-    const right = filterPricingPoints(ranked, { channels: new Set(['Ollama']) })
-      .sort((a, b) => a.real_usd_per_mtok - b.real_usd_per_mtok)
+    const right = filterEntries(ranked, { channels: new Set(['Ollama']) })
+      .sort((a, b) => a.pricing.effectiveUsdPerMillionTokens - b.pricing.effectiveUsdPerMillionTokens)
       .slice(0, 1)
     expect(wrong.map((row) => row.id)).toEqual([])
     expect(right.map((row) => row.id)).toEqual(['ollama_pro::gpt-5.6-luna'])

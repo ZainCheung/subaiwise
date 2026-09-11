@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { isThirdParty } from '../data/channel'
-import type { PricingPoint } from '../types'
 import { brandLogos, brandMaker, providerInitials, providerLogoSlug, type ProviderLogoSize } from '../lib/provider-brands'
 
 const logoFiles = {
@@ -65,51 +64,59 @@ export function BrandMarks({
 }
 
 export function ModelIdentity({
-  point,
+  maker,
+  modelName,
   size = 'sm',
 }: {
-  point: PricingPoint
+  maker: string
+  modelName: string
   size?: ProviderLogoSize
 }) {
   return (
     <span className="identity-with-logo">
-      <ProviderLogo provider={brandMaker(point.vendor)} size={size} />
-      <span className="min-w-0 truncate text-[13px] font-medium text-ink">{point.model_display}</span>
+      <ProviderLogo provider={brandMaker(maker)} size={size} />
+      <span className="min-w-0 truncate text-[13px] font-medium text-ink">{modelName}</span>
     </span>
   )
 }
 
 export function PlanIdentity({
-  point,
+  maker,
+  channel,
+  planName,
   size = 'sm',
   logo = 'third-party',
 }: {
-  point: PricingPoint
+  maker: string
+  channel: string
+  planName: string
   size?: ProviderLogoSize
   logo?: 'always' | 'third-party' | 'never'
 }) {
   const showLogo =
-    logo === 'always' || (logo === 'third-party' && isThirdParty(point.vendor, point.channel))
+    logo === 'always' || (logo === 'third-party' && isThirdParty(maker, channel))
   return (
     <span className="identity-with-logo">
-      {showLogo ? <ProviderLogo provider={point.channel} size={size} /> : null}
-      <span className="min-w-0 truncate text-[13px] text-ink">{point.plan}</span>
+      {showLogo ? <ProviderLogo provider={channel} size={size} /> : null}
+      <span className="min-w-0 truncate text-[13px] text-ink">{planName}</span>
     </span>
   )
 }
 
 export function CompactBrandIdentity({
-  point,
+  maker,
+  channel,
   size = 'sm',
   children,
 }: {
-  point: PricingPoint
+  maker: string
+  channel: string
   size?: ProviderLogoSize
   children: ReactNode
 }) {
   return (
     <span className="identity-with-logo identity-with-logo-block">
-      <BrandMarks maker={point.vendor} channel={point.channel} size={size} />
+      <BrandMarks maker={maker} channel={channel} size={size} />
       <span className="min-w-0">{children}</span>
     </span>
   )

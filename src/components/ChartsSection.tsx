@@ -1,28 +1,29 @@
 import { useMemo } from 'react'
-import type { PointsPayload } from '../types'
+import type { SubAIWiseDataset } from '../data/schema'
 import { useI18n } from '../lib/i18n'
-import { filterPricingPoints, type IdFilter } from '../lib/filters'
+import { filterEntries } from '../domain/selectors'
+import type { IdFilter } from '../lib/filters'
 import { AllowanceChart } from './AllowanceChart'
 import { IdentityFilters } from './ModelServiceFilters'
 import { PriceChart } from './PriceChart'
 
 export function ChartsSection({
-  data,
+  dataset,
   models,
   channels,
   onModelsChange,
   onChannelsChange,
 }: {
-  data: PointsPayload
+  dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t } = useI18n()
-  const points = useMemo(
-    () => filterPricingPoints(data.points, { models, channels }),
-    [data.points, models, channels],
+  const entries = useMemo(
+    () => filterEntries(dataset.entries, { models, channels }),
+    [dataset.entries, models, channels],
   )
 
   return (
@@ -32,7 +33,7 @@ export function ChartsSection({
           {t('overviewTitle')}
         </h2>
         <IdentityFilters
-          points={data.points}
+          entries={dataset.entries}
           models={models}
           channels={channels}
           onModelsChange={onModelsChange}
@@ -40,8 +41,8 @@ export function ChartsSection({
         />
       </div>
       <div className="mt-8 space-y-5">
-        <AllowanceChart points={points} />
-        <PriceChart points={points} />
+        <AllowanceChart entries={entries} />
+        <PriceChart entries={entries} />
       </div>
     </section>
   )

@@ -1,4 +1,4 @@
-import type { PricingPoint } from '../../types'
+import type { SubAIWiseEntry } from '../../data/schema'
 import { brandMaker, providerInitials } from '../../lib/provider-brands'
 import { scatterLabel } from '../../lib/labels'
 import { providerLogoUrl } from '../ProviderLogo'
@@ -9,7 +9,7 @@ export type PlotRow = {
   y: number
   kind: 'sub' | 'api' | 'frontier'
   count: number
-  points: PricingPoint[]
+  entries: SubAIWiseEntry[]
   showLabel: boolean
   efficient: boolean
   color: string
@@ -109,7 +109,7 @@ export function FrontierPoint({
   onSelect: (row: PlotRow) => void
 }) {
   if (!payload) return null
-  const maker = brandMaker(payload.points[0]?.vendor ?? '')
+  const maker = brandMaker(payload.entries[0]?.provider ?? '')
   const src = providerLogoUrl(maker)
   const size = 28
   const x = cx - size / 2

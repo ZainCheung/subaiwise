@@ -1,21 +1,22 @@
-import type { PricingPoint } from '../types'
+import type { SubAIWiseEntry } from '../data/schema'
 import { useI18n } from '../lib/i18n'
-import { uniqueChannelOptions, uniqueModelOptions, type IdFilter } from '../lib/filters'
+import type { IdFilter } from '../lib/filters'
+import { selectChannels, selectModels } from '../domain/selectors'
 import { brandMaker } from '../lib/provider-brands'
 import { MultiSelectFilter } from './MultiSelectFilter'
 import { ProviderLogo } from './ProviderLogo'
 
 export function ModelFilter({
-  points,
+  entries,
   value,
   onChange,
 }: {
-  points: PricingPoint[]
+  entries: readonly SubAIWiseEntry[]
   value: IdFilter
   onChange: (next: IdFilter) => void
 }) {
   const { t } = useI18n()
-  const options = uniqueModelOptions(points)
+  const options = selectModels(entries)
   return (
     <MultiSelectFilter
       label={t('filterModels')}
@@ -34,16 +35,16 @@ export function ModelFilter({
 }
 
 export function ServiceFilter({
-  points,
+  entries,
   value,
   onChange,
 }: {
-  points: PricingPoint[]
+  entries: readonly SubAIWiseEntry[]
   value: IdFilter
   onChange: (next: IdFilter) => void
 }) {
   const { t } = useI18n()
-  const options = uniqueChannelOptions(points).map((channel) => ({
+  const options = selectChannels(entries).map((channel) => ({
     id: channel,
     label: channel,
   }))
@@ -65,13 +66,13 @@ export function ServiceFilter({
 }
 
 export function IdentityFilters({
-  points,
+  entries,
   models,
   channels,
   onModelsChange,
   onChannelsChange,
 }: {
-  points: PricingPoint[]
+  entries: readonly SubAIWiseEntry[]
   models: IdFilter
   channels: IdFilter
   onModelsChange: (next: IdFilter) => void
@@ -79,8 +80,8 @@ export function IdentityFilters({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <ModelFilter points={points} value={models} onChange={onModelsChange} />
-      <ServiceFilter points={points} value={channels} onChange={onChannelsChange} />
+      <ModelFilter entries={entries} value={models} onChange={onModelsChange} />
+      <ServiceFilter entries={entries} value={channels} onChange={onChannelsChange} />
     </div>
   )
 }

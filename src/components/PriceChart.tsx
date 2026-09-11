@@ -1,36 +1,30 @@
 import { useMemo, useState } from 'react'
-import type { PricingPoint } from '../types'
+import type { SubAIWiseEntry } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { vendorColor } from '../lib/vendors'
 import { shortLabel } from '../lib/labels'
 import { applyLimit, CHART_LIMITS, chartLimitKey, type ChartLimit } from '../lib/limits'
 import { formatUsdTick, logPosition, logPriceAxis } from '../lib/axis'
 import { formatUsdPerMtok } from '../lib/format'
+import { selectPriceRows } from '../domain/pricing'
 import { Pill, PillGroup } from './Pill'
 import { CompactBrandIdentity } from './ProviderLogo'
 import { TableViewport } from './TableViewport'
 
-export function PriceChart({ points }: { points: PricingPoint[] }) {
+export function PriceChart({ entries }: { entries: readonly SubAIWiseEntry[] }) {
   const { t } = useI18n()
   const [limit, setLimit] = useState<ChartLimit>(15)
   const [hoverId, setHoverId] = useState<string | null>(null)
 
   const data = useMemo(() => {
-    const sorted = points.slice().sort((a, b) => a.real_usd_per_mtok - b.real_usd_per_mtok)
-    return applyLimit(sorted, limit).map((p) => ({
-      id: p.id,
-      label: p.label,
-      short: shortLabel(p.label, 42),
-      plan: p.plan,
-      model: p.model_display,
-      vendor: p.vendor,
-      channel: p.channel,
-      point: p,
-      billing: p.billing,
-      value: p.real_usd_per_mtok,
-      color: vendorColor(p.vendor),
+    const sorted = selectPriceRows(entries)
+    return applyLimit(sorted, limit).map((row) => ({
+      ...row,
+      short: shortLabel(row.label, 42),
+      value: row.realUsdPerMtok,
+      color: vendorColor(row.maker),
     }))
-  }, [points, limit])
+  }, [entries, limit])
 
   const axis = useMemo(() => logPriceAxis(data.map((d) => d.value)), [data])
 
@@ -94,17 +88,17 @@ export function PriceChart({ points }: { points: PricingPoint[] }) {
                   onMouseEnter={() => setHoverId(row.id)}
                   onMouseLeave={() => setHoverId(null)}
                   className={active ? 'bg-white/[0.02]' : undefined}
-                  title={`${row.label}\n${isApi ? 'API' : 'Sub'} · ${row.channel} · ${row.vendor} · ${formatUsdPerMtok(row.value)}`}
+                  title={`${row.label}\n${isApi ? 'API' : 'Sub'} · ${row.channel} · ${row.maker} · ${formatUsdPerMtok(row.value)}`}
                 >
                   <td>
-                    <CompactBrandIdentity point={row.point}>
+                    <CompactBrandIdentity maker={row.maker} channel={row.channel}>
                       <span className="block truncate text-[13px] font-medium text-ink">
                         {row.short}
                       </span>
                       <span className="block truncate text-[11px] text-ink-dim">
                         {isApi ? t('billingApi') : t('billingSub')}
                         {' · '}
-                        {row.channel === row.vendor ? row.vendor : `${row.channel} · ${row.vendor}`}
+                        {row.channel === row.maker ? row.maker : `${row.channel} · ${row.maker}`}
                       </span>
                     </CompactBrandIdentity>
                   </td>
