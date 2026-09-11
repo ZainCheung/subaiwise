@@ -70,7 +70,10 @@ export function defaultExplorerState(dataset: SubAIWiseDataset, lang?: Lang): Ex
   }
 }
 
-export function compactExplorerState(state: ExplorerState): CompactState {
+export function compactExplorerState(
+  state: ExplorerState,
+  defaults: Pick<ExplorerState, 'board'>,
+): CompactState {
   const compact: CompactState = { v: 1 }
   if (state.lang) compact.lang = state.lang
   const models = encodeFilter(state.models)
@@ -92,13 +95,16 @@ export function compactExplorerState(state: ExplorerState): CompactState {
   if (state.query.trim()) compact.query = state.query
   if (state.sort !== 'price') compact.sort = state.sort
   if (state.scoreBoard !== state.board) compact.scoreBoard = state.scoreBoard
-  if (state.board && state.board !== 'arena_code') compact.board = state.board
+  if (state.board && state.board !== defaults.board) compact.board = state.board
   if (state.compareIds.length) compact.compare = [...state.compareIds]
   return compact
 }
 
-export function serializeExplorerState(state: ExplorerState): string {
-  return encodeURIComponent(JSON.stringify(compactExplorerState(state)))
+export function serializeExplorerState(
+  state: ExplorerState,
+  defaults: Pick<ExplorerState, 'board'>,
+): string {
+  return encodeURIComponent(JSON.stringify(compactExplorerState(state, defaults)))
 }
 
 export function parseCompactState(raw: string): CompactState | null {
@@ -180,6 +186,10 @@ export function restoreExplorerState(
   }
 }
 
-export function statesEqual(a: ExplorerState, b: ExplorerState): boolean {
-  return serializeExplorerState(a) === serializeExplorerState(b)
+export function statesEqual(
+  a: ExplorerState,
+  b: ExplorerState,
+  defaults: Pick<ExplorerState, 'board'>,
+): boolean {
+  return serializeExplorerState(a, defaults) === serializeExplorerState(b, defaults)
 }
