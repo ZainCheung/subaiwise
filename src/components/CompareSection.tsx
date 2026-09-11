@@ -4,6 +4,7 @@ import type { BoardKey } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
   MAX_COMPARE,
+  toggleCompareId,
   filterCompareEntries,
   groupByModel,
   sortEntries,
@@ -254,12 +255,7 @@ export function CompareSection({
   }
 
   const toggleCompare = (id: string) => {
-    if (compareIds.includes(id)) {
-      onCompareIdsChange(compareIds.filter((value) => value !== id))
-      return
-    }
-    if (compareIds.length >= MAX_COMPARE) return
-    onCompareIdsChange([...compareIds, id])
+    onCompareIdsChange(toggleCompareId(compareIds, id))
   }
 
   const visibleCount = view === 'models' ? modelGroups.length : planRows.length

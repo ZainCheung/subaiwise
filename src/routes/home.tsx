@@ -120,10 +120,12 @@ function LoadedHome({ dataset }: { dataset: SubAIWiseDataset }) {
             channels={state.channels}
             advanced={state.advanced}
             board={state.board}
+            compareIds={state.compareIds}
             onModelsChange={(next) => patch({ models: next })}
             onChannelsChange={(next) => patch({ channels: next })}
             onAdvancedChange={(next) => patch({ advanced: next })}
             onBoardChange={(next) => patch({ board: next })}
+            onCompareIdsChange={(next) => patch({ compareIds: next })}
           />
           <ChartsSection
             dataset={dataset}

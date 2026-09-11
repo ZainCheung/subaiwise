@@ -10,6 +10,17 @@ export type ConfidenceFilter = 'all' | 'high' | 'medium' | 'low'
 export const CONFIDENCE_LEVELS = ['high', 'medium', 'low'] as const
 export const MAX_COMPARE = 4
 
+/** Add or remove an entry from the shared compare selection, respecting MAX_COMPARE. */
+export function toggleCompareId(
+  ids: readonly string[],
+  id: string,
+  max = MAX_COMPARE,
+): string[] {
+  if (ids.includes(id)) return ids.filter((value) => value !== id)
+  if (ids.length >= max) return [...ids]
+  return [...ids, id]
+}
+
 export function isBoardSort(key: SortKey): boolean {
   return key !== 'price' && key !== 'allowance'
 }

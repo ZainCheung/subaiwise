@@ -3,8 +3,10 @@ import type { SubAIWiseEntry } from '../data/schema'
 import {
   filterCompareEntries,
   groupByModel,
+  MAX_COMPARE,
   representativeForMetric,
   sortEntries,
+  toggleCompareId,
 } from '../domain/comparison'
 import { selectBenchmarkScore } from '../domain/selectors'
 import { formatScore } from './format'
@@ -136,5 +138,19 @@ describe('confidence filter', () => {
     })
     expect(filtered.map((row) => row.id)).toEqual(['high'])
     expect(selectBenchmarkScore(low, 'arena_code')).toBe(90)
+  })
+})
+
+describe('shared compare selection', () => {
+  it('adds and removes the same ids that ExplorerState serializes', () => {
+    expect(toggleCompareId([], 'a')).toEqual(['a'])
+    expect(toggleCompareId(['a'], 'b')).toEqual(['a', 'b'])
+    expect(toggleCompareId(['a', 'b'], 'a')).toEqual(['b'])
+  })
+
+  it('refuses to exceed MAX_COMPARE', () => {
+    const full = Array.from({ length: MAX_COMPARE }, (_, i) => `id-${i}`)
+    expect(toggleCompareId(full, 'extra')).toEqual(full)
+    expect(toggleCompareId(full, 'id-0')).toEqual(full.slice(1))
   })
 })
