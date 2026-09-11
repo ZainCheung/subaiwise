@@ -1,69 +1,51 @@
 import { describe, expect, it } from 'vitest'
-import type { PricingPoint } from '../types'
+import type { SubAIWiseEntry } from '../data/schema'
+import { filterEntries } from '../domain/selectors'
+import { groupByExactCoords, mostEfficientEntry, sameModelEntries, subscriptionFrontier } from '../domain/leaderboards'
 import { formatYTick, guideEndpoints } from './axis'
-import { filterPricingPoints } from './filters'
-import { groupByExactCoords } from './pointGrouping'
-import { mostEfficientPoint, sameModelPoints, subscriptionFrontier } from './pareto'
 
-function point(
-  partial: Partial<PricingPoint> &
-    Pick<PricingPoint, 'id' | 'model' | 'real_usd_per_mtok'> & { score: number },
-): PricingPoint {
-  const modelDisplay = partial.model_display ?? partial.model
-  const plan = partial.plan ?? 'Plan'
+function entry({
+  id,
+  modelId,
+  price,
+  score,
+  plan,
+  channel,
+}: {
+  id: string
+  modelId: string
+  price: number
+  score: number
+  plan?: SubAIWiseEntry['plan']
+  channel?: string
+}): SubAIWiseEntry {
+  const resolvedPlan = plan ?? { id: 'plan', name: 'Plan', billing: 'subscription' }
   return {
-    plan,
-    billing: 'subscription',
-    model_display: modelDisplay,
-    vendor: 'Vendor',
-    channel: 'Vendor',
-    label: `${modelDisplay} · ${plan}`,
-    price_usd: 20,
-    monthly_yi: 1,
-    list_blended_usd_per_mtok: 10,
-    d: null,
-    confidence: 'high',
-    tier: 'main',
-    source: '',
-    note: '',
-    arena_code__score: partial.score,
-    arena_code__variant: null,
-    arena_agent_mode__score: null,
-    arena_agent_mode__variant: null,
-    aa_intelligence_index__score: null,
-    aa_intelligence_index__variant: null,
-    aa_coding_agent_index__score: null,
-    aa_coding_agent_index__variant: null,
-    ...partial,
+    id,
+    label: `${modelId} · ${resolvedPlan.name}`,
+    provider: 'Vendor',
+    channel: channel ?? 'Vendor',
+    plan: resolvedPlan,
+    model: { id: modelId, name: modelId },
+    pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: price, listUsdPerMillionTokens: 10 },
+    allowance: { monthlyTokens: 100_000_000 },
+    quality: { confidence: 'high', tier: 'main' },
+    benchmarks: { codeArena: { score } },
+    source: { label: '', note: '' },
   }
 }
 
 describe('subscription frontier', () => {
-  const cheapWeak = point({
-    id: 'a',
-    model: 'a',
-    real_usd_per_mtok: 0.01,
-    score: 10,
-  })
-  const mid = point({ id: 'b', model: 'b', real_usd_per_mtok: 0.02, score: 20 })
-  const dearStrong = point({
-    id: 'c',
-    model: 'c',
-    real_usd_per_mtok: 0.03,
-    score: 30,
-  })
-  const dominated = point({
-    id: 'd',
-    model: 'd',
-    real_usd_per_mtok: 0.025,
-    score: 15,
-  })
-  const api = point({
+  const cheapWeak = entry({ id: 'a', modelId: 'a', price: 0.01, score: 10 })
+  const mid = entry({ id: 'b', modelId: 'b', price: 0.02, score: 20 })
+  const dearStrong = entry({ id: 'c', modelId: 'c', price: 0.03, score: 30 })
+  const dominated = entry({ id: 'd', modelId: 'd', price: 0.025, score: 15 })
+  const api = entry({
     id: 'api',
-    model: 'e',
-    billing: 'metered',
-    real_usd_per_mtok: 0.005,
+    modelId: 'e',
+    price: 0.005,
     score: 40,
+    plan: { id: 'api', name: 'API', billing: 'metered' },
   })
 
   it('keeps subscription-only maximize-score / minimize-price points', () => {
@@ -76,88 +58,73 @@ describe('subscription frontier', () => {
 
   it('recomputes the frontier after identity filters', () => {
     const points = [cheapWeak, mid, dearStrong, dominated]
-    const filtered = filterPricingPoints(points, { models: new Set(['c', 'd']) })
+    const filtered = filterEntries(points, { models: new Set(['c', 'd']) })
     expect(subscriptionFrontier(filtered, 'arena_code').map((row) => row.id)).toEqual(['d', 'c'])
   })
 })
 
 describe('most efficient heuristic', () => {
   it('picks the cheapest high-score model representative, not every frontier point', () => {
-    const low = point({
+    const low = entry({
       id: 'cheap-high',
-      model: 'hero',
-      real_usd_per_mtok: 0.01,
+      modelId: 'hero',
+      price: 0.01,
       score: 100,
     })
-    const highPriceSameModel = point({
+    const highPriceSameModel = entry({
       id: 'dear-high',
-      model: 'hero',
-      plan: 'Pro',
-      real_usd_per_mtok: 0.04,
+      modelId: 'hero',
+      price: 0.04,
       score: 100,
+      plan: { id: 'pro', name: 'Pro', billing: 'subscription' },
     })
-    const weakCheap = point({
+    const weakCheap = entry({
       id: 'weak',
-      model: 'weak',
-      real_usd_per_mtok: 0.008,
+      modelId: 'weak',
+      price: 0.008,
       score: 10,
     })
-    const picked = mostEfficientPoint([low, highPriceSameModel, weakCheap], 'arena_code')
+    const picked = mostEfficientEntry([low, highPriceSameModel, weakCheap], 'arena_code')
     expect(picked?.id).toBe('cheap-high')
   })
 })
 
 describe('point grouping', () => {
   it('groups exact overlaps without changing coordinates', () => {
-    const a = point({
-      id: 'one',
-      model: 'm1',
-      real_usd_per_mtok: 0.02,
-      score: 50,
-    })
-    const b = point({
+    const a = entry({ id: 'one', modelId: 'm1', price: 0.02, score: 50 })
+    const b = entry({
       id: 'two',
-      model: 'm2',
+      modelId: 'm2',
+      price: 0.02,
+      score: 50,
       channel: 'Ollama',
-      real_usd_per_mtok: 0.02,
-      score: 50,
     })
-    const c = point({
-      id: 'three',
-      model: 'm3',
-      real_usd_per_mtok: 0.03,
-      score: 50,
-    })
+    const c = entry({ id: 'three', modelId: 'm3', price: 0.03, score: 50 })
     const groups = groupByExactCoords([a, b, c], 'arena_code')
-    const overlap = groups.find((group) => group.points.length > 1)
+    const overlap = groups.find((group) => group.entries.length > 1)
     expect(overlap?.x).toBe(0.02)
     expect(overlap?.y).toBe(50)
-    expect(overlap?.points.map((row) => row.id).sort()).toEqual(['one', 'two'])
+    expect(overlap?.entries.map((row) => row.id).sort()).toEqual(['one', 'two'])
     expect(groups).toHaveLength(2)
   })
 
   it('lists same-model points across services', () => {
-    const ollama = point({
+    const ollama = entry({
       id: 'ollama',
-      model: 'deepseek-v4-flash',
+      modelId: 'deepseek-v4-flash',
+      price: 0.02,
+      score: 40,
       channel: 'Ollama',
-      real_usd_per_mtok: 0.02,
-      score: 40,
     })
-    const opencode = point({
+    const opencode = entry({
       id: 'opencode',
-      model: 'deepseek-v4-flash',
-      channel: 'OpenCode',
-      real_usd_per_mtok: 0.03,
+      modelId: 'deepseek-v4-flash',
+      price: 0.03,
       score: 40,
+      channel: 'OpenCode',
     })
-    const other = point({
-      id: 'other',
-      model: 'gpt',
-      real_usd_per_mtok: 0.01,
-      score: 50,
-    })
-    expect(sameModelPoints([ollama, opencode, other], 'deepseek-v4-flash').map((row) => row.id)).toEqual([
+    const other = entry({ id: 'other', modelId: 'gpt', price: 0.01, score: 50 })
+    expect(sameModelEntries([ollama, opencode, other], 'deepseek-v4-flash').map((row) => row.id)).toEqual([
       'ollama',
       'opencode',
     ])

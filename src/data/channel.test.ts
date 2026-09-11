@@ -12,7 +12,6 @@ import {
 } from './channel'
 import { adaptPoint, buildDataset } from './adapter'
 import { SubAIWiseDatasetSchema } from './schema'
-import { toPointsPayload } from './view-model'
 
 const REQUIRED_BRANDS = [
   'OpenAI',
@@ -202,18 +201,6 @@ describe('adapter channel contract', () => {
     })
     expect(byId['chatgpt_plus::gpt-5.6-luna']).toMatchObject({
       provider: 'OpenAI',
-      channel: 'OpenAI',
-    })
-
-    const points = Object.fromEntries(
-      toPointsPayload(dataset).points.map((point) => [point.id, point]),
-    )
-    expect(points['ollama_pro::deepseek-v4-flash']).toMatchObject({
-      vendor: 'DeepSeek',
-      channel: 'Ollama',
-    })
-    expect(points['chatgpt_plus::gpt-5.6-luna']).toMatchObject({
-      vendor: 'OpenAI',
       channel: 'OpenAI',
     })
   })

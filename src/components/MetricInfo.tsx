@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
-import type { SortKey } from '../lib/compare'
+import type { SortKey } from '../domain/comparison'
 import { useI18n } from '../lib/i18n'
 import { metricDef, type MetricDefinition } from '../lib/metrics'
 

@@ -10,18 +10,18 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts'
-import type { BoardKey, BoardMeta, PricingPoint } from '../../types'
+import type { BoardMeta, SubAIWiseEntry } from '../../data/schema'
+import type { BoardKey } from '../../types'
 import { useI18n } from '../../lib/i18n'
 import { formatUsdTick, formatYTick, logPriceAxis, niceLinearTicks } from '../../lib/axis'
 import { leaderboardFormatter } from '../../lib/leaderboards'
 import {
-  boardPoints,
-  mostEfficientPoint,
-  sameModelPoints,
-  scoreKey,
+  groupByExactCoords,
+  mostEfficientEntry,
+  sameModelEntries,
   subscriptionFrontier,
-} from '../../lib/pareto'
-import { groupByExactCoords } from '../../lib/pointGrouping'
+} from '../../domain/leaderboards'
+import { selectBenchmarkScore, selectEntriesForLeaderboard } from '../../domain/selectors'
 import { vendorColor } from '../../lib/vendors'
 import { scatterLabel } from '../../lib/labels'
 import { UsdAxisTick } from '../UsdAxisTick'
@@ -32,57 +32,56 @@ import { ParetoTooltip } from './ParetoTooltip'
 export function ParetoChart({
   board,
   meta,
-  points,
+  entries,
   expanded = false,
   onSelect,
 }: {
   board: BoardKey
   meta: BoardMeta
-  points: PricingPoint[]
+  entries: SubAIWiseEntry[]
   expanded?: boolean
-  onSelect?: (points: PricingPoint[]) => void
+  onSelect?: (entries: SubAIWiseEntry[]) => void
 }) {
   const { t } = useI18n()
-  const key = scoreKey(board)
   const formatter = leaderboardFormatter(board, meta)
   const [activeKey, setActiveKey] = useState<string | null>(null)
 
   const { regular, frontier, domain, xTicks, yTicks, scored, active, modelLine } = useMemo(() => {
-    const scoredPts = boardPoints(points, board)
-    const frontierPts = subscriptionFrontier(points, board)
-    const frontierIds = new Set(frontierPts.map((point) => point.id))
-    const efficient = mostEfficientPoint(points, board)
+    const scoredPts = selectEntriesForLeaderboard(entries, board)
+    const frontierPts = subscriptionFrontier(entries, board)
+    const frontierIds = new Set(frontierPts.map((entry) => entry.id))
+    const efficient = mostEfficientEntry(entries, board)
     const groups = groupByExactCoords(scoredPts, board)
 
     const labeledModels = new Set<string>()
     const toRow = (group: (typeof groups)[number]): PlotRow => {
-      const isFrontier = group.points.some((point) => frontierIds.has(point.id))
+      const isFrontier = group.entries.some((entry) => frontierIds.has(entry.id))
       const representative =
-        group.points.find((point) => frontierIds.has(point.id)) ?? group.points[0]
+        group.entries.find((entry) => frontierIds.has(entry.id)) ?? group.entries[0]
       const kind: PlotRow['kind'] = isFrontier
         ? 'frontier'
-        : representative.billing === 'metered'
+        : representative.plan.billing === 'metered'
           ? 'api'
           : 'sub'
-      const showLabel = isFrontier && !labeledModels.has(representative.model)
-      if (showLabel) labeledModels.add(representative.model)
+      const showLabel = isFrontier && !labeledModels.has(representative.model.id)
+      if (showLabel) labeledModels.add(representative.model.id)
       return {
         key: group.key,
         x: group.x,
         y: group.y,
         kind,
-        count: group.points.length,
-        points: group.points,
+        count: group.entries.length,
+        entries: group.entries,
         showLabel,
-        efficient: Boolean(efficient && group.points.some((point) => point.id === efficient.id)),
-        color: vendorColor(representative.vendor),
-        short: scatterLabel(representative.model_display, 22),
+        efficient: Boolean(efficient && group.entries.some((entry) => entry.id === efficient.id)),
+        color: vendorColor(representative.provider),
+        short: scatterLabel(representative.model.name, 22),
       }
     }
 
     const rows = groups.map(toRow)
-    const xs = scoredPts.map((point) => point.real_usd_per_mtok)
-    const ys = scoredPts.map((point) => Number(point[key]))
+    const xs = scoredPts.map((entry) => entry.pricing.effectiveUsdPerMillionTokens)
+    const ys = scoredPts.map((entry) => selectBenchmarkScore(entry, board) ?? 0)
     const xAxis = logPriceAxis(xs.length ? xs : [0.01, 1])
     const ymin = ys.length ? Math.min(...ys) : 0
     const ymax = ys.length ? Math.max(...ys) : 1
@@ -90,11 +89,11 @@ export function ParetoChart({
     const yDomain: [number, number] = [ymin - pad * 0.35, ymax + pad]
     const activeRow = rows.find((row) => row.key === activeKey) ?? null
     const related =
-      activeRow && activeRow.points[0]
-        ? sameModelPoints(scoredPts, activeRow.points[0].model)
-            .map((point) => ({
-              x: point.real_usd_per_mtok,
-              y: Number(point[key]),
+      activeRow && activeRow.entries[0]
+        ? sameModelEntries(scoredPts, activeRow.entries[0].model.id)
+            .map((entry) => ({
+              x: entry.pricing.effectiveUsdPerMillionTokens,
+              y: selectBenchmarkScore(entry, board) ?? 0,
             }))
             .sort((a, b) => a.x - b.x)
         : []
@@ -109,9 +108,13 @@ export function ParetoChart({
       active: activeRow,
       modelLine: related.length >= 2 ? related : null,
     }
-  }, [points, board, key, activeKey])
+  }, [entries, board, activeKey])
 
-  const relatedIds = new Set(active?.points[0] ? sameModelPoints(scored, active.points[0].model).map((p) => p.id) : [])
+  const relatedIds = new Set(
+    active?.entries[0]
+      ? sameModelEntries(scored, active.entries[0].model.id).map((entry) => entry.id)
+      : [],
+  )
   const height = expanded ? 'min(80vh, 720px)' : undefined
   const tickStyle = { fill: '#a3a3a3', fontSize: 12, fontFamily: 'Inter, system-ui, sans-serif' }
 
@@ -157,7 +160,7 @@ export function ParetoChart({
         </div>
         {active ? (
           <div className="pointer-events-none absolute right-4 top-10 z-10 max-w-xs">
-            <ParetoTooltip active points={active.points} score={active.y} formatter={formatter} />
+            <ParetoTooltip active entries={active.entries} score={active.y} formatter={formatter} />
           </div>
         ) : null}
         <ResponsiveContainer width="100%" height="100%" minHeight={expanded ? 520 : 420}>
@@ -233,10 +236,10 @@ export function ParetoChart({
                 <RegularPoint
                   {...props}
                   active={props.payload?.key === activeKey}
-                  related={props.payload?.points.some((point) => relatedIds.has(point.id))}
+                  related={props.payload?.entries.some((entry) => relatedIds.has(entry.id))}
                   onHover={(row) => setActiveKey(row.key)}
                   onLeave={() => setActiveKey(null)}
-                  onSelect={(row) => onSelect?.(row.points)}
+                  onSelect={(row) => onSelect?.(row.entries)}
                 />
               )}
             />
@@ -250,7 +253,7 @@ export function ParetoChart({
                   efficientLabel={t('bestEfficiency')}
                   onHover={(row) => setActiveKey(row.key)}
                   onLeave={() => setActiveKey(null)}
-                  onSelect={(row) => onSelect?.(row.points)}
+                  onSelect={(row) => onSelect?.(row.entries)}
                 />
               )}
             />

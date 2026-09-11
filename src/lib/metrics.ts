@@ -1,6 +1,6 @@
 import type { BoardKey } from '../types'
 import type { DictKey } from './i18n'
-import type { SortKey } from './compare'
+import type { SortKey } from '../domain/comparison'
 import {
   LEADERBOARD_PRESENTATION,
   resolveLeaderboardPresentation,

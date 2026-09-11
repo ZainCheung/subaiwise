@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import type { BoardKey, BoardMeta, PricingPoint } from '../types'
+import type { BoardMeta, SubAIWiseEntry } from '../data/schema'
+import type { BoardKey } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
   extractSourceUrl,
@@ -8,7 +9,8 @@ import {
   formatScore,
   formatUsdPerMtok,
 } from '../lib/format'
-import { apiSavingRatio, formatApiSaving, pointScore } from '../lib/compare'
+import { apiSavingRatio, formatApiSaving } from '../domain/pricing'
+import { monthlyYi, selectBenchmarkScore, selectBenchmarkVariant } from '../domain/selectors'
 import { isThirdParty } from '../data/channel'
 import { availableLeaderboardKeys, boardTitle } from '../lib/labels'
 import {
@@ -16,7 +18,6 @@ import {
   resolveLeaderboardPresentation,
 } from '../lib/leaderboards'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
-import { variantKey } from '../lib/pareto'
 import { MetricHelp, MetricInfo } from './MetricInfo'
 import { BrandMarks } from './ProviderLogo'
 
@@ -94,7 +95,7 @@ export function HowToRead({
 }
 
 export function RowDetail({
-  point,
+  entry,
   scoreBoard,
   boards,
   boardMetas,
@@ -102,7 +103,7 @@ export function RowDetail({
   compareFull,
   onToggleCompare,
 }: {
-  point: PricingPoint
+  entry: SubAIWiseEntry
   scoreBoard: BoardKey
   boards?: readonly string[]
   boardMetas?: Record<string, BoardMeta>
@@ -111,51 +112,51 @@ export function RowDetail({
   onToggleCompare: () => void
 }) {
   const { t, lang } = useI18n()
-  const confKey = confidenceKey(point.confidence)
-  const sourceUrl = extractSourceUrl(point.source)
-  const saving = apiSavingRatio(point)
+  const confKey = confidenceKey(entry.quality.confidence)
+  const sourceUrl = extractSourceUrl(entry.source.label)
+  const saving = apiSavingRatio(entry)
   const compareDisabled = !inCompare && compareFull
   const visibleBoards = boards ?? availableLeaderboardKeys(boardMetas ?? [])
 
   return (
     <div>
       <div className="flex items-start gap-2.5">
-        <BrandMarks maker={point.vendor} channel={point.channel} size="md" />
+        <BrandMarks maker={entry.provider} channel={entry.channel} size="md" />
         <div className="min-w-0">
-          <h3 className="text-[15px] font-semibold leading-snug text-ink">{point.model_display}</h3>
-          <p className="mt-0.5 text-[13px] text-ink-muted">{point.plan}</p>
+          <h3 className="text-[15px] font-semibold leading-snug text-ink">{entry.model.name}</h3>
+          <p className="mt-0.5 text-[13px] text-ink-muted">{entry.plan.name}</p>
         </div>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-ink-muted">
-        <span>{point.channel}</span>
-        {isThirdParty(point.vendor, point.channel) ? (
+        <span>{entry.channel}</span>
+        {isThirdParty(entry.provider, entry.channel) ? (
           <>
             <span className="text-ink-dim">·</span>
-            <span>{point.vendor}</span>
+            <span>{entry.provider}</span>
           </>
         ) : null}
         <span className="text-ink-dim">·</span>
-        {point.billing === 'metered' ? t('billingApi') : t('billingSub')}
+        {entry.plan.billing === 'metered' ? t('billingApi') : t('billingSub')}
       </div>
 
       <Section title={t('sectionPricing')}>
         <Field label={<MetricLabel text={t('fieldRealPrice')} def={PRICE_METRIC} />}>
           <span className="num">
-            {formatUsdPerMtok(point.real_usd_per_mtok)}
+            {formatUsdPerMtok(entry.pricing.effectiveUsdPerMillionTokens)}
             <span className="text-ink-dim"> {t('perMtok')}</span>
           </span>
         </Field>
         <Field label={t('fieldMonthlyFee')}>
-          <span className="num">{formatMonthlyFee(point.price_usd)}</span>
+          <span className="num">{formatMonthlyFee(entry.pricing.monthlyUsd)}</span>
         </Field>
         <Field label={<MetricLabel text={t('fieldUsableTokens')} def={ALLOWANCE_METRIC} />}>
-          <span className="num">{formatAllowanceYi(point.monthly_yi, lang)}</span>
+          <span className="num">{formatAllowanceYi(monthlyYi(entry), lang)}</span>
         </Field>
-        {point.list_blended_usd_per_mtok != null ? (
+        {entry.pricing.listUsdPerMillionTokens != null ? (
           <Field label={t('fieldListPrice')}>
             <span className="num">
-              {formatUsdPerMtok(point.list_blended_usd_per_mtok)}
+              {formatUsdPerMtok(entry.pricing.listUsdPerMillionTokens)}
               <span className="text-ink-dim"> {t('perMtok')}</span>
             </span>
           </Field>
@@ -185,8 +186,8 @@ export function RowDetail({
 
       <Section title={t('sectionBenchmarks')}>
         {visibleBoards.map((board) => {
-          const value = pointScore(point, board)
-          const variant = point[variantKey(board)]
+          const value = selectBenchmarkScore(entry, board)
+          const variant = selectBenchmarkVariant(entry, board)
           const meta = boardMetas?.[board]
           const formatter = leaderboardFormatter(board, meta)
           return (
@@ -223,7 +224,7 @@ export function RowDetail({
             </>
           }
         >
-          <span className="tracking-wide">{confKey ? t(confKey) : point.confidence}</span>
+          <span className="tracking-wide">{confKey ? t(confKey) : entry.quality.confidence}</span>
         </Field>
         <Field label={t('fieldSource')}>
           <div className="space-y-1">
@@ -238,13 +239,13 @@ export function RowDetail({
               </a>
             ) : null}
             <span className="block text-[12px] leading-snug text-ink-muted">
-              {point.source || '—'}
+              {entry.source.label || '—'}
             </span>
           </div>
         </Field>
-        {point.note ? (
+        {entry.source.note ? (
           <Field label={t('fieldNote')}>
-            <span className="text-[12px] leading-snug text-ink-muted">{point.note}</span>
+            <span className="text-[12px] leading-snug text-ink-muted">{entry.source.note}</span>
           </Field>
         ) : null}
       </Section>

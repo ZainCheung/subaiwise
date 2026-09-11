@@ -1,4 +1,4 @@
-import type { PricingPoint } from '../../types'
+import type { SubAIWiseEntry } from '../../data/schema'
 import { useI18n } from '../../lib/i18n'
 import { formatScore, type ScoreFormat } from '../../lib/format'
 import { ChartTooltipShell } from '../ChartTooltip'
@@ -6,37 +6,37 @@ import { BrandMarks } from '../ProviderLogo'
 
 export function ParetoTooltip({
   active,
-  points,
+  entries,
   score,
   formatter = 'score',
 }: {
   active?: boolean
-  points: PricingPoint[]
+  entries: SubAIWiseEntry[]
   score: number
   formatter?: ScoreFormat
 }) {
   const { t } = useI18n()
-  if (!points.length) return null
+  if (!entries.length) return null
   return (
     <ChartTooltipShell active={active}>
-      {points.map((point) => (
-        <div key={point.id} className="border-b border-border py-1.5 last:border-b-0 last:pb-0 first:pt-0">
+      {entries.map((entry) => (
+        <div key={entry.id} className="border-b border-border py-1.5 last:border-b-0 last:pb-0 first:pt-0">
           <div className="flex items-start gap-2">
-            <BrandMarks maker={point.vendor} channel={point.channel} size="sm" />
+            <BrandMarks maker={entry.provider} channel={entry.channel} size="sm" />
             <div className="min-w-0">
-              <div className="font-medium text-ink">{point.model_display}</div>
+              <div className="font-medium text-ink">{entry.model.name}</div>
               <div className="text-ink-muted">
-                {point.channel} · {point.plan}
+                {entry.channel} · {entry.plan.name}
               </div>
             </div>
           </div>
         </div>
       ))}
       <div className="mt-1 text-ink-muted">
-        {points[0].billing === 'metered' ? t('billingApi') : t('billingSub')}
+        {entries[0].plan.billing === 'metered' ? t('billingApi') : t('billingSub')}
       </div>
       <div className="num mt-1.5 text-ink">
-        {t('tooltipPrice')}: ${points[0].real_usd_per_mtok.toPrecision(4)}
+        {t('tooltipPrice')}: ${entries[0].pricing.effectiveUsdPerMillionTokens.toPrecision(4)}
       </div>
       <div className="num text-ink">
         {t('tooltipScore')}: {formatScore(score, formatter)}

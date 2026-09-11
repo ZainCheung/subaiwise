@@ -1,22 +1,28 @@
 import { useMemo, useState, type KeyboardEvent } from 'react'
-import type { BoardKey, PointsPayload, PricingPoint } from '../types'
+import type { SubAIWiseDataset, SubAIWiseEntry } from '../data/schema'
+import type { BoardKey } from '../types'
 import { useI18n, type DictKey } from '../lib/i18n'
 import {
   CONFIDENCE_LEVELS,
   MAX_COMPARE,
-  filterPoints,
+  filterCompareEntries,
   groupByModel,
   isBoardSort,
-  pointScore,
+  sortEntries,
   sortGroups,
-  sortPoints,
-  uniqueVendors,
   type BillingFilter,
   type CompareView,
   type ConfidenceFilter,
   type SortKey,
-} from '../lib/compare'
-import { filterPricingPoints, type IdFilter } from '../lib/filters'
+} from '../domain/comparison'
+import {
+  entryLabel,
+  filterEntries,
+  monthlyYi,
+  selectBenchmarkScore,
+  selectMakers,
+} from '../domain/selectors'
+import type { IdFilter } from '../lib/filters'
 import {
   availableLeaderboardKeys,
   boardTitle,
@@ -48,7 +54,7 @@ function activateOnKey(e: KeyboardEvent, fn: () => void) {
 }
 
 function CompareRow({
-  point,
+  entry,
   nested,
   selected,
   scoreBoard,
@@ -58,7 +64,7 @@ function CompareRow({
   onSelect,
   onToggleExpand,
 }: {
-  point: PricingPoint
+  entry: SubAIWiseEntry
   nested?: boolean
   selected: boolean
   scoreBoard: BoardKey
@@ -69,9 +75,9 @@ function CompareRow({
   onToggleExpand?: () => void
 }) {
   const { t, lang } = useI18n()
-  const score = pointScore(point, scoreBoard)
-  const confKey = confidenceKey(point.confidence)
-  const isApi = point.billing === 'metered'
+  const score = selectBenchmarkScore(entry, scoreBoard)
+  const confKey = confidenceKey(entry.quality.confidence)
+  const isApi = entry.plan.billing === 'metered'
   const showExpand = (variantCount ?? 0) > 1 && onToggleExpand
 
   return (
@@ -79,37 +85,46 @@ function CompareRow({
       tabIndex={0}
       aria-current={selected ? 'true' : undefined}
       aria-expanded={showExpand ? Boolean(expanded) : undefined}
-      title={point.label}
+      title={entryLabel(entry)}
       onClick={onSelect}
       onKeyDown={(e) => activateOnKey(e, onSelect)}
       className={`compare-row ${selected ? 'compare-row-active' : ''} ${nested ? 'compare-row-nested' : ''}`}
     >
       <div className="min-w-0">
         {nested ? (
-          <PlanIdentity point={point} logo="always" />
+          <PlanIdentity
+            maker={entry.provider}
+            channel={entry.channel}
+            planName={entry.plan.name}
+            logo="always"
+          />
         ) : (
-          <ModelIdentity point={point} />
+          <ModelIdentity maker={entry.provider} modelName={entry.model.name} />
         )}
         <div className="truncate pl-7 text-[11px] text-ink-dim lg:hidden">
-          {nested ? `${isApi ? t('billingApi') : t('billingSub')} · ${point.channel}` : point.plan}
+          {nested ? `${isApi ? t('billingApi') : t('billingSub')} · ${entry.channel}` : entry.plan.name}
         </div>
       </div>
       <div className="hidden min-w-0 sm:block">
         {nested ? (
-          <div className="truncate text-[13px] text-ink">{point.channel}</div>
+          <div className="truncate text-[13px] text-ink">{entry.channel}</div>
         ) : (
-          <PlanIdentity point={point} />
+          <PlanIdentity
+            maker={entry.provider}
+            channel={entry.channel}
+            planName={entry.plan.name}
+          />
         )}
         <div className="truncate text-[11px] text-ink-dim">
           {isApi ? t('billingApi') : t('billingSub')}
-          {nested ? '' : ` · ${point.channel}`}
+          {nested ? '' : ` · ${entry.channel}`}
         </div>
       </div>
       <div className="num text-right text-[13px] text-ink">
-        {formatUsdPerMtok(point.real_usd_per_mtok)}
+        {formatUsdPerMtok(entry.pricing.effectiveUsdPerMillionTokens)}
       </div>
       <div className="num hidden text-right text-[13px] text-ink lg:block">
-        {formatAllowanceYi(point.monthly_yi, lang, true)}
+        {formatAllowanceYi(monthlyYi(entry), lang, true)}
       </div>
       <div
         className="num hidden text-right text-[13px] text-ink lg:block"
@@ -118,7 +133,7 @@ function CompareRow({
         {formatScore(score, scoreFormat)}
       </div>
       <div className="hidden text-right text-[10px] font-medium uppercase tracking-[0.08em] text-ink-dim lg:block">
-        {confKey ? t(confKey) : point.confidence}
+        {confKey ? t(confKey) : entry.quality.confidence}
       </div>
       <div className="flex justify-end">
         {showExpand ? (
@@ -143,20 +158,23 @@ function CompareRow({
 }
 
 export function CompareSection({
-  data,
+  dataset,
   models,
   channels,
   onModelsChange,
   onChannelsChange,
 }: {
-  data: PointsPayload
+  dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t, lang } = useI18n()
-  const boards = useMemo(() => availableLeaderboardKeys(data.boards), [data.boards])
+  const boards = useMemo(
+    () => availableLeaderboardKeys(dataset.leaderboards),
+    [dataset.leaderboards],
+  )
   const [query, setQuery] = useState('')
   const [view, setView] = useState<CompareView>('models')
   const [sortKey, setSortKey] = useState<SortKey>('price')
@@ -168,16 +186,16 @@ export function CompareSection({
   const [compareIds, setCompareIds] = useState<string[]>([])
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
 
-  const vendors = useMemo(() => uniqueVendors(data.points), [data.points])
+  const vendors = useMemo(() => selectMakers(dataset.entries), [dataset.entries])
 
   const identityFiltered = useMemo(
-    () => filterPricingPoints(data.points, { models, channels }),
-    [data.points, models, channels],
+    () => filterEntries(dataset.entries, { models, channels }),
+    [dataset.entries, models, channels],
   )
 
   const filtered = useMemo(
     () =>
-      filterPoints(identityFiltered, {
+      filterCompareEntries(identityFiltered, {
         query,
         billing,
         vendor,
@@ -186,21 +204,21 @@ export function CompareSection({
     [identityFiltered, query, billing, vendor, confidence],
   )
 
-  const planRows = useMemo(() => sortPoints(filtered, sortKey), [filtered, sortKey])
+  const planRows = useMemo(() => sortEntries(filtered, sortKey), [filtered, sortKey])
   const modelGroups = useMemo(
     () => sortGroups(groupByModel(filtered, sortKey), sortKey),
     [filtered, sortKey],
   )
 
   const selected =
-    detail && detail !== 'howto' ? (data.points.find((p) => p.id === detail) ?? null) : null
+    detail && detail !== 'howto' ? (dataset.entries.find((p) => p.id === detail) ?? null) : null
 
   const openRow = (id: string) => {
     setDetail((current) => (current === id ? null : id))
   }
   const comparePts = compareIds
-    .map((id) => data.points.find((p) => p.id === id))
-    .filter((p): p is PricingPoint => p != null)
+    .map((id) => dataset.entries.find((p) => p.id === id))
+    .filter((p): p is SubAIWiseEntry => p != null)
 
   const onSort = (key: SortKey) => {
     setSortKey(key)
@@ -225,8 +243,8 @@ export function CompareSection({
   }
 
   const visibleCount = view === 'models' ? modelGroups.length : planRows.length
-  const scoreFormat = leaderboardFormatter(scoreBoard, data.boards[scoreBoard])
-  const scoreTitle = boardTitle(scoreBoard, lang, data.boards[scoreBoard])
+  const scoreFormat = leaderboardFormatter(scoreBoard, dataset.leaderboards[scoreBoard])
+  const scoreTitle = boardTitle(scoreBoard, lang, dataset.leaderboards[scoreBoard])
 
   return (
     <section
@@ -306,7 +324,7 @@ export function CompareSection({
             />
             {boards.map((b) => (
               <SortMetricPill key={b} active={sortKey === b} metricKey={b} onClick={() => onSort(b)}>
-                {boardTitle(b, lang, data.boards[b])}
+                {boardTitle(b, lang, dataset.leaderboards[b])}
               </SortMetricPill>
             ))}
           </PillGroup>
@@ -314,7 +332,7 @@ export function CompareSection({
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <IdentityFilters
-            points={data.points}
+            entries={dataset.entries}
             models={models}
             channels={channels}
             onModelsChange={onModelsChange}
@@ -400,7 +418,7 @@ export function CompareSection({
               return (
                 <div key={g.model}>
                   <CompareRow
-                    point={g.best}
+                    entry={g.best}
                     selected={detail === g.best.id}
                     scoreBoard={scoreBoard}
                     scoreFormat={scoreFormat}
@@ -413,7 +431,7 @@ export function CompareSection({
                     ? rest.map((p) => (
                         <CompareRow
                           key={p.id}
-                          point={p}
+                          entry={p}
                           nested
                           selected={detail === p.id}
                           scoreBoard={scoreBoard}
@@ -429,7 +447,7 @@ export function CompareSection({
             planRows.map((p) => (
               <CompareRow
                 key={p.id}
-                point={p}
+                entry={p}
                 selected={detail === p.id}
                 scoreBoard={scoreBoard}
                 scoreFormat={scoreFormat}
@@ -446,19 +464,19 @@ export function CompareSection({
           title={
             detail === 'howto' || !selected
               ? t('howToRead')
-              : `${selected.model_display} · ${selected.plan}`
+              : `${selected.model.name} · ${selected.plan.name}`
           }
           onClose={() => setDetail(null)}
           closeLabel={t('closeDetail')}
         >
           {detail === 'howto' || !selected ? (
-            <HowToRead scoreBoard={scoreBoard} boardMeta={data.boards[scoreBoard]} />
+            <HowToRead scoreBoard={scoreBoard} boardMeta={dataset.leaderboards[scoreBoard]} />
           ) : (
             <RowDetail
-              point={selected}
+              entry={selected}
               scoreBoard={scoreBoard}
               boards={boards}
-              boardMetas={data.boards}
+              boardMetas={dataset.leaderboards}
               inCompare={compareIds.includes(selected.id)}
               compareFull={compareIds.length >= MAX_COMPARE}
               onToggleCompare={() => toggleCompare(selected.id)}
@@ -486,8 +504,8 @@ export function CompareSection({
               <div key={p.id} className="rounded-md border border-border px-3 py-2.5">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <div className="truncate text-[13px] font-medium text-ink">{p.model_display}</div>
-                    <div className="truncate text-[11px] text-ink-dim">{p.plan}</div>
+                    <div className="truncate text-[13px] font-medium text-ink">{p.model.name}</div>
+                    <div className="truncate text-[11px] text-ink-dim">{p.plan.name}</div>
                   </div>
                   <button
                     type="button"
@@ -499,21 +517,25 @@ export function CompareSection({
                 </div>
                 <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-[12px]">
                   <span className="text-ink-dim">{t('colPrice')}</span>
-                  <span className="num text-right text-ink">{formatUsdPerMtok(p.real_usd_per_mtok)}</span>
+                  <span className="num text-right text-ink">
+                    {formatUsdPerMtok(p.pricing.effectiveUsdPerMillionTokens)}
+                  </span>
                   <span className="text-ink-dim">{t('colAllowance')}</span>
                   <span className="num text-right text-ink">
-                    {formatAllowanceYi(p.monthly_yi, lang, true)}
+                    {formatAllowanceYi(monthlyYi(p), lang, true)}
                   </span>
                   <span className="text-ink-dim">{t('colScore')}</span>
                   <span
                     className="num text-right text-ink"
-                    title={pointScore(p, scoreBoard) == null ? t('missingScoreNote') : undefined}
+                    title={selectBenchmarkScore(p, scoreBoard) == null ? t('missingScoreNote') : undefined}
                   >
-                    {formatScore(pointScore(p, scoreBoard), scoreFormat)}
+                    {formatScore(selectBenchmarkScore(p, scoreBoard), scoreFormat)}
                   </span>
                   <span className="text-ink-dim">{t('colConfidence')}</span>
                   <span className="text-right uppercase tracking-wide text-ink">
-                    {confidenceKey(p.confidence) ? t(confidenceKey(p.confidence)!) : p.confidence}
+                    {confidenceKey(p.quality.confidence)
+                      ? t(confidenceKey(p.quality.confidence)!)
+                      : p.quality.confidence}
                   </span>
                 </div>
               </div>

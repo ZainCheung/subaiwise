@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react'
-import type { BoardKey, PointsPayload, PricingPoint } from '../../types'
+import type { SubAIWiseDataset, SubAIWiseEntry } from '../../data/schema'
+import type { BoardKey } from '../../types'
 import { useI18n } from '../../lib/i18n'
-import { filterPricingPoints, type IdFilter } from '../../lib/filters'
+import { filterEntries } from '../../domain/selectors'
+import type { IdFilter } from '../../lib/filters'
 import {
   availableLeaderboardKeys,
   boardTitle,
   defaultLeaderboardKey,
 } from '../../lib/labels'
-import { MAX_COMPARE } from '../../lib/compare'
+import { MAX_COMPARE } from '../../domain/comparison'
 import { AppDialog } from '../AppDialog'
 import { IdentityFilters } from '../ModelServiceFilters'
 import { MetricInfo } from '../MetricInfo'
@@ -17,31 +19,34 @@ import { ParetoChart } from './ParetoChart'
 import { ParetoFullscreenDialog } from './ParetoFullscreenDialog'
 
 export function Leaderboard({
-  data,
+  dataset,
   models,
   channels,
   onModelsChange,
   onChannelsChange,
 }: {
-  data: PointsPayload
+  dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t, lang } = useI18n()
-  const boards = useMemo(() => availableLeaderboardKeys(data.boards), [data.boards])
+  const boards = useMemo(
+    () => availableLeaderboardKeys(dataset.leaderboards),
+    [dataset.leaderboards],
+  )
   const [board, setBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
   const [showAll, setShowAll] = useState(false)
   const [expanded, setExpanded] = useState(false)
-  const [group, setGroup] = useState<PricingPoint[] | null>(null)
-  const [detail, setDetail] = useState<PricingPoint | null>(null)
+  const [group, setGroup] = useState<SubAIWiseEntry[] | null>(null)
+  const [detail, setDetail] = useState<SubAIWiseEntry | null>(null)
   const [compareIds, setCompareIds] = useState<string[]>([])
   const [howto, setHowto] = useState(false)
 
-  const points = useMemo(
-    () => filterPricingPoints(data.points, { models, channels }),
-    [data.points, models, channels],
+  const entries = useMemo(
+    () => filterEntries(dataset.entries, { models, channels }),
+    [dataset.entries, models, channels],
   )
 
   const toggleCompare = (id: string) => {
@@ -52,7 +57,7 @@ export function Leaderboard({
     })
   }
 
-  const openGroup = (records: PricingPoint[]) => {
+  const openGroup = (records: SubAIWiseEntry[]) => {
     if (records.length === 1) {
       setDetail(records[0])
       setGroup(null)
@@ -65,8 +70,8 @@ export function Leaderboard({
   const chart = (activeBoard: BoardKey, isExpanded = false) => (
     <ParetoChart
       board={activeBoard}
-      meta={data.boards[activeBoard]}
-      points={points}
+      meta={dataset.leaderboards[activeBoard]}
+      entries={entries}
       expanded={isExpanded}
       onSelect={openGroup}
     />
@@ -94,7 +99,7 @@ export function Leaderboard({
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <IdentityFilters
-            points={data.points}
+            entries={dataset.entries}
             models={models}
             channels={channels}
             onModelsChange={onModelsChange}
@@ -124,7 +129,7 @@ export function Leaderboard({
             <PillGroup>
               {boards.map((item) => (
                 <Pill key={item} active={board === item} onClick={() => setBoard(item)}>
-                  {boardTitle(item, lang, data.boards[item])}
+                  {boardTitle(item, lang, dataset.leaderboards[item])}
                 </Pill>
               ))}
             </PillGroup>
@@ -145,7 +150,7 @@ export function Leaderboard({
 
       {howto ? (
         <AppDialog title={t('howToRead')} onClose={() => setHowto(false)} closeLabel={t('closeDetail')}>
-          <HowToRead scoreBoard={board} boardMeta={data.boards[board]} />
+          <HowToRead scoreBoard={board} boardMeta={dataset.leaderboards[board]} />
         </AppDialog>
       ) : null}
 
@@ -156,19 +161,19 @@ export function Leaderboard({
           closeLabel={t('closeDetail')}
         >
           <ul className="space-y-2">
-            {group.map((point) => (
-              <li key={point.id}>
+            {group.map((entry) => (
+              <li key={entry.id}>
                 <button
                   type="button"
                   className="w-full rounded-md border border-border px-3 py-2 text-left hover:border-neutral-500"
                   onClick={() => {
-                    setDetail(point)
+                    setDetail(entry)
                     setGroup(null)
                   }}
                 >
-                  <div className="text-[13px] font-medium text-ink">{point.model_display}</div>
+                  <div className="text-[13px] font-medium text-ink">{entry.model.name}</div>
                   <div className="text-[12px] text-ink-muted">
-                    {point.channel} · {point.plan}
+                    {entry.channel} · {entry.plan.name}
                   </div>
                 </button>
               </li>
@@ -179,15 +184,15 @@ export function Leaderboard({
 
       {detail ? (
         <AppDialog
-          title={`${detail.model_display} · ${detail.plan}`}
+          title={`${detail.model.name} · ${detail.plan.name}`}
           onClose={() => setDetail(null)}
           closeLabel={t('closeDetail')}
         >
           <RowDetail
-            point={detail}
+            entry={detail}
             scoreBoard={board}
             boards={boards}
-            boardMetas={data.boards}
+            boardMetas={dataset.leaderboards}
             inCompare={compareIds.includes(detail.id)}
             compareFull={compareIds.length >= MAX_COMPARE}
             onToggleCompare={() => toggleCompare(detail.id)}

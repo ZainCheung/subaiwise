@@ -1,7 +1,7 @@
 import { useI18n } from '../lib/i18n'
-import type { PointsPayload } from '../types'
+import type { WorkloadMix } from '../data/schema'
 
-export function Method({ mix }: { mix: PointsPayload['mix'] }) {
+export function Method({ mix }: { mix: WorkloadMix }) {
   const { t } = useI18n()
   const steps = [
     { n: '01', title: t('method1Title'), body: t('method1Body') },

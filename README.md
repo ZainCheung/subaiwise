@@ -26,11 +26,13 @@ data/local.json (additions / overrides / exclusions)
 data/dataset.json
           ↓ (build-time copy)
 public/data/dataset.json
-          ↓ (runtime fetch)
-SubAIWise UI
+          ↓
+src/domain selectors
+          ↓
+Compare / Leaderboard / Overview
 ```
 
-The data layer only consumes `SubAIWiseEntry`; upstream field names stop at the adapter boundary. The reference explorer UI is kept visually identical through the derived `src/data/view-model.ts` compatibility boundary. Local changes never modify the downloaded payload. For an explicit source update, run:
+The data layer only consumes `SubAIWiseEntry`; upstream field names stop at the adapter boundary. Product views read canonical entries through `src/domain` selectors instead of a flattened compatibility payload. Local changes never modify the downloaded payload. For an explicit source update, run:
 
 ```bash
 npm run data:sync -- --ref <FULL_COMMIT_SHA>
