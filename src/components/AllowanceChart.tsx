@@ -7,6 +7,7 @@ import { shortLabel } from '../lib/labels'
 import { applyLimit, CHART_LIMITS, chartLimitKey, logWidthPct, type ChartLimit } from '../lib/limits'
 import { Pill, PillGroup } from './Pill'
 import { CompactBrandIdentity } from './ProviderLogo'
+import { TableViewport } from './TableViewport'
 
 export function AllowanceChart({ points }: { points: PricingPoint[] }) {
   const { t, lang } = useI18n()
@@ -59,7 +60,7 @@ export function AllowanceChart({ points }: { points: PricingPoint[] }) {
         </PillGroup>
       </div>
 
-      <div className="mt-6 overflow-x-auto">
+      <TableViewport className="mt-6">
         <table className="bar-table min-w-[640px]">
           <thead>
             <tr>
@@ -110,7 +111,7 @@ export function AllowanceChart({ points }: { points: PricingPoint[] }) {
             })}
           </tbody>
         </table>
-      </div>
+      </TableViewport>
     </div>
   )
 }
