@@ -52,4 +52,53 @@ describe('csv export', () => {
     expect(csv).toContain('gpt-5.6-luna')
     expect(csv.split('\r\n').length).toBeGreaterThan(3)
   })
+
+  it('labels harness/effort/mapping as belonging to the selected board', () => {
+    const csv = exportFilteredCsv(dataset, {
+      models: new Set(['gpt-5.6-luna']),
+      channels: null,
+      query: '',
+      billing: 'subscription',
+      advanced: EMPTY_ADVANCED_FILTERS,
+      sort: 'price',
+      scoreBoard: 'terminal_bench_4',
+      lang: 'en',
+    })
+    const header = csv.split('\r\n')[0]
+    expect(header).toContain('"Selected board"')
+    expect(header).toContain('"Selected board harness"')
+    expect(header).toContain('"Selected board effort"')
+    expect(header).toContain('"Selected board mapping confidence"')
+    expect(header).not.toMatch(/,"Harness",/)
+    expect(csv).toContain('"Terminal-Bench 4.0"')
+  })
+
+  it('uses board presentation for an unknown future selected board', () => {
+    const future = {
+      ...dataset,
+      leaderboards: {
+        ...dataset.leaderboards,
+        future_board: {
+          name: 'Future Bench',
+          metric: 'Score',
+          url: 'https://example.com/future',
+          snapshot: '2026-01-01',
+        },
+      },
+    }
+    const csv = exportFilteredCsv(future, {
+      models: new Set(['gpt-5.6-luna']),
+      channels: null,
+      query: '',
+      billing: 'all',
+      advanced: EMPTY_ADVANCED_FILTERS,
+      sort: 'price',
+      scoreBoard: 'future_board',
+      lang: 'en',
+    })
+    const header = csv.split('\r\n')[0]
+    expect(header).toContain('"Future Bench score"')
+    expect(header).toContain('"Selected board harness"')
+    expect(csv).toContain('"Future Bench"')
+  })
 })
