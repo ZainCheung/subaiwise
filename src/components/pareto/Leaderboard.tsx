@@ -10,7 +10,7 @@ import {
   availableLeaderboardKeys,
   boardTitle,
 } from '../../lib/labels'
-import { MAX_COMPARE } from '../../domain/comparison'
+import { MAX_COMPARE, toggleCompareId } from '../../domain/comparison'
 import { AppDialog } from '../AppDialog'
 import { IdentityFilters } from '../ModelServiceFilters'
 import { MetricInfo } from '../MetricInfo'
@@ -25,20 +25,24 @@ export function Leaderboard({
   channels,
   advanced,
   board,
+  compareIds,
   onModelsChange,
   onChannelsChange,
   onAdvancedChange,
   onBoardChange,
+  onCompareIdsChange,
 }: {
   dataset: SubAIWiseDataset
   models: IdFilter
   channels: IdFilter
   advanced: AdvancedFilters
   board: BoardKey
+  compareIds: string[]
   onModelsChange: (next: IdFilter) => void
   onChannelsChange: (next: IdFilter) => void
   onAdvancedChange: (next: AdvancedFilters) => void
   onBoardChange: (next: BoardKey) => void
+  onCompareIdsChange: (next: string[]) => void
 }) {
   const { t, lang } = useI18n()
   const boards = useMemo(
@@ -49,7 +53,6 @@ export function Leaderboard({
   const [expanded, setExpanded] = useState(false)
   const [group, setGroup] = useState<SubAIWiseEntry[] | null>(null)
   const [detail, setDetail] = useState<SubAIWiseEntry | null>(null)
-  const [compareIds, setCompareIds] = useState<string[]>([])
   const [howto, setHowto] = useState(false)
 
   const entries = useMemo(
@@ -59,11 +62,7 @@ export function Leaderboard({
   )
 
   const toggleCompare = (id: string) => {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((value) => value !== id)
-      if (prev.length >= MAX_COMPARE) return prev
-      return [...prev, id]
-    })
+    onCompareIdsChange(toggleCompareId(compareIds, id))
   }
 
   const openGroup = (records: SubAIWiseEntry[]) => {
