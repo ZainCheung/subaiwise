@@ -53,6 +53,7 @@
       "id": "aliyun_coding_pro_cn::qwen3.7-plus",
       "label": "Qwen3.7 Plus · 阿里云百炼 Coding Plan Pro",
       "provider": "Alibaba",
+      "channel": "Alibaba",
       "plan": {
         "id": "aliyun_coding_pro_cn",
         "name": "阿里云百炼 Coding Plan Pro",
@@ -139,6 +140,7 @@
       "id": "aliyun_coding_pro_global::qwen3.7-plus",
       "label": "Qwen3.7 Plus · Alibaba Cloud Coding Plan Pro",
       "provider": "Alibaba",
+      "channel": "Alibaba",
       "plan": {
         "id": "aliyun_coding_pro_global",
         "name": "Alibaba Cloud Coding Plan Pro",
@@ -225,6 +227,7 @@
       "id": "anthropic_fable5_api::claude-fable-5",
       "label": "Claude Fable 5 API",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "anthropic_fable5_api",
         "name": "Claude Fable 5 API",
@@ -347,6 +350,7 @@
       "id": "anthropic_opus5_api::claude-opus-5",
       "label": "Claude Opus 5 API",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "anthropic_opus5_api",
         "name": "Claude Opus 5 API",
@@ -469,6 +473,7 @@
       "id": "anthropic_sonnet5_api::claude-sonnet-5",
       "label": "Claude Sonnet 5 API",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "anthropic_sonnet5_api",
         "name": "Claude Sonnet 5 API",
@@ -573,6 +578,7 @@
       "id": "chatgpt_plus::gpt-5.5",
       "label": "GPT 5.5 · ChatGPT Plus",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_plus",
         "name": "ChatGPT Plus",
@@ -677,6 +683,7 @@
       "id": "chatgpt_plus::gpt-5.6-luna",
       "label": "GPT 5.6 Luna · ChatGPT Plus",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_plus",
         "name": "ChatGPT Plus",
@@ -799,6 +806,7 @@
       "id": "chatgpt_plus::gpt-5.6-sol",
       "label": "GPT 5.6 Sol · ChatGPT Plus",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_plus",
         "name": "ChatGPT Plus",
@@ -939,6 +947,7 @@
       "id": "chatgpt_plus::gpt-5.6-terra",
       "label": "GPT 5.6 Terra · ChatGPT Plus",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_plus",
         "name": "ChatGPT Plus",
@@ -1061,6 +1070,7 @@
       "id": "chatgpt_pro_20x::gpt-5.5",
       "label": "GPT 5.5 · ChatGPT Pro 20x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_20x",
         "name": "ChatGPT Pro 20x",
@@ -1165,6 +1175,7 @@
       "id": "chatgpt_pro_20x::gpt-5.6-luna",
       "label": "GPT 5.6 Luna · ChatGPT Pro 20x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_20x",
         "name": "ChatGPT Pro 20x",
@@ -1287,6 +1298,7 @@
       "id": "chatgpt_pro_20x::gpt-5.6-sol",
       "label": "GPT 5.6 Sol · ChatGPT Pro 20x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_20x",
         "name": "ChatGPT Pro 20x",
@@ -1427,6 +1439,7 @@
       "id": "chatgpt_pro_20x::gpt-5.6-terra",
       "label": "GPT 5.6 Terra · ChatGPT Pro 20x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_20x",
         "name": "ChatGPT Pro 20x",
@@ -1549,6 +1562,7 @@
       "id": "chatgpt_pro_5x::gpt-5.5",
       "label": "GPT 5.5 · ChatGPT Pro 5x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_5x",
         "name": "ChatGPT Pro 5x",
@@ -1653,6 +1667,7 @@
       "id": "chatgpt_pro_5x::gpt-5.6-luna",
       "label": "GPT 5.6 Luna · ChatGPT Pro 5x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_5x",
         "name": "ChatGPT Pro 5x",
@@ -1775,6 +1790,7 @@
       "id": "chatgpt_pro_5x::gpt-5.6-sol",
       "label": "GPT 5.6 Sol · ChatGPT Pro 5x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_5x",
         "name": "ChatGPT Pro 5x",
@@ -1915,6 +1931,7 @@
       "id": "chatgpt_pro_5x::gpt-5.6-terra",
       "label": "GPT 5.6 Terra · ChatGPT Pro 5x",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "chatgpt_pro_5x",
         "name": "ChatGPT Pro 5x",
@@ -2037,6 +2054,7 @@
       "id": "claude_max_20x::claude-fable-5",
       "label": "Claude Fable 5 · Claude Max 20x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_20x",
         "name": "Claude Max 20x (9/14+)",
@@ -2159,6 +2177,7 @@
       "id": "claude_max_20x::claude-opus-4.8",
       "label": "Claude Opus 4.8 · Claude Max 20x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_20x",
         "name": "Claude Max 20x (9/14+)",
@@ -2281,6 +2300,7 @@
       "id": "claude_max_20x::claude-opus-5",
       "label": "Claude Opus 5 · Claude Max 20x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_20x",
         "name": "Claude Max 20x (9/14+)",
@@ -2403,6 +2423,7 @@
       "id": "claude_max_20x::claude-sonnet-5",
       "label": "Claude Sonnet 5 · Claude Max 20x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_20x",
         "name": "Claude Max 20x (9/14+)",
@@ -2507,6 +2528,7 @@
       "id": "claude_max_5x::claude-fable-5",
       "label": "Claude Fable 5 · Claude Max 5x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_5x",
         "name": "Claude Max 5x (9/14+)",
@@ -2629,6 +2651,7 @@
       "id": "claude_max_5x::claude-opus-5",
       "label": "Claude Opus 5 · Claude Max 5x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_5x",
         "name": "Claude Max 5x (9/14+)",
@@ -2751,6 +2774,7 @@
       "id": "claude_max_5x::claude-sonnet-5",
       "label": "Claude Sonnet 5 · Claude Max 5x (9/14+)",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_max_5x",
         "name": "Claude Max 5x (9/14+)",
@@ -2855,6 +2879,7 @@
       "id": "claude_pro::claude-opus-4.8",
       "label": "Claude Opus 4.8 · Claude Pro",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_pro",
         "name": "Claude Pro",
@@ -2977,6 +3002,7 @@
       "id": "claude_pro::claude-sonnet-5",
       "label": "Claude Sonnet 5 · Claude Pro",
       "provider": "Anthropic",
+      "channel": "Anthropic",
       "plan": {
         "id": "claude_pro",
         "name": "Claude Pro",
@@ -3081,6 +3107,7 @@
       "id": "command_code_goat::deepseek-v4-flash-fast",
       "label": "DeepSeek V4 Flash Fast · Command Code GOAT",
       "provider": "DeepSeek",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3112,6 +3139,7 @@
       "id": "command_code_goat::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro · Command Code GOAT",
       "provider": "DeepSeek",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3234,6 +3262,7 @@
       "id": "command_code_goat::deepseek-v4.1-flash",
       "label": "DeepSeek V4.1 Flash · Command Code GOAT",
       "provider": "DeepSeek",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3284,6 +3313,7 @@
       "id": "command_code_goat::gemini-3.7-flash",
       "label": "Gemini 3.7 Flash · Command Code GOAT",
       "provider": "Google",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3406,6 +3436,7 @@
       "id": "command_code_goat::gemini-3.8-flash",
       "label": "Gemini 3.8 Flash · Command Code GOAT",
       "provider": "Google",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3510,6 +3541,7 @@
       "id": "command_code_goat::glm-5.2",
       "label": "GLM 5.2 · Command Code GOAT",
       "provider": "Zhipu",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3578,6 +3610,7 @@
       "id": "command_code_goat::glm-5.2-fast",
       "label": "GLM 5.2 Fast · Command Code GOAT",
       "provider": "Zhipu",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3609,6 +3642,7 @@
       "id": "command_code_goat::glm-5.3",
       "label": "GLM 5.3 · Command Code GOAT",
       "provider": "Zhipu",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3713,6 +3747,7 @@
       "id": "command_code_goat::glm-5.3-flash",
       "label": "GLM 5.3 Flash · Command Code GOAT",
       "provider": "Zhipu",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3817,6 +3852,7 @@
       "id": "command_code_goat::gpt-5.6-luna",
       "label": "GPT 5.6 Luna · Command Code GOAT",
       "provider": "OpenAI",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -3939,6 +3975,7 @@
       "id": "command_code_goat::gpt-5.6-sol",
       "label": "GPT 5.6 Sol · Command Code GOAT",
       "provider": "OpenAI",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4079,6 +4116,7 @@
       "id": "command_code_goat::grok-4.5",
       "label": "Grok 4.5 · Command Code GOAT",
       "provider": "xAI",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4201,6 +4239,7 @@
       "id": "command_code_goat::grok-4.6",
       "label": "Grok 4.6 · Command Code GOAT",
       "provider": "xAI",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4323,6 +4362,7 @@
       "id": "command_code_goat::hy3",
       "label": "Hy3 · Command Code GOAT",
       "provider": "Tencent",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4409,6 +4449,7 @@
       "id": "command_code_goat::hy4-preview",
       "label": "Hy4 Preview · Command Code GOAT",
       "provider": "Tencent",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4495,6 +4536,7 @@
       "id": "command_code_goat::inkling",
       "label": "Inkling · Command Code GOAT",
       "provider": "other",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4545,6 +4587,7 @@
       "id": "command_code_goat::inkling-small",
       "label": "Inkling Small · Command Code GOAT",
       "provider": "other",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4595,6 +4638,7 @@
       "id": "command_code_goat::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Command Code GOAT",
       "provider": "Kimi",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4681,6 +4725,7 @@
       "id": "command_code_goat::kimi-k2.7-code-highspeed",
       "label": "Kimi K2.7 Code HighSpeed · Command Code GOAT",
       "provider": "Kimi",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4712,6 +4757,7 @@
       "id": "command_code_goat::kimi-k3",
       "label": "Kimi K3 · Command Code GOAT",
       "provider": "Kimi",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4834,6 +4880,7 @@
       "id": "command_code_goat::mimo-v2.5",
       "label": "MiMo V2.5 · Command Code GOAT",
       "provider": "Xiaomi",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4884,6 +4931,7 @@
       "id": "command_code_goat::mimo-v2.5-pro",
       "label": "MiMo V2.5 Pro · Command Code GOAT",
       "provider": "Xiaomi",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -4970,6 +5018,7 @@
       "id": "command_code_goat::minimax-m3",
       "label": "MiniMax M3 · Command Code GOAT",
       "provider": "MiniMax",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5056,6 +5105,7 @@
       "id": "command_code_goat::muse-spark-1.2",
       "label": "Muse Spark 1.2 · Command Code GOAT",
       "provider": "Muse",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5124,6 +5174,7 @@
       "id": "command_code_goat::muse-spark-1.2-contributor",
       "label": "Muse Spark 1.2 Contributor · Command Code GOAT",
       "provider": "Muse",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5155,6 +5206,7 @@
       "id": "command_code_goat::muse-spark-1.3",
       "label": "Muse Spark 1.3 · Command Code GOAT",
       "provider": "Muse",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5241,6 +5293,7 @@
       "id": "command_code_goat::muse-spark-1.3-contributor",
       "label": "Muse Spark 1.3 Contributor · Command Code GOAT",
       "provider": "Muse",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5272,6 +5325,7 @@
       "id": "command_code_goat::nemotron-3-ultra",
       "label": "Nemotron 3 Ultra · Command Code GOAT",
       "provider": "other",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5322,6 +5376,7 @@
       "id": "command_code_goat::qwen3.6-plus",
       "label": "Qwen3.6 Plus · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5372,6 +5427,7 @@
       "id": "command_code_goat::qwen3.7-max",
       "label": "Qwen3.7 Max · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5422,6 +5478,7 @@
       "id": "command_code_goat::qwen3.7-plus",
       "label": "Qwen3.7 Plus · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5508,6 +5565,7 @@
       "id": "command_code_goat::qwen3.8-27b",
       "label": "Qwen3.8 27B · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5558,6 +5616,7 @@
       "id": "command_code_goat::qwen3.8-flash",
       "label": "Qwen3.8 Flash · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5589,6 +5648,7 @@
       "id": "command_code_goat::qwen3.8-max",
       "label": "Qwen3.8 Max · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5675,6 +5735,7 @@
       "id": "command_code_goat::qwen3.8-max-0902",
       "label": "Qwen3.8 Max 0902 · Command Code GOAT",
       "provider": "Alibaba",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5706,6 +5767,7 @@
       "id": "command_code_goat::step-3.5-flash",
       "label": "Step 3.5 Flash · Command Code GOAT",
       "provider": "StepFun",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5756,6 +5818,7 @@
       "id": "command_code_goat::step-3.7-flash",
       "label": "Step 3.7 Flash · Command Code GOAT",
       "provider": "StepFun",
+      "channel": "Command Code",
       "plan": {
         "id": "command_code_goat",
         "name": "Command Code GOAT",
@@ -5806,6 +5869,7 @@
       "id": "cursor_pro_composer_fast::composer-2.5",
       "label": "Composer 2.5 · Cursor Pro (Composer Fast)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro_composer_fast",
         "name": "Cursor Pro (Composer Fast)",
@@ -5856,6 +5920,7 @@
       "id": "cursor_pro_plus_composer_fast::composer-2.5",
       "label": "Composer 2.5 · Cursor Pro+ (Composer Fast)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro_plus_composer_fast",
         "name": "Cursor Pro+ (Composer Fast)",
@@ -5906,6 +5971,7 @@
       "id": "cursor_pro_plus::composer-2.5",
       "label": "Composer 2.5 · Cursor Pro+ (Standard)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro_plus",
         "name": "Cursor Pro+ (Standard)",
@@ -5956,6 +6022,7 @@
       "id": "cursor_pro_plus::grok-4.6",
       "label": "Grok 4.6 · Cursor Pro+",
       "provider": "xAI",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro_plus",
         "name": "Cursor Pro+",
@@ -6078,6 +6145,7 @@
       "id": "cursor_pro::composer-2.5",
       "label": "Composer 2.5 · Cursor Pro (Standard)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro",
         "name": "Cursor Pro (Standard)",
@@ -6128,6 +6196,7 @@
       "id": "cursor_pro::grok-4.6",
       "label": "Grok 4.6 · Cursor Pro",
       "provider": "xAI",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_pro",
         "name": "Cursor Pro",
@@ -6250,6 +6319,7 @@
       "id": "cursor_ultra_composer_fast::composer-2.5",
       "label": "Composer 2.5 · Cursor Ultra (Composer Fast)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_ultra_composer_fast",
         "name": "Cursor Ultra (Composer Fast)",
@@ -6300,6 +6370,7 @@
       "id": "cursor_ultra_fast::grok-4.6",
       "label": "Grok 4.6 · Cursor Ultra (Fast)",
       "provider": "xAI",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_ultra_fast",
         "name": "Cursor Ultra (Fast)",
@@ -6422,6 +6493,7 @@
       "id": "cursor_ultra::composer-2.5",
       "label": "Composer 2.5 · Cursor Ultra (Standard)",
       "provider": "Cursor",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_ultra",
         "name": "Cursor Ultra (Standard)",
@@ -6472,6 +6544,7 @@
       "id": "cursor_ultra::grok-4.5",
       "label": "Grok 4.5 · Cursor Ultra",
       "provider": "xAI",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_ultra",
         "name": "Cursor Ultra",
@@ -6594,6 +6667,7 @@
       "id": "cursor_ultra::grok-4.6",
       "label": "Grok 4.6 · Cursor Ultra",
       "provider": "xAI",
+      "channel": "Cursor",
       "plan": {
         "id": "cursor_ultra",
         "name": "Cursor Ultra",
@@ -6716,6 +6790,7 @@
       "id": "deepseek_v4_flash_offpeak::deepseek-v4-flash",
       "label": "DeepSeek V4 Flash API 闲时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v4_flash_offpeak",
         "name": "DeepSeek V4 Flash API 闲时",
@@ -6838,6 +6913,7 @@
       "id": "deepseek_v4_flash_peak::deepseek-v4-flash",
       "label": "DeepSeek V4 Flash API 忙时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v4_flash_peak",
         "name": "DeepSeek V4 Flash API 忙时",
@@ -6960,6 +7036,7 @@
       "id": "deepseek_v4_pro_offpeak::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro API 闲时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v4_pro_offpeak",
         "name": "DeepSeek V4 Pro API 闲时",
@@ -7082,6 +7159,7 @@
       "id": "deepseek_v4_pro_peak::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro API 忙时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v4_pro_peak",
         "name": "DeepSeek V4 Pro API 忙时",
@@ -7204,6 +7282,7 @@
       "id": "deepseek_v41_flash_offpeak::deepseek-v4.1-flash",
       "label": "DeepSeek V4.1 Flash API 闲时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v41_flash_offpeak",
         "name": "DeepSeek V4.1 Flash API 闲时",
@@ -7254,6 +7333,7 @@
       "id": "deepseek_v41_flash_peak::deepseek-v4.1-flash",
       "label": "DeepSeek V4.1 Flash API 忙时",
       "provider": "DeepSeek",
+      "channel": "DeepSeek",
       "plan": {
         "id": "deepseek_v41_flash_peak",
         "name": "DeepSeek V4.1 Flash API 忙时",
@@ -7304,6 +7384,7 @@
       "id": "glm_coding_lite_cn_new_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (新客 ¥118) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_mid",
         "name": "GLM Coding Lite (新客 ¥118) 中间值",
@@ -7408,6 +7489,7 @@
       "id": "glm_coding_lite_cn_new_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (新客 ¥118) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_mid",
         "name": "GLM Coding Lite (新客 ¥118) 中间值",
@@ -7512,6 +7594,7 @@
       "id": "glm_coding_lite_cn_new_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (新客 ¥118) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_offpeak",
         "name": "GLM Coding Lite (新客 ¥118) 闲时",
@@ -7616,6 +7699,7 @@
       "id": "glm_coding_lite_cn_new_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (新客 ¥118) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_offpeak",
         "name": "GLM Coding Lite (新客 ¥118) 闲时",
@@ -7720,6 +7804,7 @@
       "id": "glm_coding_lite_cn_new_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (新客 ¥118) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_peak",
         "name": "GLM Coding Lite (新客 ¥118) 忙时",
@@ -7824,6 +7909,7 @@
       "id": "glm_coding_lite_cn_new_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (新客 ¥118) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_new_peak",
         "name": "GLM Coding Lite (新客 ¥118) 忙时",
@@ -7928,6 +8014,7 @@
       "id": "glm_coding_lite_cn_old_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (老客 ¥49) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_mid",
         "name": "GLM Coding Lite (老客 ¥49) 中间值",
@@ -8032,6 +8119,7 @@
       "id": "glm_coding_lite_cn_old_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (老客 ¥49) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_mid",
         "name": "GLM Coding Lite (老客 ¥49) 中间值",
@@ -8136,6 +8224,7 @@
       "id": "glm_coding_lite_cn_old_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (老客 ¥49) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_offpeak",
         "name": "GLM Coding Lite (老客 ¥49) 闲时",
@@ -8240,6 +8329,7 @@
       "id": "glm_coding_lite_cn_old_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (老客 ¥49) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_offpeak",
         "name": "GLM Coding Lite (老客 ¥49) 闲时",
@@ -8344,6 +8434,7 @@
       "id": "glm_coding_lite_cn_old_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Lite (老客 ¥49) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_peak",
         "name": "GLM Coding Lite (老客 ¥49) 忙时",
@@ -8448,6 +8539,7 @@
       "id": "glm_coding_lite_cn_old_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Lite (老客 ¥49) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_lite_cn_old_peak",
         "name": "GLM Coding Lite (老客 ¥49) 忙时",
@@ -8552,6 +8644,7 @@
       "id": "glm_coding_max_cn_new_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (新客 ¥1078) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_mid",
         "name": "GLM Coding Max (新客 ¥1078) 中间值",
@@ -8656,6 +8749,7 @@
       "id": "glm_coding_max_cn_new_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (新客 ¥1078) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_mid",
         "name": "GLM Coding Max (新客 ¥1078) 中间值",
@@ -8760,6 +8854,7 @@
       "id": "glm_coding_max_cn_new_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (新客 ¥1078) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_offpeak",
         "name": "GLM Coding Max (新客 ¥1078) 闲时",
@@ -8864,6 +8959,7 @@
       "id": "glm_coding_max_cn_new_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (新客 ¥1078) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_offpeak",
         "name": "GLM Coding Max (新客 ¥1078) 闲时",
@@ -8968,6 +9064,7 @@
       "id": "glm_coding_max_cn_new_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (新客 ¥1078) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_peak",
         "name": "GLM Coding Max (新客 ¥1078) 忙时",
@@ -9072,6 +9169,7 @@
       "id": "glm_coding_max_cn_new_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (新客 ¥1078) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_new_peak",
         "name": "GLM Coding Max (新客 ¥1078) 忙时",
@@ -9176,6 +9274,7 @@
       "id": "glm_coding_max_cn_old_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (老客 ¥469) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_mid",
         "name": "GLM Coding Max (老客 ¥469) 中间值",
@@ -9280,6 +9379,7 @@
       "id": "glm_coding_max_cn_old_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (老客 ¥469) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_mid",
         "name": "GLM Coding Max (老客 ¥469) 中间值",
@@ -9384,6 +9484,7 @@
       "id": "glm_coding_max_cn_old_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (老客 ¥469) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_offpeak",
         "name": "GLM Coding Max (老客 ¥469) 闲时",
@@ -9488,6 +9589,7 @@
       "id": "glm_coding_max_cn_old_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (老客 ¥469) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_offpeak",
         "name": "GLM Coding Max (老客 ¥469) 闲时",
@@ -9592,6 +9694,7 @@
       "id": "glm_coding_max_cn_old_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Max (老客 ¥469) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_peak",
         "name": "GLM Coding Max (老客 ¥469) 忙时",
@@ -9696,6 +9799,7 @@
       "id": "glm_coding_max_cn_old_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Max (老客 ¥469) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_max_cn_old_peak",
         "name": "GLM Coding Max (老客 ¥469) 忙时",
@@ -9800,6 +9904,7 @@
       "id": "glm_coding_pro_cn_new_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (新客 ¥538) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_mid",
         "name": "GLM Coding Pro (新客 ¥538) 中间值",
@@ -9904,6 +10009,7 @@
       "id": "glm_coding_pro_cn_new_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (新客 ¥538) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_mid",
         "name": "GLM Coding Pro (新客 ¥538) 中间值",
@@ -10008,6 +10114,7 @@
       "id": "glm_coding_pro_cn_new_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (新客 ¥538) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_offpeak",
         "name": "GLM Coding Pro (新客 ¥538) 闲时",
@@ -10112,6 +10219,7 @@
       "id": "glm_coding_pro_cn_new_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (新客 ¥538) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_offpeak",
         "name": "GLM Coding Pro (新客 ¥538) 闲时",
@@ -10216,6 +10324,7 @@
       "id": "glm_coding_pro_cn_new_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (新客 ¥538) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_peak",
         "name": "GLM Coding Pro (新客 ¥538) 忙时",
@@ -10320,6 +10429,7 @@
       "id": "glm_coding_pro_cn_new_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (新客 ¥538) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_new_peak",
         "name": "GLM Coding Pro (新客 ¥538) 忙时",
@@ -10424,6 +10534,7 @@
       "id": "glm_coding_pro_cn_old_mid::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (老客 ¥149) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_mid",
         "name": "GLM Coding Pro (老客 ¥149) 中间值",
@@ -10528,6 +10639,7 @@
       "id": "glm_coding_pro_cn_old_mid::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (老客 ¥149) 中间值",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_mid",
         "name": "GLM Coding Pro (老客 ¥149) 中间值",
@@ -10632,6 +10744,7 @@
       "id": "glm_coding_pro_cn_old_offpeak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (老客 ¥149) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_offpeak",
         "name": "GLM Coding Pro (老客 ¥149) 闲时",
@@ -10736,6 +10849,7 @@
       "id": "glm_coding_pro_cn_old_offpeak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (老客 ¥149) 闲时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_offpeak",
         "name": "GLM Coding Pro (老客 ¥149) 闲时",
@@ -10840,6 +10954,7 @@
       "id": "glm_coding_pro_cn_old_peak::glm-5.3",
       "label": "GLM 5.3 · GLM Coding Pro (老客 ¥149) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_peak",
         "name": "GLM Coding Pro (老客 ¥149) 忙时",
@@ -10944,6 +11059,7 @@
       "id": "glm_coding_pro_cn_old_peak::glm-5.3-flash",
       "label": "GLM 5.3 Flash · GLM Coding Pro (老客 ¥149) 忙时",
       "provider": "Zhipu",
+      "channel": "Zhipu",
       "plan": {
         "id": "glm_coding_pro_cn_old_peak",
         "name": "GLM Coding Pro (老客 ¥149) 忙时",
@@ -11048,6 +11164,7 @@
       "id": "kimi_allegretto_cn::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Kimi 会员 199",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_allegretto_cn",
         "name": "Kimi 会员 199",
@@ -11134,6 +11251,7 @@
       "id": "kimi_allegretto_cn::kimi-k3",
       "label": "Kimi K3 · Kimi 会员 199",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_allegretto_cn",
         "name": "Kimi 会员 199",
@@ -11256,6 +11374,7 @@
       "id": "kimi_allegro_cn::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Kimi 会员 699",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_allegro_cn",
         "name": "Kimi 会员 699",
@@ -11342,6 +11461,7 @@
       "id": "kimi_allegro_cn::kimi-k3",
       "label": "Kimi K3 · Kimi 会员 699",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_allegro_cn",
         "name": "Kimi 会员 699",
@@ -11464,6 +11584,7 @@
       "id": "kimi_andante_cn::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Kimi 会员 49",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_andante_cn",
         "name": "Kimi 会员 49",
@@ -11550,6 +11671,7 @@
       "id": "kimi_moderato_cn::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Kimi 会员 99",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_moderato_cn",
         "name": "Kimi 会员 99",
@@ -11636,6 +11758,7 @@
       "id": "kimi_moderato_cn::kimi-k3",
       "label": "Kimi K3 · Kimi 会员 99",
       "provider": "Kimi",
+      "channel": "Kimi",
       "plan": {
         "id": "kimi_moderato_cn",
         "name": "Kimi 会员 99",
@@ -11758,6 +11881,7 @@
       "id": "minimax_token_max_cn::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Max",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_max_cn",
         "name": "MiniMax Token Plan Max",
@@ -11844,6 +11968,7 @@
       "id": "minimax_token_max_global::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Max (Global)",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_max_global",
         "name": "MiniMax Token Plan Max (Global)",
@@ -11930,6 +12055,7 @@
       "id": "minimax_token_plus_cn::minimax-m2.7",
       "label": "MiniMax M2.7 · MiniMax Token Plan Plus",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_plus_cn",
         "name": "MiniMax Token Plan Plus",
@@ -12016,6 +12142,7 @@
       "id": "minimax_token_plus_cn::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Plus",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_plus_cn",
         "name": "MiniMax Token Plan Plus",
@@ -12102,6 +12229,7 @@
       "id": "minimax_token_plus_global::minimax-m2.7",
       "label": "MiniMax M2.7 · MiniMax Token Plan Plus (Global)",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_plus_global",
         "name": "MiniMax Token Plan Plus (Global)",
@@ -12188,6 +12316,7 @@
       "id": "minimax_token_plus_global::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Plus (Global)",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_plus_global",
         "name": "MiniMax Token Plan Plus (Global)",
@@ -12274,6 +12403,7 @@
       "id": "minimax_token_ultra_cn::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Ultra",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_ultra_cn",
         "name": "MiniMax Token Plan Ultra",
@@ -12360,6 +12490,7 @@
       "id": "minimax_token_ultra_global::minimax-m3",
       "label": "MiniMax M3 · MiniMax Token Plan Ultra (Global)",
       "provider": "MiniMax",
+      "channel": "MiniMax",
       "plan": {
         "id": "minimax_token_ultra_global",
         "name": "MiniMax Token Plan Ultra (Global)",
@@ -12446,6 +12577,7 @@
       "id": "ollama_max::deepseek-v4-flash",
       "label": "DeepSeek V4 Flash · Ollama Max",
       "provider": "DeepSeek",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -12568,6 +12700,7 @@
       "id": "ollama_max::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro · Ollama Max",
       "provider": "DeepSeek",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -12690,6 +12823,7 @@
       "id": "ollama_max::glm-5.1",
       "label": "GLM 5.1 · Ollama Max",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -12758,6 +12892,7 @@
       "id": "ollama_max::glm-5.2",
       "label": "GLM 5.2 · Ollama Max",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -12826,6 +12961,7 @@
       "id": "ollama_max::glm-5.3",
       "label": "GLM 5.3 · Ollama Max",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -12930,6 +13066,7 @@
       "id": "ollama_max::glm-5.3-flash",
       "label": "GLM 5.3 Flash · Ollama Max",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -13034,6 +13171,7 @@
       "id": "ollama_max::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Ollama Max",
       "provider": "Kimi",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -13120,6 +13258,7 @@
       "id": "ollama_max::kimi-k3",
       "label": "Kimi K3 · Ollama Max",
       "provider": "Kimi",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -13242,6 +13381,7 @@
       "id": "ollama_max::minimax-m2.7",
       "label": "MiniMax M2.7 · Ollama Max",
       "provider": "MiniMax",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -13328,6 +13468,7 @@
       "id": "ollama_max::minimax-m3",
       "label": "MiniMax M3 · Ollama Max",
       "provider": "MiniMax",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_max",
         "name": "Ollama Max",
@@ -13414,6 +13555,7 @@
       "id": "ollama_pro::deepseek-v4-flash",
       "label": "DeepSeek V4 Flash · Ollama Pro",
       "provider": "DeepSeek",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -13536,6 +13678,7 @@
       "id": "ollama_pro::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro · Ollama Pro",
       "provider": "DeepSeek",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -13658,6 +13801,7 @@
       "id": "ollama_pro::glm-5.1",
       "label": "GLM 5.1 · Ollama Pro",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -13726,6 +13870,7 @@
       "id": "ollama_pro::glm-5.2",
       "label": "GLM 5.2 · Ollama Pro",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -13794,6 +13939,7 @@
       "id": "ollama_pro::glm-5.3",
       "label": "GLM 5.3 · Ollama Pro",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -13898,6 +14044,7 @@
       "id": "ollama_pro::glm-5.3-flash",
       "label": "GLM 5.3 Flash · Ollama Pro",
       "provider": "Zhipu",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -14002,6 +14149,7 @@
       "id": "ollama_pro::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · Ollama Pro",
       "provider": "Kimi",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -14088,6 +14236,7 @@
       "id": "ollama_pro::kimi-k3",
       "label": "Kimi K3 · Ollama Pro",
       "provider": "Kimi",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -14210,6 +14359,7 @@
       "id": "ollama_pro::minimax-m2.7",
       "label": "MiniMax M2.7 · Ollama Pro",
       "provider": "MiniMax",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -14296,6 +14446,7 @@
       "id": "ollama_pro::minimax-m3",
       "label": "MiniMax M3 · Ollama Pro",
       "provider": "MiniMax",
+      "channel": "Ollama",
       "plan": {
         "id": "ollama_pro",
         "name": "Ollama Pro",
@@ -14382,6 +14533,7 @@
       "id": "openai_luna_api::gpt-5.6-luna",
       "label": "GPT-5.6 Luna API",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "openai_luna_api",
         "name": "GPT-5.6 Luna API",
@@ -14504,6 +14656,7 @@
       "id": "openai_sol_api::gpt-5.6-sol",
       "label": "GPT-5.6 Sol API",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "openai_sol_api",
         "name": "GPT-5.6 Sol API",
@@ -14644,6 +14797,7 @@
       "id": "openai_terra_api::gpt-5.6-terra",
       "label": "GPT-5.6 Terra API",
       "provider": "OpenAI",
+      "channel": "OpenAI",
       "plan": {
         "id": "openai_terra_api",
         "name": "GPT-5.6 Terra API",
@@ -14766,6 +14920,7 @@
       "id": "opencode_go::deepseek-v4-pro",
       "label": "DeepSeek V4 Pro · OpenCode Go",
       "provider": "DeepSeek",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -14888,6 +15043,7 @@
       "id": "opencode_go::deepseek-v4.1-flash",
       "label": "DeepSeek V4.1 Flash · OpenCode Go",
       "provider": "DeepSeek",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -14938,6 +15094,7 @@
       "id": "opencode_go::glm-5.1",
       "label": "GLM 5.1 · OpenCode Go",
       "provider": "Zhipu",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15006,6 +15163,7 @@
       "id": "opencode_go::glm-5.2",
       "label": "GLM 5.2 · OpenCode Go",
       "provider": "Zhipu",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15074,6 +15232,7 @@
       "id": "opencode_go::glm-5.3",
       "label": "GLM 5.3 · OpenCode Go",
       "provider": "Zhipu",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15178,6 +15337,7 @@
       "id": "opencode_go::glm-5.3-flash",
       "label": "GLM 5.3 Flash · OpenCode Go",
       "provider": "Zhipu",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15282,6 +15442,7 @@
       "id": "opencode_go::gpt-5.6-luna",
       "label": "GPT 5.6 Luna · OpenCode Go",
       "provider": "OpenAI",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15404,6 +15565,7 @@
       "id": "opencode_go::grok-4.6",
       "label": "Grok 4.6 · OpenCode Go",
       "provider": "xAI",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15526,6 +15688,7 @@
       "id": "opencode_go::hy3",
       "label": "Hy3 · OpenCode Go",
       "provider": "Tencent",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15612,6 +15775,7 @@
       "id": "opencode_go::hy4-preview",
       "label": "Hy4 Preview · OpenCode Go",
       "provider": "Tencent",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15698,6 +15862,7 @@
       "id": "opencode_go::kimi-k2.6",
       "label": "Kimi K2.6 · OpenCode Go",
       "provider": "Kimi",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15766,6 +15931,7 @@
       "id": "opencode_go::kimi-k2.7-code",
       "label": "Kimi K2.7 Code · OpenCode Go",
       "provider": "Kimi",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15852,6 +16018,7 @@
       "id": "opencode_go::kimi-k3",
       "label": "Kimi K3 · OpenCode Go",
       "provider": "Kimi",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -15974,6 +16141,7 @@
       "id": "opencode_go::longcat-2.0",
       "label": "LongCat 2.0 · OpenCode Go",
       "provider": "Meituan",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16024,6 +16192,7 @@
       "id": "opencode_go::mimo-v2.5",
       "label": "MiMo V2.5 · OpenCode Go",
       "provider": "Xiaomi",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16074,6 +16243,7 @@
       "id": "opencode_go::mimo-v2.5-pro",
       "label": "MiMo V2.5 Pro · OpenCode Go",
       "provider": "Xiaomi",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16160,6 +16330,7 @@
       "id": "opencode_go::minimax-m2.5",
       "label": "MiniMax M2.5 · OpenCode Go",
       "provider": "MiniMax",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16210,6 +16381,7 @@
       "id": "opencode_go::minimax-m2.7",
       "label": "MiniMax M2.7 · OpenCode Go",
       "provider": "MiniMax",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16296,6 +16468,7 @@
       "id": "opencode_go::minimax-m3",
       "label": "MiniMax M3 · OpenCode Go",
       "provider": "MiniMax",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16382,6 +16555,7 @@
       "id": "opencode_go::muse-spark-1.2-contributor",
       "label": "Muse Spark 1.2 Contributor · OpenCode Go",
       "provider": "Muse",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16413,6 +16587,7 @@
       "id": "opencode_go::muse-spark-1.3-contributor",
       "label": "Muse Spark 1.3 Contributor · OpenCode Go",
       "provider": "Muse",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16444,6 +16619,7 @@
       "id": "opencode_go::omen-alpha",
       "label": "Omen Alpha · OpenCode Go",
       "provider": "OpenCode",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16475,6 +16651,7 @@
       "id": "opencode_go::qwen3.6-plus",
       "label": "Qwen3.6 Plus · OpenCode Go",
       "provider": "Alibaba",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16525,6 +16702,7 @@
       "id": "opencode_go::qwen3.7-max",
       "label": "Qwen3.7 Max · OpenCode Go",
       "provider": "Alibaba",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16575,6 +16753,7 @@
       "id": "opencode_go::qwen3.7-plus",
       "label": "Qwen3.7 Plus · OpenCode Go",
       "provider": "Alibaba",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16661,6 +16840,7 @@
       "id": "opencode_go::qwen3.8-flash",
       "label": "Qwen3.8 Flash · OpenCode Go",
       "provider": "Alibaba",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16692,6 +16872,7 @@
       "id": "opencode_go::qwen3.8-max",
       "label": "Qwen3.8 Max · OpenCode Go",
       "provider": "Alibaba",
+      "channel": "OpenCode",
       "plan": {
         "id": "opencode_go",
         "name": "OpenCode Go",
@@ -16778,6 +16959,7 @@
       "id": "stepfun_max_cn::step-3.5-flash",
       "label": "Step 3.5 Flash · Step Plan Max (¥699)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_max_cn",
         "name": "Step Plan Max (¥699)",
@@ -16828,6 +17010,7 @@
       "id": "stepfun_max_cn::step-3.7-flash",
       "label": "Step 3.7 Flash · Step Plan Max (¥699)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_max_cn",
         "name": "Step Plan Max (¥699)",
@@ -16878,6 +17061,7 @@
       "id": "stepfun_mini_cn::step-3.5-flash",
       "label": "Step 3.5 Flash · Step Plan Mini (¥49)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_mini_cn",
         "name": "Step Plan Mini (¥49)",
@@ -16928,6 +17112,7 @@
       "id": "stepfun_mini_cn::step-3.7-flash",
       "label": "Step 3.7 Flash · Step Plan Mini (¥49)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_mini_cn",
         "name": "Step Plan Mini (¥49)",
@@ -16978,6 +17163,7 @@
       "id": "stepfun_plus_cn::step-3.5-flash",
       "label": "Step 3.5 Flash · Step Plan Plus (¥99)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_plus_cn",
         "name": "Step Plan Plus (¥99)",
@@ -17028,6 +17214,7 @@
       "id": "stepfun_plus_cn::step-3.7-flash",
       "label": "Step 3.7 Flash · Step Plan Plus (¥99)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_plus_cn",
         "name": "Step Plan Plus (¥99)",
@@ -17078,6 +17265,7 @@
       "id": "stepfun_pro_cn::step-3.5-flash",
       "label": "Step 3.5 Flash · Step Plan Pro (¥199)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_pro_cn",
         "name": "Step Plan Pro (¥199)",
@@ -17128,6 +17316,7 @@
       "id": "stepfun_pro_cn::step-3.7-flash",
       "label": "Step 3.7 Flash · Step Plan Pro (¥199)",
       "provider": "StepFun",
+      "channel": "StepFun",
       "plan": {
         "id": "stepfun_pro_cn",
         "name": "Step Plan Pro (¥199)",
@@ -17178,6 +17367,7 @@
       "id": "supergrok_heavy::grok-4.5",
       "label": "Grok 4.5 · SuperGrok Heavy",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok_heavy",
         "name": "SuperGrok Heavy",
@@ -17300,6 +17490,7 @@
       "id": "supergrok_heavy::grok-4.6",
       "label": "Grok 4.6 · SuperGrok Heavy",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok_heavy",
         "name": "SuperGrok Heavy",
@@ -17422,6 +17613,7 @@
       "id": "supergrok_lite::grok-4.6",
       "label": "Grok 4.6 · SuperGrok Lite",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok_lite",
         "name": "SuperGrok Lite",
@@ -17544,6 +17736,7 @@
       "id": "supergrok_plus::grok-4.6",
       "label": "Grok 4.6 · SuperGrok Plus",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok_plus",
         "name": "SuperGrok Plus",
@@ -17666,6 +17859,7 @@
       "id": "supergrok::grok-4.5",
       "label": "Grok 4.5 · SuperGrok",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok",
         "name": "SuperGrok",
@@ -17788,6 +17982,7 @@
       "id": "supergrok::grok-4.6",
       "label": "Grok 4.6 · SuperGrok",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "supergrok",
         "name": "SuperGrok",
@@ -17910,6 +18105,7 @@
       "id": "xai_grok46_api::grok-4.6",
       "label": "Grok 4.6 API (<200k)",
       "provider": "xAI",
+      "channel": "xAI",
       "plan": {
         "id": "xai_grok46_api",
         "name": "Grok 4.6 API (<200k)",

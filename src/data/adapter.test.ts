@@ -78,6 +78,7 @@ function payloadWithBoards(boards: string[], points = [upstreamPoint()]) {
 const addition: SubAIWiseEntry = {
   id: 'local::model',
   provider: 'Local Labs',
+  channel: 'Local Labs',
   plan: { id: 'local', name: 'Local Plan', billing: 'subscription' },
   model: { id: 'model', name: 'Local Model' },
   pricing: { monthlyUsd: 10, effectiveUsdPerMillionTokens: 0.01, listUsdPerMillionTokens: null },
@@ -91,6 +92,8 @@ describe('SubAIWise adapter', () => {
   it('maps upstream fields to canonical fields and preserves stable IDs', () => {
     const entry = adaptPoint(upstreamPoint(), ['arena_code'])
     expect(entry.id).toBe('demo_plus::demo-model')
+    expect(entry.provider).toBe('Demo Labs')
+    expect(entry.channel).toBe('Demo Labs')
     expect(entry.allowance.monthlyTokens).toBe(2 * TOKENS_PER_YI)
     expect(entry.pricing.effectiveUsdPerMillionTokens).toBe(0.05)
     expect(entry.benchmarks.codeArena?.score).toBe(1400)
@@ -121,6 +124,22 @@ describe('SubAIWise adapter', () => {
     const first = serializeDataset(buildDataset(payload(), source, { additions: [addition] }))
     const second = serializeDataset(buildDataset(payload(), source, { additions: [addition] }))
     expect(first).toBe(second)
+  })
+
+  it('allows a local channel override without changing identity or pricing', () => {
+    const overridden = buildDataset(payload([upstreamPoint({
+      id: 'ollama_pro::deepseek-v4-flash',
+      plan: 'Ollama Pro',
+      vendor: 'DeepSeek',
+    })]), source, {
+      overrides: {
+        'ollama_pro::deepseek-v4-flash': { channel: 'OpenCode' },
+      },
+    })
+    expect(overridden.entries[0].id).toBe('ollama_pro::deepseek-v4-flash')
+    expect(overridden.entries[0].provider).toBe('DeepSeek')
+    expect(overridden.entries[0].channel).toBe('OpenCode')
+    expect(overridden.entries[0].pricing.effectiveUsdPerMillionTokens).toBe(0.05)
   })
 
   it('rejects local attempts to change canonical identity', () => {

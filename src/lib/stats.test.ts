@@ -7,6 +7,7 @@ function entry(id: string, overrides: Partial<SubAIWiseEntry> = {}): SubAIWiseEn
     id,
     label: `${id} label`,
     provider: id.split('-')[0],
+    channel: 'OpenCode',
     plan: { id: `${id}-plan`, name: 'OpenCode Go', billing: 'subscription' },
     model: { id, name: id },
     pricing: { monthlyUsd: 20, effectiveUsdPerMillionTokens: 0.1, listUsdPerMillionTokens: 1 },

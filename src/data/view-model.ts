@@ -52,6 +52,7 @@ function toPoint(entry: SubAIWiseEntry): PricingPoint {
     model: entry.model.id,
     model_display: entry.model.name,
     vendor: entry.provider,
+    channel: entry.channel,
     label: entry.label ?? `${entry.model.name} · ${entry.plan.name}`,
     price_usd: entry.pricing.monthlyUsd,
     monthly_yi:

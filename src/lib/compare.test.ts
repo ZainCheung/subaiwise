@@ -20,6 +20,7 @@ function point(partial: Partial<PricingPoint> & Pick<PricingPoint, 'id'>): Prici
     model: 'model-a',
     model_display: modelDisplay,
     vendor: 'Vendor',
+    channel: 'Vendor',
     label: `${modelDisplay} · ${plan}`,
     price_usd: 20,
     monthly_yi: 1,
