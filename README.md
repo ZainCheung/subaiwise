@@ -17,22 +17,22 @@ The repository tracks `data/dataset.json` on purpose. `npm run data:check` re-fe
 ```text
 real-api-pricing@immutable SHA
           ↓
-src/data/upstream-schema.ts
+derived/points.json
+derived/benchmark-configurations.json
+derived/benchmark-points.json
           ↓
 src/data/adapter.ts
           ↓
-data/local.json (additions / overrides / exclusions)
+data/local.json (entry additions / overrides / exclusions)
           ↓
-data/dataset.json
-          ↓ (build-time copy)
-public/data/dataset.json
+data/dataset.json  (schemaVersion 2)
           ↓
 src/domain selectors
           ↓
 Compare / Leaderboard / Overview
 ```
 
-The data layer only consumes `SubAIWiseEntry`; upstream field names stop at the adapter boundary. Product views read canonical entries through `src/domain` selectors instead of a flattened compatibility payload. Local changes never modify the downloaded payload. For an explicit source update, run:
+Canonical v2 stores `benchmarkConfigurations` and `benchmarkMappings` as first-class data. `entry.benchmarks` is a derived default summary (`highest_archived_reference`) and is not an independent source of truth. Benchmark configuration/mapping rows are currently upstream-owned; `data/local.json` still patches plan/model entries only. The three upstream files are always read from the same locked commit. Local changes never modify the downloaded payload. For an explicit source update, run:
 
 ```bash
 npm run data:sync -- --ref <FULL_COMMIT_SHA>
@@ -67,14 +67,15 @@ verify without writing) and commit the resulting canonical dataset.
 
 ## Automatic upstream sync
 
-`.github/workflows/sync-upstream.yml` checks the latest commit that touched
-`derived/points.json`, compares the source file bytes with the locked source,
-and exits without a PR for README-only or unchanged-data commits. When the
-dataset changes, it runs the data check, tests, and build, then updates the
-single `automation/sync-upstream` branch and opens or refreshes its pull
-request. The PR body includes the source SHAs and added/removed/changed entry
-summary plus local patch counts.
+`.github/workflows/sync-upstream.yml` compares the locked commit with upstream
+default-branch HEAD for every monitored file (`derived/points.json`,
+`derived/benchmark-configurations.json`, `derived/benchmark-points.json`).
+README-only commits are a no-op. A change in any monitored file syncs all three
+from the same latest SHA. When the dataset changes, it runs the data check,
+tests, and build, then updates the single `automation/sync-upstream` branch and
+opens or refreshes its pull request. The PR body includes the source SHAs and
+added/removed/changed entry summary plus local patch counts.
 
-Pull requests run the locked data check, tests, and production build. The daily GitHub Action only opens or updates a single `automation/sync-upstream` data PR when the locked upstream dataset bytes change.
+Pull requests run the locked data check, tests, and production build. The daily GitHub Action only opens or updates a single `automation/sync-upstream` data PR when a monitored upstream file changes.
 
 Base pricing and benchmark data may be sourced from [real-api-pricing](https://github.com/FeiZhuLulu/real-api-pricing). SubAIWise owns the canonical schema, normalization, local patches, and product presentation.

@@ -4,6 +4,8 @@ import {
   SubAIWiseDatasetSchema,
   SubAIWiseEntrySchema,
   type Benchmark,
+  type BenchmarkConfiguration,
+  type BenchmarkMapping,
   type LocalData,
   type LocalEntryOverride,
   type SubAIWiseDataset,
@@ -14,7 +16,10 @@ import {
   resolveChannel,
   warnUnknownChannels,
 } from './channel'
+import { deriveEntryBenchmarks } from './benchmark-selection'
 import {
+  UpstreamConfigurationSchema,
+  UpstreamMappingSchema,
   UpstreamPayloadSchema,
   validateUpstreamBenchmarkFields,
   type UpstreamPayload,
@@ -147,12 +152,125 @@ export function adaptPoint(point: UpstreamPoint, boardNames: string[] = []): Sub
 // Descriptive aliases keep the boundary easy to discover for scripts and tests.
 export const adaptUpstreamPoint = adaptPoint
 
+export type UpstreamBundle = {
+  points: unknown
+  configurations?: unknown
+  mappings?: unknown
+}
+
+function normalizeBundle(input: unknown): Required<UpstreamBundle> {
+  if (
+    isRecord(input) &&
+    'points' in input &&
+    ('configurations' in input || 'mappings' in input) &&
+    !('generatedAt' in input)
+  ) {
+    return {
+      points: input.points,
+      configurations: input.configurations ?? [],
+      mappings: input.mappings ?? [],
+    }
+  }
+  return { points: input, configurations: [], mappings: [] }
+}
+
+function adaptConfiguration(value: unknown): BenchmarkConfiguration {
+  const raw = UpstreamConfigurationSchema.parse(value)
+  return {
+    id: raw.configuration_id,
+    boardId: raw.board,
+    modelId: raw.model,
+    variant: raw.variant ?? null,
+    score: raw.score ?? null,
+    scoreIsEstimated: raw.score_is_estimated ?? null,
+    scoreLow: raw.score_low ?? null,
+    scoreHigh: raw.score_high ?? null,
+    agentHarness: raw.agent_harness ?? null,
+    reasoningEffort: raw.reasoning_effort ?? null,
+    serviceMode: raw.service_mode ?? null,
+    meanCostUsdPerTask: raw.mean_cost_usd_per_task ?? null,
+    medianCostUsdPerTask: raw.median_cost_usd_per_task ?? null,
+    source: raw.source ?? null,
+    archive: raw.archive ?? null,
+    checkedAt: raw.checked_at ?? null,
+  }
+}
+
+function adaptMapping(value: unknown): BenchmarkMapping {
+  const raw = UpstreamMappingSchema.parse(value)
+  return {
+    entryId: raw.point_id,
+    configurationId: raw.configuration_id,
+    mappingKind: raw.mapping_kind ?? null,
+    mappingConfidence: raw.mapping_confidence ?? null,
+    mappingNote: raw.mapping_note ?? null,
+    quotaEffortMatched: raw.quota_effort_matched ?? null,
+  }
+}
+
+export function assertBenchmarkIntegrity(dataset: SubAIWiseDataset): void {
+  const boards = dataset.leaderboards
+  const entries = new Map(dataset.entries.map((entry) => [entry.id, entry]))
+  const configs = new Map<string, BenchmarkConfiguration>()
+
+  for (const configuration of dataset.benchmarkConfigurations) {
+    if (configs.has(configuration.id)) {
+      throw new Error(`Duplicate benchmark configuration id: ${configuration.id}`)
+    }
+    if (!boards[configuration.boardId]) {
+      throw new Error(
+        `Benchmark configuration "${configuration.id}" references unknown board "${configuration.boardId}".`,
+      )
+    }
+    configs.set(configuration.id, configuration)
+  }
+
+  const mappingKeys = new Set<string>()
+  for (const mapping of dataset.benchmarkMappings) {
+    const key = `${mapping.entryId}::${mapping.configurationId}`
+    if (mappingKeys.has(key)) {
+      throw new Error(`Duplicate benchmark mapping: ${key}`)
+    }
+    mappingKeys.add(key)
+
+    const entry = entries.get(mapping.entryId)
+    if (!entry) {
+      throw new Error(`Benchmark mapping refers to unknown entry: ${mapping.entryId}`)
+    }
+    const configuration = configs.get(mapping.configurationId)
+    if (!configuration) {
+      throw new Error(
+        `Benchmark mapping refers to unknown configuration: ${mapping.configurationId}`,
+      )
+    }
+    if (configuration.modelId !== entry.model.id) {
+      throw new Error(
+        `Benchmark configuration "${configuration.id}" model "${configuration.modelId}" does not match entry "${entry.id}" model "${entry.model.id}".`,
+      )
+    }
+  }
+}
+
+function deriveBenchmarks(dataset: SubAIWiseDataset): SubAIWiseDataset {
+  const graph = {
+    leaderboards: dataset.leaderboards,
+    benchmarkConfigurations: dataset.benchmarkConfigurations,
+    benchmarkMappings: dataset.benchmarkMappings,
+  }
+  const entries = dataset.entries.map((entry) => ({
+    ...entry,
+    benchmarks: deriveEntryBenchmarks(entry, graph),
+  }))
+  return { ...dataset, entries }
+}
+
 /** Adapt the complete, schema-validated upstream payload. */
 export function adaptUpstream(
   payload: unknown,
   source: { repository: string; commit: string },
 ): SubAIWiseDataset {
-  const upstream = UpstreamPayloadSchema.parse(payload)
+  const bundle = normalizeBundle(payload)
+  const upstream = UpstreamPayloadSchema.parse(bundle.points)
   validateUpstreamBenchmarkFields(upstream)
   const boardNames = Object.keys(upstream.boards).sort()
   const leaderboards = Object.fromEntries(
@@ -175,14 +293,25 @@ export function adaptUpstream(
     warnUnknownChannels(unknownPlanIds)
   }
 
-  return SubAIWiseDatasetSchema.parse({
-    schemaVersion: 1,
-    snapshot: upstream.generatedAt,
-    source,
-    workloadMix: upstream.mix,
-    leaderboards,
-    entries,
-  })
+  const configurations = Array.isArray(bundle.configurations)
+    ? bundle.configurations.map(adaptConfiguration)
+    : []
+  const mappings = Array.isArray(bundle.mappings) ? bundle.mappings.map(adaptMapping) : []
+
+  const dataset = deriveBenchmarks(
+    SubAIWiseDatasetSchema.parse({
+      schemaVersion: 2,
+      snapshot: upstream.generatedAt,
+      source,
+      workloadMix: upstream.mix,
+      leaderboards,
+      entries,
+      benchmarkConfigurations: stableSortConfigurations(configurations),
+      benchmarkMappings: stableSortMappings(mappings),
+    }),
+  )
+  assertBenchmarkIntegrity(dataset)
+  return SubAIWiseDatasetSchema.parse(dataset)
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -223,11 +352,16 @@ export function applyLocalData(dataset: SubAIWiseDataset, local: unknown): SubAI
   const additionsById = new Map(patches.additions.map((entry) => [entry.id, entry]))
   const entries = overridden.filter((entry) => !additionsById.has(entry.id))
   entries.push(...additionsById.values())
+  const entryIds = new Set(entries.map((entry) => entry.id))
+  const mappings = dataset.benchmarkMappings.filter((mapping) => entryIds.has(mapping.entryId))
 
-  return SubAIWiseDatasetSchema.parse({
+  const next = SubAIWiseDatasetSchema.parse({
     ...dataset,
     entries: stableSortEntries(entries),
+    benchmarkMappings: stableSortMappings(mappings),
   })
+  assertBenchmarkIntegrity(next)
+  return next
 }
 
 export const applyLocalPatches = applyLocalData
@@ -242,6 +376,18 @@ export function stableSortEntries(entries: SubAIWiseEntry[]): SubAIWiseEntry[] {
   )
 }
 
+export function stableSortConfigurations(
+  configurations: BenchmarkConfiguration[],
+): BenchmarkConfiguration[] {
+  return [...configurations].sort((a, b) => a.id.localeCompare(b.id))
+}
+
+export function stableSortMappings(mappings: BenchmarkMapping[]): BenchmarkMapping[] {
+  return [...mappings].sort(
+    (a, b) => a.entryId.localeCompare(b.entryId) || a.configurationId.localeCompare(b.configurationId),
+  )
+}
+
 export function buildDataset(
   upstreamPayload: unknown,
   source: { repository: string; commit: string },
@@ -249,7 +395,12 @@ export function buildDataset(
 ): SubAIWiseDataset {
   const adapted = adaptUpstream(upstreamPayload, source)
   return applyLocalData(
-    { ...adapted, entries: stableSortEntries(adapted.entries) },
+    {
+      ...adapted,
+      entries: stableSortEntries(adapted.entries),
+      benchmarkConfigurations: stableSortConfigurations(adapted.benchmarkConfigurations),
+      benchmarkMappings: stableSortMappings(adapted.benchmarkMappings),
+    },
     local,
   )
 }
@@ -258,6 +409,8 @@ export function serializeDataset(dataset: SubAIWiseDataset): string {
   const parsed = SubAIWiseDatasetSchema.parse({
     ...dataset,
     entries: stableSortEntries(dataset.entries),
+    benchmarkConfigurations: stableSortConfigurations(dataset.benchmarkConfigurations),
+    benchmarkMappings: stableSortMappings(dataset.benchmarkMappings),
   })
   return `${JSON.stringify(parsed, null, 2)}\n`
 }

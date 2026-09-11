@@ -214,4 +214,140 @@ describe('SubAIWise adapter', () => {
     expect(after.entries).toEqual(before.entries)
     expect(after.leaderboards.terminal_bench_4).toBeDefined()
   })
+
+  it('keeps multiple Terminal-Bench harness/effort configurations and mappings', () => {
+    const dataset = buildDataset(
+      {
+        points: payloadWithBoards(
+          ['terminal_bench_4'],
+          [upstreamPoint({ terminal_bench_4__score: 44.55 })],
+        ),
+        configurations: [
+          {
+            configuration_id: 'terminal_bench_4:low',
+            board: 'terminal_bench_4',
+            model: 'demo-model',
+            variant: 'Claude Code (low)',
+            score: 40,
+            agent_harness: 'Claude Code',
+            reasoning_effort: 'low',
+            archive: 'tb.json',
+          },
+          {
+            configuration_id: 'terminal_bench_4:max',
+            board: 'terminal_bench_4',
+            model: 'demo-model',
+            variant: 'Claude Code (max)',
+            score: 44.55,
+            agent_harness: 'Claude Code',
+            reasoning_effort: 'max',
+            archive: 'tb.json',
+          },
+          {
+            configuration_id: 'terminal_bench_4:codex',
+            board: 'terminal_bench_4',
+            model: 'demo-model',
+            variant: 'Codex (max)',
+            score: 50,
+            agent_harness: 'Codex',
+            reasoning_effort: 'max',
+            archive: 'tb.json',
+          },
+        ],
+        mappings: [
+          {
+            point_id: 'demo_plus::demo-model',
+            configuration_id: 'terminal_bench_4:low',
+            mapping_kind: 'agent_configuration_reference',
+            mapping_confidence: 'low',
+          },
+          {
+            point_id: 'demo_plus::demo-model',
+            configuration_id: 'terminal_bench_4:max',
+            mapping_kind: 'agent_configuration_reference',
+            mapping_confidence: 'medium',
+          },
+        ],
+      },
+      source,
+    )
+
+    expect(dataset.schemaVersion).toBe(2)
+    expect(dataset.benchmarkConfigurations).toHaveLength(3)
+    expect(dataset.benchmarkMappings).toHaveLength(2)
+    expect(dataset.entries[0].benchmarks.terminalBench4?.score).toBe(44.55)
+    expect(dataset.entries[0].benchmarks.terminalBench4?.reasoningEffort).toBe('max')
+    expect(dataset.entries[0].benchmarks.terminalBench4?.selection).toBe(
+      'highest_archived_reference',
+    )
+    expect(dataset.entries[0].benchmarks.terminalBench4?.configurationCount).toBe(2)
+  })
+
+  it('fails on orphan mappings and duplicate configuration ids', () => {
+    const points = payloadWithBoards(['arena_code'])
+    expect(() =>
+      buildDataset(
+        {
+          points,
+          configurations: [
+            {
+              configuration_id: 'arena_code:one',
+              board: 'arena_code',
+              model: 'demo-model',
+              score: 10,
+            },
+          ],
+          mappings: [
+            {
+              point_id: 'missing::entry',
+              configuration_id: 'arena_code:one',
+            },
+          ],
+        },
+        source,
+      ),
+    ).toThrow(/unknown entry/)
+
+    expect(() =>
+      buildDataset(
+        {
+          points,
+          configurations: [
+            { configuration_id: 'arena_code:one', board: 'arena_code', model: 'demo-model', score: 1 },
+            { configuration_id: 'arena_code:one', board: 'arena_code', model: 'demo-model', score: 2 },
+          ],
+          mappings: [],
+        },
+        source,
+      ),
+    ).toThrow(/Duplicate benchmark configuration/)
+  })
+
+  it('drops mappings for locally excluded entries without failing integrity', () => {
+    const dataset = buildDataset(
+      {
+        points: payloadWithBoards(['arena_code']),
+        configurations: [
+          {
+            configuration_id: 'arena_code:one',
+            board: 'arena_code',
+            model: 'demo-model',
+            score: 1400,
+          },
+        ],
+        mappings: [
+          {
+            point_id: 'demo_plus::demo-model',
+            configuration_id: 'arena_code:one',
+          },
+        ],
+      },
+      source,
+      { exclusions: ['demo_plus::demo-model'] },
+    )
+    expect(dataset.entries).toEqual([])
+    expect(dataset.benchmarkMappings).toEqual([])
+    expect(dataset.benchmarkConfigurations).toHaveLength(1)
+  })
 })
+
