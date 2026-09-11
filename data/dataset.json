@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "snapshot": "2026-09-10",
+  "snapshot": "2026-09-11",
   "source": {
     "repository": "FeiZhuLulu/real-api-pricing",
-    "commit": "d6860e6a5234b55e6e8e1e192ff08ae8dda2d76b"
+    "commit": "fbf732a6109545610908a27c8fb9ae8c1914d480"
   },
   "workloadMix": {
     "cache": 0.975,
@@ -40,6 +40,12 @@
       "metric": "Average task score",
       "url": "https://open-design.ai/zh/llm-arena-for-design/",
       "snapshot": "2026-09-09"
+    },
+    "terminal_bench_4": {
+      "name": "Terminal-Bench 4.0",
+      "metric": "Resolution Rate %",
+      "url": "https://www.tbench.ai/leaderboard",
+      "snapshot": "2026-09-03"
     }
   },
   "entries": [
@@ -312,6 +318,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 44.55,
+          "variant": "Claude Code - Fable 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 40.699999999999996,
+          "scoreHigh": 48.4,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -416,6 +440,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 51.82,
+          "variant": "Claude Code - Opus 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 48.43,
+          "scoreHigh": 55.21,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -498,6 +540,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Claude Code - Sonnet 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.36,
+          "scoreHigh": 15.48,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -710,6 +770,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -832,6 +910,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 37.27,
+          "variant": "Codex - GPT-5.6 Sol (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 33.49,
+          "scoreHigh": 41.050000000000004,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -932,6 +1028,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 21.52,
+          "variant": "Codex - GPT-5.6 Terra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 18.27,
+          "scoreHigh": 24.77,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -1144,6 +1258,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1266,6 +1398,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 37.27,
+          "variant": "Codex - GPT-5.6 Sol (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 33.49,
+          "scoreHigh": 41.050000000000004,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1366,6 +1516,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 21.52,
+          "variant": "Codex - GPT-5.6 Terra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 18.27,
+          "scoreHigh": 24.77,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -1578,6 +1746,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1700,6 +1886,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 37.27,
+          "variant": "Codex - GPT-5.6 Sol (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 33.49,
+          "scoreHigh": 41.050000000000004,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -1800,6 +2004,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 21.52,
+          "variant": "Codex - GPT-5.6 Terra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 18.27,
+          "scoreHigh": 24.77,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -1908,6 +2130,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 44.55,
+          "variant": "Claude Code - Fable 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 40.699999999999996,
+          "scoreHigh": 48.4,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2011,6 +2251,24 @@
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 2,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 23.64,
+          "variant": "Claude Code - Opus 4.8 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 20.080000000000002,
+          "scoreHigh": 27.2,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
           "quotaEffortMatched": null
         }
       },
@@ -2116,6 +2374,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 51.82,
+          "variant": "Claude Code - Opus 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 48.43,
+          "scoreHigh": 55.21,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2198,6 +2474,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Claude Code - Sonnet 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.36,
+          "scoreHigh": 15.48,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -2306,6 +2600,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 44.55,
+          "variant": "Claude Code - Fable 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 40.699999999999996,
+          "scoreHigh": 48.4,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2410,6 +2722,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 51.82,
+          "variant": "Claude Code - Opus 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 48.43,
+          "scoreHigh": 55.21,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2492,6 +2822,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Claude Code - Sonnet 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.36,
+          "scoreHigh": 15.48,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -2600,6 +2948,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 2,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 23.64,
+          "variant": "Claude Code - Opus 4.8 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 20.080000000000002,
+          "scoreHigh": 27.2,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -2682,6 +3048,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Claude Code - Sonnet 5 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.36,
+          "scoreHigh": 15.48,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -2993,6 +3377,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 11.21,
+          "variant": "mini-SWE-agent - Gemini 3.7 Flash (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 8.760000000000002,
+          "scoreHigh": 13.66,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "mini-SWE-agent",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3075,6 +3477,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 19.09,
+          "variant": "mini-SWE-agent - Gemini 3.8 Flash (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 15.73,
+          "scoreHigh": 22.45,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "mini-SWE-agent",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -3259,6 +3679,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -3472,6 +3910,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3594,6 +4050,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 37.27,
+          "variant": "Codex - GPT-5.6 Sol (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 33.49,
+          "scoreHigh": 41.050000000000004,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3698,6 +4172,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Grok Build - Grok 4.5 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.8,
+          "scoreHigh": 15.04,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -3798,6 +4290,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -5208,7 +5718,7 @@
       "pricing": {
         "monthlyUsd": 10,
         "effectiveUsdPerMillionTokens": 0.01135,
-        "listUsdPerMillionTokens": null
+        "listUsdPerMillionTokens": 0.0234
       },
       "allowance": {
         "monthlyTokens": 881100000
@@ -5258,7 +5768,7 @@
       "pricing": {
         "monthlyUsd": 10,
         "effectiveUsdPerMillionTokens": 0.02366,
-        "listUsdPerMillionTokens": null
+        "listUsdPerMillionTokens": 0.0473
       },
       "allowance": {
         "monthlyTokens": 422600000
@@ -5539,6 +6049,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -5689,6 +6217,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -5847,6 +6393,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6001,6 +6565,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Grok Build - Grok 4.5 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.8,
+          "scoreHigh": 15.04,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6101,6 +6683,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -6779,6 +7379,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -6964,6 +7582,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -7159,6 +7795,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7344,6 +7998,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -7539,6 +8211,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -7724,6 +8414,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -7919,6 +8627,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8104,6 +8830,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -8299,6 +9043,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8484,6 +9246,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -8679,6 +9459,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -8864,6 +9662,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9059,6 +9875,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9244,6 +10078,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9439,6 +10291,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -9624,6 +10494,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -9819,6 +10707,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -10004,6 +10910,24 @@
           "mappingConfidence": "low",
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
           "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
@@ -11977,6 +12901,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -12927,6 +13869,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13515,6 +14475,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13637,6 +14615,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 37.27,
+          "variant": "Codex - GPT-5.6 Sol (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 33.49,
+          "scoreHigh": 41.050000000000004,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -13737,6 +14733,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "Codex",
           "reasoningEffort": "xhigh",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 21.52,
+          "variant": "Codex - GPT-5.6 Terra (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 18.27,
+          "scoreHigh": 24.77,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -14135,6 +15149,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 41.82,
+          "variant": "Claude Code - GLM-5.3 (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 38.59,
+          "scoreHigh": 45.05,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Claude Code",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14343,6 +15375,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 17.27,
+          "variant": "Codex - GPT-5.6 Luna (max)",
+          "scoreIsEstimated": null,
+          "scoreLow": 14.42,
+          "scoreHigh": 20.12,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Codex",
+          "reasoningEffort": "max",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -14443,6 +15493,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -15707,6 +16775,406 @@
       }
     },
     {
+      "id": "stepfun_max_cn::step-3.5-flash",
+      "label": "Step 3.5 Flash · Step Plan Max (¥699)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_max_cn",
+        "name": "Step Plan Max (¥699)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.5-flash",
+        "name": "Step 3.5 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 103.12,
+        "effectiveUsdPerMillionTokens": 0.00041,
+        "listUsdPerMillionTokens": 0.0234
+      },
+      "allowance": {
+        "monthlyTokens": 251730600000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 16.9641,
+          "variant": "Step 3.5 Flash 2603 [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 2,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增2517.31亿：国内站月度40000M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.14/0.7/2.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_max_cn::step-3.7-flash",
+      "label": "Step 3.7 Flash · Step Plan Max (¥699)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_max_cn",
+        "name": "Step Plan Max (¥699)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.7-flash",
+        "name": "Step 3.7 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 103.12,
+        "effectiveUsdPerMillionTokens": 0.00083,
+        "listUsdPerMillionTokens": 0.0473
+      },
+      "allowance": {
+        "monthlyTokens": 124756300000.00002
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 19.4813,
+          "variant": "Step 3.7 Flash [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增1247.56亿：国内站月度40000M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.27/1.35/8.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_mini_cn::step-3.5-flash",
+      "label": "Step 3.5 Flash · Step Plan Mini (¥49)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_mini_cn",
+        "name": "Step Plan Mini (¥49)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.5-flash",
+        "name": "Step 3.5 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 7.23,
+        "effectiveUsdPerMillionTokens": 0.00287,
+        "listUsdPerMillionTokens": 0.0234
+      },
+      "allowance": {
+        "monthlyTokens": 2517300000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 16.9641,
+          "variant": "Step 3.5 Flash 2603 [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 2,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增25.173亿：国内站月度400M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.14/0.7/2.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_mini_cn::step-3.7-flash",
+      "label": "Step 3.7 Flash · Step Plan Mini (¥49)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_mini_cn",
+        "name": "Step Plan Mini (¥49)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.7-flash",
+        "name": "Step 3.7 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 7.23,
+        "effectiveUsdPerMillionTokens": 0.00579,
+        "listUsdPerMillionTokens": 0.0473
+      },
+      "allowance": {
+        "monthlyTokens": 1247600000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 19.4813,
+          "variant": "Step 3.7 Flash [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增12.476亿：国内站月度400M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.27/1.35/8.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_plus_cn::step-3.5-flash",
+      "label": "Step 3.5 Flash · Step Plan Plus (¥99)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_plus_cn",
+        "name": "Step Plan Plus (¥99)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.5-flash",
+        "name": "Step 3.5 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 14.6,
+        "effectiveUsdPerMillionTokens": 0.00145,
+        "listUsdPerMillionTokens": 0.0234
+      },
+      "allowance": {
+        "monthlyTokens": 10069200000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 16.9641,
+          "variant": "Step 3.5 Flash 2603 [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 2,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增100.692亿：国内站月度1600M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.14/0.7/2.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_plus_cn::step-3.7-flash",
+      "label": "Step 3.7 Flash · Step Plan Plus (¥99)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_plus_cn",
+        "name": "Step Plan Plus (¥99)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.7-flash",
+        "name": "Step 3.7 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 14.6,
+        "effectiveUsdPerMillionTokens": 0.00293,
+        "listUsdPerMillionTokens": 0.0473
+      },
+      "allowance": {
+        "monthlyTokens": 4990300000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 19.4813,
+          "variant": "Step 3.7 Flash [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增49.903亿：国内站月度1600M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.27/1.35/8.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_pro_cn::step-3.5-flash",
+      "label": "Step 3.5 Flash · Step Plan Pro (¥199)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_pro_cn",
+        "name": "Step Plan Pro (¥199)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.5-flash",
+        "name": "Step 3.5 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 29.36,
+        "effectiveUsdPerMillionTokens": 0.00058,
+        "listUsdPerMillionTokens": 0.0234
+      },
+      "allowance": {
+        "monthlyTokens": 50346100000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 16.9641,
+          "variant": "Step 3.5 Flash 2603 [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 2,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增503.461亿：国内站月度8000M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.14/0.7/2.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
+      "id": "stepfun_pro_cn::step-3.7-flash",
+      "label": "Step 3.7 Flash · Step Plan Pro (¥199)",
+      "provider": "StepFun",
+      "plan": {
+        "id": "stepfun_pro_cn",
+        "name": "Step Plan Pro (¥199)",
+        "billing": "subscription"
+      },
+      "model": {
+        "id": "step-3.7-flash",
+        "name": "Step 3.7 Flash"
+      },
+      "pricing": {
+        "monthlyUsd": 29.36,
+        "effectiveUsdPerMillionTokens": 0.00118,
+        "listUsdPerMillionTokens": 0.0473
+      },
+      "allowance": {
+        "monthlyTokens": 24951300000
+      },
+      "quality": {
+        "confidence": "medium",
+        "tier": "full"
+      },
+      "benchmarks": {
+        "intelligence": {
+          "score": 19.4813,
+          "variant": "Step 3.7 Flash [AA estimate]",
+          "scoreIsEstimated": true,
+          "scoreLow": null,
+          "scoreHigh": null,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://artificialanalysis.ai/leaderboards/models",
+          "mappingConfidence": "medium",
+          "mappingNote": "Exact served-model reference; quota-measurement effort is unverified.",
+          "agentHarness": null,
+          "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        }
+      },
+      "source": {
+        "label": "https://platform.stepfun.com/docs/zh/step-plan/overview 官方 Credit 月池 1M Credit=¥1；https://platform.stepfun.com/docs/zh/guides/pricing/details 人民币三段价；stepfun-step-plan-round1-2026-09-10.json；stepfun-step-plan-round3-2026-09-10.json；stepfun-step-plan-round4-2026-09-10.json",
+        "note": "新增249.513亿：国内站月度8000M Credit÷统一标准负载加权价；1M Credit=¥1，cached/input/output=¥0.27/1.35/8.1。英文 $1≈7M 与人民币口径对 3.5 差 0%、对 3.7 因美元价四舍五入少 3.2%，采用中文精确口径。未采用旧 Coding Plan Prompt/5h 表；未加 Studio 40% 创作额度；step-3.5-flash-2603 与 3.5 同价不单列；step-router-v1 不画独立点。无面板 token+% 或打满实测，按官方绝对 Credit+价表；汇率1 USD=6.7787 CNY（2026-09-04 人民币汇率中间价），旧汇率7.2；人民币月费除以汇率换美元；https://www.xinhuanet.com/20260904/4c1ce1cbf39d416997cb9c237d6f5024/c.html"
+      }
+    },
+    {
       "id": "supergrok_heavy::grok-4.5",
       "label": "Grok 4.5 · SuperGrok Heavy",
       "provider": "xAI",
@@ -15799,6 +17267,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Grok Build - Grok 4.5 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.8,
+          "scoreHigh": 15.04,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -15907,6 +17393,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16007,6 +17511,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -16115,6 +17637,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16215,6 +17755,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": null,
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 12.42,
+          "variant": "Grok Build - Grok 4.5 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 9.8,
+          "scoreHigh": 15.04,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
@@ -16323,6 +17881,24 @@
           "selection": "highest_archived_reference",
           "configurationCount": 1,
           "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
         }
       },
       "source": {
@@ -16423,6 +17999,24 @@
           "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
           "agentHarness": "OpenDesign",
           "reasoningEffort": null,
+          "serviceMode": null,
+          "selection": "highest_archived_reference",
+          "configurationCount": 1,
+          "quotaEffortMatched": null
+        },
+        "terminalBench4": {
+          "score": 20.3,
+          "variant": "Grok Build - Grok 4.6 (high)",
+          "scoreIsEstimated": null,
+          "scoreLow": 17.21,
+          "scoreHigh": 23.39,
+          "meanCostUsdPerTask": null,
+          "medianCostUsdPerTask": null,
+          "source": "https://www.tbench.ai/leaderboard",
+          "mappingConfidence": "low",
+          "mappingNote": "Exact served-model reference only; product harness and quota-measurement effort are unverified. Not a benchmark measurement of this subscription or API channel.",
+          "agentHarness": "Grok Build",
+          "reasoningEffort": "high",
           "serviceMode": null,
           "selection": "highest_archived_reference",
           "configurationCount": 1,
