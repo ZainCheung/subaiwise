@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import type { IdFilter } from '../lib/filters'
 import { loadDataset } from '../data/load'
 import type { SubAIWiseDataset } from '../data/schema'
 import { toPointsPayload } from '../data/view-model'
@@ -32,6 +33,8 @@ export function HomePage() {
   const [dataset, setDataset] = useState<SubAIWiseDataset | null>(null)
   const [error, setError] = useState<Error | null>(null)
   const [attempt, setAttempt] = useState(0)
+  const [models, setModels] = useState<IdFilter>(null)
+  const [channels, setChannels] = useState<IdFilter>(null)
 
   const retry = useCallback(() => setAttempt((value) => value + 1), [])
 
@@ -87,7 +90,13 @@ export function HomePage() {
       <main>
         <Hero stats={stats} insights={insights} />
         <StatStrip stats={stats} />
-        <CompareSection data={data} />
+        <CompareSection
+          data={data}
+          models={models}
+          channels={channels}
+          onModelsChange={setModels}
+          onChannelsChange={setChannels}
+        />
         <section id="leaderboard" className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
@@ -104,7 +113,13 @@ export function HomePage() {
           </div>
         </section>
         <Suspense fallback={<ChartLoading />}>
-          <ChartsSection data={data} />
+          <ChartsSection
+            data={data}
+            models={models}
+            channels={channels}
+            onModelsChange={setModels}
+            onChannelsChange={setChannels}
+          />
           <AdvancedPareto data={data} />
         </Suspense>
         <Method mix={data.mix} />

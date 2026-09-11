@@ -29,7 +29,7 @@ export function filterPoints(
     if (opts.vendor !== 'all' && p.vendor !== opts.vendor) return false
     if (opts.confidence !== 'all' && p.confidence !== opts.confidence) return false
     if (!q) return true
-    const hay = `${p.model_display} ${p.model} ${p.plan} ${p.label} ${p.vendor}`.toLowerCase()
+    const hay = `${p.model_display} ${p.model} ${p.plan} ${p.label} ${p.vendor} ${p.channel}`.toLowerCase()
     return hay.includes(q)
   })
 }
