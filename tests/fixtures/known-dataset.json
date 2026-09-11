@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "snapshot": "fixture-2026-01-01",
+  "source": {
+    "repository": "fixture/known-dataset",
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "workloadMix": {
+    "cache": 0.975,
+    "input": 0.0215,
+    "output": 0.0035
+  },
+  "leaderboards": {
+    "arena_code": {
+      "name": "Code Arena",
+      "metric": "Arena score",
+      "url": "https://example.com/arena_code",
+      "snapshot": "2026-01-01"
+    },
+    "terminal_bench_4": {
+      "name": "Terminal-Bench 4.0",
+      "metric": "Resolution Rate %",
+      "url": "https://example.com/terminal_bench_4",
+      "snapshot": "2026-01-01"
+    }
+  },
+  "entries": [
+    {
+      "id": "cheap::model-a",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": { "id": "cheap", "name": "Cheap", "billing": "subscription" },
+      "model": { "id": "model-a", "name": "Model A" },
+      "pricing": { "monthlyUsd": 10, "effectiveUsdPerMillionTokens": 0.01, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 100000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 10 }, "terminalBench4": { "score": 20 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "mid::model-b",
+      "provider": "Anthropic",
+      "channel": "Anthropic",
+      "plan": { "id": "mid", "name": "Mid", "billing": "subscription" },
+      "model": { "id": "model-b", "name": "Model B" },
+      "pricing": { "monthlyUsd": 20, "effectiveUsdPerMillionTokens": 0.02, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 200000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 20 }, "terminalBench4": { "score": 40 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "strong::model-c",
+      "provider": "DeepSeek",
+      "channel": "DeepSeek",
+      "plan": { "id": "strong", "name": "Strong", "billing": "subscription" },
+      "model": { "id": "model-c", "name": "Model C" },
+      "pricing": { "monthlyUsd": 30, "effectiveUsdPerMillionTokens": 0.03, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 300000000 },
+      "quality": { "confidence": "medium", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 30 }, "terminalBench4": { "score": 50 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "dominated::model-d",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": { "id": "dominated", "name": "Dominated", "billing": "subscription" },
+      "model": { "id": "model-d", "name": "Model D" },
+      "pricing": { "monthlyUsd": 25, "effectiveUsdPerMillionTokens": 0.025, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 150000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 15 }, "terminalBench4": { "score": 25 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "api::model-e",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": { "id": "api", "name": "API", "billing": "metered" },
+      "model": { "id": "model-e", "name": "Model E" },
+      "pricing": { "monthlyUsd": null, "effectiveUsdPerMillionTokens": 0.005, "listUsdPerMillionTokens": 0.5 },
+      "allowance": { "monthlyTokens": null },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 40 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "unscored::model-f",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": { "id": "unscored", "name": "Unscored", "billing": "subscription" },
+      "model": { "id": "model-f", "name": "Model F" },
+      "pricing": { "monthlyUsd": 8, "effectiveUsdPerMillionTokens": 0.008, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 80000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": {},
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "big::model-g",
+      "provider": "DeepSeek",
+      "channel": "Ollama",
+      "plan": { "id": "big", "name": "Big", "billing": "subscription" },
+      "model": { "id": "model-g", "name": "Model G" },
+      "pricing": { "monthlyUsd": 40, "effectiveUsdPerMillionTokens": 0.04, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 2000000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 12 } },
+      "source": { "label": "fixture", "note": "" }
+    },
+    {
+      "id": "dear::model-a",
+      "provider": "OpenAI",
+      "channel": "OpenAI",
+      "plan": { "id": "dear", "name": "Dear", "billing": "subscription" },
+      "model": { "id": "model-a", "name": "Model A" },
+      "pricing": { "monthlyUsd": 50, "effectiveUsdPerMillionTokens": 0.05, "listUsdPerMillionTokens": 1 },
+      "allowance": { "monthlyTokens": 100000000 },
+      "quality": { "confidence": "high", "tier": "main" },
+      "benchmarks": { "codeArena": { "score": 10 } },
+      "source": { "label": "fixture", "note": "" }
+    }
+  ],
+  "benchmarkConfigurations": [],
+  "benchmarkMappings": []
+}

@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { SubAIWiseDatasetSchema } from '../data/schema'
+import { availableLeaderboardKeys } from '../lib/leaderboards'
 import {
   compactExplorerState,
   defaultExplorerState,
@@ -16,22 +17,26 @@ const dataset = SubAIWiseDatasetSchema.parse(
 describe('explorer share state', () => {
   it('round-trips a compact state', () => {
     const defaults = defaultExplorerState(dataset)
+    const boards = availableLeaderboardKeys(dataset.leaderboards)
+    const otherBoard = boards.find((board) => board !== defaults.board) ?? boards[0]
+    const harness = dataset.benchmarkConfigurations.find((item) => item.agentHarness)?.agentHarness
+    const effort = dataset.benchmarkConfigurations.find((item) => item.reasoningEffort)?.reasoningEffort
     const original = {
       ...defaultExplorerState(dataset, 'zh'),
-      models: new Set(['gpt-5.6-luna']),
-      channels: new Set(['OpenAI']),
+      models: new Set([dataset.entries[0].model.id]),
+      channels: new Set([dataset.entries[0].channel]),
       billing: 'subscription' as const,
       view: 'plans' as const,
       query: 'opus',
-      sort: 'terminal_bench_4',
-      scoreBoard: 'terminal_bench_4',
-      board: 'aa_intelligence_index',
+      sort: otherBoard,
+      scoreBoard: otherBoard,
+      board: otherBoard,
       compareIds: dataset.entries.slice(0, 2).map((entry) => entry.id),
       advanced: {
-        makers: new Set(['OpenAI']),
+        makers: new Set([dataset.entries[0].provider]),
         confidence: new Set(['high']),
-        harness: new Set(['Codex']),
-        effort: new Set(['max']),
+        harness: harness ? new Set([harness]) : null,
+        effort: effort ? new Set([effort]) : null,
         mode: null,
       },
     }
@@ -40,15 +45,15 @@ describe('explorer share state', () => {
       dataset,
     )
     expect(restored.lang).toBe('zh')
-    expect([...restored.models!]).toEqual(['gpt-5.6-luna'])
-    expect([...restored.channels!]).toEqual(['OpenAI'])
+    expect([...restored.models!]).toEqual([dataset.entries[0].model.id])
+    expect([...restored.channels!]).toEqual([dataset.entries[0].channel])
     expect(restored.billing).toBe('subscription')
     expect(restored.view).toBe('plans')
     expect(restored.query).toBe('opus')
-    expect(restored.sort).toBe('terminal_bench_4')
-    expect(restored.board).toBe('aa_intelligence_index')
+    expect(restored.sort).toBe(otherBoard)
+    expect(restored.board).toBe(otherBoard)
     expect(restored.compareIds).toEqual(original.compareIds)
-    expect([...restored.advanced.harness!]).toEqual(['Codex'])
+    if (harness) expect([...restored.advanced.harness!]).toEqual([harness])
   })
 
   it('does not expand null = all into every model id', () => {
@@ -81,7 +86,7 @@ describe('explorer share state', () => {
     )
     expect([...restored.models!]).toEqual([dataset.entries[0].model.id])
     expect(restored.channels).toEqual(new Set())
-    expect(restored.board).toBe('arena_code')
+    expect(restored.board).toBe(defaultExplorerState(dataset).board)
     expect(restored.sort).toBe('price')
     expect(restored.compareIds).toEqual([dataset.entries[0].id])
   })

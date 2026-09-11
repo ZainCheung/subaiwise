@@ -23,6 +23,7 @@ const REQUIRED_BRANDS = [
   'Alibaba',
   'OpenCode',
   'Command Code',
+  'Devin',
   'Ollama',
   'DeepSeek',
   'Google',
@@ -101,6 +102,20 @@ describe('channel resolver', () => {
     expect(isThirdParty('DeepSeek', ollama.channel)).toBe(true)
     expect(isThirdParty('DeepSeek', opencode.channel)).toBe(true)
     expect(isThirdParty('DeepSeek', commandCode.channel)).toBe(true)
+  })
+
+  it('maps Devin plans as a third-party OpenAI access channel', () => {
+    const resolved = resolveChannel({
+      planId: 'devin_max',
+      manufacturer: 'OpenAI',
+    })
+    expect(resolved).toMatchObject({
+      channel: 'Devin',
+      known: true,
+      matchedPrefix: 'devin',
+    })
+    expect(isThirdParty('OpenAI', resolved.channel)).toBe(true)
+    expect(isFirstParty('OpenAI', resolved.channel)).toBe(false)
   })
 
   it('maps OpenAI first-party ChatGPT and API plans to the OpenAI channel', () => {
@@ -190,6 +205,14 @@ describe('adapter channel contract', () => {
           model_display: 'GPT 5.6 Luna',
           label: 'GPT 5.6 Luna · ChatGPT Plus',
         }),
+        upstreamPoint({
+          id: 'devin_max::gpt-6-astra',
+          plan: 'Devin Max',
+          vendor: 'OpenAI',
+          model: 'gpt-6-astra',
+          model_display: 'GPT-6 Astra',
+          label: 'GPT-6 Astra · Devin Max',
+        }),
       ]),
       source,
     )
@@ -202,6 +225,10 @@ describe('adapter channel contract', () => {
     expect(byId['chatgpt_plus::gpt-5.6-luna']).toMatchObject({
       provider: 'OpenAI',
       channel: 'OpenAI',
+    })
+    expect(byId['devin_max::gpt-6-astra']).toMatchObject({
+      provider: 'OpenAI',
+      channel: 'Devin',
     })
   })
 
