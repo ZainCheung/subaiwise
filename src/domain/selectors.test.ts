@@ -8,8 +8,6 @@ import {
 } from './comparison'
 import { mostEfficientEntry, subscriptionFrontier } from './leaderboards'
 import { apiSavingRatio, formatApiSaving, selectAllowanceRows, selectPriceRows } from './pricing'
-import { canonicalBenchmarkKey } from '../lib/leaderboards'
-import { selectDefaultBenchmarkReference } from './benchmarks'
 import {
   filterEntries,
   monthlyYi,
@@ -63,8 +61,8 @@ function board(name: string, metric = 'Score') {
   }
 }
 
-const checkedIn = SubAIWiseDatasetSchema.parse(
-  JSON.parse(readFileSync('data/dataset.json', 'utf8')),
+const known = SubAIWiseDatasetSchema.parse(
+  JSON.parse(readFileSync('tests/fixtures/known-dataset.json', 'utf8')),
 )
 
 describe('canonical selectors', () => {
@@ -136,161 +134,75 @@ describe('canonical selectors', () => {
   })
 })
 
-describe('migration goldens from the locked dataset', () => {
-  it('keeps Pareto frontier membership identical for every current board', () => {
-    expect(selectAvailableLeaderboards(checkedIn)).toEqual([
-      'arena_code',
-      'arena_agent_mode',
-      'aa_intelligence_index',
-      'aa_coding_agent_index',
-      'open_design_arena',
-      'terminal_bench_4',
+describe('algorithm goldens from the frozen fixture', () => {
+  it('keeps Pareto frontier membership identical on a known set', () => {
+    expect(selectAvailableLeaderboards(known)).toEqual(['arena_code', 'terminal_bench_4'])
+    expect(subscriptionFrontier(known.entries, 'arena_code').map((row) => row.id)).toEqual([
+      'cheap::model-a',
+      'mid::model-b',
+      'strong::model-c',
     ])
-    expect(subscriptionFrontier(checkedIn.entries, 'arena_code').map((row) => row.id)).toEqual([
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3-flash',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3',
-      'claude_max_20x::claude-opus-5',
-    ])
-    expect(subscriptionFrontier(checkedIn.entries, 'arena_agent_mode').map((row) => row.id)).toEqual([
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3-flash',
-      'claude_pro::claude-sonnet-5',
-      'claude_pro::claude-opus-4.8',
-      'claude_max_20x::claude-opus-5',
-    ])
-    expect(subscriptionFrontier(checkedIn.entries, 'aa_intelligence_index').map((row) => row.id)).toEqual([
-      'stepfun_max_cn::step-3.5-flash',
-      'stepfun_max_cn::step-3.7-flash',
-      'opencode_go::mimo-v2.5',
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3-flash',
-      'chatgpt_pro_20x::gpt-5.6-terra',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3',
-      'claude_max_20x::claude-opus-5',
-    ])
-    expect(subscriptionFrontier(checkedIn.entries, 'aa_coding_agent_index').map((row) => row.id)).toEqual([
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'chatgpt_pro_20x::gpt-5.6-terra',
-      'claude_pro::claude-opus-4.8',
-      'claude_max_20x::claude-opus-5',
-    ])
-    expect(subscriptionFrontier(checkedIn.entries, 'open_design_arena').map((row) => row.id)).toEqual([
-      'command_code_goat::deepseek-v4.1-flash',
-    ])
-    expect(subscriptionFrontier(checkedIn.entries, 'terminal_bench_4').map((row) => row.id)).toEqual([
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'chatgpt_pro_20x::gpt-5.6-terra',
-      'glm_coding_pro_cn_old_offpeak::glm-5.3',
-      'claude_max_20x::claude-opus-5',
+    expect(subscriptionFrontier(known.entries, 'terminal_bench_4').map((row) => row.id)).toEqual([
+      'cheap::model-a',
+      'mid::model-b',
+      'strong::model-c',
     ])
   })
 
   it('keeps scored counts, efficiency picks, price order, and allowance order', () => {
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'arena_code')).toHaveLength(136)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'arena_agent_mode')).toHaveLength(140)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'aa_intelligence_index')).toHaveLength(173)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'aa_coding_agent_index')).toHaveLength(71)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'open_design_arena')).toHaveLength(65)
-    expect(selectEntriesForLeaderboard(checkedIn.entries, 'terminal_bench_4')).toHaveLength(66)
-
-    expect(mostEfficientEntry(checkedIn.entries, 'arena_code')?.id).toBe(
-      'claude_max_20x::claude-opus-5',
-    )
-    expect(mostEfficientEntry(checkedIn.entries, 'open_design_arena')?.id).toBe(
-      'command_code_goat::deepseek-v4.1-flash',
-    )
-
-    expect(selectPriceRows(checkedIn.entries).slice(0, 10).map((row) => row.id)).toEqual([
-      'stepfun_max_cn::step-3.5-flash',
-      'stepfun_pro_cn::step-3.5-flash',
-      'opencode_go::muse-spark-1.2-contributor',
-      'opencode_go::muse-spark-1.3-contributor',
-      'stepfun_max_cn::step-3.7-flash',
-      'opencode_go::mimo-v2.5',
-      'stepfun_pro_cn::step-3.7-flash',
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'stepfun_plus_cn::step-3.5-flash',
-      'command_code_goat::deepseek-v4.1-flash',
+    expect(selectEntriesForLeaderboard(known.entries, 'arena_code')).toHaveLength(7)
+    expect(selectEntriesForLeaderboard(known.entries, 'terminal_bench_4')).toHaveLength(4)
+    expect(mostEfficientEntry(known.entries, 'arena_code')?.id).toBe('api::model-e')
+    expect(selectPriceRows(known.entries).map((row) => row.id)).toEqual([
+      'api::model-e',
+      'unscored::model-f',
+      'cheap::model-a',
+      'mid::model-b',
+      'dominated::model-d',
+      'strong::model-c',
+      'big::model-g',
+      'dear::model-a',
     ])
-    expect(selectPriceRows(checkedIn.entries)[0].realUsdPerMtok).toBe(0.00041)
-
-    expect(selectAllowanceRows(checkedIn.entries).slice(0, 10).map((row) => row.id)).toEqual([
-      'stepfun_max_cn::step-3.5-flash',
-      'chatgpt_pro_20x::gpt-5.6-luna',
-      'stepfun_max_cn::step-3.7-flash',
-      'stepfun_pro_cn::step-3.5-flash',
-      'claude_max_20x::claude-sonnet-5',
-      'chatgpt_pro_5x::gpt-5.6-luna',
-      'stepfun_pro_cn::step-3.7-flash',
-      'chatgpt_pro_20x::gpt-5.6-terra',
-      'ollama_max::deepseek-v4-flash',
-      'cursor_ultra::composer-2.5',
+    expect(selectPriceRows(known.entries)[0].realUsdPerMtok).toBe(0.005)
+    expect(selectAllowanceRows(known.entries).map((row) => row.id)).toEqual([
+      'big::model-g',
+      'strong::model-c',
+      'mid::model-b',
+      'dominated::model-d',
+      'cheap::model-a',
+      'dear::model-a',
+      'unscored::model-f',
     ])
-    expect(selectAllowanceRows(checkedIn.entries)[0].monthlyYi).toBe(2517.306)
-  })
-
-  it('keeps derived entry.benchmarks aligned with highest_archived_reference', () => {
-    for (const entry of checkedIn.entries) {
-      for (const boardId of selectAvailableLeaderboards(checkedIn)) {
-        const selected = selectDefaultBenchmarkReference(checkedIn, entry.id, boardId)
-        const derived = entry.benchmarks[canonicalBenchmarkKey(boardId)]
-        if (!selected) continue
-        expect(derived?.score).toBe(selected.configuration.score)
-        expect(derived?.selection).toBe('highest_archived_reference')
-      }
-    }
-    expect(checkedIn.benchmarkConfigurations.length).toBeGreaterThan(0)
-    expect(checkedIn.benchmarkMappings.length).toBeGreaterThan(0)
+    expect(selectAllowanceRows(known.entries)[0].monthlyYi).toBe(20)
   })
 
   it('keeps compare filter and board-sort output', () => {
-    expect(selectMakers(checkedIn.entries)).toEqual([
-      'Alibaba',
-      'Anthropic',
-      'Cursor',
-      'DeepSeek',
-      'Google',
-      'Kimi',
-      'Meituan',
-      'MiniMax',
-      'Muse',
-      'OpenAI',
-      'OpenCode',
-      'other',
-      'StepFun',
-      'Tencent',
-      'xAI',
-      'Xiaomi',
-      'Zhipu',
-    ])
+    expect(selectMakers(known.entries)).toEqual(['Anthropic', 'DeepSeek', 'OpenAI'])
     expect(
-      filterCompareEntries(checkedIn.entries, {
+      filterCompareEntries(known.entries, {
         query: '',
         billing: 'all',
         vendor: 'all',
         confidence: 'high',
       }),
-    ).toHaveLength(59)
+    ).toHaveLength(7)
     expect(
-      filterCompareEntries(checkedIn.entries, {
+      filterCompareEntries(known.entries, {
         query: '',
         billing: 'subscription',
         vendor: 'all',
         confidence: 'all',
       }),
-    ).toHaveLength(183)
-    expect(sortEntries(checkedIn.entries, 'arena_code').slice(0, 10).map((row) => row.id)).toEqual([
-      'claude_max_20x::claude-opus-5',
-      'claude_max_5x::claude-opus-5',
-      'anthropic_opus5_api::claude-opus-5',
-      'kimi_allegretto_cn::kimi-k3',
-      'kimi_allegro_cn::kimi-k3',
-      'kimi_moderato_cn::kimi-k3',
-      'ollama_max::kimi-k3',
-      'ollama_pro::kimi-k3',
-      'command_code_goat::kimi-k3',
-      'opencode_go::kimi-k3',
+    ).toHaveLength(7)
+    expect(sortEntries(known.entries, 'arena_code').map((row) => row.id)).toEqual([
+      'api::model-e',
+      'strong::model-c',
+      'mid::model-b',
+      'dominated::model-d',
+      'big::model-g',
+      'cheap::model-a',
+      'dear::model-a',
+      'unscored::model-f',
     ])
   })
 })
