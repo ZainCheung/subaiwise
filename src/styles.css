@@ -457,6 +457,11 @@ select option {
   color: #ffffff;
 }
 
+.filter-root {
+  position: relative;
+}
+
+.filter-trigger,
 .howto-button {
   display: inline-flex;
   align-items: center;
@@ -473,9 +478,100 @@ select option {
   white-space: nowrap;
 }
 
+.filter-trigger:hover,
 .howto-button:hover {
   color: var(--color-ink);
   border-color: #525252;
+}
+
+.filter-panel {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  z-index: 40;
+  display: flex;
+  width: min(22rem, calc(100vw - 2rem));
+  max-height: min(24rem, 70vh);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0.75rem;
+  background: var(--color-bg-card);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.filter-panel-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-search {
+  width: 100%;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+.filter-search:focus {
+  outline: none;
+  border-color: #525252;
+}
+
+.filter-panel-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filter-panel-actions button {
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.filter-panel-actions button:hover {
+  color: var(--color-ink);
+}
+
+.filter-options {
+  margin: 0;
+  padding: 0.35rem 0 0.5rem;
+  overflow: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+.filter-option {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.filter-option input {
+  margin: 0;
+}
+
+.filter-empty {
+  padding: 0.85rem 0.75rem;
+  color: var(--color-ink-dim);
+  font-size: 0.8125rem;
 }
 
 .app-dialog {

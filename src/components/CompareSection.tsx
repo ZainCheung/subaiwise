@@ -16,12 +16,14 @@ import {
   type ConfidenceFilter,
   type SortKey,
 } from '../lib/compare'
+import { filterPricingPoints, type IdFilter } from '../lib/filters'
 import { BOARD_KEYS, boardTitle } from '../lib/labels'
 import { ALLOWANCE_METRIC, PRICE_METRIC, boardMetric } from '../lib/metrics'
 import { formatAllowanceYi, formatScore, formatUsdPerMtok } from '../lib/format'
 import { Pill, PillGroup } from './Pill'
 import { HeaderMetric, MetricInfo, SortMetricPill } from './MetricInfo'
 import { AppDialog } from './AppDialog'
+import { IdentityFilters } from './ModelServiceFilters'
 import { ModelIdentity, PlanIdentity } from './ProviderLogo'
 import { HowToRead, RowDetail } from './RowDetail'
 import { TableViewport } from './TableViewport'
@@ -133,7 +135,19 @@ function CompareRow({
   )
 }
 
-export function CompareSection({ data }: { data: PointsPayload }) {
+export function CompareSection({
+  data,
+  models,
+  channels,
+  onModelsChange,
+  onChannelsChange,
+}: {
+  data: PointsPayload
+  models: IdFilter
+  channels: IdFilter
+  onModelsChange: (next: IdFilter) => void
+  onChannelsChange: (next: IdFilter) => void
+}) {
   const { t, lang } = useI18n()
   const [query, setQuery] = useState('')
   const [view, setView] = useState<CompareView>('models')
@@ -148,15 +162,20 @@ export function CompareSection({ data }: { data: PointsPayload }) {
 
   const vendors = useMemo(() => uniqueVendors(data.points), [data.points])
 
+  const identityFiltered = useMemo(
+    () => filterPricingPoints(data.points, { models, channels }),
+    [data.points, models, channels],
+  )
+
   const filtered = useMemo(
     () =>
-      filterPoints(data.points, {
+      filterPoints(identityFiltered, {
         query,
         billing,
         vendor,
         confidence,
       }),
-    [data.points, query, billing, vendor, confidence],
+    [identityFiltered, query, billing, vendor, confidence],
   )
 
   const planRows = useMemo(() => sortPoints(filtered, sortKey), [filtered, sortKey])
@@ -284,6 +303,13 @@ export function CompareSection({ data }: { data: PointsPayload }) {
         </div>
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <IdentityFilters
+            points={data.points}
+            models={models}
+            channels={channels}
+            onModelsChange={onModelsChange}
+            onChannelsChange={onChannelsChange}
+          />
           <label className="flex items-center gap-2 text-[13px] text-ink-muted">
             <span className="text-[11px] uppercase tracking-[0.08em] text-ink-dim">
               {t('filterVendor')}
