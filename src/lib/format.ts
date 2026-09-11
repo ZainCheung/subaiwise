@@ -28,10 +28,15 @@ export function formatAllowanceYi(
   return compact ? `${n}B` : `${n}B tokens`
 }
 
-export function formatScore(n: number | null | undefined): string {
+export type ScoreFormat = 'score' | 'percent'
+
+export function formatScore(
+  n: number | null | undefined,
+  format: ScoreFormat = 'score',
+): string {
   if (n == null || !Number.isFinite(n)) return '—'
-  if (Number.isInteger(n)) return String(n)
-  return parseFloat(n.toPrecision(4)).toString()
+  const body = Number.isInteger(n) ? String(n) : parseFloat(n.toPrecision(4)).toString()
+  return format === 'percent' ? `${body}%` : body
 }
 
 export function formatSnapshotDate(iso: string, lang: Lang): string {

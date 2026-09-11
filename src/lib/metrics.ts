@@ -1,8 +1,11 @@
 import type { BoardKey } from '../types'
-import type { SortKey } from './compare'
 import type { DictKey } from './i18n'
-import { BOARD_KEYS } from './labels'
-import { LEADERBOARD_CONFIG } from './leaderboards'
+import type { SortKey } from './compare'
+import {
+  LEADERBOARD_PRESENTATION,
+  resolveLeaderboardPresentation,
+  type LeaderboardMetricFormatter,
+} from './leaderboards'
 
 export type MetricDirection = 'higher' | 'lower'
 
@@ -13,6 +16,7 @@ export type MetricDefinition = {
   longKey: DictKey
   direction: MetricDirection
   sourceKey?: DictKey
+  formatter?: LeaderboardMetricFormatter
 }
 
 export const PRICE_METRIC: MetricDefinition = {
@@ -32,7 +36,7 @@ export const ALLOWANCE_METRIC: MetricDefinition = {
 }
 
 export const BOARD_METRICS = Object.fromEntries(
-  LEADERBOARD_CONFIG.map((definition) => [
+  LEADERBOARD_PRESENTATION.map((definition) => [
     definition.key,
     {
       key: definition.key,
@@ -43,22 +47,38 @@ export const BOARD_METRICS = Object.fromEntries(
       sourceKey: ('sourceKey' in definition
         ? definition.sourceKey
         : undefined) as DictKey | undefined,
+      formatter: definition.formatter,
     },
   ]),
-) as Record<BoardKey, MetricDefinition>
+) as Record<string, MetricDefinition>
 
-export const SORT_METRICS: Record<SortKey, MetricDefinition> = {
+export const SORT_METRICS: Record<string, MetricDefinition> = {
   price: PRICE_METRIC,
   allowance: ALLOWANCE_METRIC,
   ...BOARD_METRICS,
 }
 
 export function metricDef(key: SortKey): MetricDefinition {
-  return SORT_METRICS[key]
+  if (key === 'price') return PRICE_METRIC
+  if (key === 'allowance') return ALLOWANCE_METRIC
+  return boardMetric(key)
 }
 
 export function boardMetric(board: BoardKey): MetricDefinition {
-  return BOARD_METRICS[board]
+  const known = BOARD_METRICS[board]
+  if (known) return known
+
+  const presentation = resolveLeaderboardPresentation(board)
+  return {
+    key: board,
+    titleKey: 'boardGeneric',
+    shortKey: 'metricGenericShort',
+    longKey: 'metricGenericLong',
+    direction: presentation.direction,
+    formatter: presentation.formatter,
+  }
 }
 
-export const ALL_BOARD_METRICS: MetricDefinition[] = BOARD_KEYS.map((k) => BOARD_METRICS[k])
+export const ALL_BOARD_METRICS: MetricDefinition[] = LEADERBOARD_PRESENTATION.map(
+  (definition) => BOARD_METRICS[definition.key],
+)

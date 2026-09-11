@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { PricingPoint } from '../types'
-import { guideEndpoints } from './axis'
+import { formatYTick, guideEndpoints } from './axis'
 import { filterPricingPoints } from './filters'
 import { groupByExactCoords } from './pointGrouping'
 import { mostEfficientPoint, sameModelPoints, subscriptionFrontier } from './pareto'
@@ -161,6 +161,14 @@ describe('point grouping', () => {
       'ollama',
       'opencode',
     ])
+  })
+})
+
+describe('percent axis ticks', () => {
+  it('labels Terminal-Bench style rates with a percent sign', () => {
+    expect(formatYTick(45, 'percent')).toBe('45%')
+    expect(formatYTick(44.5, 'percent')).toBe('44.5%')
+    expect(formatYTick(1400, 'score')).toBe('1400')
   })
 })
 

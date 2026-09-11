@@ -1,7 +1,10 @@
 import type { SubAIWiseDataset, SubAIWiseEntry } from './schema'
 import { TOKENS_PER_YI } from './adapter'
 import type { BoardKey, BoardMeta, PointsPayload, PricingPoint } from '../types'
-import { LEADERBOARD_CONFIG, LEADERBOARD_KEYS } from '../lib/leaderboards'
+import {
+  availableLeaderboardKeys,
+  canonicalBenchmarkKey,
+} from '../lib/leaderboards'
 
 /**
  * @deprecated Compatibility view model for the migrated explorer UI.
@@ -11,12 +14,11 @@ import { LEADERBOARD_CONFIG, LEADERBOARD_KEYS } from '../lib/leaderboards'
  * into the small chart/table view model they need; it never reads upstream
  * JSON or exposes the upstream payload to the application.
  *
+ * Leaderboard availability is taken from the canonical dataset. Presentation
+ * metadata lives in `src/lib/leaderboards.ts` and must not drop unknown boards.
+ *
  * @deprecated migration compatibility only; do not use for new features.
  */
-const BOARD_MAP = Object.fromEntries(
-  LEADERBOARD_CONFIG.map((definition) => [definition.key, definition.canonicalKey]),
-) as Record<BoardKey, keyof SubAIWiseEntry['benchmarks'] | string>
-
 function boardMeta(dataset: SubAIWiseDataset, key: BoardKey): BoardMeta {
   const metadata = dataset.leaderboards[key]
   if (!metadata) {
@@ -26,7 +28,7 @@ function boardMeta(dataset: SubAIWiseDataset, key: BoardKey): BoardMeta {
 }
 
 function setBenchmarkFields(point: PricingPoint, board: BoardKey, entry: SubAIWiseEntry): void {
-  const benchmark = entry.benchmarks[BOARD_MAP[board]]
+  const benchmark = entry.benchmarks[canonicalBenchmarkKey(board)]
   const target = point as unknown as Record<string, string | number | null>
   target[`${board}__score`] = benchmark?.score ?? null
   target[`${board}__variant`] = benchmark?.variant ?? null
@@ -44,7 +46,7 @@ function setBenchmarkFields(point: PricingPoint, board: BoardKey, entry: SubAIWi
   target[`${board}__configuration_count`] = benchmark?.configurationCount ?? null
 }
 
-function toPoint(entry: SubAIWiseEntry): PricingPoint {
+function toPoint(entry: SubAIWiseEntry, boards: readonly string[]): PricingPoint {
   const point = {
     id: entry.id,
     plan: entry.plan.name,
@@ -68,17 +70,18 @@ function toPoint(entry: SubAIWiseEntry): PricingPoint {
     note: entry.source.note,
   } as PricingPoint
 
-  LEADERBOARD_KEYS.forEach((board) => setBenchmarkFields(point, board, entry))
+  boards.forEach((board) => setBenchmarkFields(point, board, entry))
   return point
 }
 
 export function toPointsPayload(dataset: SubAIWiseDataset): PointsPayload {
+  const boards = availableLeaderboardKeys(dataset.leaderboards)
   return {
     generatedAt: dataset.snapshot,
     mix: dataset.workloadMix,
     boards: Object.fromEntries(
-      LEADERBOARD_KEYS.map((board) => [board, boardMeta(dataset, board)]),
-    ) as Record<BoardKey, BoardMeta>,
-    points: dataset.entries.map(toPoint),
+      boards.map((board) => [board, boardMeta(dataset, board)]),
+    ),
+    points: dataset.entries.map((entry) => toPoint(entry, boards)),
   }
 }

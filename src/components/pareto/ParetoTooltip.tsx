@@ -1,5 +1,6 @@
 import type { PricingPoint } from '../../types'
 import { useI18n } from '../../lib/i18n'
+import { formatScore, type ScoreFormat } from '../../lib/format'
 import { ChartTooltipShell } from '../ChartTooltip'
 import { BrandMarks } from '../ProviderLogo'
 
@@ -7,10 +8,12 @@ export function ParetoTooltip({
   active,
   points,
   score,
+  formatter = 'score',
 }: {
   active?: boolean
   points: PricingPoint[]
   score: number
+  formatter?: ScoreFormat
 }) {
   const { t } = useI18n()
   if (!points.length) return null
@@ -36,7 +39,7 @@ export function ParetoTooltip({
         {t('tooltipPrice')}: ${points[0].real_usd_per_mtok.toPrecision(4)}
       </div>
       <div className="num text-ink">
-        {t('tooltipScore')}: {score}
+        {t('tooltipScore')}: {formatScore(score, formatter)}
       </div>
     </ChartTooltipShell>
   )

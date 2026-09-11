@@ -84,6 +84,8 @@ const dict = {
     boardAAIntel: 'AA Intelligence',
     boardAACoding: 'AA Coding Agent',
     boardOpenDesign: 'OpenDesign Arena',
+    boardTerminalBench: 'Terminal-Bench 4.0',
+    boardGeneric: 'Benchmark',
     aaIntelFullName: 'Artificial Analysis Intelligence Index',
     metricInfoLabel: 'About {metric}',
     metricPriceShort: 'Effective cost per million tokens after using the full plan allowance. Lower is better.',
@@ -110,6 +112,13 @@ const dict = {
       'OpenDesign Arena quality score for design-oriented tasks. Higher is better.',
     metricOpenDesignLong:
       'An OpenDesign Arena task-quality score; compare only within this board’s methodology.',
+    metricTerminalBenchShort:
+      'Share of Terminal-Bench 4.0 tasks resolved. This is a percentage. Higher is better.',
+    metricTerminalBenchLong:
+      'Resolution Rate % for agent/terminal tasks, not an Arena rating and not a composite intelligence index. Compare only within this board’s methodology and harness.',
+    metricGenericShort: 'This leaderboard’s published metric. Higher is better unless noted.',
+    metricGenericLong:
+      'Use this board’s own methodology. Scores are never mixed with other leaderboards, and missing scores stay missing.',
     missingScoreNote: 'No matching score on this board',
     filterAll: 'All',
     filterModels: 'Models',
@@ -147,6 +156,8 @@ const dict = {
     howToRead: 'How to read',
     howToReadPrice: 'Effective $/MTok after using the plan. Lower is better.',
     howToReadScore: 'The selected board’s model-capability metric. Higher is better.',
+    howToReadTerminalBench:
+      'Resolution rate on Terminal-Bench 4.0 — the percentage of tasks solved. Higher is better; missing scores stay missing.',
     howToReadEvidence: 'Only the strength of allowance and unit-price sources.',
     howToReadPlansTitle: '6 plans ▾',
     howToReadPlans: 'Expand other plan / API entries for this model.',
@@ -306,6 +317,8 @@ const dict = {
     boardAAIntel: 'AA 智力榜',
     boardAACoding: 'AA 编程 Agent',
     boardOpenDesign: 'OpenDesign Arena',
+    boardTerminalBench: 'Terminal-Bench 4.0',
+    boardGeneric: '榜单',
     aaIntelFullName: 'Artificial Analysis Intelligence Index',
     metricInfoLabel: '关于{metric}',
     metricPriceShort: '跑满套餐额度后，每百万 Token 的有效成本。越低越好。',
@@ -322,6 +335,11 @@ const dict = {
     metricAACodingLong: '分数受 Agent harness 和配置影响，同一模型在不同工具中可能不同。',
     metricOpenDesignShort: '面向设计任务的 OpenDesign Arena 质量分。越高越好。',
     metricOpenDesignLong: 'OpenDesign Arena 的任务质量分，只应在该榜单的方法口径内比较。',
+    metricTerminalBenchShort: 'Terminal-Bench 4.0 任务解决率（百分比）。越高越好。',
+    metricTerminalBenchLong:
+      '这是终端 / Agent 任务的解决率百分比，不是 Arena 相对分，也不是综合智力指数。只应在该榜单的方法与 harness 口径内比较。',
+    metricGenericShort: '该榜单公布的指标。除非另有说明，越高越好。',
+    metricGenericLong: '使用该榜单自己的方法口径。分数不与其他榜单混用，缺分就是缺分。',
     missingScoreNote: '该榜暂无匹配成绩',
     filterAll: '全部',
     filterModels: '模型',
@@ -357,6 +375,8 @@ const dict = {
     howToRead: '如何阅读',
     howToReadPrice: '订阅跑满后的有效 $/MTok，越低越好。',
     howToReadScore: '当前所选榜单的模型能力指标，越高越好。',
+    howToReadTerminalBench:
+      'Terminal-Bench 4.0 的任务解决率（百分比）。越高越好；缺分就是缺分。',
     howToReadEvidence: '只表示额度和单价数据依据强弱。',
     howToReadPlansTitle: '6 个方案 ▾',
     howToReadPlans: '展开该模型的其他套餐/API 入口。',

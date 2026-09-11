@@ -1,13 +1,24 @@
+import type { BoardMeta } from '../data/schema'
 import type { BoardKey, Lang } from '../types'
-import { LEADERBOARD_KEYS, getLeaderboardConfig } from './leaderboards'
+import {
+  LEADERBOARD_KEYS,
+  resolveLeaderboardPresentation,
+} from './leaderboards'
 export { scatterLabel } from './text'
+export {
+  availableLeaderboardKeys,
+  defaultLeaderboardKey,
+} from './leaderboards'
 
-/** @deprecated Legacy chart helpers; order comes from SubAIWise config. */
+/** Known presentation keys only. Runtime lists come from the dataset. */
 export const BOARD_KEYS: BoardKey[] = [...LEADERBOARD_KEYS]
 
-export function boardTitle(board: BoardKey, lang: Lang): string {
-  const definition = getLeaderboardConfig(board)
-  return definition.title[lang]
+export function boardTitle(
+  board: BoardKey,
+  lang: Lang,
+  meta?: Pick<BoardMeta, 'name' | 'metric'> | null,
+): string {
+  return resolveLeaderboardPresentation(board, meta).title[lang]
 }
 
 /** Shorten long "Model · Plan" labels for axes / dense charts. Full name stays in tooltip. */

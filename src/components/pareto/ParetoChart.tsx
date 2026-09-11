@@ -13,6 +13,7 @@ import {
 import type { BoardKey, BoardMeta, PricingPoint } from '../../types'
 import { useI18n } from '../../lib/i18n'
 import { formatUsdTick, formatYTick, logPriceAxis, niceLinearTicks } from '../../lib/axis'
+import { leaderboardFormatter } from '../../lib/leaderboards'
 import {
   boardPoints,
   mostEfficientPoint,
@@ -43,6 +44,7 @@ export function ParetoChart({
 }) {
   const { t } = useI18n()
   const key = scoreKey(board)
+  const formatter = leaderboardFormatter(board, meta)
   const [activeKey, setActiveKey] = useState<string | null>(null)
 
   const { regular, frontier, domain, xTicks, yTicks, scored, active, modelLine } = useMemo(() => {
@@ -155,7 +157,7 @@ export function ParetoChart({
         </div>
         {active ? (
           <div className="pointer-events-none absolute right-4 top-10 z-10 max-w-xs">
-            <ParetoTooltip active points={active.points} score={active.y} />
+            <ParetoTooltip active points={active.points} score={active.y} formatter={formatter} />
           </div>
         ) : null}
         <ResponsiveContainer width="100%" height="100%" minHeight={expanded ? 520 : 420}>
@@ -192,7 +194,7 @@ export function ParetoChart({
               axisLine={false}
               tickLine={false}
               tick={tickStyle}
-              tickFormatter={formatYTick}
+              tickFormatter={(value) => formatYTick(value, formatter)}
               name={meta.metric}
               width={56}
             />
@@ -263,6 +265,7 @@ export function ParetoChart({
                   offset={frame.offset}
                   xAxisMap={frame.xAxisMap}
                   yAxisMap={frame.yAxisMap}
+                  yFormat={(value) => formatYTick(value, formatter)}
                 />
               )}
             />

@@ -2,7 +2,11 @@ import { useMemo, useState } from 'react'
 import type { BoardKey, PointsPayload, PricingPoint } from '../../types'
 import { useI18n } from '../../lib/i18n'
 import { filterPricingPoints, type IdFilter } from '../../lib/filters'
-import { BOARD_KEYS, boardTitle } from '../../lib/labels'
+import {
+  availableLeaderboardKeys,
+  boardTitle,
+  defaultLeaderboardKey,
+} from '../../lib/labels'
 import { MAX_COMPARE } from '../../lib/compare'
 import { AppDialog } from '../AppDialog'
 import { IdentityFilters } from '../ModelServiceFilters'
@@ -26,7 +30,8 @@ export function Leaderboard({
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t, lang } = useI18n()
-  const [board, setBoard] = useState<BoardKey>('arena_code')
+  const boards = useMemo(() => availableLeaderboardKeys(data.boards), [data.boards])
+  const [board, setBoard] = useState<BoardKey>(() => defaultLeaderboardKey(boards))
   const [showAll, setShowAll] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [group, setGroup] = useState<PricingPoint[] | null>(null)
@@ -109,7 +114,7 @@ export function Leaderboard({
 
       {showAll ? (
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {BOARD_KEYS.map((item) => (
+          {boards.map((item) => (
             <div key={item}>{chart(item)}</div>
           ))}
         </div>
@@ -117,9 +122,9 @@ export function Leaderboard({
         <>
           <div className="mt-6">
             <PillGroup>
-              {BOARD_KEYS.map((item) => (
+              {boards.map((item) => (
                 <Pill key={item} active={board === item} onClick={() => setBoard(item)}>
-                  {boardTitle(item, lang)}
+                  {boardTitle(item, lang, data.boards[item])}
                 </Pill>
               ))}
             </PillGroup>
@@ -140,7 +145,7 @@ export function Leaderboard({
 
       {howto ? (
         <AppDialog title={t('howToRead')} onClose={() => setHowto(false)} closeLabel={t('closeDetail')}>
-          <HowToRead scoreBoard={board} />
+          <HowToRead scoreBoard={board} boardMeta={data.boards[board]} />
         </AppDialog>
       ) : null}
 
@@ -181,6 +186,8 @@ export function Leaderboard({
           <RowDetail
             point={detail}
             scoreBoard={board}
+            boards={boards}
+            boardMetas={data.boards}
             inCompare={compareIds.includes(detail.id)}
             compareFull={compareIds.length >= MAX_COMPARE}
             onToggleCompare={() => toggleCompare(detail.id)}
