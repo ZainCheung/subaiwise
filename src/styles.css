@@ -601,6 +601,36 @@ select option {
   max-height: calc(100dvh - 5rem);
 }
 
+/* In-page fullscreen: covers the web viewport (no Fullscreen API). */
+.app-dialog-fullscreen {
+  width: calc(100vw - 1rem);
+  height: calc(100dvh - 1rem);
+  max-width: none;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-dialog-fullscreen .app-dialog-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .app-dialog-fullscreen {
+    width: 100vw;
+    height: 100dvh;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+}
+
 .app-dialog-head {
   display: flex;
   align-items: flex-start;
