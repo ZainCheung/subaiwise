@@ -28,7 +28,10 @@ html {
 #leaderboard,
 #overview,
 #pareto,
-#method,
+#method-source,
+#method-pricing,
+#method-boards,
+#method-limits,
 #data {
   scroll-margin-top: 3.5rem;
 }

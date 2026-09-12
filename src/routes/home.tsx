@@ -1,15 +1,14 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
-import { loadDataset } from '../data/load'
+import { lazy, Suspense } from 'react'
 import type { SubAIWiseDataset } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { ExplorerProvider, useExplorer } from '../lib/explorer'
 import { computeInsights, computeStats } from '../lib/stats'
+import { useDataset } from '../data/use-dataset'
+import { DatasetStatus } from '../components/DatasetStatus'
 import { Nav } from '../components/Nav'
 import { Hero } from '../components/Hero'
 import { StatStrip } from '../components/StatStrip'
 import { CompareSection } from '../components/CompareSection'
-import { Method } from '../components/Method'
-import { Downloads } from '../components/Downloads'
 import { Footer } from '../components/Footer'
 
 const ChartsSection = lazy(async () => {
@@ -22,48 +21,14 @@ const Leaderboard = lazy(async () => {
 })
 
 export function HomePage() {
-  const { t } = useI18n()
-  const [dataset, setDataset] = useState<SubAIWiseDataset | null>(null)
-  const [error, setError] = useState<Error | null>(null)
-  const [attempt, setAttempt] = useState(0)
-  const retry = useCallback(() => setAttempt((value) => value + 1), [])
-
-  useEffect(() => {
-    let active = true
-    setDataset(null)
-    setError(null)
-    loadDataset()
-      .then((next) => {
-        if (active) setDataset(next)
-      })
-      .catch((cause: unknown) => {
-        if (active) setError(cause instanceof Error ? cause : new Error(String(cause)))
-      })
-    return () => {
-      active = false
-    }
-  }, [attempt])
+  const { dataset, error, retry } = useDataset()
 
   if (!dataset) {
     return (
       <div className="min-h-screen bg-bg">
         <Nav />
         <main className="mx-auto flex min-h-[24rem] max-w-6xl items-center px-5 py-20">
-          <div
-            className={`card w-full p-6 text-center text-[13px] ${error ? 'text-red-300' : 'text-ink-muted'}`}
-            role={error ? 'alert' : 'status'}
-          >
-            <p>{error ? t('error') : t('loading')}</p>
-            {error ? (
-              <button
-                type="button"
-                onClick={retry}
-                className="mt-4 rounded-md border border-border-strong px-3.5 py-2 text-ink hover:border-neutral-500"
-              >
-                {t('retry')}
-              </button>
-            ) : null}
-          </div>
+          <DatasetStatus error={error} onRetry={retry} />
         </main>
         <Footer />
       </div>
@@ -136,8 +101,6 @@ function LoadedHome({ dataset }: { dataset: SubAIWiseDataset }) {
             onChannelsChange={(next) => patch({ channels: next })}
           />
         </Suspense>
-        <Method mix={dataset.workloadMix} />
-        <Downloads />
       </main>
       <Footer />
     </div>
