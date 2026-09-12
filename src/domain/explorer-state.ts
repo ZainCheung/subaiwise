@@ -117,6 +117,51 @@ export function parseCompactState(raw: string): CompactState | null {
   }
 }
 
+export const EXPLORER_STORAGE_KEY = 'subaiwise:explorer-state:v1'
+
+/**
+ * Regular explorer interactions persist to localStorage, not the URL.
+ * Corrupted, foreign-version, or unavailable storage silently falls back to
+ * defaults; `restoreExplorerState` still validates ids against the dataset.
+ */
+export function readStoredExplorerState(): CompactState | null {
+  try {
+    if (typeof window === 'undefined') return null
+    const raw = window.localStorage.getItem(EXPLORER_STORAGE_KEY)
+    return raw ? parseCompactState(raw) : null
+  } catch {
+    return null
+  }
+}
+
+export function writeStoredExplorerState(
+  state: ExplorerState,
+  defaults: Pick<ExplorerState, 'board'>,
+): void {
+  try {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(
+      EXPLORER_STORAGE_KEY,
+      serializeExplorerState({ ...state, lang: undefined }, defaults),
+    )
+  } catch {
+    // Storage may be unavailable (private mode, quota); the explorer keeps working in memory.
+  }
+}
+
+/**
+ * Initial compact state for the explorer. An explicit share param wins, but
+ * a corrupted or unsupported share payload falls back to the stored state
+ * instead of resetting to defaults.
+ */
+export function pickInitialCompact(
+  sharedRaw: string | null | undefined,
+  readStored: () => CompactState | null = readStoredExplorerState,
+): CompactState | null {
+  const shared = sharedRaw ? parseCompactState(sharedRaw) : null
+  return shared ?? readStored()
+}
+
 export function restoreExplorerState(
   compact: CompactState | null | undefined,
   dataset: SubAIWiseDataset,

@@ -10,11 +10,12 @@ import {
 import { useLocation, useNavigate, useSearch } from '@tanstack/react-router'
 import type { SubAIWiseDataset } from '../data/schema'
 import {
-  compactExplorerState,
   defaultExplorerState,
   parseCompactState,
+  pickInitialCompact,
   restoreExplorerState,
   serializeExplorerState,
+  writeStoredExplorerState,
   type ExplorerState,
 } from '../domain/explorer-state'
 import { useI18n } from './i18n'
@@ -27,15 +28,6 @@ type ExplorerContextValue = {
 }
 
 const ExplorerContext = createContext<ExplorerContextValue | null>(null)
-
-function liveCompact(state: ExplorerState, defaults: Pick<ExplorerState, 'board'>) {
-  return compactExplorerState({ ...state, lang: undefined }, defaults)
-}
-
-function hasLiveState(state: ExplorerState, defaults: Pick<ExplorerState, 'board'>): boolean {
-  const compact = liveCompact(state, defaults)
-  return Object.keys(compact).some((key) => key !== 'v')
-}
 
 export function ExplorerProvider({
   dataset,
@@ -50,37 +42,39 @@ export function ExplorerProvider({
   const hash = useLocation({ select: (location) => location.hash })
   const defaults = useMemo(() => defaultExplorerState(dataset), [dataset])
   const [state, setState] = useState<ExplorerState>(() =>
-    restoreExplorerState(search.s ? parseCompactState(search.s) : null, dataset, lang),
+    restoreExplorerState(pickInitialCompact(search.s), dataset, lang),
   )
+
+  // An explicit share link (?s=...) wins over localStorage, is applied once,
+  // persisted, and then cleaned from the address bar without scrolling. A
+  // corrupted or unsupported share payload is ignored — the state already
+  // fell back to localStorage/defaults — but the param is still removed.
+  useEffect(() => {
+    // validateSearch maps an absent param to undefined; any string (even
+    // empty) counts as a present share param that must be cleaned up.
+    if (search.s === undefined) return
+    const compact = parseCompactState(search.s)
+    if (compact) {
+      if (compact.lang === 'en' || compact.lang === 'zh') setLang(compact.lang)
+      setState((current) => {
+        const incoming = restoreExplorerState(compact, dataset, lang)
+        return serializeExplorerState({ ...current, lang: undefined }, defaults) ===
+          serializeExplorerState({ ...incoming, lang: undefined }, defaults)
+          ? current
+          : incoming
+      })
+    }
+    void navigate({ search: {}, hash: hash || undefined, replace: true, resetScroll: false })
+  }, [search.s, dataset, defaults, lang, setLang, navigate, hash])
 
   const patch = useCallback((partial: Partial<ExplorerState>) => {
     setState((current) => ({ ...current, ...partial }))
   }, [])
 
+  // Regular interactions never touch the router; state only lands in localStorage.
   useEffect(() => {
-    const compact = search.s ? parseCompactState(search.s) : null
-    if (compact?.lang === 'en' || compact?.lang === 'zh') setLang(compact.lang)
-    if (!search.s) return
-    const incoming = restoreExplorerState(compact, dataset, lang)
-    setState((current) =>
-      serializeExplorerState({ ...current, lang: undefined }, defaults) ===
-      serializeExplorerState({ ...incoming, lang: undefined }, defaults)
-        ? current
-        : incoming,
-    )
-  }, [search.s, dataset, defaults, setLang])
-
-  useEffect(() => {
-    const nextS = hasLiveState(state, defaults)
-      ? serializeExplorerState({ ...state, lang: undefined }, defaults)
-      : undefined
-    if (search.s === nextS) return
-    void navigate({
-      search: nextS ? { s: nextS } : {},
-      hash: hash || undefined,
-      replace: true,
-    })
-  }, [state, defaults, navigate, search.s, hash])
+    writeStoredExplorerState(state, defaults)
+  }, [state, defaults])
 
   const shareUrl = useCallback(() => {
     const encoded = serializeExplorerState({ ...state, lang }, defaults)

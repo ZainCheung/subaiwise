@@ -1,13 +1,17 @@
 import { readFileSync } from 'node:fs'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { SubAIWiseDatasetSchema } from '../data/schema'
 import { availableLeaderboardKeys } from '../lib/leaderboards'
 import {
   compactExplorerState,
   defaultExplorerState,
+  EXPLORER_STORAGE_KEY,
   parseCompactState,
+  pickInitialCompact,
+  readStoredExplorerState,
   restoreExplorerState,
   serializeExplorerState,
+  writeStoredExplorerState,
 } from './explorer-state'
 
 const dataset = SubAIWiseDatasetSchema.parse(
@@ -116,5 +120,132 @@ describe('explorer share state', () => {
 
     const restoredUnknown = restoreExplorerState({ v: 1, board: 'arena_code' }, withoutArena)
     expect(restoredUnknown.board).toBe(defaults.board)
+  })
+})
+
+function stubStorage(map: Map<string, string>) {
+  vi.stubGlobal('window', {
+    localStorage: {
+      getItem: (key: string) => map.get(key) ?? null,
+      setItem: (key: string, value: string) => {
+        map.set(key, value)
+      },
+    },
+  })
+}
+
+describe('explorer localStorage state', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('round-trips state through the storage payload without lang', () => {
+    const defaults = defaultExplorerState(dataset)
+    const boards = availableLeaderboardKeys(dataset.leaderboards)
+    const otherBoard = boards.find((board) => board !== defaults.board) ?? boards[0]
+    const original = {
+      ...defaultExplorerState(dataset, 'zh'),
+      board: otherBoard,
+      query: 'opus',
+    }
+    const storage = new Map<string, string>()
+    stubStorage(storage)
+
+    writeStoredExplorerState(original, defaults)
+
+    expect(storage.get(EXPLORER_STORAGE_KEY)).toBe(
+      serializeExplorerState({ ...original, lang: undefined }, defaults),
+    )
+    const restored = restoreExplorerState(readStoredExplorerState(), dataset)
+    expect(restored.board).toBe(otherBoard)
+    expect(restored.query).toBe('opus')
+  })
+
+  it('falls back to defaults for corrupted storage payloads', () => {
+    const storage = new Map<string, string>([
+      [EXPLORER_STORAGE_KEY, 'not-json-at-all'],
+    ])
+    stubStorage(storage)
+    expect(readStoredExplorerState()).toBeNull()
+    const restored = restoreExplorerState(readStoredExplorerState(), dataset)
+    expect(restored.board).toBe(defaultExplorerState(dataset).board)
+    expect(restored.query).toBe('')
+  })
+
+  it('rejects a foreign storage version so future migrations can rewrite it', () => {
+    const storage = new Map<string, string>([
+      [EXPLORER_STORAGE_KEY, encodeURIComponent(JSON.stringify({ v: 99, board: 'arena_code' }))],
+    ])
+    stubStorage(storage)
+    expect(readStoredExplorerState()).toBeNull()
+  })
+
+  it('survives an unavailable localStorage', () => {
+    vi.stubGlobal('window', {
+      localStorage: {
+        getItem: () => {
+          throw new Error('denied')
+        },
+        setItem: () => {
+          throw new Error('denied')
+        },
+      },
+    })
+    expect(() => readStoredExplorerState()).not.toThrow()
+    expect(() =>
+      writeStoredExplorerState(defaultExplorerState(dataset), defaultExplorerState(dataset)),
+    ).not.toThrow()
+    expect(readStoredExplorerState()).toBeNull()
+  })
+})
+
+describe('initial explorer state selection', () => {
+  const defaults = defaultExplorerState(dataset)
+  const boards = availableLeaderboardKeys(dataset.leaderboards)
+  const storedBoard = boards.find((board) => board !== defaults.board) ?? boards[0]
+  type CompactStateShape = NonNullable<ReturnType<typeof parseCompactState>>
+
+  function storedCompact(board: string): CompactStateShape {
+    return parseCompactState(
+      serializeExplorerState({ ...defaultExplorerState(dataset), board }, defaults),
+    )!
+  }
+
+  const readStored = () => storedCompact(storedBoard)
+
+  it('prefers a valid share payload over stored state', () => {
+    const sharedBoard = boards.find((board) => board !== defaults.board && board !== storedBoard)!
+    const shared = serializeExplorerState(
+      { ...defaultExplorerState(dataset), board: sharedBoard },
+      defaults,
+    )
+    const picked = pickInitialCompact(shared, readStored)
+    expect(picked?.board).toBe(sharedBoard)
+  })
+
+  it('falls back to stored state when the share payload is corrupted', () => {
+    const picked = pickInitialCompact('::corrupted::', readStored)
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('falls back to stored state when the share version is unsupported', () => {
+    const picked = pickInitialCompact(
+      encodeURIComponent(JSON.stringify({ v: 99, board: 'arena_code' })),
+      readStored,
+    )
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('falls back to stored state when the share param is empty', () => {
+    const picked = pickInitialCompact('', readStored)
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('uses stored state when no share param is present', () => {
+    expect(pickInitialCompact(undefined, readStored)?.board).toBe(storedBoard)
+  })
+
+  it('returns null when neither the share payload nor storage is usable', () => {
+    expect(pickInitialCompact('::corrupted::', () => null)).toBeNull()
   })
 })
