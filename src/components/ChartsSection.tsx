@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import type { SubAIWiseDataset } from '../data/schema'
 import { useI18n } from '../lib/i18n'
 import { filterEntries } from '../domain/selectors'
@@ -6,7 +6,10 @@ import { filterEntriesByAdvanced, type AdvancedFilters } from '../domain/advance
 import type { IdFilter } from '../lib/filters'
 import { AllowanceChart } from './AllowanceChart'
 import { IdentityFilters } from './ModelServiceFilters'
+import { Pill, PillGroup } from './Pill'
 import { PriceChart } from './PriceChart'
+
+type OverviewTab = 'allowance' | 'price'
 
 export function ChartsSection({
   dataset,
@@ -24,6 +27,7 @@ export function ChartsSection({
   onChannelsChange: (next: IdFilter) => void
 }) {
   const { t } = useI18n()
+  const [tab, setTab] = useState<OverviewTab>('allowance')
   const entries = useMemo(
     () =>
       filterEntriesByAdvanced(filterEntries(dataset.entries, { models, channels }), {
@@ -49,9 +53,22 @@ export function ChartsSection({
           onChannelsChange={onChannelsChange}
         />
       </div>
-      <div className="mt-8 space-y-5">
-        <AllowanceChart entries={entries} />
-        <PriceChart entries={entries} />
+      <div className="mt-6">
+        <PillGroup>
+          <Pill active={tab === 'allowance'} onClick={() => setTab('allowance')}>
+            {t('tabAllowance')}
+          </Pill>
+          <Pill active={tab === 'price'} onClick={() => setTab('price')}>
+            {t('tabPrice')}
+          </Pill>
+        </PillGroup>
+      </div>
+      <div className="mt-5">
+        {tab === 'allowance' ? (
+          <AllowanceChart entries={entries} />
+        ) : (
+          <PriceChart entries={entries} />
+        )}
       </div>
     </section>
   )
