@@ -49,7 +49,6 @@ export function Leaderboard({
     () => availableLeaderboardKeys(dataset.leaderboards),
     [dataset.leaderboards],
   )
-  const [showAll, setShowAll] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [group, setGroup] = useState<SubAIWiseEntry[] | null>(null)
   const [detail, setDetail] = useState<SubAIWiseEntry | null>(null)
@@ -126,32 +125,19 @@ export function Leaderboard({
           <button type="button" className="howto-button" onClick={() => setExpanded(true)}>
             ⛶ {t('expandChart')}
           </button>
-          <Pill active={showAll} onClick={() => setShowAll((value) => !value)}>
-            {showAll ? t('showOneBoard') : t('showAllBoards')}
-          </Pill>
         </div>
       </div>
 
-      {showAll ? (
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+      <div className="mt-6">
+        <PillGroup>
           {boards.map((item) => (
-            <div key={item}>{chart(item)}</div>
+            <Pill key={item} active={board === item} onClick={() => onBoardChange(item)}>
+              {boardTitle(item, lang, dataset.leaderboards[item])}
+            </Pill>
           ))}
-        </div>
-      ) : (
-        <>
-          <div className="mt-6">
-            <PillGroup>
-              {boards.map((item) => (
-                <Pill key={item} active={board === item} onClick={() => onBoardChange(item)}>
-                  {boardTitle(item, lang, dataset.leaderboards[item])}
-                </Pill>
-              ))}
-            </PillGroup>
-          </div>
-          <div className="mt-5">{chart(board)}</div>
-        </>
-      )}
+        </PillGroup>
+      </div>
+      <div className="mt-5">{chart(board)}</div>
 
       {expanded ? (
         <ParetoFullscreenDialog
