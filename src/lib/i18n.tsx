@@ -63,8 +63,6 @@ const dict = {
     paretoSub:
       'Score vs real price. The line is the subscription frontier; hollow markers are API baselines. Unscored models stay in the overviews above but are not invented into a board.',
     advancedTitle: 'Advanced analysis',
-    showAllBoards: 'Show all boards',
-    showOneBoard: 'One board',
     leaderboardTitle: 'Leaderboard',
     leaderboardSub:
       'Real $/MTok versus benchmark score. Cheaper is to the right; higher is better. The line is the subscription Pareto frontier — plans that are not beaten on both price and score at once.',
@@ -342,8 +340,6 @@ const dict = {
     paretoSub:
       '得分对真实单价。折线为订阅前沿；空心点为 API 基线。某榜缺分的模型仍保留在上方总览中，但不会编造分数塞入该榜。',
     advancedTitle: '进阶分析',
-    showAllBoards: '显示全部榜单',
-    showOneBoard: '单榜',
     leaderboardTitle: '排行榜',
     leaderboardSub:
       '真实 $/MTok 对 benchmark 得分。越右越便宜，越高越好。连线是订阅帕累托前沿：无法被其他订阅同时在价格和分数上击败的方案。',
