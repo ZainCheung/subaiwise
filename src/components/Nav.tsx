@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from '@tanstack/react-router'
 import { useI18n } from '../lib/i18n'
 import { copyText } from '../lib/clipboard'
 import { useExplorerOptional } from '../lib/explorer'
@@ -13,7 +14,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-bg/90 backdrop-blur-md">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5">
-        <a href="#top" className="flex items-center gap-2.5">
+        <Link to="/" hash="top" className="flex items-center gap-2.5">
           <span
             className="block h-4 w-4 rotate-12 border border-white/90"
             aria-hidden
@@ -21,23 +22,20 @@ export function Nav() {
           <span className="text-[13px] font-semibold tracking-wide text-ink">
             {t('brand')}
           </span>
-        </a>
+        </Link>
         <nav className="flex items-center gap-4 text-[13px] text-ink-muted sm:gap-5">
-          <a className="hidden hover:text-ink sm:inline" href="#compare">
+          <Link className="hidden hover:text-ink sm:inline" to="/" hash="compare">
             {t('navCompare')}
-          </a>
-          <a className="hidden hover:text-ink sm:inline" href="#leaderboard">
+          </Link>
+          <Link className="hidden hover:text-ink sm:inline" to="/" hash="leaderboard">
             {t('navLeaderboard')}
-          </a>
-          <a className="hidden hover:text-ink md:inline" href="#overview">
+          </Link>
+          <Link className="hidden hover:text-ink md:inline" to="/" hash="overview">
             {t('navOverview')}
-          </a>
-          <a className="hidden hover:text-ink sm:inline" href="#method">
-            {t('navMethod')}
-          </a>
-          <a className="hidden hover:text-ink sm:inline" href="#data">
-            {t('navData')}
-          </a>
+          </Link>
+          <Link className="hidden hover:text-ink sm:inline" to="/methodology">
+            {t('navMethodology')}
+          </Link>
           {explorer ? (
             <button
               type="button"

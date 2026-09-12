@@ -15,8 +15,7 @@ const dict = {
     navCompare: 'Compare',
     navLeaderboard: 'Leaderboard',
     navOverview: 'Overview',
-    navMethod: 'Method',
-    navData: 'Data',
+    navMethodology: 'Data & methodology',
     github: 'GitHub',
     share: 'Share',
     copied: 'Copied',
@@ -26,11 +25,11 @@ const dict = {
     heroKicker: 'AI subscription pricing and model value explorer',
     heroTitle: 'Real unit price = monthly fee ÷ usable tokens',
     heroSub:
-      'Compare coding-plan subscriptions and metered APIs on one $/MTok scale. Month = four weeks of saturated use; input, output, and cache tokens are all included.',
+      'Compare coding-plan subscriptions and metered APIs on one comparable real $/MTok scale.',
     ctaExplore: 'Explore charts',
     ctaData: 'Download data',
     ctaCompare: 'Compare plans',
-    ctaMethod: 'Methodology',
+    ctaMethod: 'Data & methodology',
     snapshotTitle: 'Data snapshot',
     snapshotAsOf: 'Snapshot',
     snapPoints: 'points',
@@ -238,7 +237,31 @@ const dict = {
     paretoWhatLabel: 'What is the Pareto frontier?',
     paretoWhatBody:
       'If another plan is both cheaper and higher-scoring, the current plan is dominated. The Pareto frontier keeps only subscription plans that cannot be beaten on both dimensions at once.',
-    methodTitle: 'How the numbers work',
+    methodologyTitle: 'Data & methodology',
+    methodologyIntro:
+      'Where the numbers come from, how the real unit price is derived, what the benchmark boards mean, and where to get the dataset.',
+    methodSourceTitle: 'Data sources & updates',
+    methodSourceUpstreamTitle: 'Upstream dataset',
+    methodSourceUpstreamBody:
+      'Plan prices and allowances are collected in the open real-api-pricing project, which tracks vendor pricing pages and publishes regular snapshots.',
+    methodSourceCanonicalTitle: 'SubAIWise canonical dataset',
+    methodSourceCanonicalBody:
+      'SubAIWise normalizes the upstream snapshot, adds missing subscription plans, and keeps a small reviewed local override layer. The site serves one validated snapshot; updates are synced from upstream automatically.',
+    methodUpstreamCommit: 'Upstream commit',
+    methodPricingTitle: 'Real unit price',
+    methodFormula: 'Real unit price = monthly fee ÷ monthly usable tokens',
+    methodFormulaNote:
+      'Monthly usable tokens assume four saturated weeks and are converted from plan allowances and credits with the token mix below; metered APIs use their published per-token prices directly. When an allowance cannot be reliably derived, the price stays empty instead of being guessed.',
+    methodBoardsTitle: 'Benchmarks & leaderboards',
+    methodLimitsTitle: 'Limitations & disclaimer',
+    methodLimitPlans:
+      'Plan rules change frequently. Allowances reflect the vendor pages at snapshot time and may differ from what you can actually use.',
+    methodLimitFairUse:
+      'Rate limits, fair-use policies, and undisclosed caps can reduce real usable tokens below our estimate.',
+    methodLimitBenchmarks:
+      "Benchmark scores follow each board's own methodology and harness; they never represent all real workloads.",
+    methodLimitCurrency:
+      'Prices are converted to USD at public rates at snapshot time; promotions, regional pricing, and taxes may not be fully covered.',
     method1Title: 'Define the unit',
     method1Body:
       'Real unit price is monthly subscription fee divided by monthly usable tokens under saturated use (four weeks).',
@@ -261,8 +284,6 @@ const dict = {
       'Data source: real-api-pricing + SubAIWise normalization / overrides',
     footerNote:
       'Independent research visualization. Not affiliated with Arena, Artificial Analysis, or plan vendors.',
-    methodUpstream:
-      'Data source: real-api-pricing, normalized and maintained by SubAIWise.',
     langToggle: '中文',
     billingSub: 'Subscription',
     billingApi: 'API',
@@ -296,8 +317,7 @@ const dict = {
     navCompare: '比较',
     navLeaderboard: '排行榜',
     navOverview: '总览',
-    navMethod: '口径',
-    navData: '数据',
+    navMethodology: '数据与口径',
     github: 'GitHub',
     share: '分享',
     copied: '已复制',
@@ -306,12 +326,11 @@ const dict = {
     heroEyebrow: 'SUBAIWISE',
     heroKicker: 'AI 订阅定价与模型价值探索器',
     heroTitle: '真实单价 = 订阅月费 ÷ 每月实际可用 token',
-    heroSub:
-      '把编程订阅套餐与按量 API 放在同一套 $/MTok 口径下比较。按饱和使用、每月四周计算；输入、输出与缓存 token 全部计入。',
+    heroSub: '把编程订阅套餐与按量 API 放在同一套真实 $/MTok 口径下比较。',
     ctaExplore: '查看图表',
     ctaData: '下载数据',
     ctaCompare: '开始比较',
-    ctaMethod: '查看方法',
+    ctaMethod: '数据与口径',
     snapshotTitle: '数据快照',
     snapshotAsOf: '快照日期',
     snapPoints: '个点',
@@ -502,7 +521,26 @@ const dict = {
     paretoWhatLabel: '什么是帕累托前沿？',
     paretoWhatBody:
       '如果另一个方案既更便宜又得分更高，那么当前方案被“支配”。帕累托前沿只保留无法被其他方案同时在两个维度上击败的订阅方案。',
-    methodTitle: '数字如何得出',
+    methodologyTitle: '数据与口径',
+    methodologyIntro: '数据从哪里来、真实单价怎么算、benchmark 榜单意味着什么，以及如何获取完整数据集。',
+    methodSourceTitle: '数据来源与更新',
+    methodSourceUpstreamTitle: '上游数据集',
+    methodSourceUpstreamBody:
+      '套餐价格与额度由开放项目 real-api-pricing 收集整理，该项目持续跟踪各厂商定价页面并定期发布快照。',
+    methodSourceCanonicalTitle: 'SubAIWise 规范数据集',
+    methodSourceCanonicalBody:
+      'SubAIWise 在上游快照之上做规范化、补充缺失的订阅套餐，并维护一层经过核对的小型本地覆盖。站点只发布一份通过校验的快照，更新由上游自动同步。',
+    methodUpstreamCommit: '上游锁定 commit',
+    methodPricingTitle: '真实单价口径',
+    methodFormula: '真实单价 = 订阅月费 ÷ 每月实际可用 token',
+    methodFormulaNote:
+      '每月实际可用 token 按饱和使用四周估算，并结合下方 token 分布从套餐额度与 credits 折算；按量 API 直接使用其公布的 token 单价。无法可靠推导额度时，单价留空而不是猜测。',
+    methodBoardsTitle: 'Benchmark 与排行榜口径',
+    methodLimitsTitle: '数据限制与免责声明',
+    methodLimitPlans: '套餐规则随时可能变化。额度反映快照时点的厂商页面，实际可用量可能不同。',
+    methodLimitFairUse: '速率限制、公平使用条款和未公开的上限都可能让真实可用量低于估算。',
+    methodLimitBenchmarks: 'benchmark 分数遵循各榜单自己的方法与 harness，不能代表所有真实工作负载。',
+    methodLimitCurrency: '价格按快照时点公开汇率折算为 USD；促销、区域定价与税费可能未完全覆盖。',
     method1Title: '定义单位',
     method1Body: '真实单价 = 订阅月费 ÷ 饱和使用下的每月可用 token（每月四周）。',
     method2Title: '计入口径完整',
@@ -520,7 +558,6 @@ const dict = {
     footerSources: '来源与署名',
     footerUpstream: '数据来源：real-api-pricing + SubAIWise 规范化 / 本地覆盖',
     footerNote: '独立研究可视化，与 Arena、Artificial Analysis 及各套餐厂商无隶属关系。',
-    methodUpstream: '数据来源于 real-api-pricing，并由 SubAIWise 负责规范化与维护。',
     langToggle: 'EN',
     billingSub: '订阅',
     billingApi: 'API',

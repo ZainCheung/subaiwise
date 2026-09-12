@@ -94,10 +94,7 @@ export function Leaderboard({
             {t('leaderboardTitle')}
           </h2>
           <p className="mt-2 max-w-3xl text-[13px] leading-relaxed text-ink-muted">
-            {t('leaderboardSub')}
-          </p>
-          <p className="mt-2 flex max-w-3xl items-center gap-1 text-[13px] text-ink-muted">
-            {t('paretoWhatLabel')}
+            {t('leaderboardSub')}{' '}
             <MetricInfo
               label={t('paretoWhatLabel')}
               short={t('paretoHowToRead')}

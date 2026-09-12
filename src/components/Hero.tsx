@@ -1,4 +1,5 @@
 import type { SnapshotStats, QuickInsights as Insights } from '../lib/stats'
+import { Link } from '@tanstack/react-router'
 import { useI18n } from '../lib/i18n'
 import { QuickInsights } from './QuickInsights'
 
@@ -33,12 +34,12 @@ export function Hero({
               >
                 {t('ctaCompare')} →
               </a>
-              <a
-                href="#method"
+              <Link
+                to="/methodology"
                 className="inline-flex items-center rounded-md border border-border-strong px-4 py-2 text-[13px] font-medium text-ink hover:border-neutral-500"
               >
                 {t('ctaMethod')}
-              </a>
+              </Link>
             </div>
           </div>
 
