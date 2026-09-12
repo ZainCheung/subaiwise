@@ -1,16 +1,18 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 
+export type AppDialogVariant = 'default' | 'wide' | 'fullscreen'
+
 export function AppDialog({
   title,
   children,
   onClose,
-  wide = false,
+  variant = 'default',
   closeLabel = 'Close',
 }: {
   title: string
   children: ReactNode
   onClose: () => void
-  wide?: boolean
+  variant?: AppDialogVariant
   closeLabel?: string
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null)
@@ -48,7 +50,7 @@ export function AppDialog({
   return (
     <dialog
       ref={dialogRef}
-      className={wide ? 'app-dialog app-dialog-wide' : 'app-dialog'}
+      className={variant === 'default' ? 'app-dialog' : `app-dialog app-dialog-${variant}`}
       aria-labelledby={titleId}
       onCancel={(event) => {
         event.preventDefault()

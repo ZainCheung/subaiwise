@@ -13,7 +13,7 @@ export function ParetoFullscreenDialog({
   children: ReactNode
 }) {
   return (
-    <AppDialog title={title} onClose={onClose} closeLabel={closeLabel} wide>
+    <AppDialog title={title} onClose={onClose} closeLabel={closeLabel} variant="fullscreen">
       {children}
     </AppDialog>
   )

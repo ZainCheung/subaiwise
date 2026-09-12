@@ -120,11 +120,16 @@ export function ParetoChart({
       ? sameModelEntries(scored, active.entries[0].model.id).map((entry) => entry.id)
       : [],
   )
-  const height = expanded ? 'min(80vh, 720px)' : undefined
   const tickStyle = { fill: '#a3a3a3', fontSize: 12, fontFamily: 'Inter, system-ui, sans-serif' }
 
   return (
-    <div className="card chart-panel p-5 sm:p-6">
+    <div
+      className={
+        expanded
+          ? 'card chart-panel flex min-h-0 flex-1 flex-col p-5 sm:p-6'
+          : 'card chart-panel p-5 sm:p-6'
+      }
+    >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="text-lg font-semibold text-ink">{meta.name}</h3>
@@ -157,8 +162,7 @@ export function ParetoChart({
       </div>
 
       <div
-        className={`relative mt-4 overflow-visible ${expanded ? '' : 'h-[520px] min-h-[420px] sm:h-[560px]'}`}
-        style={expanded ? { height } : undefined}
+        className={`relative mt-4 overflow-visible ${expanded ? 'min-h-0 flex-1' : 'h-[520px] min-h-[420px] sm:h-[560px]'}`}
       >
         <div className="pointer-events-none absolute left-16 top-1 z-10 text-[12px] text-ink-muted">
           {meta.metric}
@@ -168,7 +172,7 @@ export function ParetoChart({
             <ParetoTooltip active entries={active.entries} score={active.y} formatter={formatter} />
           </div>
         ) : null}
-        <ResponsiveContainer width="100%" height="100%" minHeight={expanded ? 520 : 420}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={expanded ? 0 : 420}>
           <ComposedChart margin={{ top: 36, right: 120, bottom: 40, left: 16 }}>
             <CartesianGrid stroke="rgba(255,255,255,0.06)" strokeDasharray="0" vertical={false} />
             <XAxis
