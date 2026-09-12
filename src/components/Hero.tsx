@@ -22,7 +22,10 @@ export function Hero({
             </p>
             <p className="mt-2 text-[12px] text-ink-muted">{t('heroKicker')}</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
-              {t('heroTitle')}
+              <span className="block">{t('heroTitle')}</span>
+              <span className="mt-1.5 block text-xl font-medium text-ink-muted sm:text-2xl lg:text-[1.75rem] lg:leading-snug">
+                {t('heroTagline')}
+              </span>
             </h1>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-muted sm:text-base">
               {t('heroSub')}
