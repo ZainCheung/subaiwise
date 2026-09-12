@@ -7,6 +7,7 @@ import {
   defaultExplorerState,
   EXPLORER_STORAGE_KEY,
   parseCompactState,
+  pickInitialCompact,
   readStoredExplorerState,
   restoreExplorerState,
   serializeExplorerState,
@@ -195,5 +196,56 @@ describe('explorer localStorage state', () => {
       writeStoredExplorerState(defaultExplorerState(dataset), defaultExplorerState(dataset)),
     ).not.toThrow()
     expect(readStoredExplorerState()).toBeNull()
+  })
+})
+
+describe('initial explorer state selection', () => {
+  const defaults = defaultExplorerState(dataset)
+  const boards = availableLeaderboardKeys(dataset.leaderboards)
+  const storedBoard = boards.find((board) => board !== defaults.board) ?? boards[0]
+  type CompactStateShape = NonNullable<ReturnType<typeof parseCompactState>>
+
+  function storedCompact(board: string): CompactStateShape {
+    return parseCompactState(
+      serializeExplorerState({ ...defaultExplorerState(dataset), board }, defaults),
+    )!
+  }
+
+  const readStored = () => storedCompact(storedBoard)
+
+  it('prefers a valid share payload over stored state', () => {
+    const sharedBoard = boards.find((board) => board !== defaults.board && board !== storedBoard)!
+    const shared = serializeExplorerState(
+      { ...defaultExplorerState(dataset), board: sharedBoard },
+      defaults,
+    )
+    const picked = pickInitialCompact(shared, readStored)
+    expect(picked?.board).toBe(sharedBoard)
+  })
+
+  it('falls back to stored state when the share payload is corrupted', () => {
+    const picked = pickInitialCompact('::corrupted::', readStored)
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('falls back to stored state when the share version is unsupported', () => {
+    const picked = pickInitialCompact(
+      encodeURIComponent(JSON.stringify({ v: 99, board: 'arena_code' })),
+      readStored,
+    )
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('falls back to stored state when the share param is empty', () => {
+    const picked = pickInitialCompact('', readStored)
+    expect(picked?.board).toBe(storedBoard)
+  })
+
+  it('uses stored state when no share param is present', () => {
+    expect(pickInitialCompact(undefined, readStored)?.board).toBe(storedBoard)
+  })
+
+  it('returns null when neither the share payload nor storage is usable', () => {
+    expect(pickInitialCompact('::corrupted::', () => null)).toBeNull()
   })
 })

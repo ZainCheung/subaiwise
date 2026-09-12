@@ -12,7 +12,7 @@ import type { SubAIWiseDataset } from '../data/schema'
 import {
   defaultExplorerState,
   parseCompactState,
-  readStoredExplorerState,
+  pickInitialCompact,
   restoreExplorerState,
   serializeExplorerState,
   writeStoredExplorerState,
@@ -42,26 +42,28 @@ export function ExplorerProvider({
   const hash = useLocation({ select: (location) => location.hash })
   const defaults = useMemo(() => defaultExplorerState(dataset), [dataset])
   const [state, setState] = useState<ExplorerState>(() =>
-    restoreExplorerState(
-      search.s ? parseCompactState(search.s) : readStoredExplorerState(),
-      dataset,
-      lang,
-    ),
+    restoreExplorerState(pickInitialCompact(search.s), dataset, lang),
   )
 
-  // An explicit share link (?s=...) wins over localStorage. It is applied
-  // once, persisted, and then cleaned from the address bar without scrolling.
+  // An explicit share link (?s=...) wins over localStorage, is applied once,
+  // persisted, and then cleaned from the address bar without scrolling. A
+  // corrupted or unsupported share payload is ignored — the state already
+  // fell back to localStorage/defaults — but the param is still removed.
   useEffect(() => {
-    const compact = search.s ? parseCompactState(search.s) : null
-    if (!compact) return
-    if (compact.lang === 'en' || compact.lang === 'zh') setLang(compact.lang)
-    setState((current) => {
-      const incoming = restoreExplorerState(compact, dataset, lang)
-      return serializeExplorerState({ ...current, lang: undefined }, defaults) ===
-        serializeExplorerState({ ...incoming, lang: undefined }, defaults)
-        ? current
-        : incoming
-    })
+    // validateSearch maps an absent param to undefined; any string (even
+    // empty) counts as a present share param that must be cleaned up.
+    if (search.s === undefined) return
+    const compact = parseCompactState(search.s)
+    if (compact) {
+      if (compact.lang === 'en' || compact.lang === 'zh') setLang(compact.lang)
+      setState((current) => {
+        const incoming = restoreExplorerState(compact, dataset, lang)
+        return serializeExplorerState({ ...current, lang: undefined }, defaults) ===
+          serializeExplorerState({ ...incoming, lang: undefined }, defaults)
+          ? current
+          : incoming
+      })
+    }
     void navigate({ search: {}, hash: hash || undefined, replace: true, resetScroll: false })
   }, [search.s, dataset, defaults, lang, setLang, navigate, hash])
 

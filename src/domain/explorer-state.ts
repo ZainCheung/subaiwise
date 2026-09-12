@@ -149,6 +149,19 @@ export function writeStoredExplorerState(
   }
 }
 
+/**
+ * Initial compact state for the explorer. An explicit share param wins, but
+ * a corrupted or unsupported share payload falls back to the stored state
+ * instead of resetting to defaults.
+ */
+export function pickInitialCompact(
+  sharedRaw: string | null | undefined,
+  readStored: () => CompactState | null = readStoredExplorerState,
+): CompactState | null {
+  const shared = sharedRaw ? parseCompactState(sharedRaw) : null
+  return shared ?? readStored()
+}
+
 export function restoreExplorerState(
   compact: CompactState | null | undefined,
   dataset: SubAIWiseDataset,
