@@ -246,7 +246,7 @@ const dict = {
       'Plan prices and allowances are collected in the open real-api-pricing project, which tracks vendor pricing pages and publishes regular snapshots.',
     methodSourceCanonicalTitle: 'SubAIWise canonical dataset',
     methodSourceCanonicalBody:
-      'SubAIWise normalizes the upstream snapshot, adds missing subscription plans, and keeps a small reviewed local override layer. The site serves one validated snapshot; updates are synced from upstream automatically.',
+      "SubAIWise normalizes the upstream snapshot, adds missing subscription plans, and keeps a small reviewed local override layer. SubAIWise automatically detects upstream changes and prepares a validated data update pull request. Merged updates become part of the site's canonical snapshot.",
     methodUpstreamCommit: 'Upstream commit',
     methodPricingTitle: 'Real unit price',
     methodFormula: 'Real unit price = monthly fee ÷ monthly usable tokens',
@@ -529,7 +529,7 @@ const dict = {
       '套餐价格与额度由开放项目 real-api-pricing 收集整理，该项目持续跟踪各厂商定价页面并定期发布快照。',
     methodSourceCanonicalTitle: 'SubAIWise 规范数据集',
     methodSourceCanonicalBody:
-      'SubAIWise 在上游快照之上做规范化、补充缺失的订阅套餐，并维护一层经过核对的小型本地覆盖。站点只发布一份通过校验的快照，更新由上游自动同步。',
+      'SubAIWise 在上游快照之上做规范化、补充缺失的订阅套餐，并维护一层经过核对的小型本地覆盖。SubAIWise 自动检测上游数据变化，并生成经过校验的数据更新 PR；更新合并后进入站点数据快照。',
     methodUpstreamCommit: '上游锁定 commit',
     methodPricingTitle: '真实单价口径',
     methodFormula: '真实单价 = 订阅月费 ÷ 每月实际可用 token',
