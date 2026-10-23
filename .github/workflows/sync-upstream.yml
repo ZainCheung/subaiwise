@@ -39,11 +39,11 @@ jobs:
           locked=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).ref)")
           repository=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).repository)")
           mapfile -t paths < <(node -e "JSON.parse(require('fs').readFileSync('data/upstream.lock.json', 'utf8')).paths.forEach((p) => console.log(p))")
-          default_branch=$(curl --fail --silent --show-error \
+          default_branch=$(curl --fail --location --silent --show-error \
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${GH_TOKEN}" \
             "https://api.github.com/repos/${repository}" | jq -er '.default_branch')
-          latest=$(curl --fail --silent --show-error \
+          latest=$(curl --fail --location --silent --show-error \
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${GH_TOKEN}" \
             "https://api.github.com/repos/${repository}/commits/${default_branch}" | jq -er '.sha')
@@ -51,8 +51,8 @@ jobs:
           for source_path in "${paths[@]}"; do
             locked_url="https://raw.githubusercontent.com/${repository}/${locked}/${source_path}"
             latest_url="https://raw.githubusercontent.com/${repository}/${latest}/${source_path}"
-            locked_hash=$(curl --fail --silent --show-error "${locked_url}" | sha256sum | cut -d' ' -f1)
-            latest_hash=$(curl --fail --silent --show-error "${latest_url}" | sha256sum | cut -d' ' -f1)
+            locked_hash=$(curl --fail --location --silent --show-error "${locked_url}" | sha256sum | cut -d' ' -f1)
+            latest_hash=$(curl --fail --location --silent --show-error "${latest_url}" | sha256sum | cut -d' ' -f1)
             if [ "$locked_hash" != "$latest_hash" ]; then
               changed=true
             fi
