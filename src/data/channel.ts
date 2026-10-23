@@ -30,6 +30,7 @@ export const CHANNEL_BY_PLAN_PREFIX: ReadonlyArray<readonly [string, string]> = 
   ['supergrok', 'xAI'],
   ['cursor', 'Cursor'],
   ['devin', 'Devin'],
+  ['droid', 'Factory'],
   ['kimi', 'Kimi'],
   ['glm', 'Zhipu'],
   ['minimax', 'MiniMax'],
